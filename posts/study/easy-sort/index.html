@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>简单的排序 | KiritoXD&#39;s Blog</title>
-<meta name="keywords" content="study, sort">
+<meta name="keywords" content="sort">
 <meta name="description" content="简单的排序实现 快速排序 快排 分治思想 复杂度[nlogn,n^2] 不稳定 &ndash;x随机取 排序区间为[l,r]时，长度小于1，直接退出，否则选一个数字x作为比较元素 将大于x的放右边，小于x的放左边，等于x的随意放 确定x的位置后，对两侧继续递归 void quicksort(int l, int r) { if (l &gt;= r) return; // 长度小于1，直">
 <meta name="author" content="KiritoXD">
 <link rel="canonical" href="https://KiritoXDone.github.io/posts/study/easy-sort/">
@@ -104,7 +104,7 @@
   "name": "简单的排序",
   "description": "简单的排序实现 快速排序 快排 分治思想 复杂度[nlogn,n^2] 不稳定 \u0026ndash;x随机取 排序区间为[l,r]时，长度小于1，直接退出，否则选一个数字x作为比较元素 将大于x的放右边，小于x的放左边，等于x的随意放 确定x的位置后，对两侧继续递归 void quicksort(int l, int r) { if (l \u0026gt;= r) return; // 长度小于1，直",
   "keywords": [
-    "study", "sort"
+    "sort"
   ],
   "articleBody": "简单的排序实现 快速排序 快排 分治思想 复杂度[nlogn,n^2] 不稳定 –x随机取\n排序区间为[l,r]时，长度小于1，直接退出，否则选一个数字x作为比较元素\n将大于x的放右边，小于x的放左边，等于x的随意放\n确定x的位置后，对两侧继续递归\nvoid quicksort(int l, int r) { if (l \u003e= r) return; // 长度小于1，直接退出 swap(a[l], a[l + rand() % (r - l + 1)]); // 保证x随机取 int x = a[l]; int i = l, j = r; while (i \u003c j) { while (i \u003c j \u0026\u0026 a[j] \u003e x) // 不能写成a[j] \u003e= x j--; if (i \u003c j) a[i++] = a[j]; while (i \u003c j \u0026\u0026 a[i] \u003c x) // 不能写成a[i] \u003c= x i++; if (i \u003c j) a[j--] = a[i]; } a[i] = x; quicksort(l, i - 1); // 不能递归i quicksort(i + 1, r); } //另一种写法\nvoid Quicksort(int l, int r){ if(l\u003e=r)return; int b[100001],c[100001]; int x=a[l+rand()\u0026(r-l+1)]; int l1=0,l2=0,y=0; for(int i=l;i\u003c=r;i++){ if(a[i]",
   "wordCount" : "647",
@@ -372,9 +372,15 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://KiritoXDone.github.io/tags/study/">Study</a></li>
       <li><a href="https://KiritoXDone.github.io/tags/sort/">Sort</a></li>
     </ul>
+<nav class="paginav">
+  <a class="prev" href="https://KiritoXDone.github.io/posts/study/kmp/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>Kmp</span>
+  </a>
+</nav>
 
   </footer>
 </article>

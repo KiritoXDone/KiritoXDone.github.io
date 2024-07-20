@@ -6,8 +6,15 @@
     <description>Recent content on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 20 Jul 2024 12:16:26 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jul 2024 21:33:32 +0800</lastBuildDate>
     <atom:link href="https://KiritoXDone.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kmp</title>
+      <link>https://KiritoXDone.github.io/posts/study/kmp/</link>
+      <pubDate>Sat, 20 Jul 2024 21:33:32 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/posts/study/kmp/</guid>
+      <description>kmp算法学习记录</description>
+    </item>
     <item>
       <title>简单的排序</title>
       <link>https://KiritoXDone.github.io/posts/study/easy-sort/</link>
