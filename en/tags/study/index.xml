@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Study on KiritoXDone</title>
+    <link>http://localhost:1313/en/tags/study/</link>
+    <description>Recent content in Study on KiritoXDone</description>
+    <generator>Hugo -- 0.129.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 20 Jul 2024 12:16:26 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/en/tags/study/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>简单的排序</title>
+      <link>http://localhost:1313/en/posts/study/easy-sort/</link>
+      <pubDate>Sat, 20 Jul 2024 12:16:26 +0800</pubDate>
+      <guid>http://localhost:1313/en/posts/study/easy-sort/</guid>
+      <description>简单的排序实现 快速排序 快排 分治思想 复杂度[nlogn,n^2] 不稳定 &amp;ndash;x随机取 排序区间为[l,r]时，长度小于1，直接退出，否则</description>
+    </item>
+  </channel>
+</rss>
