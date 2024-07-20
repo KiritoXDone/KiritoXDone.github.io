@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>简单的排序 | KiritoXD&#39;s Blog</title>
+<meta name="keywords" content="study, sort">
+<meta name="description" content="简单的排序实现 快速排序 快排 分治思想 复杂度[nlogn,n^2] 不稳定 &ndash;x随机取 排序区间为[l,r]时，长度小于1，直接退出，否则选一个数字x作为比较元素 将大于x的放右边，小于x的放左边，等于x的随意放 确定x的位置后，对两侧继续递归 void quicksort(int l, int r) { if (l &gt;= r) return; // 长度小于1，直">
+<meta name="author" content="KiritoXD">
+<link rel="canonical" href="http://localhost:1313/posts/study/easy-sort/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/img/a.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/img/a.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/img/a.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/img/a.png">
+<link rel="mask-icon" href="http://localhost:1313/img/a.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/posts/study/easy-sort/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+  
+
+<meta property="og:title" content="简单的排序" />
+<meta property="og:description" content="简单的排序实现 快速排序 快排 分治思想 复杂度[nlogn,n^2] 不稳定 &ndash;x随机取 排序区间为[l,r]时，长度小于1，直接退出，否则选一个数字x作为比较元素 将大于x的放右边，小于x的放左边，等于x的随意放 确定x的位置后，对两侧继续递归 void quicksort(int l, int r) { if (l &gt;= r) return; // 长度小于1，直" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/study/easy-sort/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-20T12:16:26+08:00" />
+<meta property="article:modified_time" content="2024-07-20T12:16:26+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="简单的排序"/>
+<meta name="twitter:description" content="简单的排序实现 快速排序 快排 分治思想 复杂度[nlogn,n^2] 不稳定 &ndash;x随机取 排序区间为[l,r]时，长度小于1，直接退出，否则选一个数字x作为比较元素 将大于x的放右边，小于x的放左边，等于x的随意放 确定x的位置后，对两侧继续递归 void quicksort(int l, int r) { if (l &gt;= r) return; // 长度小于1，直"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "👨🏻‍💻 技术",
+      "item": "http://localhost:1313/posts/study/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "简单的排序",
+      "item": "http://localhost:1313/posts/study/easy-sort/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "简单的排序",
+  "name": "简单的排序",
+  "description": "简单的排序实现 快速排序 快排 分治思想 复杂度[nlogn,n^2] 不稳定 \u0026ndash;x随机取 排序区间为[l,r]时，长度小于1，直接退出，否则选一个数字x作为比较元素 将大于x的放右边，小于x的放左边，等于x的随意放 确定x的位置后，对两侧继续递归 void quicksort(int l, int r) { if (l \u0026gt;= r) return; // 长度小于1，直",
+  "keywords": [
+    "study", "sort"
+  ],
+  "articleBody": "简单的排序实现 快速排序 快排 分治思想 复杂度[nlogn,n^2] 不稳定 –x随机取\n排序区间为[l,r]时，长度小于1，直接退出，否则选一个数字x作为比较元素\n将大于x的放右边，小于x的放左边，等于x的随意放\n确定x的位置后，对两侧继续递归\nvoid quicksort(int l, int r) { if (l \u003e= r) return; // 长度小于1，直接退出 swap(a[l], a[l + rand() % (r - l + 1)]); // 保证x随机取 int x = a[l]; int i = l, j = r; while (i \u003c j) { while (i \u003c j \u0026\u0026 a[j] \u003e x) // 不能写成a[j] \u003e= x j--; if (i \u003c j) a[i++] = a[j]; while (i \u003c j \u0026\u0026 a[i] \u003c x) // 不能写成a[i] \u003c= x i++; if (i \u003c j) a[j--] = a[i]; } a[i] = x; quicksort(l, i - 1); // 不能递归i quicksort(i + 1, r); } //另一种写法\nvoid Quicksort(int l, int r){ if(l\u003e=r)return; int b[100001],c[100001]; int x=a[l+rand()\u0026(r-l+1)]; int l1=0,l2=0,y=0; for(int i=l;i\u003c=r;i++){ if(a[i]",
+  "wordCount" : "647",
+  "inLanguage": "zh",
+  "datePublished": "2024-07-20T12:16:26+08:00",
+  "dateModified": "2024-07-20T12:16:26+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "KiritoXD"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/study/easy-sort/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KiritoXD's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/img/a.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="KiritoXD&#39;s Blog (Alt + H)">
+                <img src="http://localhost:1313/img/a.png" alt="" aria-label="logo"
+                    height="35">KiritoXD&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/" title="🏠 主页">
+                    <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts" title="📚 文章">
+                    <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags" title="🧩 标签">
+                    <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="⏱️ 时间轴">
+                    <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">主页</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/study/">👨🏻‍💻 技术</a></div>
+    <h1 class="post-title entry-hint-parent">
+      简单的排序
+    </h1>
+    <div class="post-meta"><span title='2024-07-20 12:16:26 +0800 CST'>2024-07-20</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e7%ae%80%e5%8d%95%e7%9a%84%e6%8e%92%e5%ba%8f%e5%ae%9e%e7%8e%b0" aria-label="简单的排序实现">简单的排序实现</a><ul>
+                        
+                <li>
+                    <a href="#%e5%bf%ab%e9%80%9f%e6%8e%92%e5%ba%8f" aria-label="快速排序">快速排序</a></li>
+                <li>
+                    <a href="#%e5%bd%92%e5%b9%b6%e6%8e%92%e5%ba%8f" aria-label="归并排序">归并排序</a></li>
+                <li>
+                    <a href="#%e8%ae%a1%e6%95%b0%e6%8e%92%e5%ba%8f" aria-label="计数排序">计数排序</a></li>
+                <li>
+                    <a href="#%e5%9f%ba%e6%95%b0%e6%8e%92%e5%ba%8f" aria-label="基数排序">基数排序</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="简单的排序实现">简单的排序实现<a hidden class="anchor" aria-hidden="true" href="#简单的排序实现">#</a></h1>
+<hr>
+<h2 id="快速排序">快速排序<a hidden class="anchor" aria-hidden="true" href="#快速排序">#</a></h2>
+<p>快排 分治思想 复杂度[nlogn,n^2] 不稳定 &ndash;x随机取<br>
+排序区间为[l,r]时，长度小于1，直接退出，否则选一个数字x作为比较元素<br>
+将大于x的放右边，小于x的放左边，等于x的随意放<br>
+确定x的位置后，对两侧继续递归</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>void quicksort(int l, int r) {
+</span></span><span style="display:flex;"><span>    if (l &gt;= r) return; // 长度小于1，直接退出  
+</span></span><span style="display:flex;"><span>    swap(a[l], a[l + rand() % (r - l + 1)]); // 保证x随机取  
+</span></span><span style="display:flex;"><span>    int x = a[l];  
+</span></span><span style="display:flex;"><span>    int i = l, j = r;  
+</span></span><span style="display:flex;"><span>    while (i &lt; j) {  
+</span></span><span style="display:flex;"><span>        while (i &lt; j &amp;&amp; a[j] &gt; x) // 不能写成a[j] &gt;= x  
+</span></span><span style="display:flex;"><span>            j--;  
+</span></span><span style="display:flex;"><span>        if (i &lt; j)   
+</span></span><span style="display:flex;"><span>            a[i++] = a[j];  
+</span></span><span style="display:flex;"><span>        while (i &lt; j &amp;&amp; a[i] &lt; x) // 不能写成a[i] &lt;= x  
+</span></span><span style="display:flex;"><span>            i++;  
+</span></span><span style="display:flex;"><span>        if (i &lt; j)    
+</span></span><span style="display:flex;"><span>            a[j--] = a[i];   
+</span></span><span style="display:flex;"><span>    }   
+</span></span><span style="display:flex;"><span>    a[i] = x;  
+</span></span><span style="display:flex;"><span>    quicksort(l, i - 1); // 不能递归i  
+</span></span><span style="display:flex;"><span>    quicksort(i + 1, r);      
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>//另一种写法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>void Quicksort(int l, int r){   
+</span></span><span style="display:flex;"><span>    if(l&gt;=r)return;   
+</span></span><span style="display:flex;"><span>    int b[100001],c[100001];  
+</span></span><span style="display:flex;"><span>    int x=a[l+rand()&amp;(r-l+1)];  
+</span></span><span style="display:flex;"><span>    int l1=0,l2=0,y=0;  
+</span></span><span style="display:flex;"><span>    for(int i=l;i&lt;=r;i++){  
+</span></span><span style="display:flex;"><span>        if(a[i]&lt;x)  
+</span></span><span style="display:flex;"><span>            b[++l1]=a[i];  
+</span></span><span style="display:flex;"><span>        else   
+</span></span><span style="display:flex;"><span>            if(a[i]&gt;x)  
+</span></span><span style="display:flex;"><span>                c[++l2]=a[i];  
+</span></span><span style="display:flex;"><span>            else ++y;  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=l1;i++)
+</span></span><span style="display:flex;"><span>        a[l+i-1]=b[i];  
+</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=y;i++)  
+</span></span><span style="display:flex;"><span>        a[l+l1+i-1]=x;  
+</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=l2;i++)  
+</span></span><span style="display:flex;"><span>        a[l+l1+y+i-1]=c[i];  
+</span></span><span style="display:flex;"><span>    Quicksort(l,l+l1-1);  
+</span></span><span style="display:flex;"><span>    Quicksort(l+l1+y,r);  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="归并排序">归并排序<a hidden class="anchor" aria-hidden="true" href="#归并排序">#</a></h2>
+<p>归并排序 分治 复杂度 nlogn 且稳定
+要排序[l,r]，长度为1直接退出，否则分为[l,m],[m+1,r];
+递归两个子区间进行归并排序
+将排序好的子区间合并</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>void mergesort(int l,int r){
+</span></span><span style="display:flex;"><span>    if(l==r)return;
+</span></span><span style="display:flex;"><span>    int m=(l+r)/2;
+</span></span><span style="display:flex;"><span>    mergesort(l,m);
+</span></span><span style="display:flex;"><span>    mergesort(m+1,r);
+</span></span><span style="display:flex;"><span>    int p1=l,p2=m+1,tot=0;
+</span></span><span style="display:flex;"><span>    while(p1&lt;=m&amp;&amp;p2&lt;=r){
+</span></span><span style="display:flex;"><span>        if(a[p1]&lt;=a[p2])
+</span></span><span style="display:flex;"><span>            c[++tot]==a[p1++];
+</span></span><span style="display:flex;"><span>        else
+</span></span><span style="display:flex;"><span>            c[++tot]=a[p2++];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    while(p1&lt;=m)
+</span></span><span style="display:flex;"><span>        c[++tot]=a[p1++];
+</span></span><span style="display:flex;"><span>    while(p2&lt;=m)
+</span></span><span style="display:flex;"><span>        c[++tot]=a[p2++];
+</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=tot;i++)
+</span></span><span style="display:flex;"><span>        a[i+l-1]=c[i];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="计数排序">计数排序<a hidden class="anchor" aria-hidden="true" href="#计数排序">#</a></h2>
+<p>计数排序 适合值域范围较小 复杂度 n+k 稳定
+统计每个数字出现了几次
+统计完出现次数，求前缀和，可知道每个数字在拍完序的位置的范围
+保证稳定性，倒着确定原本每个位置上的数字最后排在低级位</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>void countingsort(){
+</span></span><span style="display:flex;"><span>    memset(c,0,sizeof(c));
+</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=n;i++)
+</span></span><span style="display:flex;"><span>        ++c[a[i]];
+</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=m;i++)
+</span></span><span style="display:flex;"><span>        for(int j=1;j&lt;=c[i];j++)
+</span></span><span style="display:flex;"><span>            printf(&#34;%d&#34;,i);
+</span></span><span style="display:flex;"><span>    printf(&#34;\n&#34;);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    for(int i=2;i&lt;=m;i++)
+</span></span><span style="display:flex;"><span>        c[i]+=c[i-1];
+</span></span><span style="display:flex;"><span>    for(int i=n;i;i--)
+</span></span><span style="display:flex;"><span>        r[i]=c[a[i]]--;
+</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=n;i++)
+</span></span><span style="display:flex;"><span>        printf(&#34;%d&#34;,r[i]);
+</span></span><span style="display:flex;"><span>    printf(&#34;\n&#34;);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="基数排序">基数排序<a hidden class="anchor" aria-hidden="true" href="#基数排序">#</a></h2>
+<p>基数排序 复杂度 nk
+拆分成 m 个关键字 从后往前 依次对m个关键字进行排序
+每次排序会使用上一次排序的结果
+一般使用计数排序来完成每次的排序
+例如对三位数排序 先排个位 再排十位 再排百位
+经常被用于字符串的排序 后缀数组的核心就是基数排序</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>void countingsort(){
+</span></span><span style="display:flex;"><span>    memset(c,0,sizeof(c));
+</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=n;i++)
+</span></span><span style="display:flex;"><span>        ++c[v[i]];
+</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=9;i++)
+</span></span><span style="display:flex;"><span>        c[i]+=c[i-1];
+</span></span><span style="display:flex;"><span>    for(int i=n;i;i--)
+</span></span><span style="display:flex;"><span>        r[sa[i]]=c[v[sa[i]]]--;
+</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=n;i++)
+</span></span><span style="display:flex;"><span>        sa[r[i]]=i;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>void radixsort(){
+</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=n;i++)
+</span></span><span style="display:flex;"><span>        sa[i]=i;
+</span></span><span style="display:flex;"><span>    int x=1;
+</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=m;i++,x*=10){
+</span></span><span style="display:flex;"><span>        for(int j=1;j&lt;=n;j++){
+</span></span><span style="display:flex;"><span>            v[j]=a[j]/x%10;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        countingsort();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/study/">Study</a></li>
+      <li><a href="http://localhost:1313/tags/sort/">Sort</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://localhost:1313/">KiritoXD&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
