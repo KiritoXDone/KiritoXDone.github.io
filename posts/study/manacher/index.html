@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>简单的排序 | KiritoXD&#39;s Blog</title>
-<meta name="keywords" content="sort">
-<meta name="description" content="简单的排序实现 快速排序 快排 分治思想 复杂度[nlogn,n^2] 不稳定 &ndash;x随机取 排序区间为[l,r]时，长度小于1，直接退出，否则选一个数字x作为比较元素 将大于x的放右边，小于x的放左边，等于x的随意放 确定x的位置后，对两侧继续递归 void quicksort(int l, int r) { if (l &gt;= r) return; // 长度小于1，直">
+<title>Manacher | KiritoXD&#39;s Blog</title>
+<meta name="keywords" content="manacher, string">
+<meta name="description" content="Manacher 理念学习 解决最长回文子串问题 给出一个任意字符串，求出这个字符串中最长的回文子串 正常情况下，需要对长度奇偶不同的分类讨论。但可以用一个s中不存在的字符，把s中每一位隔开，再求新串中奇数长度的最长回文子串即可 对于新串s，我们的目的是求出从它的任意位置i出发，往两边最远能拓展出的回文">
 <meta name="author" content="KiritoXD">
-<link rel="canonical" href="https://KiritoXDone.github.io/posts/study/easy-sort/">
+<link rel="canonical" href="https://KiritoXDone.github.io/posts/study/manacher/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://KiritoXDone.github.io/img/a.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://KiritoXDone.github.io/img/a.png">
@@ -18,7 +18,7 @@
 <link rel="mask-icon" href="https://KiritoXDone.github.io/img/a.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://KiritoXDone.github.io/posts/study/easy-sort/">
+<link rel="alternate" hreflang="zh" href="https://KiritoXDone.github.io/posts/study/manacher/">
 <noscript>
     <style>
         #theme-toggle,
@@ -80,16 +80,16 @@
 
   
 
-<meta property="og:title" content="简单的排序" />
-<meta property="og:description" content="简单的排序实现 快速排序 快排 分治思想 复杂度[nlogn,n^2] 不稳定 &ndash;x随机取 排序区间为[l,r]时，长度小于1，直接退出，否则选一个数字x作为比较元素 将大于x的放右边，小于x的放左边，等于x的随意放 确定x的位置后，对两侧继续递归 void quicksort(int l, int r) { if (l &gt;= r) return; // 长度小于1，直" />
+<meta property="og:title" content="Manacher" />
+<meta property="og:description" content="Manacher 理念学习 解决最长回文子串问题 给出一个任意字符串，求出这个字符串中最长的回文子串 正常情况下，需要对长度奇偶不同的分类讨论。但可以用一个s中不存在的字符，把s中每一位隔开，再求新串中奇数长度的最长回文子串即可 对于新串s，我们的目的是求出从它的任意位置i出发，往两边最远能拓展出的回文" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://KiritoXDone.github.io/posts/study/easy-sort/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-07-20T12:16:26+08:00" />
-<meta property="article:modified_time" content="2024-07-20T12:16:26+08:00" />
+<meta property="og:url" content="https://KiritoXDone.github.io/posts/study/manacher/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-22T22:59:43+08:00" />
+<meta property="article:modified_time" content="2024-07-22T22:59:43+08:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="简单的排序"/>
-<meta name="twitter:description" content="简单的排序实现 快速排序 快排 分治思想 复杂度[nlogn,n^2] 不稳定 &ndash;x随机取 排序区间为[l,r]时，长度小于1，直接退出，否则选一个数字x作为比较元素 将大于x的放右边，小于x的放左边，等于x的随意放 确定x的位置后，对两侧继续递归 void quicksort(int l, int r) { if (l &gt;= r) return; // 长度小于1，直"/>
+<meta name="twitter:title" content="Manacher"/>
+<meta name="twitter:description" content="Manacher 理念学习 解决最长回文子串问题 给出一个任意字符串，求出这个字符串中最长的回文子串 正常情况下，需要对长度奇偶不同的分类讨论。但可以用一个s中不存在的字符，把s中每一位隔开，再求新串中奇数长度的最长回文子串即可 对于新串s，我们的目的是求出从它的任意位置i出发，往两边最远能拓展出的回文"/>
 
 
 <script type="application/ld+json">
@@ -112,8 +112,8 @@
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "简单的排序",
-      "item": "https://KiritoXDone.github.io/posts/study/easy-sort/"
+      "name": "Manacher",
+      "item": "https://KiritoXDone.github.io/posts/study/manacher/"
     }
   ]
 }
@@ -122,24 +122,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "简单的排序",
-  "name": "简单的排序",
-  "description": "简单的排序实现 快速排序 快排 分治思想 复杂度[nlogn,n^2] 不稳定 \u0026ndash;x随机取 排序区间为[l,r]时，长度小于1，直接退出，否则选一个数字x作为比较元素 将大于x的放右边，小于x的放左边，等于x的随意放 确定x的位置后，对两侧继续递归 void quicksort(int l, int r) { if (l \u0026gt;= r) return; // 长度小于1，直",
+  "headline": "Manacher",
+  "name": "Manacher",
+  "description": "Manacher 理念学习 解决最长回文子串问题 给出一个任意字符串，求出这个字符串中最长的回文子串 正常情况下，需要对长度奇偶不同的分类讨论。但可以用一个s中不存在的字符，把s中每一位隔开，再求新串中奇数长度的最长回文子串即可 对于新串s，我们的目的是求出从它的任意位置i出发，往两边最远能拓展出的回文",
   "keywords": [
-    "sort"
+    "manacher", "string"
   ],
-  "articleBody": "简单的排序实现 快速排序 快排 分治思想 复杂度[nlogn,n^2] 不稳定 –x随机取\n排序区间为[l,r]时，长度小于1，直接退出，否则选一个数字x作为比较元素\n将大于x的放右边，小于x的放左边，等于x的随意放\n确定x的位置后，对两侧继续递归\nvoid quicksort(int l, int r) { if (l \u003e= r) return; // 长度小于1，直接退出 swap(a[l], a[l + rand() % (r - l + 1)]); // 保证x随机取 int x = a[l]; int i = l, j = r; while (i \u003c j) { while (i \u003c j \u0026\u0026 a[j] \u003e x) // 不能写成a[j] \u003e= x j--; if (i \u003c j) a[i++] = a[j]; while (i \u003c j \u0026\u0026 a[i] \u003c x) // 不能写成a[i] \u003c= x i++; if (i \u003c j) a[j--] = a[i]; } a[i] = x; quicksort(l, i - 1); // 不能递归i quicksort(i + 1, r); } //另一种写法\nvoid Quicksort(int l, int r){ if(l\u003e=r)return; int b[100001],c[100001]; int x=a[l+rand()\u0026(r-l+1)]; int l1=0,l2=0,y=0; for(int i=l;i\u003c=r;i++){ if(a[i]",
-  "wordCount" : "647",
+  "articleBody": "Manacher 理念学习 解决最长回文子串问题\n给出一个任意字符串，求出这个字符串中最长的回文子串\n正常情况下，需要对长度奇偶不同的分类讨论。但可以用一个s中不存在的字符，把s中每一位隔开，再求新串中奇数长度的最长回文子串即可\n对于新串s，我们的目的是求出从它的任意位置i出发，往两边最远能拓展出的回文子串的长度，记做p[i] (包括i本身，所以最小为1)\n维护p[i]的值： 维护一个到目前位置的R最大的区间[L,R]，其中L=M-p[M]+1(M",
+  "wordCount" : "577",
   "inLanguage": "zh",
-  "datePublished": "2024-07-20T12:16:26+08:00",
-  "dateModified": "2024-07-20T12:16:26+08:00",
-  "author":{
+  "datePublished": "2024-07-22T22:59:43+08:00",
+  "dateModified": "2024-07-22T22:59:43+08:00",
+  "author":[{
     "@type": "Person",
     "name": "KiritoXD"
-  },
+  }],
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://KiritoXDone.github.io/posts/study/easy-sort/"
+    "@id": "https://KiritoXDone.github.io/posts/study/manacher/"
   },
   "publisher": {
     "@type": "Organization",
@@ -229,9 +229,9 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://KiritoXDone.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://KiritoXDone.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://KiritoXDone.github.io/posts/study/">👨🏻‍💻 技术</a></div>
     <h1 class="post-title entry-hint-parent">
-      简单的排序
+      Manacher
     </h1>
-    <div class="post-meta"><span title='2024-07-20 12:16:26 +0800 CST'>2024-07-20</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD
+    <div class="post-meta"><span title='2024-07-22 22:59:43 +0800 CST'>2024-07-22</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -243,16 +243,12 @@
 
             <div class="inner"><ul>
                     <li>
-                        <a href="#%e7%ae%80%e5%8d%95%e7%9a%84%e6%8e%92%e5%ba%8f%e5%ae%9e%e7%8e%b0" aria-label="简单的排序实现">简单的排序实现</a><ul>
+                        <a href="#manacher" aria-label="Manacher">Manacher</a><ul>
                             
                     <li>
-                        <a href="#%e5%bf%ab%e9%80%9f%e6%8e%92%e5%ba%8f" aria-label="快速排序">快速排序</a></li>
+                        <a href="#%e7%90%86%e5%bf%b5%e5%ad%a6%e4%b9%a0" aria-label="理念学习">理念学习</a></li>
                     <li>
-                        <a href="#%e5%bd%92%e5%b9%b6%e6%8e%92%e5%ba%8f" aria-label="归并排序">归并排序</a></li>
-                    <li>
-                        <a href="#%e8%ae%a1%e6%95%b0%e6%8e%92%e5%ba%8f" aria-label="计数排序">计数排序</a></li>
-                    <li>
-                        <a href="#%e5%9f%ba%e6%95%b0%e6%8e%92%e5%ba%8f" aria-label="基数排序">基数排序</a>
+                        <a href="#%e6%b4%9b%e8%b0%b7%e4%be%8b%e9%a2%98" aria-label="洛谷例题">洛谷例题</a>
                     </li>
                 </ul>
                 </li>
@@ -322,147 +318,108 @@
 </script>
 
 
-  <div class="post-content"><h1 id="简单的排序实现">简单的排序实现<a hidden class="anchor" aria-hidden="true" href="#简单的排序实现">#</a></h1>
+  <div class="post-content"><h1 id="manacher">Manacher<a hidden class="anchor" aria-hidden="true" href="#manacher">#</a></h1>
 <hr>
-<h2 id="快速排序">快速排序<a hidden class="anchor" aria-hidden="true" href="#快速排序">#</a></h2>
-<p>快排 分治思想 复杂度[nlogn,n^2] 不稳定 &ndash;x随机取<br>
-排序区间为[l,r]时，长度小于1，直接退出，否则选一个数字x作为比较元素<br>
-将大于x的放右边，小于x的放左边，等于x的随意放<br>
-确定x的位置后，对两侧继续递归</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>void quicksort(int l, int r) {
-</span></span><span style="display:flex;"><span>    if (l &gt;= r) return; // 长度小于1，直接退出  
-</span></span><span style="display:flex;"><span>    swap(a[l], a[l + rand() % (r - l + 1)]); // 保证x随机取  
-</span></span><span style="display:flex;"><span>    int x = a[l];  
-</span></span><span style="display:flex;"><span>    int i = l, j = r;  
-</span></span><span style="display:flex;"><span>    while (i &lt; j) {  
-</span></span><span style="display:flex;"><span>        while (i &lt; j &amp;&amp; a[j] &gt; x) // 不能写成a[j] &gt;= x  
-</span></span><span style="display:flex;"><span>            j--;  
-</span></span><span style="display:flex;"><span>        if (i &lt; j)   
-</span></span><span style="display:flex;"><span>            a[i++] = a[j];  
-</span></span><span style="display:flex;"><span>        while (i &lt; j &amp;&amp; a[i] &lt; x) // 不能写成a[i] &lt;= x  
-</span></span><span style="display:flex;"><span>            i++;  
-</span></span><span style="display:flex;"><span>        if (i &lt; j)    
-</span></span><span style="display:flex;"><span>            a[j--] = a[i];   
-</span></span><span style="display:flex;"><span>    }   
-</span></span><span style="display:flex;"><span>    a[i] = x;  
-</span></span><span style="display:flex;"><span>    quicksort(l, i - 1); // 不能递归i  
-</span></span><span style="display:flex;"><span>    quicksort(i + 1, r);      
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>//另一种写法</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>void Quicksort(int l, int r){   
-</span></span><span style="display:flex;"><span>    if(l&gt;=r)return;   
-</span></span><span style="display:flex;"><span>    int b[100001],c[100001];  
-</span></span><span style="display:flex;"><span>    int x=a[l+rand()&amp;(r-l+1)];  
-</span></span><span style="display:flex;"><span>    int l1=0,l2=0,y=0;  
-</span></span><span style="display:flex;"><span>    for(int i=l;i&lt;=r;i++){  
-</span></span><span style="display:flex;"><span>        if(a[i]&lt;x)  
-</span></span><span style="display:flex;"><span>            b[++l1]=a[i];  
-</span></span><span style="display:flex;"><span>        else   
-</span></span><span style="display:flex;"><span>            if(a[i]&gt;x)  
-</span></span><span style="display:flex;"><span>                c[++l2]=a[i];  
-</span></span><span style="display:flex;"><span>            else ++y;  
-</span></span><span style="display:flex;"><span>    }  
-</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=l1;i++)
-</span></span><span style="display:flex;"><span>        a[l+i-1]=b[i];  
-</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=y;i++)  
-</span></span><span style="display:flex;"><span>        a[l+l1+i-1]=x;  
-</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=l2;i++)  
-</span></span><span style="display:flex;"><span>        a[l+l1+y+i-1]=c[i];  
-</span></span><span style="display:flex;"><span>    Quicksort(l,l+l1-1);  
-</span></span><span style="display:flex;"><span>    Quicksort(l+l1+y,r);  
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><hr>
-<h2 id="归并排序">归并排序<a hidden class="anchor" aria-hidden="true" href="#归并排序">#</a></h2>
-<p>归并排序 分治 复杂度 nlogn 且稳定
-要排序[l,r]，长度为1直接退出，否则分为[l,m],[m+1,r];
-递归两个子区间进行归并排序
-将排序好的子区间合并</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>void mergesort(int l,int r){
-</span></span><span style="display:flex;"><span>    if(l==r)return;
-</span></span><span style="display:flex;"><span>    int m=(l+r)/2;
-</span></span><span style="display:flex;"><span>    mergesort(l,m);
-</span></span><span style="display:flex;"><span>    mergesort(m+1,r);
-</span></span><span style="display:flex;"><span>    int p1=l,p2=m+1,tot=0;
-</span></span><span style="display:flex;"><span>    while(p1&lt;=m&amp;&amp;p2&lt;=r){
-</span></span><span style="display:flex;"><span>        if(a[p1]&lt;=a[p2])
-</span></span><span style="display:flex;"><span>            c[++tot]==a[p1++];
+<h2 id="理念学习">理念学习<a hidden class="anchor" aria-hidden="true" href="#理念学习">#</a></h2>
+<p>解决最长回文子串问题</p>
+<p>给出一个任意字符串，求出这个字符串中最长的回文子串</p>
+<p>正常情况下，需要对长度奇偶不同的分类讨论。但可以用一个s中不存在的字符，把s中每一位隔开，再求新串中奇数长度的最长回文子串即可</p>
+<p>对于新串s，我们的目的是求出从它的任意位置i出发，往两边最远能拓展出的回文子串的长度，记做p[i] (包括i本身，所以最小为1)</p>
+<p>维护p[i]的值：
+维护一个到目前位置的R最大的区间[L,R]，其中L=M-p[M]+1(M&lt;i)，R=M+p[M]-1</p>
+<pre><code>[L,R]是一个回文串
+
+如果i&lt;=R:
+    找到i对于M的对称点k，此时i-M=M-k,k=2*M-i;  
+    此时有两种情况： LL
+        (1)如果p[k]对应的回文区间[k-p[k]+1,k+p[k]-1]，不含左端点L，说明这个回文区间在[L,R]之中，此时我们可以得到p[i]=p[k]  
+        (2)如果包含了左端点L，此时[L,2*k-L]这一端为回文串。由于[L,R]是回文串，可得出[2*i-R,R]也是回文串。往两端暴力拓展即可。  
+
+如果i&gt;R：
+    暴力两端拓展即可  
+都要记得更新M,L,R的值。  
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>void manacher(){
+</span></span><span style="display:flex;"><span>    n=s.size();
+</span></span><span style="display:flex;"><span>    t.resize(2*n+10);
+</span></span><span style="display:flex;"><span>    int m=0;
+</span></span><span style="display:flex;"><span>       t[0]=&#39;$&#39;;
+</span></span><span style="display:flex;"><span>    for(int i=0;i&lt;n;i++){
+</span></span><span style="display:flex;"><span>        t[++m]=s[i],t[++m]=&#39;$&#39;;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    int M=0,R=0;
+</span></span><span style="display:flex;"><span>    for(int i=0;i&lt;m;i++){
+</span></span><span style="display:flex;"><span>        if(i&gt;R)
+</span></span><span style="display:flex;"><span>            p[i]=1;
 </span></span><span style="display:flex;"><span>        else
-</span></span><span style="display:flex;"><span>            c[++tot]=a[p2++];
+</span></span><span style="display:flex;"><span>            p[i]=min(p[2*M-i],R-i+1);
+</span></span><span style="display:flex;"><span>        while(i-p[i]&gt;=0&amp;&amp;i+p[i]&lt;=m&amp;&amp;t[i-p[i]]==t[i+p[i]])
+</span></span><span style="display:flex;"><span>            ++p[i];
+</span></span><span style="display:flex;"><span>        if(i+p[i]-1&gt;R)
+</span></span><span style="display:flex;"><span>            M=i,R=i+p[i]-1;        
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    while(p1&lt;=m)
-</span></span><span style="display:flex;"><span>        c[++tot]=a[p1++];
-</span></span><span style="display:flex;"><span>    while(p2&lt;=m)
-</span></span><span style="display:flex;"><span>        c[++tot]=a[p2++];
-</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=tot;i++)
-</span></span><span style="display:flex;"><span>        a[i+l-1]=c[i];
+</span></span><span style="display:flex;"><span>    int ans=0;
+</span></span><span style="display:flex;"><span>    for(int i=0;i&lt;=m;i++){
+</span></span><span style="display:flex;"><span>        ans=max(ans,p[i]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    cout&lt;&lt;ans-1&lt;&lt;endl;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><hr>
-<h2 id="计数排序">计数排序<a hidden class="anchor" aria-hidden="true" href="#计数排序">#</a></h2>
-<p>计数排序 适合值域范围较小 复杂度 n+k 稳定
-统计每个数字出现了几次
-统计完出现次数，求前缀和，可知道每个数字在拍完序的位置的范围
-保证稳定性，倒着确定原本每个位置上的数字最后排在低级位</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>void countingsort(){
-</span></span><span style="display:flex;"><span>    memset(c,0,sizeof(c));
-</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=n;i++)
-</span></span><span style="display:flex;"><span>        ++c[a[i]];
-</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=m;i++)
-</span></span><span style="display:flex;"><span>        for(int j=1;j&lt;=c[i];j++)
-</span></span><span style="display:flex;"><span>            printf(&#34;%d&#34;,i);
-</span></span><span style="display:flex;"><span>    printf(&#34;\n&#34;);
+<h2 id="洛谷例题">洛谷例题<a hidden class="anchor" aria-hidden="true" href="#洛谷例题">#</a></h2>
+<p><a href="https://www.luogu.com.cn/problem/P3805">P3805</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> N <span style="color:#f92672">=</span> <span style="color:#ae81ff">2e7</span><span style="color:#f92672">+</span><span style="color:#ae81ff">10</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    for(int i=2;i&lt;=m;i++)
-</span></span><span style="display:flex;"><span>        c[i]+=c[i-1];
-</span></span><span style="display:flex;"><span>    for(int i=n;i;i--)
-</span></span><span style="display:flex;"><span>        r[i]=c[a[i]]--;
-</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=n;i++)
-</span></span><span style="display:flex;"><span>        printf(&#34;%d&#34;,r[i]);
-</span></span><span style="display:flex;"><span>    printf(&#34;\n&#34;);
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><hr>
-<h2 id="基数排序">基数排序<a hidden class="anchor" aria-hidden="true" href="#基数排序">#</a></h2>
-<p>基数排序 复杂度 nk
-拆分成 m 个关键字 从后往前 依次对m个关键字进行排序
-每次排序会使用上一次排序的结果
-一般使用计数排序来完成每次的排序
-例如对三位数排序 先排个位 再排十位 再排百位
-经常被用于字符串的排序 后缀数组的核心就是基数排序</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>void countingsort(){
-</span></span><span style="display:flex;"><span>    memset(c,0,sizeof(c));
-</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=n;i++)
-</span></span><span style="display:flex;"><span>        ++c[v[i]];
-</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=9;i++)
-</span></span><span style="display:flex;"><span>        c[i]+=c[i-1];
-</span></span><span style="display:flex;"><span>    for(int i=n;i;i--)
-</span></span><span style="display:flex;"><span>        r[sa[i]]=c[v[sa[i]]]--;
-</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=n;i++)
-</span></span><span style="display:flex;"><span>        sa[r[i]]=i;
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n,p[<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>N];
+</span></span><span style="display:flex;"><span>string s,t;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>void radixsort(){
-</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=n;i++)
-</span></span><span style="display:flex;"><span>        sa[i]=i;
-</span></span><span style="display:flex;"><span>    int x=1;
-</span></span><span style="display:flex;"><span>    for(int i=1;i&lt;=m;i++,x*=10){
-</span></span><span style="display:flex;"><span>        for(int j=1;j&lt;=n;j++){
-</span></span><span style="display:flex;"><span>            v[j]=a[j]/x%10;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        countingsort();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">manacher</span>(){
+</span></span><span style="display:flex;"><span>    n<span style="color:#f92672">=</span>s.size();
+</span></span><span style="display:flex;"><span>    t.resize(<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">10</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> m<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    t[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;$&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>        t[<span style="color:#f92672">++</span>m]<span style="color:#f92672">=</span>s[i],t[<span style="color:#f92672">++</span>m]<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;$&#39;</span>;
 </span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> M<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,R<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>m;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(i<span style="color:#f92672">&gt;</span>R)
+</span></span><span style="display:flex;"><span>            p[i]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>            p[i]<span style="color:#f92672">=</span>min(p[<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>M<span style="color:#f92672">-</span>i],R<span style="color:#f92672">-</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span>(i<span style="color:#f92672">-</span>p[i]<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&amp;&amp;</span>i<span style="color:#f92672">+</span>p[i]<span style="color:#f92672">&lt;=</span>m<span style="color:#f92672">&amp;&amp;</span>t[i<span style="color:#f92672">-</span>p[i]]<span style="color:#f92672">==</span>t[i<span style="color:#f92672">+</span>p[i]])
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">++</span>p[i];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(i<span style="color:#f92672">+</span>p[i]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;</span>R)
+</span></span><span style="display:flex;"><span>            M<span style="color:#f92672">=</span>i,R<span style="color:#f92672">=</span>i<span style="color:#f92672">+</span>p[i]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;        
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> ans<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;=</span>m;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>        ans<span style="color:#f92672">=</span>max(ans,p[i]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span>ans<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>endl;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    cin<span style="color:#f92672">&gt;&gt;</span>s;
+</span></span><span style="display:flex;"><span>    manacher();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>坑点：字符串t要resize，不然re</p>
+
 
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://KiritoXDone.github.io/tags/sort/">Sort</a></li>
+      <li><a href="https://KiritoXDone.github.io/tags/manacher/">Manacher</a></li>
+      <li><a href="https://KiritoXDone.github.io/tags/string/">String</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://KiritoXDone.github.io/posts/study/kmp/">
-    <span class="title">« 上一页</span>
+  <a class="next" href="https://KiritoXDone.github.io/posts/study/0721/">
+    <span class="title">下一页 »</span>
     <br>
-    <span>kmp</span>
+    <span>0721</span>
   </a>
 </nav>
 
