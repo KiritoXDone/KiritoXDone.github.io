@@ -192,6 +192,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">2024HDU2
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>杭电多校 2 补题 1010 女神的睿智 按顺序合并 8 块碎片，如果两片相同，合成后仍相同，如不同，取左侧的，最后合成大碎片时，如果两片相同，不变，如果不同，取出现次数最多的，如果不确定，输出N。 签到，直接暴力 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; void solve(){ string t,s; cin&gt;&gt;s; map&lt;char,int&gt;vis; for(int i=0;i&lt;8;i&#43;&#43;){ if(i%2!=1)t&#43;=s[i]; vis[s[i]]&#43;&#43;; } s=t; t=&#34;&#34;; for(int i=0;i&lt;4;i&#43;&#43;){ if(i%2!=1)t&#43;=s[i]; } if(vis[t[0]]==vis[t[1]])cout&lt;&lt;&#34;N&#34;; else if(vis[t[0]]&gt;vit[t[1]])cout&lt;&lt;t[0]; else cout&lt;&lt;t[1]; cout&lt;&lt;&#34;\n&#34;; } int main(){ int t=1; cin&gt;&gt;t; while(t--)solve(); return 0; } 1007 URL 划分 输入...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-07-23 21:53:03 +0800 CST'>2024-07-23</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to 2024HDU2" href="https://KiritoXDone.github.io/posts/study/2024hdu2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Manacher
     </h2>
   </header>

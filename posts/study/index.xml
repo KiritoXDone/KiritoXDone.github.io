@@ -6,8 +6,15 @@
     <description>Recent content in 👨🏻‍💻 技术 on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 22 Jul 2024 22:59:43 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 23 Jul 2024 21:53:03 +0800</lastBuildDate>
     <atom:link href="https://KiritoXDone.github.io/posts/study/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2024HDU2</title>
+      <link>https://KiritoXDone.github.io/posts/study/2024hdu2/</link>
+      <pubDate>Tue, 23 Jul 2024 21:53:03 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/posts/study/2024hdu2/</guid>
+      <description>杭电多校 2 补题 1010 女神的睿智 按顺序合并 8 块碎片，如果两片相同，合成后仍相同，如不同，取左侧的，最后合成大碎片时，如果两片相同，不变，如果不同，取出现次数最多的，如果不确定，输出N。 签到，直接暴力 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; void solve(){ string t,s; cin&amp;gt;&amp;gt;s; map&amp;lt;char,int&amp;gt;vis; for(int i=0;i&amp;lt;8;i++){ if(i%2!=1)t+=s[i]; vis[s[i]]++; } s=t; t=&amp;#34;&amp;#34;; for(int i=0;i&amp;lt;4;i++){ if(i%2!=1)t+=s[i]; } if(vis[t[0]]==vis[t[1]])cout&amp;lt;&amp;lt;&amp;#34;N&amp;#34;; else if(vis[t[0]]&amp;gt;vit[t[1]])cout&amp;lt;&amp;lt;t[0]; else cout&amp;lt;&amp;lt;t[1]; cout&amp;lt;&amp;lt;&amp;#34;\n&amp;#34;; } int main(){ int t=1; cin&amp;gt;&amp;gt;t; while(t--)solve(); return 0; } 1007 URL 划分 输入</description>
+    </item>
     <item>
       <title>Manacher</title>
       <link>https://KiritoXDone.github.io/posts/study/manacher/</link>
