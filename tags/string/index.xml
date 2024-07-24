@@ -6,8 +6,15 @@
     <description>Recent content in String on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 22 Jul 2024 22:59:43 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 24 Jul 2024 21:53:28 +0800</lastBuildDate>
     <atom:link href="https://KiritoXDone.github.io/tags/string/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>最小表示法</title>
+      <link>https://KiritoXDone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95/</link>
+      <pubDate>Wed, 24 Jul 2024 21:53:28 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95/</guid>
+      <description>最小表示法 理论学习 给定一个字符串 s，首尾相接（循环同构），找到其字典序最小的情况 O(n) 用两个指针 i,j, 分别指想目前两个可能是答案的起始位置 初始 i = 1, j = 2, 随着算法进行增大 假设现在 i &amp;lt; j, 且从 i 开始的 k 位字符和从 j 开始的 k 位字符是一样的，此时这两段子串相同 如果 s[i+k]!=s[j+k] 谁大谁往后移动 k+1 个位置 如果 s[i+k]==s[j+k] 随</description>
+    </item>
     <item>
       <title>Manacher</title>
       <link>https://KiritoXDone.github.io/posts/study/manacher/</link>
