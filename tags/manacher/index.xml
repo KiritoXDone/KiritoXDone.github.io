@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Manacher on KiritoXD&#39;s Blog</title>
-    <link>https://KiritoXDone.github.io/tags/manacher/</link>
+    <link>https://kiritoxd.vercel.app/tags/manacher/</link>
     <description>Recent content in Manacher on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 22 Jul 2024 22:59:43 +0800</lastBuildDate>
-    <atom:link href="https://KiritoXDone.github.io/tags/manacher/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://kiritoxd.vercel.app/tags/manacher/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Manacher</title>
-      <link>https://KiritoXDone.github.io/posts/study/manacher/</link>
+      <link>https://kiritoxd.vercel.app/posts/study/manacher/</link>
       <pubDate>Mon, 22 Jul 2024 22:59:43 +0800</pubDate>
-      <guid>https://KiritoXDone.github.io/posts/study/manacher/</guid>
+      <guid>https://kiritoxd.vercel.app/posts/study/manacher/</guid>
       <description>Manacher 理念学习 解决最长回文子串问题 给出一个任意字符串，求出这个字符串中最长的回文子串 正常情况下，需要对长度奇偶不同的分类讨论。但可以用一个s中不存在的字符，把s中每一位隔开，再求新串中奇数长度的最长回文子串即可 对于新串s，我们的目的是求出从它的任意位置i出发，往两边最远能拓展出的回文</description>
     </item>
   </channel>

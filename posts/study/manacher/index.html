@@ -9,16 +9,16 @@
 <meta name="keywords" content="manacher, string">
 <meta name="description" content="Manacher 理念学习 解决最长回文子串问题 给出一个任意字符串，求出这个字符串中最长的回文子串 正常情况下，需要对长度奇偶不同的分类讨论。但可以用一个s中不存在的字符，把s中每一位隔开，再求新串中奇数长度的最长回文子串即可 对于新串s，我们的目的是求出从它的任意位置i出发，往两边最远能拓展出的回文">
 <meta name="author" content="KiritoXD">
-<link rel="canonical" href="https://KiritoXDone.github.io/posts/study/manacher/">
+<link rel="canonical" href="https://kiritoxd.vercel.app/posts/study/manacher/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://KiritoXDone.github.io/img/a.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://KiritoXDone.github.io/img/a.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://KiritoXDone.github.io/img/a.png">
-<link rel="apple-touch-icon" href="https://KiritoXDone.github.io/img/a.png">
-<link rel="mask-icon" href="https://KiritoXDone.github.io/img/a.png">
+<link rel="icon" href="https://kiritoxd.vercel.app/img/a.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kiritoxd.vercel.app/img/a.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kiritoxd.vercel.app/img/a.png">
+<link rel="apple-touch-icon" href="https://kiritoxd.vercel.app/img/a.png">
+<link rel="mask-icon" href="https://kiritoxd.vercel.app/img/a.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://KiritoXDone.github.io/posts/study/manacher/">
+<link rel="alternate" hreflang="zh" href="https://kiritoxd.vercel.app/posts/study/manacher/">
 <noscript>
     <style>
         #theme-toggle,
@@ -83,7 +83,7 @@
 <meta property="og:title" content="Manacher" />
 <meta property="og:description" content="Manacher 理念学习 解决最长回文子串问题 给出一个任意字符串，求出这个字符串中最长的回文子串 正常情况下，需要对长度奇偶不同的分类讨论。但可以用一个s中不存在的字符，把s中每一位隔开，再求新串中奇数长度的最长回文子串即可 对于新串s，我们的目的是求出从它的任意位置i出发，往两边最远能拓展出的回文" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://KiritoXDone.github.io/posts/study/manacher/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://kiritoxd.vercel.app/posts/study/manacher/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-07-22T22:59:43+08:00" />
 <meta property="article:modified_time" content="2024-07-22T22:59:43+08:00" />
 
@@ -101,19 +101,19 @@
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://KiritoXDone.github.io/posts/"
+      "item": "https://kiritoxd.vercel.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "👨🏻‍💻 技术",
-      "item": "https://KiritoXDone.github.io/posts/study/"
+      "item": "https://kiritoxd.vercel.app/posts/study/"
     }, 
     {
       "@type": "ListItem",
       "position":  3 ,
       "name": "Manacher",
-      "item": "https://KiritoXDone.github.io/posts/study/manacher/"
+      "item": "https://kiritoxd.vercel.app/posts/study/manacher/"
     }
   ]
 }
@@ -139,14 +139,14 @@
   }],
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://KiritoXDone.github.io/posts/study/manacher/"
+    "@id": "https://kiritoxd.vercel.app/posts/study/manacher/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "KiritoXD's Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://KiritoXDone.github.io/img/a.png"
+      "url": "https://kiritoxd.vercel.app/img/a.png"
     }
   }
 }
@@ -168,8 +168,8 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://KiritoXDone.github.io/" accesskey="h" title="KiritoXD&#39;s Blog (Alt + H)">
-                <img src="https://KiritoXDone.github.io/img/a.png" alt="" aria-label="logo"
+            <a href="https://kiritoxd.vercel.app/" accesskey="h" title="KiritoXD&#39;s Blog (Alt + H)">
+                <img src="https://kiritoxd.vercel.app/img/a.png" alt="" aria-label="logo"
                     height="35">KiritoXD&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -196,27 +196,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://KiritoXDone.github.io/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <a href="https://kiritoxd.vercel.app/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
                     <span>🔍 搜索</span>
                 </a>
             </li>
             <li>
-                <a href="https://KiritoXDone.github.io/" title="🏠 主页">
+                <a href="https://kiritoxd.vercel.app/" title="🏠 主页">
                     <span>🏠 主页</span>
                 </a>
             </li>
             <li>
-                <a href="https://KiritoXDone.github.io/posts" title="📚 文章">
+                <a href="https://kiritoxd.vercel.app/posts" title="📚 文章">
                     <span>📚 文章</span>
                 </a>
             </li>
             <li>
-                <a href="https://KiritoXDone.github.io/tags" title="🧩 标签">
+                <a href="https://kiritoxd.vercel.app/tags" title="🧩 标签">
                     <span>🧩 标签</span>
                 </a>
             </li>
             <li>
-                <a href="https://KiritoXDone.github.io/archives/" title="⏱️ 时间轴">
+                <a href="https://kiritoxd.vercel.app/archives/" title="⏱️ 时间轴">
                     <span>⏱️ 时间轴</span>
                 </a>
             </li>
@@ -227,7 +227,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://KiritoXDone.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://KiritoXDone.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://KiritoXDone.github.io/posts/study/">👨🏻‍💻 技术</a></div>
+    <div class="breadcrumbs"><a href="https://kiritoxd.vercel.app/">主页</a>&nbsp;»&nbsp;<a href="https://kiritoxd.vercel.app/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://kiritoxd.vercel.app/posts/study/">👨🏻‍💻 技术</a></div>
     <h1 class="post-title entry-hint-parent">
       Manacher
     </h1>
@@ -409,16 +409,16 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://KiritoXDone.github.io/tags/manacher/">Manacher</a></li>
-      <li><a href="https://KiritoXDone.github.io/tags/string/">String</a></li>
+      <li><a href="https://kiritoxd.vercel.app/tags/manacher/">Manacher</a></li>
+      <li><a href="https://kiritoxd.vercel.app/tags/string/">String</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://KiritoXDone.github.io/posts/study/2024hdu2/">
+  <a class="prev" href="https://kiritoxd.vercel.app/posts/study/2024hdu2/">
     <span class="title">« 上一页</span>
     <br>
     <span>2024HDU2</span>
   </a>
-  <a class="next" href="https://KiritoXDone.github.io/posts/study/0721/">
+  <a class="next" href="https://kiritoxd.vercel.app/posts/study/0721/">
     <span class="title">下一页 »</span>
     <br>
     <span>0721</span>
@@ -430,7 +430,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2024 <a href="https://KiritoXDone.github.io/">KiritoXD&#39;s Blog</a></span> · 
+        <span>&copy; 2024 <a href="https://kiritoxd.vercel.app/">KiritoXD&#39;s Blog</a></span> · 
 
     <span>
         Powered by
