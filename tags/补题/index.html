@@ -171,6 +171,18 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">2024萌新联赛1
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>2024 河南萌新联赛 1 A 造数 给定整数 n，操作 1：&#43;1，操作 2：&#43;2，操作 3：x2，多少次将 0 转化到 n 逆向思维，把 n 化为 0 即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int main(){ int n,cnt=0; cin&gt;&gt;n; while(n){ if(n&amp;1)n--,cnt&#43;&#43;; else if(n&gt;2)cnt&#43;&#43;,n/=2; else cnt&#43;&#43;,n-=2; } cout&lt;&lt;cnt&lt;&lt;endl; } H 两难抉择 长度为 n 的数组 a，两种操作选一个进行一次或不操。 显然将数组最大值 * n 后答案最大 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; #define int long long signed main(){ int n; cin&gt;&gt;n; vector&lt;int&gt;a(n); for(int i=0;i&lt;n;i&#43;&#43;)cin&gt;&gt;a[i]; sort(a.begin(),a.end());...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-07-28 15:36:08 +0800 CST'>2024-07-28</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to 2024萌新联赛1" href="https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B1/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">CF962
     </h2>
   </header>
@@ -283,7 +295,7 @@
       o.src = u;
       if (c) { o.addEventListener('load', function(e) { c(e); }); }
       s.parentNode.insertBefore(o, s);
-    })('//cdn.bootcss.com/pangu/3.3.0/pangu.min.js', function() {
+    })('//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js', function() {
       pangu.spacingPage();
     });
     </script>

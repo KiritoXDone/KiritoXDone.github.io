@@ -6,8 +6,15 @@
     <description>Recent content in 👨🏻‍💻 技术 on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 27 Jul 2024 18:28:37 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jul 2024 15:36:08 +0800</lastBuildDate>
     <atom:link href="https://KiritoXDone.github.io/posts/study/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2024萌新联赛1</title>
+      <link>https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B1/</link>
+      <pubDate>Sun, 28 Jul 2024 15:36:08 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B1/</guid>
+      <description>2024 河南萌新联赛 1 A 造数 给定整数 n，操作 1：+1，操作 2：+2，操作 3：x2，多少次将 0 转化到 n 逆向思维，把 n 化为 0 即可 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int main(){ int n,cnt=0; cin&amp;gt;&amp;gt;n; while(n){ if(n&amp;amp;1)n--,cnt++; else if(n&amp;gt;2)cnt++,n/=2; else cnt++,n-=2; } cout&amp;lt;&amp;lt;cnt&amp;lt;&amp;lt;endl; } H 两难抉择 长度为 n 的数组 a，两种操作选一个进行一次或不操。 显然将数组最大值 * n 后答案最大 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; #define int long long signed main(){ int n; cin&amp;gt;&amp;gt;n; vector&amp;lt;int&amp;gt;a(n); for(int i=0;i&amp;lt;n;i++)cin&amp;gt;&amp;gt;a[i]; sort(a.begin(),a.end());</description>
+    </item>
     <item>
       <title>CF962</title>
       <link>https://KiritoXDone.github.io/posts/study/cf962/</link>
