@@ -175,9 +175,9 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>0721 学习记录 今天集训休息，自己看了看代码源的视频补知识点 kmp 相关 子串查询 输入两个字符串 s, p,查询 p 是否在 s 中出现,若出现输出出现位置,否则输出 -1 简化版 1#include &lt;bits/stdc&#43;&#43;.h&gt; 2using namespace std; 3 4string s,p; 5int nxt[100001],f[100001],n,m; 6 7void kmp(){ 8 n=s.size(); 9 m=p.size(); 10 int j=0; 11 nxt[0]=0; 12 p=p&#43;&#34;#&#34;&#43;s; 13 for(int i=1;i&lt;m&#43;n&#43;1;i&#43;&#43;){ 14 while(j&amp;&amp;p[i]!=p[j]) 15 j=nxt[j-1]; 16 if(p[i]==p[j]) 17 j&#43;&#43;; 18 nxt[i]=j; 19 } 20 for(int i=m&#43;1;i&lt;n&#43;m&#43;1;i&#43;&#43;){ 21 if(nxt[i]==m)cout&lt;&lt;i-2*m&#43;1&lt;&lt;endl; 22 } 23} 24 25int main(){ 26 cin&gt;&gt;s&gt;&gt;p; 27 kmp(); 28 return 0; 29} 常规版 1#include &lt;bits/stdc&#43;&#43;.h&gt; 2using namespace std; 3...</p>
+    <p>0721 学习记录 今天集训休息，自己看了看代码源的视频补知识点 kmp 相关 子串查询 输入两个字符串 s, p,查询 p 是否在 s 中出现,若出现输出出现位置,否则输出 -1 简化版 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; string s,p; int nxt[100001],f[100001],n,m; void kmp(){ n=s.size(); m=p.size(); int j=0; nxt[0]=0; p=p&#43;&#34;#&#34;&#43;s; for(int i=1;i&lt;m&#43;n&#43;1;i&#43;&#43;){ while(j&amp;&amp;p[i]!=p[j]) j=nxt[j-1]; if(p[i]==p[j]) j&#43;&#43;; nxt[i]=j; } for(int i=m&#43;1;i&lt;n&#43;m&#43;1;i&#43;&#43;){ if(nxt[i]==m)cout&lt;&lt;i-2*m&#43;1&lt;&lt;endl; } } int main(){ cin&gt;&gt;s&gt;&gt;p; kmp(); return 0; } 常规版 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; string s,p; int nxt[100001],f[100001],n,m; void kmp(){ n=s.size(); m=p.size(); int j=0; nxt[0]=0; for(int i=1;i&lt;m;i&#43;&#43;){ while(j&amp;&amp;p[i]!=p[j]) j=nxt[j-1]; if(p[i]==p[j]) j&#43;&#43;; nxt[i]=j; } j=0; for(int i=0;i&lt;n;i&#43;&#43;){...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-07-21 16:09:03 +0800 CST'>2024-07-21</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <footer class="entry-footer"><span title='2024-07-21 16:09:03 +0800 CST'>2024-07-21</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;KiritoXD</footer>
   <a class="entry-link" aria-label="post link to 0721" href="https://KiritoXDone.github.io/posts/study/0721/"></a>
 </article>
     </main>
@@ -251,6 +251,18 @@
     })
 
 </script>
+
+<script>
+    (function(u, c) {
+      var d = document, t = 'script', o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function(e) { c(e); }); }
+      s.parentNode.insertBefore(o, s);
+    })('//cdn.bootcss.com/pangu/3.3.0/pangu.min.js', function() {
+      pangu.spacingPage();
+    });
+    </script>
 </body>
 
 </html>
