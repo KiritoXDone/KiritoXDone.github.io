@@ -6,8 +6,29 @@
     <description>Recent content in Tags on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 29 Jul 2024 21:43:24 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 30 Jul 2024 20:11:43 +0800</lastBuildDate>
     <atom:link href="https://KiritoXDone.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kruskal</title>
+      <link>https://KiritoXDone.github.io/tags/kruskal/</link>
+      <pubDate>Tue, 30 Jul 2024 20:11:43 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/tags/kruskal/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Prim</title>
+      <link>https://KiritoXDone.github.io/tags/prim/</link>
+      <pubDate>Tue, 30 Jul 2024 20:11:43 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/tags/prim/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>最小生成树</title>
+      <link>https://KiritoXDone.github.io/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/</link>
+      <pubDate>Tue, 30 Jul 2024 20:11:43 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Bellman-Ford</title>
       <link>https://KiritoXDone.github.io/tags/bellman-ford/</link>

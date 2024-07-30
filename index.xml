@@ -6,8 +6,15 @@
     <description>Recent content on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 29 Jul 2024 21:43:24 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 30 Jul 2024 20:11:43 +0800</lastBuildDate>
     <atom:link href="https://KiritoXDone.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>最小生成树</title>
+      <link>https://KiritoXDone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/</link>
+      <pubDate>Tue, 30 Jul 2024 20:11:43 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/</guid>
+      <description>最小生成树算法学习</description>
+    </item>
     <item>
       <title>最短路</title>
       <link>https://KiritoXDone.github.io/posts/study/%E6%9C%80%E7%9F%AD%E8%B7%AF/</link>
