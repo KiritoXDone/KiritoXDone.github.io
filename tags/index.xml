@@ -6,8 +6,43 @@
     <description>Recent content in Tags on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 28 Jul 2024 15:36:08 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jul 2024 21:43:24 +0800</lastBuildDate>
     <atom:link href="https://KiritoXDone.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bellman-Ford</title>
+      <link>https://KiritoXDone.github.io/tags/bellman-ford/</link>
+      <pubDate>Mon, 29 Jul 2024 21:43:24 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/tags/bellman-ford/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dijkstra</title>
+      <link>https://KiritoXDone.github.io/tags/dijkstra/</link>
+      <pubDate>Mon, 29 Jul 2024 21:43:24 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/tags/dijkstra/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Floyd</title>
+      <link>https://KiritoXDone.github.io/tags/floyd/</link>
+      <pubDate>Mon, 29 Jul 2024 21:43:24 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/tags/floyd/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>图论</title>
+      <link>https://KiritoXDone.github.io/tags/%E5%9B%BE%E8%AE%BA/</link>
+      <pubDate>Mon, 29 Jul 2024 21:43:24 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/tags/%E5%9B%BE%E8%AE%BA/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>最短路</title>
+      <link>https://KiritoXDone.github.io/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/</link>
+      <pubDate>Mon, 29 Jul 2024 21:43:24 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/</guid>
+      <description></description>
+    </item>
     <item>
       <title>补题</title>
       <link>https://KiritoXDone.github.io/tags/%E8%A1%A5%E9%A2%98/</link>

@@ -13,7 +13,7 @@
       <link>https://KiritoXDone.github.io/posts/study/%E5%8D%9A%E5%BC%88%E8%AE%BA/</link>
       <pubDate>Fri, 26 Jul 2024 18:15:23 +0800</pubDate>
       <guid>https://KiritoXDone.github.io/posts/study/%E5%8D%9A%E5%BC%88%E8%AE%BA/</guid>
-      <description>博弈论 简介 两人在公平规则下进行有限的对决，胜负明确 类似有向无环图，由一个状态转移到下一个状态 对先手来说，存在两种状态，即必胜态和必败态 必胜态 当前状态的后续为必败态，当前状态即为必胜态 必败态 不存在后续，或是所有后续都必胜 DP 解决博弈 利用状态转移的关系，来解决简单的博弈问题 移棋子问题 n</description>
+      <description>简单博弈论学习记录</description>
     </item>
   </channel>
 </rss>

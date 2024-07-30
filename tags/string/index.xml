@@ -13,14 +13,14 @@
       <link>https://KiritoXDone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95/</link>
       <pubDate>Wed, 24 Jul 2024 21:53:28 +0800</pubDate>
       <guid>https://KiritoXDone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95/</guid>
-      <description>最小表示法 理论学习 给定一个字符串 s，首尾相接（循环同构），找到其字典序最小的情况 O(n) 用两个指针 i,j, 分别指想目前两个可能是答案的起始位置 初始 i = 1, j = 2, 随着算法进行增大 假设现在 i &amp;lt; j, 且从 i 开始的 k 位字符和从 j 开始的 k 位字符是一样的，此时这两段子串相同 如果 s[i+k]!=s[j+k] 谁大谁往后移动 k+1 个位置 如果 s[i+k]==s[j+k] 随</description>
+      <description>最小表示法学习记录</description>
     </item>
     <item>
       <title>Manacher</title>
       <link>https://KiritoXDone.github.io/posts/study/manacher/</link>
       <pubDate>Mon, 22 Jul 2024 22:59:43 +0800</pubDate>
       <guid>https://KiritoXDone.github.io/posts/study/manacher/</guid>
-      <description>Manacher 理念学习 解决最长回文子串问题 给出一个任意字符串，求出这个字符串中最长的回文子串 正常情况下，需要对长度奇偶不同的分类讨论。但可以用一个 s 中不存在的字符，把 s 中每一位隔开，再求新串中奇数长度的最长回文子串即可 对于新串 s ，我们的目的是求出从它的任意位置 i 出发，往两边最远能拓展出的回文</description>
+      <description>Manacher 学习记录</description>
     </item>
     <item>
       <title>KMP</title>

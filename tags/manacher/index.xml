@@ -13,7 +13,7 @@
       <link>https://KiritoXDone.github.io/posts/study/manacher/</link>
       <pubDate>Mon, 22 Jul 2024 22:59:43 +0800</pubDate>
       <guid>https://KiritoXDone.github.io/posts/study/manacher/</guid>
-      <description>Manacher 理念学习 解决最长回文子串问题 给出一个任意字符串，求出这个字符串中最长的回文子串 正常情况下，需要对长度奇偶不同的分类讨论。但可以用一个 s 中不存在的字符，把 s 中每一位隔开，再求新串中奇数长度的最长回文子串即可 对于新串 s ，我们的目的是求出从它的任意位置 i 出发，往两边最远能拓展出的回文</description>
+      <description>Manacher 学习记录</description>
     </item>
   </channel>
 </rss>

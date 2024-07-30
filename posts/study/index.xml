@@ -6,14 +6,21 @@
     <description>Recent content in 👨🏻‍💻 技术 on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 28 Jul 2024 15:36:08 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jul 2024 21:43:24 +0800</lastBuildDate>
     <atom:link href="https://KiritoXDone.github.io/posts/study/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>最短路</title>
+      <link>https://KiritoXDone.github.io/posts/study/%E6%9C%80%E7%9F%AD%E8%B7%AF/</link>
+      <pubDate>Mon, 29 Jul 2024 21:43:24 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/posts/study/%E6%9C%80%E7%9F%AD%E8%B7%AF/</guid>
+      <description>最短路学习记录</description>
+    </item>
     <item>
       <title>2024萌新联赛1</title>
       <link>https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B1/</link>
       <pubDate>Sun, 28 Jul 2024 15:36:08 +0800</pubDate>
       <guid>https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B1/</guid>
-      <description>2024 河南萌新联赛 1 A 造数 给定整数 n，操作 1：+1，操作 2：+2，操作 3：x2，多少次将 0 转化到 n 逆向思维，把 n 化为 0 即可 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int main(){ int n,cnt=0; cin&amp;gt;&amp;gt;n; while(n){ if(n&amp;amp;1)n--,cnt++; else if(n&amp;gt;2)cnt++,n/=2; else cnt++,n-=2; } cout&amp;lt;&amp;lt;cnt&amp;lt;&amp;lt;endl; } H 两难抉择 长度为 n 的数组 a，两种操作选一个进行一次或不操。 显然将数组最大值 * n 后答案最大 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; #define int long long signed main(){ int n; cin&amp;gt;&amp;gt;n; vector&amp;lt;int&amp;gt;a(n); for(int i=0;i&amp;lt;n;i++)cin&amp;gt;&amp;gt;a[i]; sort(a.begin(),a.end());</description>
+      <description>萌新联赛补题</description>
     </item>
     <item>
       <title>CF962</title>
@@ -27,21 +34,21 @@
       <link>https://KiritoXDone.github.io/posts/study/%E5%8D%9A%E5%BC%88%E8%AE%BA/</link>
       <pubDate>Fri, 26 Jul 2024 18:15:23 +0800</pubDate>
       <guid>https://KiritoXDone.github.io/posts/study/%E5%8D%9A%E5%BC%88%E8%AE%BA/</guid>
-      <description>博弈论 简介 两人在公平规则下进行有限的对决，胜负明确 类似有向无环图，由一个状态转移到下一个状态 对先手来说，存在两种状态，即必胜态和必败态 必胜态 当前状态的后续为必败态，当前状态即为必胜态 必败态 不存在后续，或是所有后续都必胜 DP 解决博弈 利用状态转移的关系，来解决简单的博弈问题 移棋子问题 n</description>
+      <description>简单博弈论学习记录</description>
     </item>
     <item>
       <title>2024萌新联赛2</title>
       <link>https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B2/</link>
       <pubDate>Thu, 25 Jul 2024 20:50:08 +0800</pubDate>
       <guid>https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B2/</guid>
-      <description>2024 河南萌新联赛 2 状态 + 狗运+ py 大法，目前最好的一把 I 重生之zbk要拿回属于他的一切 签到，暴力找 chuan 的数量即可 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int main() { int n; cin &amp;gt;&amp;gt; n; string s; cin &amp;gt;&amp;gt; s; int pos = s.find(&amp;#34;chuan&amp;#34;), cnt = 0; while (pos != string::npos) { cnt++; pos = s.find(&amp;#34;chuan&amp;#34;, pos + 1); } cout &amp;lt;&amp;lt; cnt &amp;lt;&amp;lt; endl; return 0; } F 水灵灵的小学弟 观察题目，发现博弈双方名称相同，不管谁赢都一样，直接输出即可 #include &amp;lt;bits/stdc++.h&amp;gt; using</description>
+      <description>萌新联赛补题</description>
     </item>
     <item>
       <title>最小表示法</title>
       <link>https://KiritoXDone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95/</link>
       <pubDate>Wed, 24 Jul 2024 21:53:28 +0800</pubDate>
       <guid>https://KiritoXDone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95/</guid>
-      <description>最小表示法 理论学习 给定一个字符串 s，首尾相接（循环同构），找到其字典序最小的情况 O(n) 用两个指针 i,j, 分别指想目前两个可能是答案的起始位置 初始 i = 1, j = 2, 随着算法进行增大 假设现在 i &amp;lt; j, 且从 i 开始的 k 位字符和从 j 开始的 k 位字符是一样的，此时这两段子串相同 如果 s[i+k]!=s[j+k] 谁大谁往后移动 k+1 个位置 如果 s[i+k]==s[j+k] 随</description>
+      <description>最小表示法学习记录</description>
     </item>
     <item>
       <title>2024HDU2</title>
@@ -55,7 +62,7 @@
       <link>https://KiritoXDone.github.io/posts/study/manacher/</link>
       <pubDate>Mon, 22 Jul 2024 22:59:43 +0800</pubDate>
       <guid>https://KiritoXDone.github.io/posts/study/manacher/</guid>
-      <description>Manacher 理念学习 解决最长回文子串问题 给出一个任意字符串，求出这个字符串中最长的回文子串 正常情况下，需要对长度奇偶不同的分类讨论。但可以用一个 s 中不存在的字符，把 s 中每一位隔开，再求新串中奇数长度的最长回文子串即可 对于新串 s ，我们的目的是求出从它的任意位置 i 出发，往两边最远能拓展出的回文</description>
+      <description>Manacher 学习记录</description>
     </item>
     <item>
       <title>0721</title>
