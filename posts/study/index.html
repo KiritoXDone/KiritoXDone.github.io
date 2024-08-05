@@ -192,6 +192,30 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">线段树
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>线段数学习 简介 常用的用来维护 区间信息 的数据结构。 线段树可以在 $O(\log N)$ 的时间复杂度内实现单点修改、区间修改、区间查询（区间求和，求区间最大值，求区间最小值）等操作。 实现过程即为将每个长度不为 1 的片段分成左右两个片段，不断递归下去，把区间分为树形结构，通过合并两端来求值 模板 单点修改 操作 1...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-08-04 18:57:54 +0800 CST'>2024-08-04</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to 线段树" href="https://KiritoXDone.github.io/posts/study/%E7%BA%BF%E6%AE%B5%E6%A0%91/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">2024萌新联赛3
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>2024 河南萌新联赛 3 B 正则表达式 签到，四个数字都在 [1,255] 之间即为合法 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; bool check(string s) { int n = s.size(); int num = 0, dots = 0; for (int i = 0; i &lt; n; i&#43;&#43;) { if (s[i] == &#39;.&#39;) { if (num &lt; 0 || num &gt; 255) return false; num = 0; } else if (isdigit(s[i])) { num = num * 10 &#43; (s[i] - &#39;0&#39;); if (num &gt; 255) return false; } else { return false; } } if (num &lt; 0 || num &gt; 255) return false; return true; } int main() { int n; cin &gt;&gt; n; int cnt = 0; for(int i=1;i&lt;=n;i&#43;&#43;) { string s; cin &gt;&gt; s; if (check(s))...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-08-02 11:04:20 +0800 CST'>2024-08-02</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to 2024萌新联赛3" href="https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B3/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">最小生成树
     </h2>
   </header>
