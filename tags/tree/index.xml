@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tree on KiritoXD&#39;s Blog</title>
+    <link>https://KiritoXDone.github.io/tags/tree/</link>
+    <description>Recent content in Tree on KiritoXD&#39;s Blog</description>
+    <generator>Hugo -- 0.129.0</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 06 Aug 2024 21:45:34 +0800</lastBuildDate>
+    <atom:link href="https://KiritoXDone.github.io/tags/tree/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LCA</title>
+      <link>https://KiritoXDone.github.io/posts/study/lca/</link>
+      <pubDate>Tue, 06 Aug 2024 21:45:34 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/posts/study/lca/</guid>
+      <description>LCA(最近公共祖先) 简介 两个节点的最近公共祖先，就是两个点的公共祖先里，离根最远的那个 LCA({u}) = u u 是 v 的祖先，当且仅当 LCA({u, v}) = u 如果 u, v 互不为祖先，那么二者存在 LCA({u, v}) 的两颗不同子树中 前序遍历中，$\text{LCA}(S)$ 出现在所有 S 中元素之前，后序遍历中 $\text{LCA}(S)$ 则出现在所有 S 中元素之后 两</description>
+    </item>
+  </channel>
+</rss>
