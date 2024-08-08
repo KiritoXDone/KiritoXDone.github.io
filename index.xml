@@ -6,8 +6,15 @@
     <description>Recent content on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 06 Aug 2024 21:45:34 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 08 Aug 2024 22:44:47 +0800</lastBuildDate>
     <atom:link href="https://KiritoXDone.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2024萌新联赛4</title>
+      <link>https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B4/</link>
+      <pubDate>Thu, 08 Aug 2024 22:44:47 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B4/</guid>
+      <description>2024 萌新联赛 4 D 简单的素数 遍历 1 ~ $\sqrt n$ 即可 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; const int N = 1e8+10; void solve(){ int n,flag=0; cin&amp;gt;&amp;gt;n; for(int i=2;i*i&amp;lt;=n;i++){ if(n%i==0){ flag=1; break; } } cout&amp;lt;&amp;lt;(flag?&amp;#34;No\n&amp;#34;:&amp;#34;Yes\n&amp;#34;); } int main(){ int t; cin&amp;gt;&amp;gt;t; while(t--)solve(); } F 小雷的算式 按题意模拟 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; typedef long long ll; #define ls now&amp;lt;&amp;lt;1 #define rs now&amp;lt;&amp;lt;1|1 const int N = 1e5+7, mod = 1e9+7; #define int long long void solve(){ string s; cin&amp;gt;&amp;gt;s; int ans=0,tmp=0; vector&amp;lt;int&amp;gt;a; for(int i=0;i&amp;lt;s.size();i++){ if(s[i]==&amp;#39;+&amp;#39;){ a.push_back(tmp); ans+=tmp,tmp=0; } else{ tmp*=10; tmp+=(s[i]-&amp;#39;0&amp;#39;); } } a.push_back(tmp); ans+=tmp; sort(a.begin(),a.end(),greater&amp;lt;int&amp;gt;()); cout&amp;lt;&amp;lt;a[0]; for(int i=1;i&amp;lt;a.size();i++){ cout&amp;lt;&amp;lt;&amp;#34;+&amp;#34;&amp;lt;&amp;lt;a[i]; } cout&amp;lt;&amp;lt;endl&amp;lt;&amp;lt;ans&amp;lt;&amp;lt;endl; } signed main(){ int t=1; // cin&amp;gt;&amp;gt;t; while(t--)solve(); return 0; } H 聪明且狡猾的恶魔 1 号恶</description>
+    </item>
     <item>
       <title>LCA</title>
       <link>https://KiritoXDone.github.io/posts/study/lca/</link>

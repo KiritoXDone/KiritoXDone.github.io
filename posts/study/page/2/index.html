@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>补题 | KiritoXD&#39;s Blog</title>
+<title>👨🏻‍💻 技术 | KiritoXD&#39;s Blog</title>
 <meta name="keywords" content="">
-<meta name="description" content="">
+<meta name="description" content="👨🏻‍💻 技术 - KiritoXD&#39;s Blog">
 <meta name="author" content="KiritoXD">
-<link rel="canonical" href="https://KiritoXDone.github.io/tags/%E8%A1%A5%E9%A2%98/">
+<link rel="canonical" href="https://KiritoXDone.github.io/posts/study/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://KiritoXDone.github.io/img/a.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://KiritoXDone.github.io/img/a.png">
@@ -18,8 +18,8 @@
 <link rel="mask-icon" href="https://KiritoXDone.github.io/img/a.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://KiritoXDone.github.io/tags/%E8%A1%A5%E9%A2%98/index.xml">
-<link rel="alternate" hreflang="zh" href="https://KiritoXDone.github.io/tags/%E8%A1%A5%E9%A2%98/">
+<link rel="alternate" type="application/rss+xml" href="https://KiritoXDone.github.io/posts/study/index.xml">
+<link rel="alternate" hreflang="zh" href="https://KiritoXDone.github.io/posts/study/">
 <noscript>
     <style>
         #theme-toggle,
@@ -81,15 +81,36 @@
 
   
 
-<meta property="og:title" content="补题" />
+<meta property="og:title" content="👨🏻‍💻 技术" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://KiritoXDone.github.io/tags/%E8%A1%A5%E9%A2%98/" />
+<meta property="og:url" content="https://KiritoXDone.github.io/posts/study/" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="补题"/>
+<meta name="twitter:title" content="👨🏻‍💻 技术"/>
 <meta name="twitter:description" content=""/>
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://KiritoXDone.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "👨🏻‍💻 技术",
+      "item": "https://KiritoXDone.github.io/posts/study/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body class="list" id="top">
@@ -163,83 +184,30 @@
     </nav>
 </header>
 <main class="main"> 
-<header class="page-header"><div class="breadcrumbs"><a href="https://KiritoXDone.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://KiritoXDone.github.io/tags/">Tags</a></div>
+<header class="page-header"><div class="breadcrumbs"><a href="https://KiritoXDone.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://KiritoXDone.github.io/posts/">Posts</a></div>
   <h1>
-    补题
+    👨🏻‍💻 技术
   </h1>
 </header>
 
-<article class="post-entry tag-entry"> 
+<article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">2024萌新联赛4
+    <h2 class="entry-hint-parent">简单的排序
     </h2>
   </header>
   <div class="entry-content">
-    <p>2024 萌新联赛 4 D 简单的素数 遍历 1 ~ $\sqrt n$ 即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; const int N = 1e8&#43;10; void solve(){ int n,flag=0; cin&gt;&gt;n; for(int i=2;i*i&lt;=n;i&#43;&#43;){ if(n%i==0){ flag=1; break; } } cout&lt;&lt;(flag?&#34;No\n&#34;:&#34;Yes\n&#34;); } int main(){ int t; cin&gt;&gt;t; while(t--)solve(); } F 小雷的算式 按题意模拟 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; typedef long long ll; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 const int N = 1e5&#43;7, mod = 1e9&#43;7; #define int long long void solve(){ string s; cin&gt;&gt;s; int ans=0,tmp=0; vector&lt;int&gt;a; for(int i=0;i&lt;s.size();i&#43;&#43;){ if(s[i]==&#39;&#43;&#39;){ a.push_back(tmp); ans&#43;=tmp,tmp=0; } else{ tmp*=10; tmp&#43;=(s[i]-&#39;0&#39;); } } a.push_back(tmp); ans&#43;=tmp; sort(a.begin(),a.end(),greater&lt;int&gt;()); cout&lt;&lt;a[0]; for(int i=1;i&lt;a.size();i&#43;&#43;){ cout&lt;&lt;&#34;&#43;&#34;&lt;&lt;a[i]; } cout&lt;&lt;endl&lt;&lt;ans&lt;&lt;endl; } signed main(){ int t=1; // cin&gt;&gt;t; while(t--)solve(); return 0; } H 聪明且狡猾的恶魔 1 号恶...</p>
+    <p>简单的排序实现 快速排序 快排 分治思想 复杂度 [nlogn, n^2] 不稳定 –x随机取 排序区间为 [l, r] 时，长度小于 1，直接退出，否则选一个数字 x 作为比较元素 将大于 x 的放右边，小于 x 的放左边，等于 x 的随意放 确定 x 的位置后，对两侧继续递归 void quicksort(int l, int r) { if (l &gt;= r) return; // 长度小于 1，直接退出 swap(a[l], a[l &#43; rand() % (r - l &#43;...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-08-08 22:44:47 +0800 CST'>2024-08-08</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 2024萌新联赛4" href="https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B4/"></a>
+  <footer class="entry-footer"><span title='2024-07-20 12:16:26 +0800 CST'>2024-07-20</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to 简单的排序" href="https://KiritoXDone.github.io/posts/study/easy-sort/"></a>
 </article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">2024萌新联赛3
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>2024 河南萌新联赛 3 B 正则表达式 签到，四个数字都在 [1,255] 之间即为合法 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; bool check(string s) { int n = s.size(); int num = 0, dots = 0; for (int i = 0; i &lt; n; i&#43;&#43;) { if (s[i] == &#39;.&#39;) { if (num &lt; 0 || num &gt; 255) return false; num = 0; } else if (isdigit(s[i])) { num = num * 10 &#43; (s[i] - &#39;0&#39;); if (num &gt; 255) return false; } else { return false; } } if (num &lt; 0 || num &gt; 255) return false; return true; } int main() { int n; cin &gt;&gt; n; int cnt = 0; for(int i=1;i&lt;=n;i&#43;&#43;) { string s; cin &gt;&gt; s; if (check(s))...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-08-02 11:04:20 +0800 CST'>2024-08-02</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 2024萌新联赛3" href="https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B3/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">2024萌新联赛1
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>2024 河南萌新联赛 1 A 造数 给定整数 n，操作 1：&#43;1，操作 2：&#43;2，操作 3：x2，多少次将 0 转化到 n 逆向思维，把 n 化为 0 即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int main(){ int n,cnt=0; cin&gt;&gt;n; while(n){ if(n&amp;1)n--,cnt&#43;&#43;; else if(n&gt;2)cnt&#43;&#43;,n/=2; else cnt&#43;&#43;,n-=2; } cout&lt;&lt;cnt&lt;&lt;endl; } H 两难抉择 长度为 n 的数组 a，两种操作选一个进行一次或不操作。 显然将数组最大值 * n 后答案最大 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; #define int long long signed main(){ int n; cin&gt;&gt;n; vector&lt;int&gt;a(n); for(int i=0;i&lt;n;i&#43;&#43;)cin&gt;&gt;a[i];...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-28 15:36:08 +0800 CST'>2024-07-28</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 2024萌新联赛1" href="https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B1/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">CF962
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Codeforces Round 962 还得练 A Legs 先除 4 再除 2 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; void solve(){ int n; cin&gt;&gt;n; int cnt=n/4; if(n%4!=0)cnt&#43;&#43;; cout&lt;&lt;cnt&lt;&lt;endl; } int main(){ int t; cin&gt;&gt;t; while(t--)solve(); return 0; } B Scale 按题意合理间隔输出即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; const int N =1010; char mp[N][N]; void solve(){ int n,k; cin&gt;&gt;n&gt;&gt;k; for(int i=1;i&lt;=n;i&#43;&#43;) for(int j=1;j&lt;=n;j&#43;&#43;)cin&gt;&gt;mp[i][j]; for(int i=1;i&lt;=n;i&#43;=k){ for(int j=1;j&lt;=n;j&#43;=k) cout&lt;&lt;mp[i][j]; cout&lt;&lt;endl; } } int main(){ int t; cin&gt;&gt;t; while(t--)solve(); return 0; } C Sort 对 a 到 z 这 26 个字符分别开前缀和，统计 l 到 r 之间他们不同的数量，更改差异数量除 2 (向上取整)，即可 #include &lt;bits/stdc&#43;&#43;.h&gt;...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-27 18:28:37 +0800 CST'>2024-07-27</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to CF962" href="https://KiritoXDone.github.io/posts/study/cf962/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">2024萌新联赛2
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>2024 河南萌新联赛 2 状态 &#43; 狗运&#43; py 大法，目前最好的一把 I 重生之zbk要拿回属于他的一切 签到，暴力找 chuan 的数量即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int main() { int n; cin &gt;&gt; n; string s; cin &gt;&gt; s; int pos = s.find(&#34;chuan&#34;), cnt = 0; while (pos != string::npos) { cnt&#43;&#43;; pos = s.find(&#34;chuan&#34;, pos &#43; 1); } cout &lt;&lt; cnt &lt;&lt; endl; return 0; } F 水灵灵的小学弟 观察题目，发现博弈双方名称相同，不管谁赢都一样，直接输出即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-25 20:50:08 +0800 CST'>2024-07-25</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 2024萌新联赛2" href="https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B2/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">2024HDU2
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>杭电多校 2 补题 1010 女神的睿智 按顺序合并 8 块碎片，如果两片相同，合成后仍相同，如不同，取左侧的，最后合成大碎片时，如果两片相同，不变，如果不同，取出现次数最多的，如果不确定，输出N。 签到，直接暴力 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; void solve(){ string t,s; cin&gt;&gt;s; map&lt;char,int&gt;vis; for(int i=0;i&lt;8;i&#43;&#43;){ if(i%2!=1)t&#43;=s[i]; vis[s[i]]&#43;&#43;; } s=t; t=&#34;&#34;; for(int i=0;i&lt;4;i&#43;&#43;){ if(i%2!=1)t&#43;=s[i]; } if(vis[t[0]]==vis[t[1]])cout&lt;&lt;&#34;N&#34;; else if(vis[t[0]]&gt;vit[t[1]])cout&lt;&lt;t[0]; else cout&lt;&lt;t[1]; cout&lt;&lt;&#34;\n&#34;; } int main(){ int t=1; cin&gt;&gt;t; while(t--)solve(); return 0; } 1007 URL 划分 输入...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-23 21:53:03 +0800 CST'>2024-07-23</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 2024HDU2" href="https://KiritoXDone.github.io/posts/study/2024hdu2/"></a>
-</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://KiritoXDone.github.io/posts/study/">
+      «&nbsp;上一页&nbsp;
+    </a>
+  </nav>
+</footer>
     </main>
     
 <footer class="footer">
