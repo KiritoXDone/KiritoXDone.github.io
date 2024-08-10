@@ -6,8 +6,15 @@
     <description>Recent content on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 08 Aug 2024 22:44:47 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 10 Aug 2024 10:28:15 +0800</lastBuildDate>
     <atom:link href="https://KiritoXDone.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2024HDU4</title>
+      <link>https://KiritoXDone.github.io/posts/study/2024hdu4/</link>
+      <pubDate>Sat, 10 Aug 2024 10:28:15 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/posts/study/2024hdu4/</guid>
+      <description>2024 杭电多校 4 补题 多层血条 模拟, 只会最覆盖最上面的一层血量, 所以不用担心下层血量是什么, 只用找到最上面的那一层是什么即可 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; string h=&amp;#34;ABCDE&amp;#34;; void solve(){ int n,m,hp,dmg; cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;m&amp;gt;&amp;gt;hp&amp;gt;&amp;gt;dmg; int lst=(hp/m)%5,x=m; string upp; upp.resize(m+1,&amp;#39; &amp;#39;); if(hp&amp;lt;=m){ for(int i=1;i&amp;lt;=hp;i++)upp[i]=h[0],x=i; } else{ int rest=hp%m; // cout&amp;lt;&amp;lt;rest&amp;lt;&amp;lt;endl; for(int i=1;i&amp;lt;=m;i++){ if(rest)upp[i]=h[lst],x=i,rest--; else upp[i]=h[(lst-1+5)%5]; } } while(dmg){ if(upp[x]==&amp;#39;.&amp;#39;)break; upp[x]=&amp;#39;.&amp;#39;; x--; dmg--; if(x==0)x=m; } for(int i=0;i&amp;lt;=n+1;i++){ for(int j=0;j&amp;lt;=m+1;j++){ if((i==0&amp;amp;&amp;amp;j==0)||(i==0&amp;amp;&amp;amp;j==m+1)||(i==n+1&amp;amp;&amp;amp;j==0)||(i==n+1&amp;amp;&amp;amp;j==m+1))cout&amp;lt;&amp;lt;&amp;#34;+&amp;#34;; else if(i==0||i==n+1)cout&amp;lt;&amp;lt;&amp;#34;-&amp;#34;; else if(j==0||j==m+1)cout&amp;lt;&amp;lt;&amp;#34;|&amp;#34;; else cout&amp;lt;&amp;lt;upp[j]; } cout&amp;lt;&amp;lt;endl; } } int main(){ int t; cin&amp;gt;&amp;gt;t; while(t--)solve(); return 0; } 昵称检索 昵称分姓名和生日两部分,</description>
+    </item>
     <item>
       <title>2024萌新联赛4</title>
       <link>https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B4/</link>

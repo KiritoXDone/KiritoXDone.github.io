@@ -192,6 +192,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">2024HDU4
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>2024 杭电多校 4 补题 多层血条 模拟, 只会最覆盖最上面的一层血量, 所以不用担心下层血量是什么, 只用找到最上面的那一层是什么即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; string h=&#34;ABCDE&#34;; void solve(){ int n,m,hp,dmg; cin&gt;&gt;n&gt;&gt;m&gt;&gt;hp&gt;&gt;dmg; int lst=(hp/m)%5,x=m; string upp; upp.resize(m&#43;1,&#39; &#39;); if(hp&lt;=m){ for(int i=1;i&lt;=hp;i&#43;&#43;)upp[i]=h[0],x=i; } else{ int rest=hp%m; // cout&lt;&lt;rest&lt;&lt;endl; for(int i=1;i&lt;=m;i&#43;&#43;){ if(rest)upp[i]=h[lst],x=i,rest--; else upp[i]=h[(lst-1&#43;5)%5]; } } while(dmg){ if(upp[x]==&#39;.&#39;)break; upp[x]=&#39;.&#39;; x--; dmg--; if(x==0)x=m; } for(int i=0;i&lt;=n&#43;1;i&#43;&#43;){ for(int j=0;j&lt;=m&#43;1;j&#43;&#43;){ if((i==0&amp;&amp;j==0)||(i==0&amp;&amp;j==m&#43;1)||(i==n&#43;1&amp;&amp;j==0)||(i==n&#43;1&amp;&amp;j==m&#43;1))cout&lt;&lt;&#34;&#43;&#34;; else if(i==0||i==n&#43;1)cout&lt;&lt;&#34;-&#34;; else if(j==0||j==m&#43;1)cout&lt;&lt;&#34;|&#34;; else cout&lt;&lt;upp[j]; } cout&lt;&lt;endl; } } int main(){ int t; cin&gt;&gt;t; while(t--)solve(); return 0; } 昵称检索 昵称分姓名和生日两部分,...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-08-10 10:28:15 +0800 CST'>2024-08-10</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to 2024HDU4" href="https://KiritoXDone.github.io/posts/study/2024hdu4/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">2024萌新联赛4
     </h2>
   </header>
@@ -356,18 +368,6 @@
   </div>
   <footer class="entry-footer"><span title='2024-07-21 16:09:03 +0800 CST'>2024-07-21</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;KiritoXD</footer>
   <a class="entry-link" aria-label="post link to 0721" href="https://KiritoXDone.github.io/posts/study/0721/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">KMP
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>KMP学习记录 理念学习 字符串匹配问题 查找s中p是否出现 暴力匹配 O(nm) 哈希优化 O(n&#43;m) KMP 线性复杂度解决 O(n&#43;m) KMP 中对于 s 中每个位置 i，我们要找到最大的 j 满足s[i - j &#43;1]…s[i] 和 p[1]…[j] 相同 f[i] 对应j的位置，j对应p中的位置 如果 j 不等于 m，并且 s[i &#43; 1] == p[j &#43; 1]，j 右移一位 否则，j 向前回退，到满足 s[i - k &#43; 1]…s[i] == p[1]…[j] 且 k...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-20 21:33:32 +0800 CST'>2024-07-20</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to KMP" href="https://KiritoXDone.github.io/posts/study/kmp/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
