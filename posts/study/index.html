@@ -192,6 +192,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">ABC366
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>AtCoder Beginner Contest 366 补题 A - Election 2 判断当前是否有值大于 $n/2$ 即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; typedef long long ll; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 const int N = 1e5&#43;7, mod = 1e9&#43;7; void solve(){ int n,t,a; cin&gt;&gt;n&gt;&gt;t&gt;&gt;a; if(n==1&amp;&amp;t==0&amp;&amp;a==0){ cout&lt;&lt;&#34;No\n&#34;; } else if(t&gt;n/2||a&gt;n/2){ cout&lt;&lt;&#34;Yes\n&#34;; } else cout&lt;&lt;&#34;No\n&#34;; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin&gt;&gt;t; while(t--)solve(); return 0; } B - Vertical Writing 翻转字符串，同时对翻转后的每行从末尾开始清 * 即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; typedef long long ll; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 const int N = 1e5&#43;7, mod = 1e9&#43;7; void solve(){ int n,mx=0; cin&gt;&gt;n; string s[N]; for(int i=1;i&lt;=n;i&#43;&#43;){ cin&gt;&gt;s[i]; mx=max(mx,(int)s[i].length()); } string ans[mx&#43;1]; for(int i=0;i&lt;mx;i&#43;&#43;){...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-08-11 12:29:38 +0800 CST'>2024-08-11</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to ABC366" href="https://KiritoXDone.github.io/posts/study/abc366/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">2024HDU4
     </h2>
   </header>
@@ -270,7 +282,7 @@
   <div class="entry-content">
     <p>最短路基础算法学习 特点汇总 最短路算法 Floyd Bellman–Ford Dijkstra Johnson 最短路类型 每对结点之间的最短路 单源最短路 单源最短路 每对结点之间的最短路 作用于 任意图 任意图 非负权图 任意图 能否检测负环？ 能 能 不能 能 时间复杂度 O(N^3) O(NM) O(MlogM) O(NMlogM) Floyd 算法 简介 用来求任意两个结点之间的最短路 复杂度较高 O(n^3) 容易实现 使用与任何...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-07-29 21:43:24 +0800 CST'>2024-07-29</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <footer class="entry-footer"><span title='2024-07-29 21:43:24 +0800 CST'>2024-07-29</span>&nbsp;·&nbsp;5 分钟&nbsp;·&nbsp;KiritoXD</footer>
   <a class="entry-link" aria-label="post link to 最短路" href="https://KiritoXDone.github.io/posts/study/%E6%9C%80%E7%9F%AD%E8%B7%AF/"></a>
 </article>
 
@@ -356,18 +368,6 @@
   </div>
   <footer class="entry-footer"><span title='2024-07-22 22:59:43 +0800 CST'>2024-07-22</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;KiritoXD</footer>
   <a class="entry-link" aria-label="post link to Manacher" href="https://KiritoXDone.github.io/posts/study/manacher/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">0721
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>0721 学习记录 今天集训休息，自己看了看代码源的视频补知识点 kmp 相关 子串查询 输入两个字符串 s, p,查询 p 是否在 s 中出现,若出现输出出现位置,否则输出 -1 简化版 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; string s,p; int nxt[100001],f[100001],n,m; void kmp(){ n=s.size(); m=p.size(); int j=0; nxt[0]=0; p=p&#43;&#34;#&#34;&#43;s; for(int i=1;i&lt;m&#43;n&#43;1;i&#43;&#43;){ while(j&amp;&amp;p[i]!=p[j]) j=nxt[j-1]; if(p[i]==p[j]) j&#43;&#43;; nxt[i]=j; } for(int i=m&#43;1;i&lt;n&#43;m&#43;1;i&#43;&#43;){ if(nxt[i]==m)cout&lt;&lt;i-2*m&#43;1&lt;&lt;endl; } } int main(){ cin&gt;&gt;s&gt;&gt;p; kmp(); return 0; } 常规版 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; string s,p; int nxt[100001],f[100001],n,m; void kmp(){ n=s.size(); m=p.size(); int j=0; nxt[0]=0; for(int i=1;i&lt;m;i&#43;&#43;){ while(j&amp;&amp;p[i]!=p[j]) j=nxt[j-1]; if(p[i]==p[j]) j&#43;&#43;; nxt[i]=j; } j=0; for(int i=0;i&lt;n;i&#43;&#43;){...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-21 16:09:03 +0800 CST'>2024-07-21</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 0721" href="https://KiritoXDone.github.io/posts/study/0721/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

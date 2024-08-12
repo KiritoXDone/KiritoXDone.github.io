@@ -6,8 +6,15 @@
     <description>Recent content on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 10 Aug 2024 10:28:15 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 11 Aug 2024 12:29:38 +0800</lastBuildDate>
     <atom:link href="https://KiritoXDone.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ABC366</title>
+      <link>https://KiritoXDone.github.io/posts/study/abc366/</link>
+      <pubDate>Sun, 11 Aug 2024 12:29:38 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/posts/study/abc366/</guid>
+      <description>AtCoder Beginner Contest 366 补题 A - Election 2 判断当前是否有值大于 $n/2$ 即可 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; typedef long long ll; #define ls now&amp;lt;&amp;lt;1 #define rs now&amp;lt;&amp;lt;1|1 const int N = 1e5+7, mod = 1e9+7; void solve(){ int n,t,a; cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;t&amp;gt;&amp;gt;a; if(n==1&amp;amp;&amp;amp;t==0&amp;amp;&amp;amp;a==0){ cout&amp;lt;&amp;lt;&amp;#34;No\n&amp;#34;; } else if(t&amp;gt;n/2||a&amp;gt;n/2){ cout&amp;lt;&amp;lt;&amp;#34;Yes\n&amp;#34;; } else cout&amp;lt;&amp;lt;&amp;#34;No\n&amp;#34;; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin&amp;gt;&amp;gt;t; while(t--)solve(); return 0; } B - Vertical Writing 翻转字符串，同时对翻转后的每行从末尾开始清 * 即可 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; typedef long long ll; #define ls now&amp;lt;&amp;lt;1 #define rs now&amp;lt;&amp;lt;1|1 const int N = 1e5+7, mod = 1e9+7; void solve(){ int n,mx=0; cin&amp;gt;&amp;gt;n; string s[N]; for(int i=1;i&amp;lt;=n;i++){ cin&amp;gt;&amp;gt;s[i]; mx=max(mx,(int)s[i].length()); } string ans[mx+1]; for(int i=0;i&amp;lt;mx;i++){</description>
+    </item>
     <item>
       <title>2024HDU4</title>
       <link>https://KiritoXDone.github.io/posts/study/2024hdu4/</link>
