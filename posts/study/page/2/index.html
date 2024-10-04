@@ -192,6 +192,42 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">2024萌新联赛2
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>2024 河南萌新联赛 2 状态 &#43; 狗运&#43; py 大法，目前最好的一把 I 重生之zbk要拿回属于他的一切 签到，暴力找 chuan 的数量即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int main() { int n; cin &gt;&gt; n; string s; cin &gt;&gt; s; int pos = s.find(&#34;chuan&#34;), cnt = 0; while (pos != string::npos) { cnt&#43;&#43;; pos = s.find(&#34;chuan&#34;, pos &#43; 1); } cout &lt;&lt; cnt &lt;&lt; endl; return 0; } F 水灵灵的小学弟 观察题目，发现博弈双方名称相同，不管谁赢都一样，直接输出即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-07-25 20:50:08 +0800 CST'>2024-07-25</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to 2024萌新联赛2" href="https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">最小表示法
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>最小表示法 理论学习 给定一个字符串 s，首尾相接（循环同构），找到其字典序最小的情况 O(n) 用两个指针 i,j, 分别指想目前两个可能是答案的起始位置 初始 i = 1, j = 2, 随着算法进行增大 假设现在 i &lt; j, 且从 i 开始的 k 位字符和从 j 开始的 k 位字符是一样的，此时这两段子串相同 如果 s[i&#43;k]!=s[j&#43;k] 谁大谁往后移动 k&#43;1 个位置 如果 s[i&#43;k]==s[j&#43;k] 随...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-07-24 21:53:28 +0800 CST'>2024-07-24</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to 最小表示法" href="https://KiritoXDone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">2024HDU2
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>杭电多校 2 补题 1010 女神的睿智 按顺序合并 8 块碎片，如果两片相同，合成后仍相同，如不同，取左侧的，最后合成大碎片时，如果两片相同，不变，如果不同，取出现次数最多的，如果不确定，输出N。 签到，直接暴力 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; void solve(){ string t,s; cin&gt;&gt;s; map&lt;char,int&gt;vis; for(int i=0;i&lt;8;i&#43;&#43;){ if(i%2!=1)t&#43;=s[i]; vis[s[i]]&#43;&#43;; } s=t; t=&#34;&#34;; for(int i=0;i&lt;4;i&#43;&#43;){ if(i%2!=1)t&#43;=s[i]; } if(vis[t[0]]==vis[t[1]])cout&lt;&lt;&#34;N&#34;; else if(vis[t[0]]&gt;vit[t[1]])cout&lt;&lt;t[0]; else cout&lt;&lt;t[1]; cout&lt;&lt;&#34;\n&#34;; } int main(){ int t=1; cin&gt;&gt;t; while(t--)solve(); return 0; } 1007 URL 划分 输入...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-07-23 21:53:03 +0800 CST'>2024-07-23</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to 2024HDU2" href="https://KiritoXDone.github.io/posts/study/2024hdu2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Manacher
     </h2>
   </header>

@@ -192,6 +192,42 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">今日刷题记录
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>AtCoder ABC371C Make Isomorphic 给你简单的无向图 $G$ 和 $H$ ，每个图都有 $N$ 个顶点：顶点 $1$ 、 $2$ 、 $\ldots$ 、 $N$ 。图 $G$ 有 $M_G$ 条边，其第 $i$ 条边 $(1\leq i\leq M_G)$ 连接顶点 $u_i$ 和 $v_i$ 。图 $H$ 有 $M_H$ 条边，它的第 $i$ 条边 $(1\leq i\leq M_H)$ 连接顶点 $a_i$ 和 $b_i$ 。 您可以在图 $H$ 上执行以下操作，次数不限，可能为零。 选择一对满足 $1\le i&lt;j\leq N$ 的整数 $(i,j)$ 。支付 $A_{i,j}$ 点成本，如果 $H$ 中的顶点 $i$ 和 $j$ 之间...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-10-04 21:53:44 +0800 CST'>2024-10-04</span>&nbsp;·&nbsp;6 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to 今日刷题记录" href="https://KiritoXDone.github.io/posts/study/202409/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">2024CCPC网络赛
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>前言 好久没写题了，被暴打。 参赛过程也是抽象，开局就罚站 30 min 补题 L 网络预选赛 好不容易卡出来题面，看到 L 已经过了不少了，卡了半天才提交过 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 #define endl &#34;\n&#34; typedef long long ll; const int N=1e3&#43;7, mod=1e9&#43;7; void solve(){ int n, m, ans = 0; char mp[N][N]; cin &gt;&gt; n &gt;&gt; m; for(int i = 1; i &lt;= n; i&#43;&#43;) for(int j = 1; j &lt;= m; j&#43;&#43;) cin &gt;&gt; mp[i][j]; for(int i = 1; i &lt; n; i&#43;&#43;){ for(int j = 1; j &lt; m; j&#43;&#43;){ if(mp[i][j] ==...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-09-10 14:45:39 +0800 CST'>2024-09-10</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to 2024CCPC网络赛" href="https://KiritoXDone.github.io/posts/study/2024ccpconline/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">2024萌新联赛6
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>2024 河南萌新联赛 6 装备二选一（一） 直接比较结果即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; typedef long long ll; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 const int N = 1e5&#43;7, mod = 1e9&#43;7; void solve(){ int a, b, c, d; cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d; int t1 = 100 * b * a &#43; 100 * (100 - a); int t2 = 100 * d * c &#43; 100 * (100 - c); cout &lt;&lt; (t2 &gt; t1 ? &#34;YES\n&#34; : &#34;NO\n&#34;); } int main(){ ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); int t = 1; // cin &gt;&gt; t; while(t--) solve(); return 0; } 追寻光的方向 开一个 $suf$ 数组，用于记录 $i$ 位置后...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-08-26 17:52:28 +0800 CST'>2024-08-26</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to 2024萌新联赛6" href="https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B6/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">2024萌新联赛5
     </h2>
   </header>
@@ -332,42 +368,6 @@
   </div>
   <footer class="entry-footer"><span title='2024-07-26 18:15:23 +0800 CST'>2024-07-26</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
   <a class="entry-link" aria-label="post link to 博弈论" href="https://KiritoXDone.github.io/posts/study/%E5%8D%9A%E5%BC%88%E8%AE%BA/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">2024萌新联赛2
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>2024 河南萌新联赛 2 状态 &#43; 狗运&#43; py 大法，目前最好的一把 I 重生之zbk要拿回属于他的一切 签到，暴力找 chuan 的数量即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int main() { int n; cin &gt;&gt; n; string s; cin &gt;&gt; s; int pos = s.find(&#34;chuan&#34;), cnt = 0; while (pos != string::npos) { cnt&#43;&#43;; pos = s.find(&#34;chuan&#34;, pos &#43; 1); } cout &lt;&lt; cnt &lt;&lt; endl; return 0; } F 水灵灵的小学弟 观察题目，发现博弈双方名称相同，不管谁赢都一样，直接输出即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-25 20:50:08 +0800 CST'>2024-07-25</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 2024萌新联赛2" href="https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B2/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">最小表示法
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>最小表示法 理论学习 给定一个字符串 s，首尾相接（循环同构），找到其字典序最小的情况 O(n) 用两个指针 i,j, 分别指想目前两个可能是答案的起始位置 初始 i = 1, j = 2, 随着算法进行增大 假设现在 i &lt; j, 且从 i 开始的 k 位字符和从 j 开始的 k 位字符是一样的，此时这两段子串相同 如果 s[i&#43;k]!=s[j&#43;k] 谁大谁往后移动 k&#43;1 个位置 如果 s[i&#43;k]==s[j&#43;k] 随...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-24 21:53:28 +0800 CST'>2024-07-24</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 最小表示法" href="https://KiritoXDone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">2024HDU2
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>杭电多校 2 补题 1010 女神的睿智 按顺序合并 8 块碎片，如果两片相同，合成后仍相同，如不同，取左侧的，最后合成大碎片时，如果两片相同，不变，如果不同，取出现次数最多的，如果不确定，输出N。 签到，直接暴力 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; void solve(){ string t,s; cin&gt;&gt;s; map&lt;char,int&gt;vis; for(int i=0;i&lt;8;i&#43;&#43;){ if(i%2!=1)t&#43;=s[i]; vis[s[i]]&#43;&#43;; } s=t; t=&#34;&#34;; for(int i=0;i&lt;4;i&#43;&#43;){ if(i%2!=1)t&#43;=s[i]; } if(vis[t[0]]==vis[t[1]])cout&lt;&lt;&#34;N&#34;; else if(vis[t[0]]&gt;vit[t[1]])cout&lt;&lt;t[0]; else cout&lt;&lt;t[1]; cout&lt;&lt;&#34;\n&#34;; } int main(){ int t=1; cin&gt;&gt;t; while(t--)solve(); return 0; } 1007 URL 划分 输入...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-23 21:53:03 +0800 CST'>2024-07-23</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 2024HDU2" href="https://KiritoXDone.github.io/posts/study/2024hdu2/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

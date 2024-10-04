@@ -6,8 +6,29 @@
     <description>Recent content in 👨🏻‍💻 技术 on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 17 Aug 2024 22:45:18 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 04 Oct 2024 21:53:44 +0800</lastBuildDate>
     <atom:link href="https://KiritoXDone.github.io/posts/study/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>今日刷题记录</title>
+      <link>https://KiritoXDone.github.io/posts/study/202409/</link>
+      <pubDate>Fri, 04 Oct 2024 21:53:44 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/posts/study/202409/</guid>
+      <description>AtCoder ABC371C Make Isomorphic 给你简单的无向图 $G$ 和 $H$ ，每个图都有 $N$ 个顶点：顶点 $1$ 、 $2$ 、 $\ldots$ 、 $N$ 。图 $G$ 有 $M_G$ 条边，其第 $i$ 条边 $(1\leq i\leq M_G)$ 连接顶点 $u_i$ 和 $v_i$ 。图 $H$ 有 $M_H$ 条边，它的第 $i$ 条边 $(1\leq i\leq M_H)$ 连接顶点 $a_i$ 和 $b_i$ 。 您可以在图 $H$ 上执行以下操作，次数不限，可能为零。 选择一对满足 $1\le i&amp;lt;j\leq N$ 的整数 $(i,j)$ 。支付 $A_{i,j}$ 点成本，如果 $H$ 中的顶点 $i$ 和 $j$ 之间</description>
+    </item>
+    <item>
+      <title>2024CCPC网络赛</title>
+      <link>https://KiritoXDone.github.io/posts/study/2024ccpconline/</link>
+      <pubDate>Tue, 10 Sep 2024 14:45:39 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/posts/study/2024ccpconline/</guid>
+      <description>前言 好久没写题了，被暴打。 参赛过程也是抽象，开局就罚站 30 min 补题 L 网络预选赛 好不容易卡出来题面，看到 L 已经过了不少了，卡了半天才提交过 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; #define ls now&amp;lt;&amp;lt;1 #define rs now&amp;lt;&amp;lt;1|1 #define endl &amp;#34;\n&amp;#34; typedef long long ll; const int N=1e3+7, mod=1e9+7; void solve(){ int n, m, ans = 0; char mp[N][N]; cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m; for(int i = 1; i &amp;lt;= n; i++) for(int j = 1; j &amp;lt;= m; j++) cin &amp;gt;&amp;gt; mp[i][j]; for(int i = 1; i &amp;lt; n; i++){ for(int j = 1; j &amp;lt; m; j++){ if(mp[i][j] ==</description>
+    </item>
+    <item>
+      <title>2024萌新联赛6</title>
+      <link>https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B6/</link>
+      <pubDate>Mon, 26 Aug 2024 17:52:28 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B6/</guid>
+      <description>2024 河南萌新联赛 6 装备二选一（一） 直接比较结果即可 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; typedef long long ll; #define ls now&amp;lt;&amp;lt;1 #define rs now&amp;lt;&amp;lt;1|1 const int N = 1e5+7, mod = 1e9+7; void solve(){ int a, b, c, d; cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b &amp;gt;&amp;gt; c &amp;gt;&amp;gt; d; int t1 = 100 * b * a + 100 * (100 - a); int t2 = 100 * d * c + 100 * (100 - c); cout &amp;lt;&amp;lt; (t2 &amp;gt; t1 ? &amp;#34;YES\n&amp;#34; : &amp;#34;NO\n&amp;#34;); } int main(){ ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); int t = 1; // cin &amp;gt;&amp;gt; t; while(t--) solve(); return 0; } 追寻光的方向 开一个 $suf$ 数组，用于记录 $i$ 位置后</description>
+    </item>
     <item>
       <title>2024萌新联赛5</title>
       <link>https://KiritoXDone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B5/</link>
