@@ -192,14 +192,26 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">今日刷题记录
+    <h2 class="entry-hint-parent">近日刷题记录 2
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>AtCoder ABC372 D - Buildings 单调栈，逆向进行，找左侧比他大的数，此时栈的大小即为当前位的答案 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 #define endl &#34;\n&#34; #define lowbit(x) ((x)&amp;(-x)) typedef long long ll; const int N=2e5&#43;7, mod=1e9&#43;7; int n,h[N],ans[N]; stack&lt;int&gt;s; void solve(){ cin&gt;&gt;n; for(int i=1;i&lt;=n;i&#43;&#43;){ cin&gt;&gt;h[i]; } for(int i=n;i&gt;=1;i--){ ans[i]=s.size(); while(s.size()&amp;&amp;s.top()&lt;h[i])s.pop(); s.push(h[i]); } for(int i=1;i&lt;=n;i&#43;&#43;)cout&lt;&lt;ans[i]&lt;&lt;&#34; &#34;; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin&gt;&gt;t; while(t--)solve(); return 0; } ABC372 E - K-th Largest Connected Components 并查集，我们可以开 $n$ 个堆，把每个联通块都存到同一个栈当中，查询时栈的大小小于 $k$...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-10-06 19:05:38 +0800 CST'>2024-10-06</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to 近日刷题记录 2" href="https://KiritoXDone.github.io/posts/study/202410/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">近日刷题记录
     </h2>
   </header>
   <div class="entry-content">
     <p>AtCoder ABC371C Make Isomorphic 给你简单的无向图 $G$ 和 $H$ ，每个图都有 $N$ 个顶点：顶点 $1$ 、 $2$ 、 $\ldots$ 、 $N$ 。图 $G$ 有 $M_G$ 条边，其第 $i$ 条边 $(1\leq i\leq M_G)$ 连接顶点 $u_i$ 和 $v_i$ 。图 $H$ 有 $M_H$ 条边，它的第 $i$ 条边 $(1\leq i\leq M_H)$ 连接顶点 $a_i$ 和 $b_i$ 。 您可以在图 $H$ 上执行以下操作，次数不限，可能为零。 选择一对满足 $1\le i&lt;j\leq N$ 的整数 $(i,j)$ 。支付 $A_{i,j}$ 点成本，如果 $H$ 中的顶点 $i$ 和 $j$ 之间...</p>
   </div>
   <footer class="entry-footer"><span title='2024-10-04 21:53:44 +0800 CST'>2024-10-04</span>&nbsp;·&nbsp;6 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 今日刷题记录" href="https://KiritoXDone.github.io/posts/study/202409/"></a>
+  <a class="entry-link" aria-label="post link to 近日刷题记录" href="https://KiritoXDone.github.io/posts/study/202409/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -356,18 +368,6 @@
   </div>
   <footer class="entry-footer"><span title='2024-07-27 18:28:37 +0800 CST'>2024-07-27</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
   <a class="entry-link" aria-label="post link to CF962" href="https://KiritoXDone.github.io/posts/study/cf962/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">博弈论
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>博弈论 简介 两人在公平规则下进行有限的对决，胜负明确 类似有向无环图，由一个状态转移到下一个状态 对先手来说，存在两种状态，即必胜态和必败态 必胜态 当前状态的后续为必败态，当前状态即为必胜态 必败态 不存在后续，或是所有后续都必胜 DP 解决博弈 利用状态转移的关系，来解决简单的博弈问题 移棋子问题 n...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-26 18:15:23 +0800 CST'>2024-07-26</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 博弈论" href="https://KiritoXDone.github.io/posts/study/%E5%8D%9A%E5%BC%88%E8%AE%BA/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
