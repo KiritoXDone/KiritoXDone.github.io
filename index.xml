@@ -6,8 +6,15 @@
     <description>Recent content on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 06 Oct 2024 19:05:38 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 07 Oct 2024 22:15:28 +0800</lastBuildDate>
     <atom:link href="https://KiritoXDone.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>近日刷题记录 3</title>
+      <link>https://KiritoXDone.github.io/posts/study/2024102222/</link>
+      <pubDate>Mon, 07 Oct 2024 22:15:28 +0800</pubDate>
+      <guid>https://KiritoXDone.github.io/posts/study/2024102222/</guid>
+      <description>ABC374 C - Separated Lunch 将 $n$ 个数尽量均分，因为最多只有 20 个数据，可以直接暴搜 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; #define ls now&amp;lt;&amp;lt;1 #define rs now&amp;lt;&amp;lt;1|1 #define endl &amp;#34;\n&amp;#34; #define lowbit(x) ((x)&amp;amp;(-x)) #define int long long const int N=1e5+7, mod=1e9+7; int n,s,ans=INT_MAX; int a[N]; void dfs(int cnt,int sum){ if(cnt==n){ ans=min(ans,max(sum,s-sum)); return; } dfs(cnt+1,sum); dfs(cnt+1,sum+a[cnt+1]); } void solve(){ cin&amp;gt;&amp;gt;n; for(int i=1;i&amp;lt;=n;i++){ cin&amp;gt;&amp;gt;a[i]; s+=a[i]; } dfs(0,0); cout&amp;lt;&amp;lt;ans&amp;lt;&amp;lt;endl; } signed main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin&amp;gt;&amp;gt;t; while(t--)solve(); return 0; } ABC374 E - Sensor Optimization Dilemma 2 易想到二分答案，但是在 $check$ 过程中，对每个进程机器的选择需要考虑 如果直接暴力从 $0$ 到</description>
+    </item>
     <item>
       <title>近日刷题记录 2</title>
       <link>https://KiritoXDone.github.io/posts/study/202410/</link>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>近日刷题记录 3 | KiritoXD&#39;s Blog</title>
+<meta name="keywords" content="补题">
+<meta name="description" content="ABC374 C - Separated Lunch 将 $n$ 个数尽量均分，因为最多只有 20 个数据，可以直接暴搜 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 #define endl &#34;\n&#34; #define lowbit(x) ((x)&amp;(-x)) #define int long long const int N=1e5&#43;7, mod=1e9&#43;7; int n,s,ans=INT_MAX; int a[N]; void dfs(int cnt,int sum){ if(cnt==n){ ans=min(ans,max(sum,s-sum)); return; } dfs(cnt&#43;1,sum); dfs(cnt&#43;1,sum&#43;a[cnt&#43;1]); } void solve(){ cin&gt;&gt;n; for(int i=1;i&lt;=n;i&#43;&#43;){ cin&gt;&gt;a[i]; s&#43;=a[i]; } dfs(0,0); cout&lt;&lt;ans&lt;&lt;endl; } signed main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin&gt;&gt;t; while(t--)solve(); return 0; } ABC374 E - Sensor Optimization Dilemma 2 易想到二分答案，但是在 $check$ 过程中，对每个进程机器的选择需要考虑 如果直接暴力从 $0$ 到">
+<meta name="author" content="KiritoXD">
+<link rel="canonical" href="https://KiritoXDone.github.io/posts/study/2024102222/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://KiritoXDone.github.io/img/a.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://KiritoXDone.github.io/img/a.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://KiritoXDone.github.io/img/a.png">
+<link rel="apple-touch-icon" href="https://KiritoXDone.github.io/img/a.png">
+<link rel="mask-icon" href="https://KiritoXDone.github.io/img/a.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://KiritoXDone.github.io/posts/study/2024102222/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" integrity="sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js" integrity="sha384-Qsn9KnoKISj6dI8g7p1HBlNpVx0I8p1SvlwOldgi3IorMle61nQy4zEahWYtljaz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+  
+
+<meta property="og:title" content="近日刷题记录 3" />
+<meta property="og:description" content="ABC374 C - Separated Lunch 将 $n$ 个数尽量均分，因为最多只有 20 个数据，可以直接暴搜 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 #define endl &#34;\n&#34; #define lowbit(x) ((x)&amp;(-x)) #define int long long const int N=1e5&#43;7, mod=1e9&#43;7; int n,s,ans=INT_MAX; int a[N]; void dfs(int cnt,int sum){ if(cnt==n){ ans=min(ans,max(sum,s-sum)); return; } dfs(cnt&#43;1,sum); dfs(cnt&#43;1,sum&#43;a[cnt&#43;1]); } void solve(){ cin&gt;&gt;n; for(int i=1;i&lt;=n;i&#43;&#43;){ cin&gt;&gt;a[i]; s&#43;=a[i]; } dfs(0,0); cout&lt;&lt;ans&lt;&lt;endl; } signed main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin&gt;&gt;t; while(t--)solve(); return 0; } ABC374 E - Sensor Optimization Dilemma 2 易想到二分答案，但是在 $check$ 过程中，对每个进程机器的选择需要考虑 如果直接暴力从 $0$ 到" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://KiritoXDone.github.io/posts/study/2024102222/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-10-07T22:15:28+08:00" />
+<meta property="article:modified_time" content="2024-10-07T22:15:28+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="近日刷题记录 3"/>
+<meta name="twitter:description" content="ABC374 C - Separated Lunch 将 $n$ 个数尽量均分，因为最多只有 20 个数据，可以直接暴搜 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 #define endl &#34;\n&#34; #define lowbit(x) ((x)&amp;(-x)) #define int long long const int N=1e5&#43;7, mod=1e9&#43;7; int n,s,ans=INT_MAX; int a[N]; void dfs(int cnt,int sum){ if(cnt==n){ ans=min(ans,max(sum,s-sum)); return; } dfs(cnt&#43;1,sum); dfs(cnt&#43;1,sum&#43;a[cnt&#43;1]); } void solve(){ cin&gt;&gt;n; for(int i=1;i&lt;=n;i&#43;&#43;){ cin&gt;&gt;a[i]; s&#43;=a[i]; } dfs(0,0); cout&lt;&lt;ans&lt;&lt;endl; } signed main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin&gt;&gt;t; while(t--)solve(); return 0; } ABC374 E - Sensor Optimization Dilemma 2 易想到二分答案，但是在 $check$ 过程中，对每个进程机器的选择需要考虑 如果直接暴力从 $0$ 到"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://KiritoXDone.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "👨🏻‍💻 技术",
+      "item": "https://KiritoXDone.github.io/posts/study/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "近日刷题记录 3",
+      "item": "https://KiritoXDone.github.io/posts/study/2024102222/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "近日刷题记录 3",
+  "name": "近日刷题记录 3",
+  "description": "ABC374 C - Separated Lunch 将 $n$ 个数尽量均分，因为最多只有 20 个数据，可以直接暴搜 #include \u0026lt;bits/stdc++.h\u0026gt; using namespace std; #define ls now\u0026lt;\u0026lt;1 #define rs now\u0026lt;\u0026lt;1|1 #define endl \u0026#34;\\n\u0026#34; #define lowbit(x) ((x)\u0026amp;(-x)) #define int long long const int N=1e5+7, mod=1e9+7; int n,s,ans=INT_MAX; int a[N]; void dfs(int cnt,int sum){ if(cnt==n){ ans=min(ans,max(sum,s-sum)); return; } dfs(cnt+1,sum); dfs(cnt+1,sum+a[cnt+1]); } void solve(){ cin\u0026gt;\u0026gt;n; for(int i=1;i\u0026lt;=n;i++){ cin\u0026gt;\u0026gt;a[i]; s+=a[i]; } dfs(0,0); cout\u0026lt;\u0026lt;ans\u0026lt;\u0026lt;endl; } signed main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin\u0026gt;\u0026gt;t; while(t--)solve(); return 0; } ABC374 E - Sensor Optimization Dilemma 2 易想到二分答案，但是在 $check$ 过程中，对每个进程机器的选择需要考虑 如果直接暴力从 $0$ 到",
+  "keywords": [
+    "补题"
+  ],
+  "articleBody": "ABC374 C - Separated Lunch 将 $n$ 个数尽量均分，因为最多只有 20 个数据，可以直接暴搜\n#include using namespace std; #define ls now\u003c\u003c1 #define rs now\u003c\u003c1|1 #define endl \"\\n\" #define lowbit(x) ((x)\u0026(-x)) #define int long long const int N=1e5+7, mod=1e9+7; int n,s,ans=INT_MAX; int a[N]; void dfs(int cnt,int sum){ if(cnt==n){ ans=min(ans,max(sum,s-sum)); return; } dfs(cnt+1,sum); dfs(cnt+1,sum+a[cnt+1]); } void solve(){ cin\u003e\u003en; for(int i=1;i\u003c=n;i++){ cin\u003e\u003ea[i]; s+=a[i]; } dfs(0,0); cout\u003c\u003cans\u003c\u003cendl; } signed main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin\u003e\u003et; while(t--)solve(); return 0; } ABC374 E - Sensor Optimization Dilemma 2 易想到二分答案，但是在 $check$ 过程中，对每个进程机器的选择需要考虑\n如果直接暴力从 $0$ 到 $mid/a[i]$ 一定会超时\n考虑如果需要生产 $ab$ 个单位的物品，那么第一种机器会消耗 $bp$，第二种机器则会消耗 $ap$，但在最优方案中，两种机器不可能同时到达这么多需求，因为这样就可以用性价比高的替代低的了\n假如 $ab=10,a=5,p=10,b=2,q=5$，我们会优先选 $a$ 因为他的性价比更高，在剩下大于等于 $ab$ 个需求时，我们只会选 $a$ 来满足需求，在小于 $ab$ 时，才会来找需要几个 $b$\n所以 $check$ 只需要找 $max(a[i],b[i])$ 次就够了\n#include #include #include #include #include using namespace std; #define endl \"\\n\" #define int long long const int N = 1e5 + 7, mod = 1e9 + 7; int n, x; int a[N], b[N], c[N], d[N]; bool check(int f) { int lst = x; for (int i = 1; i \u003c= n; i++) { int cost = INT_MAX; for (int j = 0; j \u003c= 100; j++) { int remaining = f - j * a[i]; cost = min(cost, j * b[i] + max(0LL, (int)ceil(1.0 * remaining / c[i])) * d[i]); } for (int j = 0; j \u003c= 100; j++) { int remaining = f - j * c[i]; cost = min(cost, j * d[i] + max(0LL, (int)ceil(1.0 * remaining / a[i])) * b[i]); } lst -= cost; if (lst \u003c 0) return false; } return lst \u003e= 0; } void solve() { cin \u003e\u003e n \u003e\u003e x; for (int i = 1; i \u003c= n; i++) { cin \u003e\u003e a[i] \u003e\u003e b[i] \u003e\u003e c[i] \u003e\u003e d[i]; } int l = 0, r = 1e9, ans = 0; while (l \u003c= r) { int mid = (l + r) \u003e\u003e 1; if (check(mid)) { ans = mid; l = mid + 1; } else { r = mid - 1; } } cout \u003c\u003c ans \u003c\u003c endl; } signed main() { ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); int t = 1; // cin \u003e\u003e t; while (t--) solve(); return 0; } ABC374 F - Shipping 易想到用 $dp$ 解决\n开一个 $dp[i][t]$ 第一维代表已发了 $i$ 件，第二维代表最后一次发快递在什么时刻发的\n可以想到发快递的时间一定是 $t_{i}+k x, k \\in \\mathbb{Z}$\n因为每次发快递的时间，就是此快递刚到，或是先堆积不发，等到后面的快递到了一起发，只有这两种状态\n中间的等待都是无意义的，所以需要考虑的时间点其实并不多\n初始状态即为 $dp[1][t[1]]$ 意为第一件，时间为 $t[1]$，此时总花费值为 $0$\n然后从第二个进入 $dp$ 过程\n当 $i\u003c=k$ 时，此时都可以一次性发出，计算在 $t[i]$ 时发出总花费值，更新 $dp[i][t[i]]$ 的值\n从上一次发 $k$ 件的时间时刻，到上一件的时刻，依次考虑在此时发快递的花费，按照上面的更新过程再来一遍\n最后在 $dp[n]$ 里找最小值即可\n#include using namespace std; #define ls now\u003c\u003c1 #define rs now\u003c\u003c1|1 #define endl \"\\n\" #define lowbit(x) ((x)\u0026(-x)) typedef long long ll; const int N=1e3+7, mod=1e9+7; int k,n,x; ll t[N]; map\u003cll,ll\u003edp[N]; void solve(){ cin\u003e\u003en\u003e\u003ek\u003e\u003ex; for(int i=1;i\u003c=n;i++)cin\u003e\u003et[i]; dp[1][t[1]]=0; for(int i=2;i\u003c=n;i++){ if(i\u003c=k){ ll res=0; for(int j=1;j\u003c=i;j++)res+=t[i]-t[j]; if(!dp[i].count(t[i]))dp[i][t[i]]=res; else dp[i][t[i]]=min(dp[i][t[i]],res); } for(int j=i-k;j\u003c=i-1;j++){ if(j\u003e0){ for(auto [key,val]:dp[j]){ ll tmp=max(key+x,t[i]); ll res=val; for(int k=j+1;k\u003c=i;k++)res+=tmp-t[k]; if(!dp[i].count(tmp))dp[i][tmp]=res; else dp[i][tmp]=min(dp[i][tmp],res); } } } } ll ans=1e18; for(auto [key,val]:dp[n])ans=min(ans,val); cout\u003c\u003cans\u003c\u003cendl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin\u003e\u003et; while(t--)solve(); return 0; } [NOIP2017]奶酪 dfs 查询，以当前空洞为原点，计算其他空洞到这个圆心的距离，如果小于 2*r 就进行 dfs，如果能碰到 h 就可以完成任务\n要先找到接地的空洞，对他们都进行 dfs\n#include using namespace std; #define endl \"\\n\" typedef long long ll; const int N = 1e5 + 7; const int MOD = 1e9 + 7; int n, h, r; ll x[N], y[N], z[N]; bool vis[N]; bool flag = false; ll dis(ll x1, ll y1, ll z1, ll x2, ll y2, ll z2) { return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2); } void dfs(int pos) { vis[pos] = true; if (z[pos] + r \u003e= h) { flag = true; return; } for (int i = 1; i \u003c= n; ++i) { if (!vis[i] \u0026\u0026 dis(x[pos], y[pos], z[pos], x[i], y[i], z[i]) \u003c= 4 * r * r) { if (flag) return; dfs(i); } } } void solve() { cin \u003e\u003e n \u003e\u003e h \u003e\u003e r; memset(vis, 0, sizeof(vis)); for (int i = 1; i \u003c= n; ++i) { cin \u003e\u003e x[i] \u003e\u003e y[i] \u003e\u003e z[i]; } flag = false; for (int i = 1; i \u003c= n; ++i) { if (z[i] - r \u003c= 0 \u0026\u0026 !vis[i]) { dfs(i); } } cout \u003c\u003c (flag ? \"Yes\" : \"No\") \u003c\u003c endl; } int main() { ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); int t; cin \u003e\u003e t; while (t--) { solve(); } return 0; } ",
+  "wordCount" : "1224",
+  "inLanguage": "zh",
+  "datePublished": "2024-10-07T22:15:28+08:00",
+  "dateModified": "2024-10-07T22:15:28+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "KiritoXD"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://KiritoXDone.github.io/posts/study/2024102222/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KiritoXD's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://KiritoXDone.github.io/img/a.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://KiritoXDone.github.io/" accesskey="h" title="KiritoXD&#39;s Blog (Alt + H)">
+                <img src="https://KiritoXDone.github.io/img/a.png" alt="" aria-label="logo"
+                    height="35">KiritoXD&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://KiritoXDone.github.io/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://KiritoXDone.github.io/" title="🏠 主页">
+                    <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://KiritoXDone.github.io/posts" title="📚 文章">
+                    <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://KiritoXDone.github.io/tags" title="🧩 标签">
+                    <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://KiritoXDone.github.io/archives/" title="⏱️ 时间轴">
+                    <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://KiritoXDone.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://KiritoXDone.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://KiritoXDone.github.io/posts/study/">👨🏻‍💻 技术</a></div>
+    <h1 class="post-title entry-hint-parent">
+      近日刷题记录 3
+    </h1>
+    <div class="post-meta"><span title='2024-10-07 22:15:28 +0800 CST'>2024-10-07</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;KiritoXD
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#abc374-c---separated-lunch" aria-label="ABC374 C - Separated Lunch">ABC374 C - Separated Lunch</a></li>
+                    <li>
+                        <a href="#abc374-e---sensor-optimization-dilemma-2" aria-label="ABC374 E - Sensor Optimization Dilemma 2">ABC374 E - Sensor Optimization Dilemma 2</a></li>
+                    <li>
+                        <a href="#abc374-f---shipping" aria-label="ABC374 F - Shipping">ABC374 F - Shipping</a></li>
+                    <li>
+                        <a href="#noip2017%e5%a5%b6%e9%85%aa" aria-label="[NOIP2017]奶酪">[NOIP2017]奶酪</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+
+  <div class="post-content"><h3 id="abc374-c---separated-lunch">ABC374 C - Separated Lunch<a hidden class="anchor" aria-hidden="true" href="#abc374-c---separated-lunch">#</a></h3>
+<p>将 $n$ 个数尽量均分，因为最多只有 20 个数据，可以直接暴搜</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>using namespace std;
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define ls now&lt;&lt;1
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define rs now&lt;&lt;1|1
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define endl &#34;\n&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define lowbit(x) ((x)&amp;(-x))
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define int long long
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">const</span> <span style="color:#f38ba8">int</span> N<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1e5</span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">7</span>, mod<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1e9</span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> n,s,ans<span style="color:#89dceb;font-weight:bold">=</span>INT_MAX;
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> a[N];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">dfs</span>(<span style="color:#f38ba8">int</span> cnt,<span style="color:#f38ba8">int</span> sum){
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span>(cnt<span style="color:#89dceb;font-weight:bold">==</span>n){
+</span></span><span style="display:flex;"><span>        ans<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#89b4fa">min</span>(ans,<span style="color:#89b4fa">max</span>(sum,s<span style="color:#89dceb;font-weight:bold">-</span>sum));
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">dfs</span>(cnt<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span>,sum);
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">dfs</span>(cnt<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span>,sum<span style="color:#89dceb;font-weight:bold">+</span>a[cnt<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span>]);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">solve</span>(){
+</span></span><span style="display:flex;"><span>    cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>n;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>a[i];
+</span></span><span style="display:flex;"><span>        s<span style="color:#89dceb;font-weight:bold">+=</span>a[i];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">dfs</span>(<span style="color:#fab387">0</span>,<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>ans<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">signed</span> <span style="color:#89b4fa">main</span>(){
+</span></span><span style="display:flex;"><span>    ios<span style="color:#89dceb;font-weight:bold">::</span><span style="color:#89b4fa">sync_with_stdio</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cin.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>);cout.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> t<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">// cin&gt;&gt;t;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#cba6f7">while</span>(t<span style="color:#89dceb;font-weight:bold">--</span>)<span style="color:#89b4fa">solve</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="abc374-e---sensor-optimization-dilemma-2">ABC374 E - Sensor Optimization Dilemma 2<a hidden class="anchor" aria-hidden="true" href="#abc374-e---sensor-optimization-dilemma-2">#</a></h3>
+<p>易想到二分答案，但是在 $check$ 过程中，对每个进程机器的选择需要考虑</p>
+<p>如果直接暴力从 $0$ 到 $mid/a[i]$ 一定会超时</p>
+<p>考虑如果需要生产 $ab$ 个单位的物品，那么第一种机器会消耗 $bp$，第二种机器则会消耗 $ap$，但在最优方案中，两种机器不可能同时到达这么多需求，因为这样就可以用性价比高的替代低的了</p>
+<p>假如 $ab=10,a=5,p=10,b=2,q=5$，我们会优先选 $a$ 因为他的性价比更高，在剩下大于等于 $ab$ 个需求时，我们只会选 $a$ 来满足需求，在小于 $ab$ 时，才会来找需要几个 $b$</p>
+<p>所以 $check$ 只需要找 $max(a[i],b[i])$ 次就够了</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;iostream&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;vector&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;algorithm&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;cmath&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;climits&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>using namespace std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define endl &#34;\n&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define int long long
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">const</span> <span style="color:#f38ba8">int</span> N <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e5</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>, mod <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e9</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> n, x;
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> a[N], b[N], c[N], d[N];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">bool</span> <span style="color:#89b4fa">check</span>(<span style="color:#f38ba8">int</span> f) {
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> lst <span style="color:#89dceb;font-weight:bold">=</span> x;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>; i <span style="color:#89dceb;font-weight:bold">&lt;=</span> n; i<span style="color:#89dceb;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> cost <span style="color:#89dceb;font-weight:bold">=</span> INT_MAX;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> j <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>; j <span style="color:#89dceb;font-weight:bold">&lt;=</span> <span style="color:#fab387">100</span>; j<span style="color:#89dceb;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#f38ba8">int</span> remaining <span style="color:#89dceb;font-weight:bold">=</span> f <span style="color:#89dceb;font-weight:bold">-</span> j <span style="color:#89dceb;font-weight:bold">*</span> a[i];
+</span></span><span style="display:flex;"><span>            cost <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">min</span>(cost, j <span style="color:#89dceb;font-weight:bold">*</span> b[i] <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#89b4fa">max</span>(<span style="color:#fab387">0LL</span>, (<span style="color:#f38ba8">int</span>)<span style="color:#89b4fa">ceil</span>(<span style="color:#fab387">1.0</span> <span style="color:#89dceb;font-weight:bold">*</span> remaining <span style="color:#89dceb;font-weight:bold">/</span> c[i])) <span style="color:#89dceb;font-weight:bold">*</span> d[i]);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> j <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>; j <span style="color:#89dceb;font-weight:bold">&lt;=</span> <span style="color:#fab387">100</span>; j<span style="color:#89dceb;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#f38ba8">int</span> remaining <span style="color:#89dceb;font-weight:bold">=</span> f <span style="color:#89dceb;font-weight:bold">-</span> j <span style="color:#89dceb;font-weight:bold">*</span> c[i];
+</span></span><span style="display:flex;"><span>            cost <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">min</span>(cost, j <span style="color:#89dceb;font-weight:bold">*</span> d[i] <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#89b4fa">max</span>(<span style="color:#fab387">0LL</span>, (<span style="color:#f38ba8">int</span>)<span style="color:#89b4fa">ceil</span>(<span style="color:#fab387">1.0</span> <span style="color:#89dceb;font-weight:bold">*</span> remaining <span style="color:#89dceb;font-weight:bold">/</span> a[i])) <span style="color:#89dceb;font-weight:bold">*</span> b[i]);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        lst <span style="color:#89dceb;font-weight:bold">-=</span> cost;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (lst <span style="color:#89dceb;font-weight:bold">&lt;</span> <span style="color:#fab387">0</span>) <span style="color:#cba6f7">return</span> <span style="color:#89dceb">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> lst <span style="color:#89dceb;font-weight:bold">&gt;=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">solve</span>() {
+</span></span><span style="display:flex;"><span>    cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> n <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> x;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>; i <span style="color:#89dceb;font-weight:bold">&lt;=</span> n; i<span style="color:#89dceb;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> a[i] <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> b[i] <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> c[i] <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> d[i];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> l <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>, r <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e9</span>, ans <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">while</span> (l <span style="color:#89dceb;font-weight:bold">&lt;=</span> r) {
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> mid <span style="color:#89dceb;font-weight:bold">=</span> (l <span style="color:#89dceb;font-weight:bold">+</span> r) <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (<span style="color:#89b4fa">check</span>(mid)) {
+</span></span><span style="display:flex;"><span>            ans <span style="color:#89dceb;font-weight:bold">=</span> mid;
+</span></span><span style="display:flex;"><span>            l <span style="color:#89dceb;font-weight:bold">=</span> mid <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#cba6f7">else</span> {
+</span></span><span style="display:flex;"><span>            r <span style="color:#89dceb;font-weight:bold">=</span> mid <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    cout <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> ans <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">signed</span> <span style="color:#89b4fa">main</span>() {
+</span></span><span style="display:flex;"><span>    ios<span style="color:#89dceb;font-weight:bold">::</span><span style="color:#89b4fa">sync_with_stdio</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cin.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cout.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> t <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">// cin &gt;&gt; t;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#cba6f7">while</span> (t<span style="color:#89dceb;font-weight:bold">--</span>) <span style="color:#89b4fa">solve</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="abc374-f---shipping">ABC374 F - Shipping<a hidden class="anchor" aria-hidden="true" href="#abc374-f---shipping">#</a></h3>
+<p>易想到用 $dp$ 解决</p>
+<p>开一个 $dp[i][t]$ 第一维代表已发了 $i$ 件，第二维代表最后一次发快递在什么时刻发的</p>
+<p>可以想到发快递的时间一定是 $t_{i}+k x, k \in \mathbb{Z}$</p>
+<p>因为每次发快递的时间，就是此快递刚到，或是先堆积不发，等到后面的快递到了一起发，只有这两种状态</p>
+<p>中间的等待都是无意义的，所以需要考虑的时间点其实并不多</p>
+<p>初始状态即为 $dp[1][t[1]]$ 意为第一件，时间为 $t[1]$，此时总花费值为 $0$</p>
+<p>然后从第二个进入 $dp$ 过程<br>
+当 $i&lt;=k$ 时，此时都可以一次性发出，计算在 $t[i]$ 时发出总花费值，更新 $dp[i][t[i]]$ 的值</p>
+<p>从上一次发 $k$ 件的时间时刻，到上一件的时刻，依次考虑在此时发快递的花费，按照上面的更新过程再来一遍</p>
+<p>最后在 $dp[n]$ 里找最小值即可</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>using namespace std;
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define ls now&lt;&lt;1
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define rs now&lt;&lt;1|1
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define endl &#34;\n&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define lowbit(x) ((x)&amp;(-x))
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">typedef</span> <span style="color:#f38ba8">long</span> <span style="color:#f38ba8">long</span> ll;
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> <span style="color:#f38ba8">int</span> N<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1e3</span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">7</span>, mod<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1e9</span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> k,n,x;
+</span></span><span style="display:flex;"><span>ll t[N];
+</span></span><span style="display:flex;"><span>map<span style="color:#89dceb;font-weight:bold">&lt;</span>ll,ll<span style="color:#89dceb;font-weight:bold">&gt;</span>dp[N];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">solve</span>(){
+</span></span><span style="display:flex;"><span>    cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>n<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>k<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>x;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>)cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>t[i];
+</span></span><span style="display:flex;"><span>    dp[<span style="color:#fab387">1</span>][t[<span style="color:#fab387">1</span>]]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">2</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(i<span style="color:#89dceb;font-weight:bold">&lt;=</span>k){
+</span></span><span style="display:flex;"><span>            ll res<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> j<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;j<span style="color:#89dceb;font-weight:bold">&lt;=</span>i;j<span style="color:#89dceb;font-weight:bold">++</span>)res<span style="color:#89dceb;font-weight:bold">+=</span>t[i]<span style="color:#89dceb;font-weight:bold">-</span>t[j];
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">if</span>(<span style="color:#89dceb;font-weight:bold">!</span>dp[i].<span style="color:#89b4fa">count</span>(t[i]))dp[i][t[i]]<span style="color:#89dceb;font-weight:bold">=</span>res;
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">else</span> dp[i][t[i]]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#89b4fa">min</span>(dp[i][t[i]],res);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> j<span style="color:#89dceb;font-weight:bold">=</span>i<span style="color:#89dceb;font-weight:bold">-</span>k;j<span style="color:#89dceb;font-weight:bold">&lt;=</span>i<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#fab387">1</span>;j<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">if</span>(j<span style="color:#89dceb;font-weight:bold">&gt;</span><span style="color:#fab387">0</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#cba6f7">for</span>(<span style="color:#cba6f7">auto</span> [key,val]<span style="color:#89dceb;font-weight:bold">:</span>dp[j]){
+</span></span><span style="display:flex;"><span>                    ll tmp<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#89b4fa">max</span>(key<span style="color:#89dceb;font-weight:bold">+</span>x,t[i]);
+</span></span><span style="display:flex;"><span>                    ll res<span style="color:#89dceb;font-weight:bold">=</span>val;
+</span></span><span style="display:flex;"><span>                    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> k<span style="color:#89dceb;font-weight:bold">=</span>j<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span>;k<span style="color:#89dceb;font-weight:bold">&lt;=</span>i;k<span style="color:#89dceb;font-weight:bold">++</span>)res<span style="color:#89dceb;font-weight:bold">+=</span>tmp<span style="color:#89dceb;font-weight:bold">-</span>t[k];
+</span></span><span style="display:flex;"><span>                    <span style="color:#cba6f7">if</span>(<span style="color:#89dceb;font-weight:bold">!</span>dp[i].<span style="color:#89b4fa">count</span>(tmp))dp[i][tmp]<span style="color:#89dceb;font-weight:bold">=</span>res;
+</span></span><span style="display:flex;"><span>                    <span style="color:#cba6f7">else</span> dp[i][tmp]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#89b4fa">min</span>(dp[i][tmp],res);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    ll ans<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1e18</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#cba6f7">auto</span> [key,val]<span style="color:#89dceb;font-weight:bold">:</span>dp[n])ans<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#89b4fa">min</span>(ans,val);
+</span></span><span style="display:flex;"><span>    cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>ans<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>(){
+</span></span><span style="display:flex;"><span>    ios<span style="color:#89dceb;font-weight:bold">::</span><span style="color:#89b4fa">sync_with_stdio</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cin.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>);cout.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> t<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">// cin&gt;&gt;t;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#cba6f7">while</span>(t<span style="color:#89dceb;font-weight:bold">--</span>)<span style="color:#89b4fa">solve</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="noip2017奶酪">[NOIP2017]奶酪<a hidden class="anchor" aria-hidden="true" href="#noip2017奶酪">#</a></h3>
+<p>dfs 查询，以当前空洞为原点，计算其他空洞到这个圆心的距离，如果小于 2*r 就进行 dfs，如果能碰到 h 就可以完成任务</p>
+<p>要先找到接地的空洞，对他们都进行 dfs</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>using namespace std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define endl &#34;\n&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">typedef</span> <span style="color:#f38ba8">long</span> <span style="color:#f38ba8">long</span> ll;
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> <span style="color:#f38ba8">int</span> N <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e5</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>;
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> <span style="color:#f38ba8">int</span> MOD <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e9</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> n, h, r;
+</span></span><span style="display:flex;"><span>ll x[N], y[N], z[N];
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">bool</span> vis[N];
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">bool</span> flag <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89dceb">false</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ll <span style="color:#89b4fa">dis</span>(ll x1, ll y1, ll z1, ll x2, ll y2, ll z2) {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> (x1 <span style="color:#89dceb;font-weight:bold">-</span> x2) <span style="color:#89dceb;font-weight:bold">*</span> (x1 <span style="color:#89dceb;font-weight:bold">-</span> x2) <span style="color:#89dceb;font-weight:bold">+</span> (y1 <span style="color:#89dceb;font-weight:bold">-</span> y2) <span style="color:#89dceb;font-weight:bold">*</span> (y1 <span style="color:#89dceb;font-weight:bold">-</span> y2) <span style="color:#89dceb;font-weight:bold">+</span> (z1 <span style="color:#89dceb;font-weight:bold">-</span> z2) <span style="color:#89dceb;font-weight:bold">*</span> (z1 <span style="color:#89dceb;font-weight:bold">-</span> z2);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">dfs</span>(<span style="color:#f38ba8">int</span> pos) {
+</span></span><span style="display:flex;"><span>    vis[pos] <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89dceb">true</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (z[pos] <span style="color:#89dceb;font-weight:bold">+</span> r <span style="color:#89dceb;font-weight:bold">&gt;=</span> h) {
+</span></span><span style="display:flex;"><span>        flag <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89dceb">true</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>; i <span style="color:#89dceb;font-weight:bold">&lt;=</span> n; <span style="color:#89dceb;font-weight:bold">++</span>i) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (<span style="color:#89dceb;font-weight:bold">!</span>vis[i] <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> <span style="color:#89b4fa">dis</span>(x[pos], y[pos], z[pos], x[i], y[i], z[i]) <span style="color:#89dceb;font-weight:bold">&lt;=</span> <span style="color:#fab387">4</span> <span style="color:#89dceb;font-weight:bold">*</span> r <span style="color:#89dceb;font-weight:bold">*</span> r) {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">if</span> (flag) <span style="color:#cba6f7">return</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#89b4fa">dfs</span>(i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">solve</span>() {
+</span></span><span style="display:flex;"><span>    cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> n <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> h <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> r;
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">memset</span>(vis, <span style="color:#fab387">0</span>, <span style="color:#cba6f7">sizeof</span>(vis));
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>; i <span style="color:#89dceb;font-weight:bold">&lt;=</span> n; <span style="color:#89dceb;font-weight:bold">++</span>i) {
+</span></span><span style="display:flex;"><span>        cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> x[i] <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> y[i] <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> z[i];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    flag <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89dceb">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>; i <span style="color:#89dceb;font-weight:bold">&lt;=</span> n; <span style="color:#89dceb;font-weight:bold">++</span>i) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (z[i] <span style="color:#89dceb;font-weight:bold">-</span> r <span style="color:#89dceb;font-weight:bold">&lt;=</span> <span style="color:#fab387">0</span> <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> <span style="color:#89dceb;font-weight:bold">!</span>vis[i]) {
+</span></span><span style="display:flex;"><span>            <span style="color:#89b4fa">dfs</span>(i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    cout <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> (flag <span style="color:#89dceb;font-weight:bold">?</span> <span style="color:#a6e3a1">&#34;Yes&#34;</span> <span style="color:#89dceb;font-weight:bold">:</span> <span style="color:#a6e3a1">&#34;No&#34;</span>) <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>() {
+</span></span><span style="display:flex;"><span>    ios<span style="color:#89dceb;font-weight:bold">::</span><span style="color:#89b4fa">sync_with_stdio</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cin.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cout.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> t;
+</span></span><span style="display:flex;"><span>    cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> t;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">while</span> (t<span style="color:#89dceb;font-weight:bold">--</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#89b4fa">solve</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://KiritoXDone.github.io/tags/%E8%A1%A5%E9%A2%98/">补题</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://KiritoXDone.github.io/posts/study/202410/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>近日刷题记录 2</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="https://KiritoXDone.github.io/">KiritoXD&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', () => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent;
+                navigator.clipboard.writeText(text).then(copyingDone);
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replace("language-", "");
+        let macTool = document.createElement("div");
+        let macTool1 = document.createElement("div");
+        let macTool2 = document.createElement("div");
+        let macTool3 = document.createElement("div");
+        let languageType = document.createElement("div");
+        languageType.innerText = language;
+        macTool.setAttribute('class', 'mac-tool');
+        macTool1.setAttribute('class', 'mac bb1');
+        macTool2.setAttribute('class', 'mac bb2');
+        macTool3.setAttribute('class', 'mac bb3');
+        languageType.setAttribute('class', 'language-type');
+        macTool.appendChild(macTool1);
+        macTool.appendChild(macTool2);
+        macTool.appendChild(macTool3);
+        macTool.appendChild(languageType);
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        }
+    });
+</script>
+
+<script>
+    (function(u, c) {
+      var d = document, t = 'script', o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function(e) { c(e); }); }
+      s.parentNode.insertBefore(o, s);
+    })('//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js', function() {
+      pangu.spacingPage();
+    });
+    </script>
+</body>
+
+</html>
