@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>线段树 on KiritoXD&#39;s Blog</title>
-    <link>https://KiritoXDone.github.io/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/</link>
+    <link>https://mjc.us.kg/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/</link>
     <description>Recent content in 线段树 on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
     <lastBuildDate>Sun, 04 Aug 2024 18:57:54 +0800</lastBuildDate>
-    <atom:link href="https://KiritoXDone.github.io/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://mjc.us.kg/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>线段树</title>
-      <link>https://KiritoXDone.github.io/posts/study/%E7%BA%BF%E6%AE%B5%E6%A0%91/</link>
+      <link>https://mjc.us.kg/posts/study/%E7%BA%BF%E6%AE%B5%E6%A0%91/</link>
       <pubDate>Sun, 04 Aug 2024 18:57:54 +0800</pubDate>
-      <guid>https://KiritoXDone.github.io/posts/study/%E7%BA%BF%E6%AE%B5%E6%A0%91/</guid>
+      <guid>https://mjc.us.kg/posts/study/%E7%BA%BF%E6%AE%B5%E6%A0%91/</guid>
       <description>线段数学习 简介 常用的用来维护 区间信息 的数据结构。 线段树可以在 $O(\log N)$ 的时间复杂度内实现单点修改、区间修改、区间查询（区间求和，求区间最大值，求区间最小值）等操作。 实现过程即为将每个长度不为 1 的片段分成左右两个片段，不断递归下去，把区间分为树形结构，通过合并两端来求值 模板 单点修改 操作 1</description>
     </item>
   </channel>

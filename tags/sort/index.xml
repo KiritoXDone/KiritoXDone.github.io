@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Sort on KiritoXD&#39;s Blog</title>
-    <link>https://KiritoXDone.github.io/tags/sort/</link>
+    <link>https://mjc.us.kg/tags/sort/</link>
     <description>Recent content in Sort on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
     <lastBuildDate>Sat, 20 Jul 2024 12:16:26 +0800</lastBuildDate>
-    <atom:link href="https://KiritoXDone.github.io/tags/sort/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://mjc.us.kg/tags/sort/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>简单的排序</title>
-      <link>https://KiritoXDone.github.io/posts/study/easy-sort/</link>
+      <link>https://mjc.us.kg/posts/study/easy-sort/</link>
       <pubDate>Sat, 20 Jul 2024 12:16:26 +0800</pubDate>
-      <guid>https://KiritoXDone.github.io/posts/study/easy-sort/</guid>
+      <guid>https://mjc.us.kg/posts/study/easy-sort/</guid>
       <description>简单的排序实现 快速排序 快排 分治思想 复杂度 [nlogn, n^2] 不稳定 &amp;ndash;x随机取 排序区间为 [l, r] 时，长度小于 1，直接退出，否则选一个数字 x 作为比较元素 将大于 x 的放右边，小于 x 的放左边，等于 x 的随意放 确定 x 的位置后，对两侧继续递归 void quicksort(int l, int r) { if (l &amp;gt;= r) return; // 长度小于 1，直接退出 swap(a[l], a[l + rand() % (r - l +</description>
     </item>
   </channel>
