@@ -6,8 +6,15 @@
     <description>Recent content in 补题 on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 07 Oct 2024 22:15:28 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 10 Oct 2024 21:07:59 +0800</lastBuildDate>
     <atom:link href="https://mjc.us.kg/tags/%E8%A1%A5%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Codeforces Round 974 (Div. 3)</title>
+      <link>https://mjc.us.kg/posts/study/cf974/</link>
+      <pubDate>Thu, 10 Oct 2024 21:07:59 +0800</pubDate>
+      <guid>https://mjc.us.kg/posts/study/cf974/</guid>
+      <description>A Robin Helps 按题意模拟 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; #define ls now&amp;lt;&amp;lt;1 #define rs now&amp;lt;&amp;lt;1|1 #define endl &amp;#34;\n&amp;#34; #define lowbit(x) ((x)&amp;amp;(-x)) typedef long long ll; const int N=1e5+7, mod=1e9+7; int n,ans,a[N],cnt,k; void solve(){ cnt=ans=0; cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;k; for(int i=1;i&amp;lt;=n;i++){ cin&amp;gt;&amp;gt;a[i]; if(a[i]&amp;gt;=k)cnt+=a[i]; if(!a[i]&amp;amp;&amp;amp;cnt)cnt--,ans++; } cout&amp;lt;&amp;lt;ans&amp;lt;&amp;lt;endl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; cin&amp;gt;&amp;gt;t; while(t--)solve(); return 0; } B. Robin Hood and the Major Oak 显然只有最后 $k$ 个点有效，$i^i$ 的奇偶性只和 $i$ 有关，公式加和即可 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; #define endl &amp;#39;\n&amp;#39; typedef long long ll; const int N = 1e5 + 7, mod = 1e9 + 7; ll n, k; void solve() { cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; k; ll s = (n - k +</description>
+    </item>
     <item>
       <title>近日刷题记录 3</title>
       <link>https://mjc.us.kg/posts/study/2024102222/</link>

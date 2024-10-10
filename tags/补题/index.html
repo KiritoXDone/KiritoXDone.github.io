@@ -171,6 +171,18 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Codeforces Round 974 (Div. 3)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>A Robin Helps 按题意模拟 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 #define endl &#34;\n&#34; #define lowbit(x) ((x)&amp;(-x)) typedef long long ll; const int N=1e5&#43;7, mod=1e9&#43;7; int n,ans,a[N],cnt,k; void solve(){ cnt=ans=0; cin&gt;&gt;n&gt;&gt;k; for(int i=1;i&lt;=n;i&#43;&#43;){ cin&gt;&gt;a[i]; if(a[i]&gt;=k)cnt&#43;=a[i]; if(!a[i]&amp;&amp;cnt)cnt--,ans&#43;&#43;; } cout&lt;&lt;ans&lt;&lt;endl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; cin&gt;&gt;t; while(t--)solve(); return 0; } B. Robin Hood and the Major Oak 显然只有最后 $k$ 个点有效，$i^i$ 的奇偶性只和 $i$ 有关，公式加和即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; #define endl &#39;\n&#39; typedef long long ll; const int N = 1e5 &#43; 7, mod = 1e9 &#43; 7; ll n, k; void solve() { cin &gt;&gt; n &gt;&gt; k; ll s = (n - k &#43;...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-10-10 21:07:59 +0800 CST'>2024-10-10</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to Codeforces Round 974 (Div. 3)" href="https://mjc.us.kg/posts/study/cf974/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">近日刷题记录 3
     </h2>
   </header>
