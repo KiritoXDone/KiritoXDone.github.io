@@ -192,13 +192,25 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">树形DP
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行 一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$ 洛谷 P1352 没有上司的舞会 题目 某大学有 $n$ 个职员，编号为 $1\ldots n$。 他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。 现在有个周年庆宴会，宴会每邀请...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-10-11 18:23:38 +0800 CST'>2024-10-11</span>&nbsp;·&nbsp;5 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to 树形DP" href="https://mjc.us.kg/posts/study/treedp/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Codeforces Round 974 (Div. 3)
     </h2>
   </header>
   <div class="entry-content">
     <p>A Robin Helps 按题意模拟 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 #define endl &#34;\n&#34; #define lowbit(x) ((x)&amp;(-x)) typedef long long ll; const int N=1e5&#43;7, mod=1e9&#43;7; int n,ans,a[N],cnt,k; void solve(){ cnt=ans=0; cin&gt;&gt;n&gt;&gt;k; for(int i=1;i&lt;=n;i&#43;&#43;){ cin&gt;&gt;a[i]; if(a[i]&gt;=k)cnt&#43;=a[i]; if(!a[i]&amp;&amp;cnt)cnt--,ans&#43;&#43;; } cout&lt;&lt;ans&lt;&lt;endl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; cin&gt;&gt;t; while(t--)solve(); return 0; } B. Robin Hood and the Major Oak 显然只有最后 $k$ 个点有效，$i^i$ 的奇偶性只和 $i$ 有关，公式加和即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; #define endl &#39;\n&#39; typedef long long ll; const int N = 1e5 &#43; 7, mod = 1e9 &#43; 7; ll n, k; void solve() { cin &gt;&gt; n &gt;&gt; k; ll s = (n - k &#43;...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-10-10 21:07:59 +0800 CST'>2024-10-10</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <footer class="entry-footer"><span title='2024-10-10 21:07:59 +0800 CST'>2024-10-10</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
   <a class="entry-link" aria-label="post link to Codeforces Round 974 (Div. 3)" href="https://mjc.us.kg/posts/study/cf974/"></a>
 </article>
 
@@ -356,18 +368,6 @@
   </div>
   <footer class="entry-footer"><span title='2024-07-30 20:11:43 +0800 CST'>2024-07-30</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;KiritoXD</footer>
   <a class="entry-link" aria-label="post link to 最小生成树" href="https://mjc.us.kg/posts/study/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">最短路
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>最短路基础算法学习 特点汇总 最短路算法 Floyd Bellman–Ford Dijkstra Johnson 最短路类型 每对结点之间的最短路 单源最短路 单源最短路 每对结点之间的最短路 作用于 任意图 任意图 非负权图 任意图 能否检测负环？ 能 能 不能 能 时间复杂度 O(N^3) O(NM) O(MlogM) O(NMlogM) Floyd 算法 简介 用来求任意两个结点之间的最短路 复杂度较高 O(n^3) 容易实现 使用与任何...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-29 21:43:24 +0800 CST'>2024-07-29</span>&nbsp;·&nbsp;5 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 最短路" href="https://mjc.us.kg/posts/study/%E6%9C%80%E7%9F%AD%E8%B7%AF/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>DP on KiritoXD&#39;s Blog</title>
+    <link>https://mjc.us.kg/tags/dp/</link>
+    <description>Recent content in DP on KiritoXD&#39;s Blog</description>
+    <generator>Hugo -- 0.129.0</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 11 Oct 2024 18:23:38 +0800</lastBuildDate>
+    <atom:link href="https://mjc.us.kg/tags/dp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>树形DP</title>
+      <link>https://mjc.us.kg/posts/study/treedp/</link>
+      <pubDate>Fri, 11 Oct 2024 18:23:38 +0800</pubDate>
+      <guid>https://mjc.us.kg/posts/study/treedp/</guid>
+      <description>树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行 一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$ 洛谷 P1352 没有上司的舞会 题目 某大学有 $n$ 个职员，编号为 $1\ldots n$。 他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。 现在有个周年庆宴会，宴会每邀请</description>
+    </item>
+  </channel>
+</rss>
