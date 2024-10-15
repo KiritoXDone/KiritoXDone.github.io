@@ -192,13 +192,37 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Codeforces Round 978 (Div. 2)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>A. Bus to Pénjamo 每个家族优先按排座，统计所有家族多出来的那一个人的总和，看最后剩几排可以让他们单独座，其余人继续坐满一排 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 #define endl &#34;\n&#34; #define lowbit(x) ((x)&amp;(-x)) typedef long long ll; const int N=1e5&#43;7, mod=1e9&#43;7; int n,r; int a[N]; void solve(){ cin&gt;&gt;n&gt;&gt;r; for(int i=1;i&lt;=n;i&#43;&#43;)cin&gt;&gt;a[i]; sort(a&#43;1,a&#43;1&#43;n); int ans=0,lft=0; for(int i=n;i&gt;0;i--){ ans&#43;=(a[i]/2)*2; r-=a[i]/2; lft&#43;=a[i]%2; } ans&#43;=min(lft,r); ans-=max(0,(lft-r)); cout&lt;&lt;ans&lt;&lt;endl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; cin&gt;&gt;t; while(t--)solve(); return 0; } B. Kar Salesman 结论题，最少我们需要数量最大的那个...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-10-15 19:33:54 +0800 CST'>2024-10-15</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to Codeforces Round 978 (Div. 2)" href="https://mjc.us.kg/posts/study/cf978/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">ICPC 2023 南京 VP
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>I. Counter</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-10-14 21:33:28 +0800 CST'>2024-10-14</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to ICPC 2023 南京 VP" href="https://mjc.us.kg/posts/study/icpc2023nanjing/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">树形DP
     </h2>
   </header>
   <div class="entry-content">
-    <p>树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行 一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$ 洛谷 P1352 没有上司的舞会 题目 某大学有 $n$ 个职员，编号为 $1\ldots n$。 他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。 现在有个周年庆宴会，宴会每邀请...</p>
+    <p>树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行 一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$ 洛谷 没有上司的舞会 P1352 题目 某大学有 $n$ 个职员，编号为 $1\ldots n$。 他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。 现在有个周年庆宴会，宴会每邀请...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-10-11 18:23:38 +0800 CST'>2024-10-11</span>&nbsp;·&nbsp;5 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <footer class="entry-footer"><span title='2024-10-11 18:23:38 +0800 CST'>2024-10-11</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
   <a class="entry-link" aria-label="post link to 树形DP" href="https://mjc.us.kg/posts/study/treedp/"></a>
 </article>
 
@@ -280,7 +304,7 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>2024 河南萌新联赛 5 平方根 直接 sqrt 向下取整即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int main(){ int t; cin&gt;&gt;t; while(t--){ unsigned long long n; cin&gt;&gt;n; long long ans=floor(sqrt(n)); cout&lt;&lt;ans&lt;&lt;endl; } } 爬楼梯 递归 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int main(){ int f[1000005],mod=1e9&#43;7; f[0]=f[1]=1; int n; cin&gt;&gt;n; for(int i=2;i&lt;=n;i&#43;&#43;){ for(int j=1;j&lt;=3;j&#43;&#43;){ if(i-j&lt;0)break; f[i]=(f[i]&#43;f[i-j])%mod; } } cout&lt;&lt;f[n]&lt;&lt;endl; } 区间问题 1 线段树板 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; typedef long long ll; const int N = 1e5 &#43; 7; #define ls (now &lt;&lt; 1) #define rs (now &lt;&lt; 1 | 1) #define int long long int n, m; int a[N]; struct Node { int len, sum, tag; } tr[N &lt;&lt; 2]; Node operator &#43; (const Node &amp;l, const Node &amp;r) { Node a; a.sum...</p>
+    <p>2024 河南萌新联赛 5 平方根 直接 $sqrt$ 向下取整即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int main(){ int t; cin&gt;&gt;t; while(t--){ unsigned long long n; cin&gt;&gt;n; long long ans=floor(sqrt(n)); cout&lt;&lt;ans&lt;&lt;endl; } } 爬楼梯 递归 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int main(){ int f[1000005],mod=1e9&#43;7; f[0]=f[1]=1; int n; cin&gt;&gt;n; for(int i=2;i&lt;=n;i&#43;&#43;){ for(int j=1;j&lt;=3;j&#43;&#43;){ if(i-j&lt;0)break; f[i]=(f[i]&#43;f[i-j])%mod; } } cout&lt;&lt;f[n]&lt;&lt;endl; } 区间问题 1 线段树板 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; typedef long long ll; const int N = 1e5 &#43; 7; #define ls (now &lt;&lt; 1) #define rs (now &lt;&lt; 1 | 1) #define int long long int n, m; int a[N]; struct Node { int len, sum, tag; } tr[N &lt;&lt; 2]; Node operator &#43; (const Node &amp;l, const Node &amp;r) { Node a; a.sum...</p>
   </div>
   <footer class="entry-footer"><span title='2024-08-17 22:45:18 +0800 CST'>2024-08-17</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
   <a class="entry-link" aria-label="post link to 2024萌新联赛5" href="https://mjc.us.kg/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B5/"></a>
@@ -316,7 +340,7 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>2024 萌新联赛 4 D 简单的素数 遍历 1 ~ $\sqrt n$ 即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; const int N = 1e8&#43;10; void solve(){ int n,flag=0; cin&gt;&gt;n; for(int i=2;i*i&lt;=n;i&#43;&#43;){ if(n%i==0){ flag=1; break; } } cout&lt;&lt;(flag?&#34;No\n&#34;:&#34;Yes\n&#34;); } int main(){ int t; cin&gt;&gt;t; while(t--)solve(); } F 小雷的算式 按题意模拟 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; typedef long long ll; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 const int N = 1e5&#43;7, mod = 1e9&#43;7; #define int long long void solve(){ string s; cin&gt;&gt;s; int ans=0,tmp=0; vector&lt;int&gt;a; for(int i=0;i&lt;s.size();i&#43;&#43;){ if(s[i]==&#39;&#43;&#39;){ a.push_back(tmp); ans&#43;=tmp,tmp=0; } else{ tmp*=10; tmp&#43;=(s[i]-&#39;0&#39;); } } a.push_back(tmp); ans&#43;=tmp; sort(a.begin(),a.end(),greater&lt;int&gt;()); cout&lt;&lt;a[0]; for(int i=1;i&lt;a.size();i&#43;&#43;){ cout&lt;&lt;&#34;&#43;&#34;&lt;&lt;a[i]; } cout&lt;&lt;endl&lt;&lt;ans&lt;&lt;endl; } signed main(){ int t=1; // cin&gt;&gt;t; while(t--)solve(); return 0; } H 聪明且狡猾的恶魔 1 号恶...</p>
+    <p>2024 萌新联赛 4 D 简单的素数 遍历 $1 \sim \sqrt{n}$ 即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; const int N = 1e8&#43;10; void solve(){ int n,flag=0; cin&gt;&gt;n; for(int i=2;i*i&lt;=n;i&#43;&#43;){ if(n%i==0){ flag=1; break; } } cout&lt;&lt;(flag?&#34;No\n&#34;:&#34;Yes\n&#34;); } int main(){ int t; cin&gt;&gt;t; while(t--)solve(); } F 小雷的算式 按题意模拟 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; typedef long long ll; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 const int N = 1e5&#43;7, mod = 1e9&#43;7; #define int long long void solve(){ string s; cin&gt;&gt;s; int ans=0,tmp=0; vector&lt;int&gt;a; for(int i=0;i&lt;s.size();i&#43;&#43;){ if(s[i]==&#39;&#43;&#39;){ a.push_back(tmp); ans&#43;=tmp,tmp=0; } else{ tmp*=10; tmp&#43;=(s[i]-&#39;0&#39;); } } a.push_back(tmp); ans&#43;=tmp; sort(a.begin(),a.end(),greater&lt;int&gt;()); cout&lt;&lt;a[0]; for(int i=1;i&lt;a.size();i&#43;&#43;){ cout&lt;&lt;&#34;&#43;&#34;&lt;&lt;a[i]; } cout&lt;&lt;endl&lt;&lt;ans&lt;&lt;endl; } signed main(){ int t=1; // cin&gt;&gt;t; while(t--)solve(); return 0; } H 聪明且狡猾的恶魔 $1$ 号恶魔...</p>
   </div>
   <footer class="entry-footer"><span title='2024-08-08 22:44:47 +0800 CST'>2024-08-08</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
   <a class="entry-link" aria-label="post link to 2024萌新联赛4" href="https://mjc.us.kg/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B4/"></a>
@@ -328,7 +352,7 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>LCA(最近公共祖先) 简介 两个节点的最近公共祖先，就是两个点的公共祖先里，离根最远的那个 LCA({u}) = u u 是 v 的祖先，当且仅当 LCA({u, v}) = u 如果 u, v 互不为祖先，那么二者存在 LCA({u, v}) 的两颗不同子树中 前序遍历中，$\text{LCA}(S)$ 出现在所有 S 中元素之前，后序遍历中 $\text{LCA}(S)$ 则出现在所有 S 中元素之后 两...</p>
+    <p>LCA(最近公共祖先) 简介 两个节点的最近公共祖先，就是两个点的公共祖先里，离根最远的那个 $LCA({u}) = u$ $u$ 是 $v$ 的祖先，当且仅当 $LCA({u, v}) = u$ 如果 $u, v$ 互不为祖先，那么二者存在 $LCA({u, v})$ 的两颗不同子树中 前序遍历中，$LCA(S)$ 出现在所有 $S$ 中元素之前，后序遍历中 $LCA(S)$ 则出现在所有 $S$ 中元素之后 两点集并的最近公...</p>
   </div>
   <footer class="entry-footer"><span title='2024-08-06 21:45:34 +0800 CST'>2024-08-06</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;KiritoXD</footer>
   <a class="entry-link" aria-label="post link to LCA" href="https://mjc.us.kg/posts/study/lca/"></a>
@@ -340,34 +364,10 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>线段数学习 简介 常用的用来维护 区间信息 的数据结构。 线段树可以在 $O(\log N)$ 的时间复杂度内实现单点修改、区间修改、区间查询（区间求和，求区间最大值，求区间最小值）等操作。 实现过程即为将每个长度不为 1 的片段分成左右两个片段，不断递归下去，把区间分为树形结构，通过合并两端来求值 模板 单点修改 操作 1...</p>
+    <p>线段树学习 简介 常用的用来维护 区间信息 的数据结构。 线段树可以在 $O(\log N)$ 的时间复杂度内实现单点修改、区间修改、区间查询（区间求和，求区间最大值，求区间最小值）等操作。 实现过程即为将每个长度不为 $1$ 的片段分成左右两个片段，不断递归下去，把区间分为树形结构，通过合并两端来求值 模板 单点修改 操作 $1$...</p>
   </div>
   <footer class="entry-footer"><span title='2024-08-04 18:57:54 +0800 CST'>2024-08-04</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
   <a class="entry-link" aria-label="post link to 线段树" href="https://mjc.us.kg/posts/study/%E7%BA%BF%E6%AE%B5%E6%A0%91/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">2024萌新联赛3
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>2024 河南萌新联赛 3 B 正则表达式 签到，四个数字都在 [1,255] 之间即为合法 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; bool check(string s) { int n = s.size(); int num = 0, dots = 0; for (int i = 0; i &lt; n; i&#43;&#43;) { if (s[i] == &#39;.&#39;) { if (num &lt; 0 || num &gt; 255) return false; num = 0; } else if (isdigit(s[i])) { num = num * 10 &#43; (s[i] - &#39;0&#39;); if (num &gt; 255) return false; } else { return false; } } if (num &lt; 0 || num &gt; 255) return false; return true; } int main() { int n; cin &gt;&gt; n; int cnt = 0; for(int i=1;i&lt;=n;i&#43;&#43;) { string s; cin &gt;&gt; s; if (check(s))...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-08-02 11:04:20 +0800 CST'>2024-08-02</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 2024萌新联赛3" href="https://mjc.us.kg/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B3/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">最小生成树
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>最小生成树基础算法学习 定义 我们定义无向连通图的 最小生成树（Minimum Spanning Tree，MST）为边权和最小的生成树。 注意：只有连通图才有生成树，而对于非连通图，只存在生成森林。 Kruskal 算法 简介 基本思想是从小到大加入边，是个贪心算法。 将所有边的边权排序，从小到大加入生成树中，如果某次加入会...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-30 20:11:43 +0800 CST'>2024-07-30</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 最小生成树" href="https://mjc.us.kg/posts/study/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>树形DP | KiritoXD&#39;s Blog</title>
 <meta name="keywords" content="树形DP, DP">
-<meta name="description" content="树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行 一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$ 洛谷 P1352 没有上司的舞会 题目 某大学有 $n$ 个职员，编号为 $1\ldots n$。 他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。 现在有个周年庆宴会，宴会每邀请">
+<meta name="description" content="树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行 一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$ 洛谷 没有上司的舞会 P1352 题目 某大学有 $n$ 个职员，编号为 $1\ldots n$。 他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。 现在有个周年庆宴会，宴会每邀请">
 <meta name="author" content="KiritoXD">
 <link rel="canonical" href="https://mjc.us.kg/posts/study/treedp/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
@@ -81,7 +81,7 @@
   
 
 <meta property="og:title" content="树形DP" />
-<meta property="og:description" content="树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行 一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$ 洛谷 P1352 没有上司的舞会 题目 某大学有 $n$ 个职员，编号为 $1\ldots n$。 他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。 现在有个周年庆宴会，宴会每邀请" />
+<meta property="og:description" content="树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行 一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$ 洛谷 没有上司的舞会 P1352 题目 某大学有 $n$ 个职员，编号为 $1\ldots n$。 他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。 现在有个周年庆宴会，宴会每邀请" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://mjc.us.kg/posts/study/treedp/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-10-11T18:23:38+08:00" />
@@ -89,7 +89,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="树形DP"/>
-<meta name="twitter:description" content="树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行 一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$ 洛谷 P1352 没有上司的舞会 题目 某大学有 $n$ 个职员，编号为 $1\ldots n$。 他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。 现在有个周年庆宴会，宴会每邀请"/>
+<meta name="twitter:description" content="树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行 一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$ 洛谷 没有上司的舞会 P1352 题目 某大学有 $n$ 个职员，编号为 $1\ldots n$。 他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。 现在有个周年庆宴会，宴会每邀请"/>
 
 
 <script type="application/ld+json">
@@ -124,12 +124,12 @@
   "@type": "BlogPosting",
   "headline": "树形DP",
   "name": "树形DP",
-  "description": "树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行 一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$ 洛谷 P1352 没有上司的舞会 题目 某大学有 $n$ 个职员，编号为 $1\\ldots n$。 他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。 现在有个周年庆宴会，宴会每邀请",
+  "description": "树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行 一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$ 洛谷 没有上司的舞会 P1352 题目 某大学有 $n$ 个职员，编号为 $1\\ldots n$。 他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。 现在有个周年庆宴会，宴会每邀请",
   "keywords": [
     "树形DP", "DP"
   ],
-  "articleBody": "树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行\n一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$\n洛谷 P1352 没有上司的舞会 题目 某大学有 $n$ 个职员，编号为 $1\\ldots n$。\n他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。\n现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数 $r_i$，但是呢，如果某个职员的直接上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。\n所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。\n解决 设 $f_{i,j}$ 代表以 $i$ 为根的子树的最优解，$j$ 用 $0,1$ 来表示取不取 $i$ 这个人\n对于每个节点，都有两种决策\n不取当前节点，他的子节点都可以取，或不取，$f_{i,0} = \\sum_{x \\in \\text{child}(i)} \\max(f_{x,0}, f_{x,1})$\n取当前节点，他的子节点都不能取，$f_{i,0} = \\sum_{x \\in \\text{child}(i)}f_{x,0}+a_i$\n#include using namespace std; #define ls now\u003c\u003c1 #define rs now\u003c\u003c1|1 #define endl \"\\n\" #define lowbit(x) ((x)\u0026(-x)) typedef long long ll; const int N=1e5+7, mod=1e9+7; vector\u003cint\u003e edge[N]; int a[N],n,cnt,f[N][2],ans; bool vis[N]; void dfs(int now) { f[now][0] = 0; f[now][1] = a[now]; for (int i = 0; i \u003c (int)edge[now].size(); i++) { int to = edge[now][i]; dfs(to); f[now][0] += max(f[to][0], f[to][1]); f[now][1] += f[to][0]; } } void solve(){ cin\u003e\u003en; for(int i=1;i\u003c=n;i++)cin\u003e\u003ea[i]; for(int i=1;i\u003cn;i++){ int x,y; cin\u003e\u003ex\u003e\u003ey; edge[y].push_back(x); vis[x]=1; } int root=0; for(int i=1;i\u003c=n;i++){ if(!vis[i]){ root=i; break; } } dfs(root); cout\u003c\u003cmax(f[root][0],f[root][1])\u003c\u003cendl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin\u003e\u003et; while(t--)solve(); return 0; } CF 2014F Sheriff’s Defense 题目 给定一张 $n$ 结点 $n - 1$ 条边的有点权的树。初始每个结点都是黑色。\n你可以执行任意次以下操作：将一个黑点染成白色，并将所有与它相邻的结点的权值减去 $c$（不包括自己）。\n最大化全部白点的权值之和。\n解决 用 $f_{u,}$ 记录，同上一题\n设计状态 $f_{u,0}$ 表示在以 $u$ 为根的子树下，不选择 $u$ 所能获得的最大价值，初始值为 $0$；\n$f_{u,1}$ 表示在以 $u$ 为根的子树下，选择 $u$ 所能获得的最大价值，初始值为 $a_u$。\n若选 $i$ 则 每个结点都是黑色。 你可以执行任意次以下操作：将一个黑点染成白色，并将所有与它相邻的结点的权值减去 $c$（不包括自己）。\n最大化全部白点的权值之和。\n解决 用 $f_{u,j}$ 记录，同上一题\n设计状态 $f_{u,0}$ 表示在以 $u$ 为根的子树下，不选择 $u$ 所能获得的最大价值，初始值为 $0$；\n$f_{u,1}$ 表示在以 $u$ 为根的子树下，选择 $u$ 所能获得的最大价值，初始值为 $a_u$。\n如果某个点不选，那它不会对结果造成影响\n若不选 $u$ 则 $$ f_{u,0} = f_{u,0} + \\max(f_{v,0}, f_{v,1}) $$ 若选 $u$ 则 $$ f_{u,1} = f_{u,1} + \\max(f_{v,0}, f_{v,1} - c \\times 2) $$ 如果选 $v$ 那他会对 $u-\u003ev$ 和 $v-\u003eu$ 这两条路径造成消耗所以要减两个 $c$ #include using namespace std; #define ls now\u003c\u003c1 #define rs now\u003c\u003c1|1 #define endl \"\\n\" #define lowbit(x) ((x)\u0026(-x)) typedef long long ll; const int N=2e5+7, mod=1e9+7; ll n,c,s,ans; ll dp[N][2]; vector\u003cint\u003eedge[N]; bool vis[N]; void dfs(int now,int fa){ for(auto i:edge[now]){ if(i!=fa){ dfs(i,now); dp[now][0]+=max(dp[i][0],dp[i][1]); dp[now][1]+=max(dp[i][0],dp[i][1]-(c\u003c\u003c1)); } } } void solve(){ ans=0; cin\u003e\u003en\u003e\u003ec; for(int i=1;i\u003c=n;i++){ edge[i].clear(); cin\u003e\u003edp[i][1]; dp[i][0]=0; vis[i]=0; } for(int i=1;i\u003cn;i++){ int u,v; cin\u003e\u003eu\u003e\u003ev; edge[u].push_back(v); edge[v].push_back(u); } dfs(1,0); cout\u003c\u003cmax(dp[1][0],dp[1][1])\u003c\u003cendl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; cin\u003e\u003et; while(t--)solve(); return 0; } 树上背包 即背包问题和树上 dp 的结合\n洛谷 P2014 CTSC1997 选课 题目 在大学里每个学生，为了达到一定的学分，必须从很多课程里选择一些课程来学习，在课程里有些课程必须在某些课程之前学习，如高等数学总是在其它课程之前学习。现在有 $N$ 门功课，每门课有个学分，每门课有一门或没有直接先修课（若课程 a 是课程 b 的先修课即只有学完了课程 a，才能学习课程 b）。一个学生要从这些课程里选择 $M$ 门课程学习，问他能获得的最大学分是多少？\n解决 新增一个 $0$ 学分的必修课，作为所有无前选课的课的前选课，这样就能构建出一颗以新增节点为根的树\n设 $f_{i,j}$ 为第 $i$ 个节点，$j$ 为背包容量\n初始值为 $f_{i,0} = s_{i}$\n递归每颗子树\n每次递归记录当前背包容量，和当前所能得到的最大值\n#include using namespace std; #define endl \"\\n\" typedef long long ll; const int N = 2e4 + 7, mod = 1e9 + 7; int n, m, f[N][N]; vector\u003cint\u003e edge[N]; int s[N]; int dfs(int x) { if (edge[x].empty()) return 0; int sum = 0; for (int i : edge[x]) { int t = dfs(i); sum += t + 1; for (int j = sum; j \u003e= 0; j--) { for (int k = 0; k \u003c= t; k++) { if (j - k - 1 \u003e= 0) f[x][j] = max(f[x][j], f[x][j - k - 1] + f[i][k]); } } } return sum; } void solve() { cin \u003e\u003e n \u003e\u003e m; for (int i = 1; i \u003c= n; i++) { int k; cin \u003e\u003e k \u003e\u003e s[i]; edge[k].push_back(i); } for (int i = 1; i \u003c= n; i++) f[i][0] = s[i]; f[0][0] = 0; dfs(0); cout \u003c\u003c f[0][m] \u003c\u003c endl; } int main() { ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); int t = 1; // cin \u003e\u003e t; while (t--) solve(); return 0; } 换根 DP 又被称为二次扫描，通常不指定根节点，同时根节点的变化会使一些值发生变化，例如子节点深度和，点权和等\n通常两次 DFS，第一次预处理深度，点权和等信息，第二次 DFS 进行 DP\n洛谷 P3478 STA-Station 题目 给定一个 $n$ 个点的树，请求出一个结点，使得以这个结点为根时，所有结点的深度之和最大。\n一个结点的深度之定义为该节点到根的简单路径上边的数量。\n解决 不妨令 $u$ 为当前结点，$v$ 为当前结点的子结点。首先需要用 $s_i$ 来表示以 $i$ 为根的子树中的结点个数，并且有 $s_u = 1 + \\sum s_v$。显然需要一次 DFS 来计算所有的 $s_i$，这次的 DFS 就是预处理，我们得到了以某个结点为根时其子树中的结点总数。\n考虑状态转移，这里就是体现“换根”的地方了。令 $f_u$ 为以 $u$ 为根时，所有结点的深度之和。\n$f_v \\leftarrow f_u$ 可以体现换根，即以 $u$ 为根转移到以 $v$ 为根。显然在换根的转移过程中，以 $v$ 为根或以 $u$ 为根会导致其子树中的结点的深度产生改变。具体表现为：\n所有在 $v$ 的子树上的结点深度都减少了 1，那么总深度和就减少了 $s_v$； 所有不在 $v$ 的子树上的结点深度都增加了 1，那么总深度和就增加了 $n - s_v$； 根据这两个条件就可以推出状态转移方程：\n[ f_v = f_u - s_v + n - s_v = f_u + n - 2 \\times s_v ]\n于是在第二次 DFS 遍历整棵树并状态转移 $f_v = f_u + n - 2 \\times s_v$，那么就能求出以每个结点为根时的深度和了。最后只需要遍历一次所有根结点深度和就可以求出答案。\n#include using namespace std; #define ls now\u003c\u003c1 #define rs now\u003c\u003c1|1 #define endl \"\\n\" #define lowbit(x) ((x)\u0026(-x)) typedef long long ll; const int N=2e6+7, mod=1e9+7; vector\u003cint\u003eedge[N]; ll n; ll f[N],sz[N],dep[N]; void dfs(int u,int fa){ sz[u]=1; dep[u]=dep[fa]+1; for(auto v:edge[u]){ if(v==fa)continue; dfs(v,u); sz[u]+=sz[v]; } } void ans(int u,int fa){ f[u]=f[fa]+n-sz[u]-sz[u]; for(auto v:edge[u]){ if(v==fa)continue; ans(v,u); } } void solve(){ cin\u003e\u003en; for(int i=1;i\u003cn;i++){ int u,v; cin\u003e\u003eu\u003e\u003ev; edge[u].push_back(v); edge[v].push_back(u); } dfs(1,1); for(int i=1;i\u003c=n;i++){ f[1]+=dep[i]; } ans(1,1); ll res=-1; int now; for(int i=1;i\u003c=n;i++){ if(f[i]\u003eres){ res=f[i]; now=i; } } cout\u003c\u003cnow\u003c\u003cendl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin\u003e\u003et; while(t--)solve(); return 0; } ",
-  "wordCount" : "2078",
+  "articleBody": "树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行\n一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$\n洛谷 没有上司的舞会 P1352 题目 某大学有 $n$ 个职员，编号为 $1\\ldots n$。\n他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。\n现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数 $r_i$，但是呢，如果某个职员的直接上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。\n所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。\n解决 设 $f_{i,j}$ 代表以 $i$ 为根的子树的最优解，$j$ 用 $0,1$ 来表示取不取 $i$ 这个人\n对于每个节点，都有两种决策\n不取当前节点，他的子节点都可以取，或不取，$f_{i,0} = \\sum_{x \\in \\text{child}(i)} \\max(f_{x,0}, f_{x,1})$\n取当前节点，他的子节点都不能取，$f_{i,0} = \\sum_{x \\in \\text{child}(i)}f_{x,0}+a_i$\n#include using namespace std; #define ls now\u003c\u003c1 #define rs now\u003c\u003c1|1 #define endl \"\\n\" #define lowbit(x) ((x)\u0026(-x)) typedef long long ll; const int N=1e5+7, mod=1e9+7; vector\u003cint\u003e edge[N]; int a[N],n,cnt,f[N][2],ans; bool vis[N]; void dfs(int now) { f[now][0] = 0; f[now][1] = a[now]; for (int i = 0; i \u003c (int)edge[now].size(); i++) { int to = edge[now][i]; dfs(to); f[now][0] += max(f[to][0], f[to][1]); f[now][1] += f[to][0]; } } void solve(){ cin\u003e\u003en; for(int i=1;i\u003c=n;i++)cin\u003e\u003ea[i]; for(int i=1;i\u003cn;i++){ int x,y; cin\u003e\u003ex\u003e\u003ey; edge[y].push_back(x); vis[x]=1; } int root=0; for(int i=1;i\u003c=n;i++){ if(!vis[i]){ root=i; break; } } dfs(root); cout\u003c\u003cmax(f[root][0],f[root][1])\u003c\u003cendl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin\u003e\u003et; while(t--)solve(); return 0; } CF Sheriff’s Defense 2014F 题目 给定一张 $n$ 结点 $n - 1$ 条边的有点权的树。初始每个结点都是黑色。\n你可以执行任意次以下操作：将一个黑点染成白色，并将所有与它相邻的结点的权值减去 $c$（不包括自己）。\n最大化全部白点的权值之和。\n解决 用 $f_{u,j}$ 记录，同上一题\n设计状态 $f_{u,0}$ 表示在以 $u$ 为根的子树下，不选择 $u$ 所能获得的最大价值，初始值为 $0$；\n$f_{u,1}$ 表示在以 $u$ 为根的子树下，选择 $u$ 所能获得的最大价值，初始值为 $a_u$。\n如果某个点不选，那它不会对结果造成影响\n若不选 $u$ 则 $$ f_{u,0} = f_{u,0} + \\max(f_{v,0}, f_{v,1}) $$ 若选 $u$ 则 $$ f_{u,1} = f_{u,1} + \\max(f_{v,0}, f_{v,1} - c \\times 2) $$ 如果选 $v$ 那他会对 $u-\u003ev$ 和 $v-\u003eu$ 这两条路径造成消耗所以要减两个 $c$ #include using namespace std; #define ls now\u003c\u003c1 #define rs now\u003c\u003c1|1 #define endl \"\\n\" #define lowbit(x) ((x)\u0026(-x)) typedef long long ll; const int N=2e5+7, mod=1e9+7; ll n,c,s,ans; ll dp[N][2]; vector\u003cint\u003eedge[N]; bool vis[N]; void dfs(int now,int fa){ for(auto i:edge[now]){ if(i!=fa){ dfs(i,now); dp[now][0]+=max(dp[i][0],dp[i][1]); dp[now][1]+=max(dp[i][0],dp[i][1]-(c\u003c\u003c1)); } } } void solve(){ ans=0; cin\u003e\u003en\u003e\u003ec; for(int i=1;i\u003c=n;i++){ edge[i].clear(); cin\u003e\u003edp[i][1]; dp[i][0]=0; vis[i]=0; } for(int i=1;i\u003cn;i++){ int u,v; cin\u003e\u003eu\u003e\u003ev; edge[u].push_back(v); edge[v].push_back(u); } dfs(1,0); cout\u003c\u003cmax(dp[1][0],dp[1][1])\u003c\u003cendl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; cin\u003e\u003et; while(t--)solve(); return 0; } 树上背包 即背包问题和树上 DP 的结合\n洛谷 CTSC1997 选课 P2014 题目 在大学里每个学生，为了达到一定的学分，必须从很多课程里选择一些课程来学习，在课程里有些课程必须在某些课程之前学习，如高等数学总是在其它课程之前学习。现在有 $N$ 门功课，每门课有个学分，每门课有一门或没有直接先修课（若课程 $a$ 是课程 $b$ 的先修课即只有学完了课程 $a$，才能学习课程 $b$）。一个学生要从这些课程里选择 $M$ 门课程学习，问他能获得的最大学分是多少？\n解决 新增一个 $0$ 学分的必修课，作为所有无前选课的课的前选课，这样就能构建出一颗以新增节点为根的树\n设 $f_{i,j}$ 为第 $i$ 个节点，$j$ 为背包容量\n初始值为 $f_{i,0} = s_{i}$\n递归每颗子树\n每次递归记录当前背包容量，和当前所能得到的最大值\n#include using namespace std; #define endl \"\\n\" typedef long long ll; const int N = 2e4 + 7, mod = 1e9 + 7; int n, m, f[N][N]; vector\u003cint\u003e edge[N]; int s[N]; int dfs(int x) { if (edge[x].empty()) return 0; int sum = 0; for (int i : edge[x]) { int t = dfs(i); sum += t + 1; for (int j = sum; j \u003e= 0; j--) { for (int k = 0; k \u003c= t; k++) { if (j - k - 1 \u003e= 0) f[x][j] = max(f[x][j], f[x][j - k - 1] + f[i][k]); } } } return sum; } void solve() { cin \u003e\u003e n \u003e\u003e m; for (int i = 1; i \u003c= n; i++) { int k; cin \u003e\u003e k \u003e\u003e s[i]; edge[k].push_back(i); } for (int i = 1; i \u003c= n; i++) f[i][0] = s[i]; f[0][0] = 0; dfs(0); cout \u003c\u003c f[0][m] \u003c\u003c endl; } int main() { ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); int t = 1; // cin \u003e\u003e t; while (t--) solve(); return 0; } 换根 DP 又被称为二次扫描，通常不指定根节点，同时根节点的变化会使一些值发生变化，例如子节点深度和，点权和等\n通常两次 DFS，第一次预处理深度，点权和等信息，第二次 DFS 进行 DP\n洛谷 STA-Station P3478 题目 给定一个 $n$ 个点的树，请求出一个结点，使得以这个结点为根时，所有结点的深度之和最大。\n一个结点的深度之定义为该节点到根的简单路径上边的数量。\n解决 不妨令 $u$ 为当前结点，$v$ 为当前结点的子结点。首先需要用 $s_i$ 来表示以 $i$ 为根的子树中的结点个数，并且有 $s_u = 1 + \\sum s_v$。显然需要一次 DFS 来计算所有的 $s_i$，这次的 DFS 就是预处理，我们得到了以某个结点为根时其子树中的结点总数。\n考虑状态转移，这里就是体现“换根”的地方了。令 $f_u$ 为以 $u$ 为根时，所有结点的深度之和。\n$f_v \\leftarrow f_u$ 可以体现换根，即以 $u$ 为根转移到以 $v$ 为根。显然在换根的转移过程中，以 $v$ 为根或以 $u$ 为根会导致其子树中的结点的深度产生改变。具体表现为：\n所有在 $v$ 的子树上的结点深度都减少了 $1$，那么总深度和就减少了 $s_v$； 所有不在 $v$ 的子树上的结点深度都增加了 $1$，那么总深度和就增加了 $n - s_v$； 根据这两个条件就可以推出状态转移方程：\n$$ f_v = f_u - s_v + n - s_v = f_u + n - 2 \\times s_v $$\n于是在第二次 DFS 遍历整棵树并状态转移 $f_v = f_u + n - 2 \\times s_v$，那么就能求出以每个结点为根时的深度和了。最后只需要遍历一次所有根结点深度和就可以求出答案。\n#include using namespace std; #define ls now\u003c\u003c1 #define rs now\u003c\u003c1|1 #define endl \"\\n\" #define lowbit(x) ((x)\u0026(-x)) typedef long long ll; const int N=2e6+7, mod=1e9+7; vector\u003cint\u003eedge[N]; ll n; ll f[N],sz[N],dep[N]; void dfs(int u,int fa){ sz[u]=1; dep[u]=dep[fa]+1; for(auto v:edge[u]){ if(v==fa)continue; dfs(v,u); sz[u]+=sz[v]; } } void ans(int u,int fa){ f[u]=f[fa]+n-sz[u]-sz[u]; for(auto v:edge[u]){ if(v==fa)continue; ans(v,u); } } void solve(){ cin\u003e\u003en; for(int i=1;i\u003cn;i++){ int u,v; cin\u003e\u003eu\u003e\u003ev; edge[u].push_back(v); edge[v].push_back(u); } dfs(1,1); for(int i=1;i\u003c=n;i++){ f[1]+=dep[i]; } ans(1,1); ll res=-1; int now; for(int i=1;i\u003c=n;i++){ if(f[i]\u003eres){ res=f[i]; now=i; } } cout\u003c\u003cnow\u003c\u003cendl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin\u003e\u003et; while(t--)solve(); return 0; } ",
+  "wordCount" : "1924",
   "inLanguage": "zh",
   "datePublished": "2024-10-11T18:23:38+08:00",
   "dateModified": "2024-10-11T18:23:38+08:00",
@@ -231,7 +231,7 @@
     <h1 class="post-title entry-hint-parent">
       树形DP
     </h1>
-    <div class="post-meta"><span title='2024-10-11 18:23:38 +0800 CST'>2024-10-11</span>&nbsp;·&nbsp;5 分钟&nbsp;·&nbsp;KiritoXD
+    <div class="post-meta"><span title='2024-10-11 18:23:38 +0800 CST'>2024-10-11</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -246,7 +246,7 @@
                         <a href="#%e6%a0%91%e4%b8%8a-dp" aria-label="树上 DP">树上 DP</a><ul>
                             
                     <li>
-                        <a href="#%e6%b4%9b%e8%b0%b7-p1352httpswwwluogucomcnproblemp1352-%e6%b2%a1%e6%9c%89%e4%b8%8a%e5%8f%b8%e7%9a%84%e8%88%9e%e4%bc%9a" aria-label="洛谷 P1352 没有上司的舞会">洛谷 <a href="https://www.luogu.com.cn/problem/P1352">P1352</a> 没有上司的舞会</a><ul>
+                        <a href="#%e6%b4%9b%e8%b0%b7-%e6%b2%a1%e6%9c%89%e4%b8%8a%e5%8f%b8%e7%9a%84%e8%88%9e%e4%bc%9a-p1352httpswwwluogucomcnproblemp1352" aria-label="洛谷 没有上司的舞会 P1352">洛谷 没有上司的舞会 <a href="https://www.luogu.com.cn/problem/P1352">P1352</a></a><ul>
                             
                     <li>
                         <a href="#%e9%a2%98%e7%9b%ae" aria-label="题目">题目</a></li>
@@ -254,15 +254,13 @@
                         <a href="#%e8%a7%a3%e5%86%b3" aria-label="解决">解决</a></li></ul>
                     </li>
                     <li>
-                        <a href="#cf-2014fhttpscodeforcescomcontest2014problemf--sheriffs-defense" aria-label="CF 2014F Sheriff&amp;rsquo;s Defense">CF <a href="https://codeforces.com/contest/2014/problem/F">2014F</a>  Sheriff&rsquo;s Defense</a><ul>
+                        <a href="#cf-sheriffs-defense--2014fhttpscodeforcescomcontest2014problemf" aria-label="CF Sheriff&amp;rsquo;s Defense 2014F">CF Sheriff&rsquo;s Defense  <a href="https://codeforces.com/contest/2014/problem/F">2014F</a></a><ul>
                             
                     <li>
                         <a href="#%e9%a2%98%e7%9b%ae-1" aria-label="题目">题目</a><ul>
                             
                     <li>
-                        <a href="#%e8%a7%a3%e5%86%b3-1" aria-label="解决">解决</a></li>
-                    <li>
-                        <a href="#%e8%a7%a3%e5%86%b3-2" aria-label="解决">解决</a></li></ul>
+                        <a href="#%e8%a7%a3%e5%86%b3-1" aria-label="解决">解决</a></li></ul>
                     </li></ul>
                     </li></ul>
                     </li>
@@ -270,24 +268,24 @@
                         <a href="#%e6%a0%91%e4%b8%8a%e8%83%8c%e5%8c%85" aria-label="树上背包">树上背包</a><ul>
                             
                     <li>
-                        <a href="#%e6%b4%9b%e8%b0%b7-p2014httpswwwluogucomcnproblemp2014-ctsc1997-%e9%80%89%e8%af%be" aria-label="洛谷 P2014 CTSC1997 选课">洛谷 <a href="https://www.luogu.com.cn/problem/P2014">P2014</a> CTSC1997 选课</a><ul>
+                        <a href="#%e6%b4%9b%e8%b0%b7--ctsc1997-%e9%80%89%e8%af%be--p2014httpswwwluogucomcnproblemp2014" aria-label="洛谷 CTSC1997 选课 P2014">洛谷  CTSC1997 选课  <a href="https://www.luogu.com.cn/problem/P2014">P2014</a></a><ul>
                             
                     <li>
                         <a href="#%e9%a2%98%e7%9b%ae-2" aria-label="题目">题目</a></li>
                     <li>
-                        <a href="#%e8%a7%a3%e5%86%b3-3" aria-label="解决">解决</a></li></ul>
+                        <a href="#%e8%a7%a3%e5%86%b3-2" aria-label="解决">解决</a></li></ul>
                     </li></ul>
                     </li>
                     <li>
                         <a href="#%e6%8d%a2%e6%a0%b9-dp" aria-label="换根 DP">换根 DP</a><ul>
                             
                     <li>
-                        <a href="#%e6%b4%9b%e8%b0%b7-p3478httpswwwluogucomcnproblemp3478-sta-station" aria-label="洛谷 P3478 STA-Station">洛谷 <a href="https://www.luogu.com.cn/problem/P3478">P3478</a> STA-Station</a><ul>
+                        <a href="#%e6%b4%9b%e8%b0%b7-sta-station-p3478httpswwwluogucomcnproblemp3478" aria-label="洛谷 STA-Station P3478">洛谷 STA-Station <a href="https://www.luogu.com.cn/problem/P3478">P3478</a></a><ul>
                             
                     <li>
                         <a href="#%e9%a2%98%e7%9b%ae-3" aria-label="题目">题目</a></li>
                     <li>
-                        <a href="#%e8%a7%a3%e5%86%b3-4" aria-label="解决">解决</a>
+                        <a href="#%e8%a7%a3%e5%86%b3-3" aria-label="解决">解决</a>
                     </li>
                 </ul>
                 </li>
@@ -362,7 +360,7 @@
   <div class="post-content"><h3 id="树上-dp">树上 DP<a hidden class="anchor" aria-hidden="true" href="#树上-dp">#</a></h3>
 <p>顾名思义，在树上进行的 DP，一般通过递归进行</p>
 <p>一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$</p>
-<h4 id="洛谷-p1352httpswwwluogucomcnproblemp1352-没有上司的舞会">洛谷 <a href="https://www.luogu.com.cn/problem/P1352">P1352</a> 没有上司的舞会<a hidden class="anchor" aria-hidden="true" href="#洛谷-p1352httpswwwluogucomcnproblemp1352-没有上司的舞会">#</a></h4>
+<h4 id="洛谷-没有上司的舞会-p1352httpswwwluogucomcnproblemp1352">洛谷 没有上司的舞会 <a href="https://www.luogu.com.cn/problem/P1352">P1352</a><a hidden class="anchor" aria-hidden="true" href="#洛谷-没有上司的舞会-p1352httpswwwluogucomcnproblemp1352">#</a></h4>
 <h5 id="题目">题目<a hidden class="anchor" aria-hidden="true" href="#题目">#</a></h5>
 <p>某大学有 $n$ 个职员，编号为 $1\ldots n$。</p>
 <p>他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。</p>
@@ -432,21 +430,12 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#cba6f7">while</span>(t<span style="color:#89dceb;font-weight:bold">--</span>)<span style="color:#89b4fa">solve</span>();
 </span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h4 id="cf-2014fhttpscodeforcescomcontest2014problemf--sheriffs-defense">CF <a href="https://codeforces.com/contest/2014/problem/F">2014F</a>  Sheriff&rsquo;s Defense<a hidden class="anchor" aria-hidden="true" href="#cf-2014fhttpscodeforcescomcontest2014problemf--sheriffs-defense">#</a></h4>
+</span></span></code></pre></div><h4 id="cf-sheriffs-defense--2014fhttpscodeforcescomcontest2014problemf">CF Sheriff&rsquo;s Defense  <a href="https://codeforces.com/contest/2014/problem/F">2014F</a><a hidden class="anchor" aria-hidden="true" href="#cf-sheriffs-defense--2014fhttpscodeforcescomcontest2014problemf">#</a></h4>
 <h5 id="题目-1">题目<a hidden class="anchor" aria-hidden="true" href="#题目-1">#</a></h5>
 <p>给定一张 $n$ 结点 $n - 1$ 条边的有点权的树。初始每个结点都是黑色。</p>
 <p>你可以执行任意次以下操作：将一个黑点染成白色，并将所有与它相邻的结点的权值减去 $c$（不包括自己）。</p>
 <p>最大化全部白点的权值之和。</p>
 <h6 id="解决-1">解决<a hidden class="anchor" aria-hidden="true" href="#解决-1">#</a></h6>
-<p>用 $f_{u,}$ 记录，同上一题</p>
-<p>设计状态 $f_{u,0}$ 表示在以 $u$ 为根的子树下，不选择 $u$ 所能获得的最大价值，初始值为 $0$；</p>
-<p>$f_{u,1}$ 表示在以 $u$ 为根的子树下，选择 $u$ 所能获得的最大价值，初始值为 $a_u$。</p>
-<ul>
-<li>若选 $i$ 则 每个结点都是黑色。</li>
-</ul>
-<p>你可以执行任意次以下操作：将一个黑点染成白色，并将所有与它相邻的结点的权值减去 $c$（不包括自己）。</p>
-<p>最大化全部白点的权值之和。</p>
-<h6 id="解决-2">解决<a hidden class="anchor" aria-hidden="true" href="#解决-2">#</a></h6>
 <p>用 $f_{u,j}$ 记录，同上一题</p>
 <p>设计状态 $f_{u,0}$ 表示在以 $u$ 为根的子树下，不选择 $u$ 所能获得的最大价值，初始值为 $0$；</p>
 <p>$f_{u,1}$ 表示在以 $u$ 为根的子树下，选择 $u$ 所能获得的最大价值，初始值为 $a_u$。</p>
@@ -514,11 +503,11 @@ $$
 </span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="树上背包">树上背包<a hidden class="anchor" aria-hidden="true" href="#树上背包">#</a></h3>
-<p>即背包问题和树上 dp 的结合</p>
-<h4 id="洛谷-p2014httpswwwluogucomcnproblemp2014-ctsc1997-选课">洛谷 <a href="https://www.luogu.com.cn/problem/P2014">P2014</a> CTSC1997 选课<a hidden class="anchor" aria-hidden="true" href="#洛谷-p2014httpswwwluogucomcnproblemp2014-ctsc1997-选课">#</a></h4>
+<p>即背包问题和树上 DP 的结合</p>
+<h4 id="洛谷--ctsc1997-选课--p2014httpswwwluogucomcnproblemp2014">洛谷  CTSC1997 选课  <a href="https://www.luogu.com.cn/problem/P2014">P2014</a><a hidden class="anchor" aria-hidden="true" href="#洛谷--ctsc1997-选课--p2014httpswwwluogucomcnproblemp2014">#</a></h4>
 <h5 id="题目-2">题目<a hidden class="anchor" aria-hidden="true" href="#题目-2">#</a></h5>
-<p>在大学里每个学生，为了达到一定的学分，必须从很多课程里选择一些课程来学习，在课程里有些课程必须在某些课程之前学习，如高等数学总是在其它课程之前学习。现在有 $N$ 门功课，每门课有个学分，每门课有一门或没有直接先修课（若课程 a 是课程 b 的先修课即只有学完了课程 a，才能学习课程 b）。一个学生要从这些课程里选择 $M$ 门课程学习，问他能获得的最大学分是多少？</p>
-<h5 id="解决-3">解决<a hidden class="anchor" aria-hidden="true" href="#解决-3">#</a></h5>
+<p>在大学里每个学生，为了达到一定的学分，必须从很多课程里选择一些课程来学习，在课程里有些课程必须在某些课程之前学习，如高等数学总是在其它课程之前学习。现在有 $N$ 门功课，每门课有个学分，每门课有一门或没有直接先修课（若课程 $a$ 是课程 $b$ 的先修课即只有学完了课程 $a$，才能学习课程 $b$）。一个学生要从这些课程里选择 $M$ 门课程学习，问他能获得的最大学分是多少？</p>
+<h5 id="解决-2">解决<a hidden class="anchor" aria-hidden="true" href="#解决-2">#</a></h5>
 <p>新增一个 $0$ 学分的必修课，作为所有无前选课的课的前选课，这样就能构建出一颗以新增节点为根的树</p>
 <p>设 $f_{i,j}$ 为第 $i$ 个节点，$j$ 为背包容量</p>
 <p>初始值为 $f_{i,0} = s_{i}$</p>
@@ -573,20 +562,20 @@ $$
 </span></span></code></pre></div><h3 id="换根-dp">换根 DP<a hidden class="anchor" aria-hidden="true" href="#换根-dp">#</a></h3>
 <p>又被称为二次扫描，通常不指定根节点，同时根节点的变化会使一些值发生变化，例如子节点深度和，点权和等</p>
 <p>通常两次 DFS，第一次预处理深度，点权和等信息，第二次 DFS 进行 DP</p>
-<h4 id="洛谷-p3478httpswwwluogucomcnproblemp3478-sta-station">洛谷 <a href="https://www.luogu.com.cn/problem/P3478">P3478</a> STA-Station<a hidden class="anchor" aria-hidden="true" href="#洛谷-p3478httpswwwluogucomcnproblemp3478-sta-station">#</a></h4>
+<h4 id="洛谷-sta-station-p3478httpswwwluogucomcnproblemp3478">洛谷 STA-Station <a href="https://www.luogu.com.cn/problem/P3478">P3478</a><a hidden class="anchor" aria-hidden="true" href="#洛谷-sta-station-p3478httpswwwluogucomcnproblemp3478">#</a></h4>
 <h5 id="题目-3">题目<a hidden class="anchor" aria-hidden="true" href="#题目-3">#</a></h5>
 <p>给定一个 $n$ 个点的树，请求出一个结点，使得以这个结点为根时，所有结点的深度之和最大。</p>
 <p>一个结点的深度之定义为该节点到根的简单路径上边的数量。</p>
-<h5 id="解决-4">解决<a hidden class="anchor" aria-hidden="true" href="#解决-4">#</a></h5>
+<h5 id="解决-3">解决<a hidden class="anchor" aria-hidden="true" href="#解决-3">#</a></h5>
 <p>不妨令 $u$ 为当前结点，$v$ 为当前结点的子结点。首先需要用 $s_i$ 来表示以 $i$ 为根的子树中的结点个数，并且有 $s_u = 1 + \sum s_v$。显然需要一次 DFS 来计算所有的 $s_i$，这次的 DFS 就是预处理，我们得到了以某个结点为根时其子树中的结点总数。</p>
 <p>考虑状态转移，这里就是体现“换根”的地方了。令 $f_u$ 为以 $u$ 为根时，所有结点的深度之和。</p>
 <p>$f_v \leftarrow f_u$ 可以体现换根，即以 $u$ 为根转移到以 $v$ 为根。显然在换根的转移过程中，以 $v$ 为根或以 $u$ 为根会导致其子树中的结点的深度产生改变。具体表现为：</p>
 <ul>
-<li>所有在 $v$ 的子树上的结点深度都减少了 1，那么总深度和就减少了 $s_v$；</li>
-<li>所有不在 $v$ 的子树上的结点深度都增加了 1，那么总深度和就增加了 $n - s_v$；</li>
+<li>所有在 $v$ 的子树上的结点深度都减少了 $1$，那么总深度和就减少了 $s_v$；</li>
+<li>所有不在 $v$ 的子树上的结点深度都增加了 $1$，那么总深度和就增加了 $n - s_v$；</li>
 </ul>
 <p>根据这两个条件就可以推出状态转移方程：</p>
-<p>[ f_v = f_u - s_v + n - s_v = f_u + n - 2 \times s_v ]</p>
+<p>$$ f_v = f_u - s_v + n - s_v = f_u + n - 2 \times s_v $$</p>
 <p>于是在第二次 DFS 遍历整棵树并状态转移 $f_v = f_u + n - 2 \times s_v$，那么就能求出以每个结点为根时的深度和了。最后只需要遍历一次所有根结点深度和就可以求出答案。</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
 </span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>using namespace std;
@@ -661,6 +650,11 @@ $$
       <li><a href="https://mjc.us.kg/tags/dp/">DP</a></li>
     </ul>
 <nav class="paginav">
+  <a class="prev" href="https://mjc.us.kg/posts/study/icpc2023nanjing/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>ICPC 2023 南京 VP</span>
+  </a>
   <a class="next" href="https://mjc.us.kg/posts/study/cf974/">
     <span class="title">下一页 »</span>
     <br>

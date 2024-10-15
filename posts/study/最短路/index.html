@@ -128,8 +128,8 @@
   "keywords": [
     "图论", "最短路", "dijkstra", "floyd", "bellman-ford"
   ],
-  "articleBody": "最短路基础算法学习 特点汇总 最短路算法 Floyd Bellman–Ford Dijkstra Johnson 最短路类型 每对结点之间的最短路 单源最短路 单源最短路 每对结点之间的最短路 作用于 任意图 任意图 非负权图 任意图 能否检测负环？ 能 能 不能 能 时间复杂度 O(N^3) O(NM) O(MlogM) O(NMlogM) Floyd 算法 简介 用来求任意两个结点之间的最短路\n复杂度较高 O(n^3) 容易实现\n使用与任何图，不管有向无向，边权正负，但是最短路必须存在，不能存在负环(即边权之和为负数的环，可以无限次通过减少所求答案)\n实现 定义一个数组 f[k][x][y]，表示只允许经过点 1 到 k (包含点 1 到点 k 的子图，x y 不一定在子图中)，点 x 到点 y 的最短路长度\nf[n][x][y] 即为 x 到 y 的最短路长度\nf[0][x][y]: x 和 y 之间有联通路时为二者的边权，若无则为 $+\\infty $ 如果 x == y 则为 0\nf[k][x][y] = min(f[k-1][x][y], f[k-1][x][k]+f[k-1][k][y])（f[k-1][x][y]，为不经过 k 点的最短路径，而 f[k-1][x][k]+f[k-1][k][y]，为经过了 k 点的最短路）。\n可以发现第一维是无影响的，因此空间复杂度可以优化到 O(n^2)\nvoid floyd(){ for(int k=1;k\u003c=n;k++){ for(int x=1;x\u003c=n;x++){ for(int y=1;y\u003c=n;y++){ f[x][y]=min(f[x][y],f[x][k]+f[k][y]); } } } } 例题 洛谷 B3647\n#include using namespace std; int n,m; int f[110][110]; int inf = 1e9; void floyd(){ for(int k=1;k\u003c=n;k++){ for(int x=1;x\u003c=n;x++){ for(int y=1;y\u003c=n;y++){ f[x][y]=min(f[x][y],f[x][k]+f[k][y]); } } } } int main(){ cin\u003e\u003en\u003e\u003em; for(int i=1;i\u003c=m;i++){ int x,y,w; cin\u003e\u003ex\u003e\u003ey\u003e\u003ew; if(!f[x][y])f[x][y]=f[y][x]=w; else f[x][y]=f[y][x]=min(f[x][y],w); } for(int i=1;i\u003c=n;i++){ for(int j=1;j\u003c=n;j++){ if(f[i][j])continue; if(i==j)f[i][j]=0; else f[i][j]=inf; } } floyd(); for(int i=1;i\u003c=n;i++){ for(int j=1;j\u003c=n;j++)cout\u003c\u003cf[i][j]\u003c\u003c\" \"; cout\u003c\u003cendl; } return 0; } Bellman-Ford 算法 简介 基于松驰操作的最短路算法，可以求出有负权的图的最短路，并可以对最短路不存在的情况进行判断\nSPFA 是 Bellman-Ford 的一种实现\n松驰操作指的是 dis[v] = min(dis[v], dis[u] + w[u][v])\nBellman-Ford 算法做的就是不断尝试对图上每一条边进行松驰，每一轮循环都尝试对图上所有的边进行一次松驰操作，当一次循环中没有成功的松驰操作时，算法停止\n整个算法最多进行 n - 1 轮松驰操作，所以时间复杂度为 O(nm)\n如果从 s 点出发，抵达一个负环，松驰会无休止的进行下去，如果 n - 1 轮后还有能松驰的边，说明从 s 点出发，能够抵达一个负环\n如果以 s 点跑，没有找到负环，只能说明从 s 点无法到达负环，如果要判断图上是否有负环，需要建立一个超级源点 o 对图上每个点连一条权值为 0 的边，再以 o 为起点跑一遍 Bellman-Ford\n实现 struct Node{ int u,v,w; }; vector\u003cNode\u003eedge; int dis[10100],u,v,w; int n,m; const int INF = 1e9; bool bellmanford(int n,int s){ memset(dis,INF,sizeof(dis)); dis[s]=0; bool flag=false; for(int i=1;i\u003c=n;i++){ flag=false; for(int j=0;j\u003cedge.size();j++){ u=edge[j].u,v=edge[j].v,w=edge[j].w; if(dis[u]==INF)continue; if(dis[v]\u003edis[u]+w){ dis[v]=dis[u]+w; flag=true; } } if(!flag)break; } return flag; } 队列优化 SPFA\n很显然，只有上次被松驰的点所连接的边，才可能进行下一次的松驰操作\n可以用队列来维护可能引起松驰操作的点\nSPFA 也可以用于判断 s 是否能抵达负环，只需记录最短路经过了多少条边即可，若经过了至少 n 条边，说明 s 可以抵达一个负环\nstruct Node{ int v,w; }; vector\u003cNode\u003eedge[N]; int dis[N],cnt[N],vis[N]; queue\u003cint\u003eq; bool spfa(int n,int s){ memset(dis,63,sizeof(dis)); memset(cnt,0,sizeof(cnt)); memset(vis,0,sizeof(vis)); dis[s]=0,vis[s]=1; q.push(s); while(!q.empty()){ int u=q.front(); q.pop(); vis[u]=0; for(auto x:edge[u]){ int v=x.v,w=x.w; if(dis[v]\u003edis[u]+w){ dis[v]=dis[u]+w; cnt[v]=cnt[u]+1; if(cnt[v]\u003e=n)return false; if(!vis[v])q.push(v),vis[v]=1; } } } return true; } 例题 洛谷 P3385\nBellman-Ford\nSPFA\nDijkstra 算法 简介 求解 非负权图 上单源最短路径\n将点分为两个集合，一个为已确定最短路径的点集 s，另一个为未确定最短路长度的点集 t，初始状态所有点都在 t 中\n初始化 dis[s] = 0, 其他点的 dis 均为 $+\\infty $\n然后重复下列操作：\n(1) 从 t 中取一个最短路长度最小的点，移到 s 中\n(2) 对刚加入 s 中的点进行所有出边的松驰操作\n直到 t 为空，算法结束\n暴力实现 时间复杂度为 O(n^2)\n堆优化 时间复杂度 O(mlogn)\n实现 暴力\nstruct Node{ int y,v; Node(int _y,int _v){y=_y;v=_v;} }; //开一个结构体用于储存边的信息，y 代表这条边通向哪，v 代表这条边的边权 int n,m,u,v,w,s,t,dist[N]; bool vis[N]; vector\u003cNode\u003eedge[N];//edge 数组的下标就是边的起始点，Node 中的 y 代表这条边通向哪个点 void dijkstra(int s,int t){//s 指代起点，t 指代终点 memset(vis,0,sizeof(vis)); memset(dist,127,sizeof(dist)); //初始将所有点的最短路都设置为无穷大 dist[s]=0;//起点到自己的距离为 0 for(;;){ int x=-1;//x 是这一轮循环中找到的最短路径 for(int i=1;i\u003c=n;i++){ if(!vis[i]\u0026\u0026dist[i]\u003c(1\u003c\u003c30))//如果当前这个点没被更新过，并且到达它的最短路不是初始化的无穷大，我们就考虑他是不是当前的最优选择 if(x==-1||dist[i]\u003cdist[x])x=i;//如果 x 还未被更新，或者到这个点的最短路比之前选的更短，我们就更新 x } if(x==t||x==-1)break;//如果 x 为终点，或遍历所有点后 x 还没更新，就终止算法 vis[x]=1;//标记当前这个 x 避免之后重复使用 for(auto i:edge[x]){//遍历以 x 这个点为起点的所有边 dist[i.y]=min(dist[i.y],dist[x]+i.v);//更新能到达的点的最短路 } } } 堆优化\nstruct Node { int y, v; Node(int _y, int _v) { y = _y, v = _v; } }; int n, m, s, t, dist[100005]; vector\u003cNode\u003e edge[100005]; set\u003cpair\u003cint, int\u003e\u003e q; void dijkstra(int s, int t) { q.clear(); memset(dist, 127, sizeof(dist)); dist[s] = 0; for (int i = 1; i \u003c= n; i++) q.insert({dist[i], i}); for (; !q.empty();) { int x = q.begin()-\u003esecond; q.erase(q.begin()); if (x == t || dist[x] \u003e 1 \u003c\u003c 30) break; for (auto i : edge[x]) { if (dist[x] + i.v \u003c dist[i.y]) { q.erase({dist[i.y], i.y}); dist[i.y] = dist[x] + i.v; q.insert({dist[i.y], i.y}); } } } cout \u003c\u003c dist[t] \u003c\u003c endl; } 例题 洛谷P1339\n#include using namespace std; struct Node { int y, v; Node(int _y, int _v) { y = _y, v = _v; } }; int n, m, s, t, dist[100005]; vector\u003cNode\u003e edge[100005]; set\u003cpair\u003cint, int\u003e\u003e q; void dijkstra(int s, int t) { q.clear(); memset(dist, 127, sizeof(dist)); dist[s] = 0; for (int i = 1; i \u003c= n; i++) q.insert({dist[i], i}); for (; !q.empty();) { int x = q.begin()-\u003esecond; q.erase(q.begin()); if (x == t || dist[x] \u003e 1 \u003c\u003c 30) break; for (auto i : edge[x]) { if (dist[x] + i.v \u003c dist[i.y]) { q.erase({dist[i.y], i.y}); dist[i.y] = dist[x] + i.v; q.insert({dist[i.y], i.y}); } } } cout \u003c\u003c dist[t] \u003c\u003c endl; } int main() { cin \u003e\u003e n \u003e\u003e m \u003e\u003e s \u003e\u003e t; for (int i = 1; i \u003c= m; i++) { int u, v, c; cin \u003e\u003e u \u003e\u003e v \u003e\u003e c; edge[u].push_back(Node(v, c)); edge[v].push_back(Node(u, c)); } dijkstra(s, t); return 0; } Johnson 全源最短路径算法 实现 为了实现有负权图上的 Dijkstra，我们可以新建一个虚拟节点 o，从这个点向其他所有点连一条边权为 0 的边\n接下来用 Bellman-Ford 求出节点 o 到其他所有点的最短路，记为 h[i]\n假如存在一条从 u 到 v，边权为 w 的边，则将其边权重设为 w + h[u] - h[v]\n接下来以每个点为起点，跑 n 轮 Dijkstra 即可求出任意两点间的最短路了\n该算法时间复杂度是 O(nmlogm)\n",
-  "wordCount" : "2069",
+  "articleBody": "最短路基础算法学习 特点汇总 最短路算法 Floyd Bellman–Ford Dijkstra Johnson 最短路类型 每对结点之间的最短路 单源最短路 单源最短路 每对结点之间的最短路 作用于 任意图 任意图 非负权图 任意图 能否检测负环？ 能 能 不能 能 时间复杂度 $O(N^3)$ $O(NM)$ $O(M \\log M)$ $O(NM \\log M)$ Floyd 算法 简介 用来求任意两个结点之间的最短路\n复杂度较高 $O(n^3)$ 容易实现\n使用与任何图，不管有向无向，边权正负，但是最短路必须存在，不能存在负环(即边权之和为负数的环，可以无限次通过减少所求答案)\n实现 定义一个数组 $f[k][x][y]$，表示只允许经过点 1 到 $k$ (包含点 1 到点 $k$ 的子图，$x$ $y$ 不一定在子图中)，点 $x$ 到点 $y$ 的最短路长度\n$f[n][x][y]$ 即为 $x$ 到 $y$ 的最短路长度\n$f[0][x][y]$: $x$ 和 $y$ 之间有联通路时为二者的边权，若无则为 $+\\infty $ 如果 $x == y$ 则为 0\n$f[k][x][y] = \\min(f[k-1][x][y], f[k-1][x][k]+f[k-1][k][y])$（$f[k-1][x][y]$，为不经过 $k$ 点的最短路径，而 $f[k-1][x][k]+f[k-1][k][y]$，为经过了 $k$ 点的最短路）。\n可以发现第一维是无影响的，因此空间复杂度可以优化到 $O(n^2)$\nvoid floyd(){ for(int k=1;k\u003c=n;k++){ for(int x=1;x\u003c=n;x++){ for(int y=1;y\u003c=n;y++){ f[x][y]=min(f[x][y],f[x][k]+f[k][y]); } } } } 例题 洛谷 B3647\n#include using namespace std; int n,m; int f[110][110]; int inf = 1e9; void floyd(){ for(int k=1;k\u003c=n;k++){ for(int x=1;x\u003c=n;x++){ for(int y=1;y\u003c=n;y++){ f[x][y]=min(f[x][y],f[x][k]+f[k][y]); } } } } int main(){ cin\u003e\u003en\u003e\u003em; for(int i=1;i\u003c=m;i++){ int x,y,w; cin\u003e\u003ex\u003e\u003ey\u003e\u003ew; if(!f[x][y])f[x][y]=f[y][x]=w; else f[x][y]=f[y][x]=min(f[x][y],w); } for(int i=1;i\u003c=n;i++){ for(int j=1;j\u003c=n;j++){ if(f[i][j])continue; if(i==j)f[i][j]=0; else f[i][j]=inf; } } floyd(); for(int i=1;i\u003c=n;i++){ for(int j=1;j\u003c=n;j++)cout\u003c\u003cf[i][j]\u003c\u003c\" \"; cout\u003c\u003cendl; } return 0; } Bellman-Ford 算法 简介 基于松驰操作的最短路算法，可以求出有负权的图的最短路，并可以对最短路不存在的情况进行判断\nSPFA 是 Bellman-Ford 的一种实现\n松驰操作指的是 $dis[v] = \\min(dis[v], dis[u] + w[u][v])$\nBellman-Ford 算法做的就是不断尝试对图上每一条边进行松驰，每一轮循环都尝试对图上所有的边进行一次松驰操作，当一次循环中没有成功的松驰操作时，算法停止\n整个算法最多进行 $n - 1$ 轮松驰操作，所以时间复杂度为 $O(nm)$\n如果从 $s$ 点出发，抵达一个负环，松驰会无休止的进行下去，如果 $n - 1$ 轮后还有能松驰的边，说明从 $s$ 点出发，能够抵达一个负环\n如果以 $s$ 点跑，没有找到负环，只能说明从 $s$ 点无法到达负环，如果要判断图上是否有负环，需要建立一个超级源点 $o$ 对图上每个点连一条权值为 0 的边，再以 $o$ 为起点跑一遍 Bellman-Ford\n实现 struct Node{ int u,v,w; }; vector\u003cNode\u003eedge; int dis[10100],u,v,w; int n,m; const int INF = 1e9; bool bellmanford(int n,int s){ memset(dis,INF,sizeof(dis)); dis[s]=0; bool flag=false; for(int i=1;i\u003c=n;i++){ flag=false; for(int j=0;j\u003cedge.size();j++){ u=edge[j].u,v=edge[j].v,w=edge[j].w; if(dis[u]==INF)continue; if(dis[v]\u003edis[u]+w){ dis[v]=dis[u]+w; flag=true; } } if(!flag)break; } return flag; } 队列优化 SPFA\n很显然，只有上次被松驰的点所连接的边，才可能进行下一次的松驰操作\n可以用队列来维护可能引起松驰操作的点\nSPFA 也可以用于判断 $s$ 是否能抵达负环，只需记录最短路经过了多少条边即可，若经过了至少 $n$ 条边，说明 $s$ 可以抵达一个负环\nstruct Node{ int v,w; }; vector\u003cNode\u003eedge[N]; int dis[N],cnt[N],vis[N]; queue\u003cint\u003eq; bool spfa(int n,int s){ memset(dis,63,sizeof(dis)); memset(cnt,0,sizeof(cnt)); memset(vis,0,sizeof(vis)); dis[s]=0,vis[s]=1; q.push(s); while(!q.empty()){ int u=q.front(); q.pop(); vis[u]=0; for(auto x:edge[u]){ int v=x.v,w=x.w; if(dis[v]\u003edis[u]+w){ dis[v]=dis[u]+w; cnt[v]=cnt[u]+1; if(cnt[v]\u003e=n)return false; if(!vis[v])q.push(v),vis[v]=1; } } } return true; } 例题 洛谷 P3385\nBellman-Ford\nSPFA\nDijkstra 算法 简介 求解 非负权图 上单源最短路径\n将点分为两个集合，一个为已确定最短路径的点集 $s$，另一个为未确定最短路长度的点集 $t$，初始状态所有点都在 $t$ 中\n初始化 $dis[s] = 0$, 其他点的 $dis$ 均为 $+\\infty $\n然后重复下列操作：\n(1) 从 $t$ 中取一个最短路长度最小的点，移到 $s$ 中\n(2) 对刚加入 $s$ 中的点进行所有出边的松驰操作\n直到 $t$ 为空，算法结束\n暴力实现 时间复杂度为 $O(n^2)$\n堆优化 时间复杂度 $O(m \\log n)$\n实现 暴力\nstruct Node{ int y,v; Node(int _y,int _v){y=_y;v=_v;} }; //开一个结构体用于储存边的信息，y 代表这条边通向哪，v 代表这条边的边权 int n,m,u,v,w,s,t,dist[N]; bool vis[N]; vector\u003cNode\u003eedge[N];//edge 数组的下标就是边的起始点，Node 中的 y 代表这条边通向哪个点 void dijkstra(int s,int t){//s 指代起点，t 指代终点 memset(vis,0,sizeof(vis)); memset(dist,127,sizeof(dist)); //初始将所有点的最短路都设置为无穷大 dist[s]=0;//起点到自己的距离为 0 for(;;){ int x=-1;//x 是这一轮循环中找到的最短路径 for(int i=1;i\u003c=n;i++){ if(!vis[i]\u0026\u0026dist[i]\u003c(1\u003c\u003c30))//如果当前这个点没被更新过，并且到达它的最短路不是初始化的无穷大，我们就考虑他是不是当前的最优选择 if(x==-1||dist[i]\u003cdist[x])x=i;//如果 x 还未被更新，或者到这个点的最短路比之前选的更短，我们就更新 x } if(x==t||x==-1)break;//如果 x 为终点，或遍历所有点后 x 还没更新，就终止算法 vis[x]=1;//标记当前这个 x 避免之后重复使用 for(auto i:edge[x]){//遍历以 x 这个点为起点的所有边 dist[i.y]=min(dist[i.y],dist[x]+i.v);//更新能到达的点的最短路 } } } 堆优化\nstruct Node { int y, v; Node(int _y, int _v) { y = _y, v = _v; } }; int n, m, s, t, dist[100005]; vector\u003cNode\u003e edge[100005]; set\u003cpair\u003cint, int\u003e\u003e q; void dijkstra(int s, int t) { q.clear(); memset(dist, 127, sizeof(dist)); dist[s] = 0; for (int i = 1; i \u003c= n; i++) q.insert({dist[i], i}); for (; !q.empty();) { int x = q.begin()-\u003esecond; q.erase(q.begin()); if (x == t || dist[x] \u003e 1 \u003c\u003c 30) break; for (auto i : edge[x]) { if (dist[x] + i.v \u003c dist[i.y]) { q.erase({dist[i.y], i.y}); dist[i.y] = dist[x] + i.v; q.insert({dist[i.y], i.y}); } } } cout \u003c\u003c dist[t] \u003c\u003c endl; } 例题 洛谷P1339\n#include using namespace std; struct Node { int y, v; Node(int _y, int _v) { y = _y, v = _v; } }; int n, m, s, t, dist[100005]; vector\u003cNode\u003e edge[100005]; set\u003cpair\u003cint, int\u003e\u003e q; void dijkstra(int s, int t) { q.clear(); memset(dist, 127, sizeof(dist)); dist[s] = 0; for (int i = 1; i \u003c= n; i++) q.insert({dist[i], i}); for (; !q.empty();) { int x = q.begin()-\u003esecond; q.erase(q.begin()); if (x == t || dist[x] \u003e 1 \u003c\u003c 30) break; for (auto i : edge[x]) { if (dist[x] + i.v \u003c dist[i.y]) { q.erase({dist[i.y], i.y}); dist[i.y] = dist[x] + i.v; q.insert({dist[i.y], i.y}); } } } cout \u003c\u003c dist[t] \u003c\u003c endl; } int main() { cin \u003e\u003e n \u003e\u003e m \u003e\u003e s \u003e\u003e t; for (int i = 1; i \u003c= m; i++) { int u, v, c; cin \u003e\u003e u \u003e\u003e v \u003e\u003e c; edge[u].push_back(Node(v, c)); edge[v].push_back(Node(u, c)); } dijkstra(s, t); return 0; } Johnson 全源最短路径算法 实现 为了实现有负权图上的 Dijkstra，我们可以新建一个虚拟节点 $o$，从这个点向其他所有点连一条边权为 0 的边\n接下来用 Bellman-Ford 求出节点 $o$ 到其他所有点的最短路，记为 $h[i]$\n假如存在一条从 $u$ 到 $v$，边权为 $w$ 的边，则将其边权重设为 $w + h[u] - h[v]$\n接下来以每个点为起点，跑 $n$ 轮 Dijkstra 即可求出任意两点间的最短路了\n该算法时间复杂度是 $O(nm \\log m)$\n",
+  "wordCount" : "2094",
   "inLanguage": "zh",
   "datePublished": "2024-07-29T21:43:24+08:00",
   "dateModified": "2024-07-29T21:43:24+08:00",
@@ -393,10 +393,10 @@
 </tr>
 <tr>
 <td>时间复杂度</td>
-<td>O(N^3)</td>
-<td>O(NM)</td>
-<td>O(MlogM)</td>
-<td>O(NMlogM)</td>
+<td>$O(N^3)$</td>
+<td>$O(NM)$</td>
+<td>$O(M \log M)$</td>
+<td>$O(NM \log M)$</td>
 </tr>
 </tbody>
 </table>
@@ -404,14 +404,14 @@
 <h2 id="floyd-算法">Floyd 算法<a hidden class="anchor" aria-hidden="true" href="#floyd-算法">#</a></h2>
 <h3 id="简介">简介<a hidden class="anchor" aria-hidden="true" href="#简介">#</a></h3>
 <p>用来求任意两个结点之间的最短路<br>
-复杂度较高 O(n^3) 容易实现<br>
+复杂度较高 $O(n^3)$ 容易实现<br>
 使用与任何图，不管有向无向，边权正负，但是最短路必须存在，不能存在负环(即边权之和为负数的环，可以无限次通过减少所求答案)</p>
 <h3 id="实现">实现<a hidden class="anchor" aria-hidden="true" href="#实现">#</a></h3>
-<p>定义一个数组 f[k][x][y]，表示只允许经过点 1 到 k (包含点 1 到点 k 的子图，x y 不一定在子图中)，点 x 到点 y 的最短路长度</p>
-<p>f[n][x][y] 即为 x 到 y 的最短路长度</p>
-<p>f[0][x][y]: x 和 y 之间有联通路时为二者的边权，若无则为 $+\infty $ 如果 x == y 则为 0</p>
-<p>f[k][x][y] = min(f[k-1][x][y], f[k-1][x][k]+f[k-1][k][y])（f[k-1][x][y]，为不经过 k 点的最短路径，而 f[k-1][x][k]+f[k-1][k][y]，为经过了 k 点的最短路）。</p>
-<p>可以发现第一维是无影响的，因此空间复杂度可以优化到 O(n^2)</p>
+<p>定义一个数组 $f[k][x][y]$，表示只允许经过点 1 到 $k$ (包含点 1 到点 $k$ 的子图，$x$ $y$ 不一定在子图中)，点 $x$ 到点 $y$ 的最短路长度</p>
+<p>$f[n][x][y]$ 即为 $x$ 到 $y$ 的最短路长度</p>
+<p>$f[0][x][y]$: $x$ 和 $y$ 之间有联通路时为二者的边权，若无则为 $+\infty $ 如果 $x == y$ 则为 0</p>
+<p>$f[k][x][y] = \min(f[k-1][x][y], f[k-1][x][k]+f[k-1][k][y])$（$f[k-1][x][y]$，为不经过 $k$ 点的最短路径，而 $f[k-1][x][k]+f[k-1][k][y]$，为经过了 $k$ 点的最短路）。</p>
+<p>可以发现第一维是无影响的，因此空间复杂度可以优化到 $O(n^2)$</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">floyd</span>(){
 </span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> k<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;k<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;k<span style="color:#89dceb;font-weight:bold">++</span>){
 </span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> x<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;x<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;x<span style="color:#89dceb;font-weight:bold">++</span>){
@@ -467,11 +467,11 @@
 <h3 id="简介-1">简介<a hidden class="anchor" aria-hidden="true" href="#简介-1">#</a></h3>
 <p>基于松驰操作的最短路算法，可以求出有负权的图的最短路，并可以对最短路不存在的情况进行判断</p>
 <p>SPFA 是 Bellman-Ford 的一种实现</p>
-<p>松驰操作指的是 dis[v] = min(dis[v], dis[u] + w[u][v])</p>
+<p>松驰操作指的是 $dis[v] = \min(dis[v], dis[u] + w[u][v])$</p>
 <p>Bellman-Ford 算法做的就是不断尝试对图上每一条边进行松驰，每一轮循环都尝试对图上所有的边进行一次松驰操作，当一次循环中没有成功的松驰操作时，算法停止</p>
-<p>整个算法最多进行 n - 1 轮松驰操作，所以时间复杂度为 O(nm)</p>
-<p>如果从 s 点出发，抵达一个负环，松驰会无休止的进行下去，如果 n - 1 轮后还有能松驰的边，说明从 s 点出发，能够抵达一个负环</p>
-<p>如果以 s 点跑，没有找到负环，只能说明从 s 点无法到达负环，如果要判断图上是否有负环，需要建立一个超级源点 o 对图上每个点连一条权值为 0 的边，再以 o 为起点跑一遍 Bellman-Ford</p>
+<p>整个算法最多进行 $n - 1$ 轮松驰操作，所以时间复杂度为 $O(nm)$</p>
+<p>如果从 $s$ 点出发，抵达一个负环，松驰会无休止的进行下去，如果 $n - 1$ 轮后还有能松驰的边，说明从 $s$ 点出发，能够抵达一个负环</p>
+<p>如果以 $s$ 点跑，没有找到负环，只能说明从 $s$ 点无法到达负环，如果要判断图上是否有负环，需要建立一个超级源点 $o$ 对图上每个点连一条权值为 0 的边，再以 $o$ 为起点跑一遍 Bellman-Ford</p>
 <h3 id="实现-1">实现<a hidden class="anchor" aria-hidden="true" href="#实现-1">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#cba6f7">struct</span> Node{
 </span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> u,v,w;
@@ -503,7 +503,7 @@
 </span></span></code></pre></div><p>队列优化 SPFA</p>
 <p>很显然，只有上次被松驰的点所连接的边，才可能进行下一次的松驰操作</p>
 <p>可以用队列来维护可能引起松驰操作的点</p>
-<p>SPFA 也可以用于判断 s 是否能抵达负环，只需记录最短路经过了多少条边即可，若经过了至少 n 条边，说明 s 可以抵达一个负环</p>
+<p>SPFA 也可以用于判断 $s$ 是否能抵达负环，只需记录最短路经过了多少条边即可，若经过了至少 $n$ 条边，说明 $s$ 可以抵达一个负环</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#cba6f7">struct</span> Node{
 </span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> v,w;
 </span></span><span style="display:flex;"><span>};
@@ -542,14 +542,14 @@
 <h2 id="dijkstra-算法">Dijkstra 算法<a hidden class="anchor" aria-hidden="true" href="#dijkstra-算法">#</a></h2>
 <h3 id="简介-2">简介<a hidden class="anchor" aria-hidden="true" href="#简介-2">#</a></h3>
 <p>求解 <strong>非负权图</strong> 上单源最短路径</p>
-<p>将点分为两个集合，一个为已确定最短路径的点集 s，另一个为未确定最短路长度的点集 t，初始状态所有点都在 t 中</p>
-<p>初始化 dis[s] = 0, 其他点的 dis 均为 $+\infty $<br>
+<p>将点分为两个集合，一个为已确定最短路径的点集 $s$，另一个为未确定最短路长度的点集 $t$，初始状态所有点都在 $t$ 中</p>
+<p>初始化 $dis[s] = 0$, 其他点的 $dis$ 均为 $+\infty $<br>
 然后重复下列操作：<br>
- (1) 从 t 中取一个最短路长度最小的点，移到 s 中<br>
- (2) 对刚加入 s 中的点进行所有出边的松驰操作<br>
-直到 t 为空，算法结束</p>
-<p>暴力实现 时间复杂度为 O(n^2)<br>
-堆优化 时间复杂度 O(mlogn)</p>
+ (1) 从 $t$ 中取一个最短路长度最小的点，移到 $s$ 中<br>
+ (2) 对刚加入 $s$ 中的点进行所有出边的松驰操作<br>
+直到 $t$ 为空，算法结束</p>
+<p>暴力实现 时间复杂度为 $O(n^2)$<br>
+堆优化 时间复杂度 $O(m \log n)$</p>
 <h3 id="实现-2">实现<a hidden class="anchor" aria-hidden="true" href="#实现-2">#</a></h3>
 <p>暴力</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#cba6f7">struct</span> Node{
@@ -655,11 +655,11 @@
 </span></span></code></pre></div><hr>
 <h2 id="johnson-全源最短路径算法">Johnson 全源最短路径算法<a hidden class="anchor" aria-hidden="true" href="#johnson-全源最短路径算法">#</a></h2>
 <h3 id="实现-3">实现<a hidden class="anchor" aria-hidden="true" href="#实现-3">#</a></h3>
-<p>为了实现有负权图上的 Dijkstra，我们可以新建一个虚拟节点 o，从这个点向其他所有点连一条边权为 0 的边</p>
-<p>接下来用 Bellman-Ford 求出节点 o 到其他所有点的最短路，记为 h[i]</p>
-<p>假如存在一条从 u 到 v，边权为 w 的边，则将其边权重设为 w + h[u] - h[v]</p>
-<p>接下来以每个点为起点，跑 n 轮 Dijkstra 即可求出任意两点间的最短路了</p>
-<p>该算法时间复杂度是 O(nmlogm)</p>
+<p>为了实现有负权图上的 Dijkstra，我们可以新建一个虚拟节点 $o$，从这个点向其他所有点连一条边权为 0 的边</p>
+<p>接下来用 Bellman-Ford 求出节点 $o$ 到其他所有点的最短路，记为 $h[i]$</p>
+<p>假如存在一条从 $u$ 到 $v$，边权为 $w$ 的边，则将其边权重设为 $w + h[u] - h[v]$</p>
+<p>接下来以每个点为起点，跑 $n$ 轮 Dijkstra 即可求出任意两点间的最短路了</p>
+<p>该算法时间复杂度是 $O(nm \log m)$</p>
 
 
   </div>

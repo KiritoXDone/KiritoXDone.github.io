@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>树形DP | KiritoXD&#39;s Blog</title>
-<meta name="keywords" content="">
-<meta name="description" content="">
+<title>ICPC 2023 南京 VP | KiritoXD&#39;s Blog</title>
+<meta name="keywords" content="ICPC, 补题">
+<meta name="description" content="I. Counter">
 <meta name="author" content="KiritoXD">
-<link rel="canonical" href="https://mjc.us.kg/tags/%E6%A0%91%E5%BD%A2dp/">
+<link rel="canonical" href="https://mjc.us.kg/posts/study/icpc2023nanjing/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://mjc.us.kg/img/a.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://mjc.us.kg/img/a.png">
@@ -18,8 +18,7 @@
 <link rel="mask-icon" href="https://mjc.us.kg/img/a.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://mjc.us.kg/tags/%E6%A0%91%E5%BD%A2dp/index.xml">
-<link rel="alternate" hreflang="zh" href="https://mjc.us.kg/tags/%E6%A0%91%E5%BD%A2dp/">
+<link rel="alternate" hreflang="zh" href="https://mjc.us.kg/posts/study/icpc2023nanjing/">
 <noscript>
     <style>
         #theme-toggle,
@@ -81,18 +80,80 @@
 
   
 
-<meta property="og:title" content="树形DP" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://mjc.us.kg/tags/%E6%A0%91%E5%BD%A2dp/" />
+<meta property="og:title" content="ICPC 2023 南京 VP" />
+<meta property="og:description" content="I. Counter" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mjc.us.kg/posts/study/icpc2023nanjing/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-10-14T21:33:28+08:00" />
+<meta property="article:modified_time" content="2024-10-14T21:33:28+08:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="树形DP"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="ICPC 2023 南京 VP"/>
+<meta name="twitter:description" content="I. Counter"/>
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://mjc.us.kg/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "👨🏻‍💻 技术",
+      "item": "https://mjc.us.kg/posts/study/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "ICPC 2023 南京 VP",
+      "item": "https://mjc.us.kg/posts/study/icpc2023nanjing/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ICPC 2023 南京 VP",
+  "name": "ICPC 2023 南京 VP",
+  "description": "I. Counter",
+  "keywords": [
+    "ICPC", "补题"
+  ],
+  "articleBody": "I. Counter ",
+  "wordCount" : "2",
+  "inLanguage": "zh",
+  "datePublished": "2024-10-14T21:33:28+08:00",
+  "dateModified": "2024-10-14T21:33:28+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "KiritoXD"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://mjc.us.kg/posts/study/icpc2023nanjing/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KiritoXD's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mjc.us.kg/img/a.png"
+    }
+  }
+}
+</script>
 </head>
 
-<body class="list" id="top">
+<body class="" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add('dark');
@@ -162,23 +223,118 @@
         </ul>
     </nav>
 </header>
-<main class="main"> 
-<header class="page-header"><div class="breadcrumbs"><a href="https://mjc.us.kg/">主页</a>&nbsp;»&nbsp;<a href="https://mjc.us.kg/tags/">Tags</a></div>
-  <h1>
-    树形DP
-  </h1>
-</header>
+<main class="main">
 
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">树形DP
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行 一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$ 洛谷 没有上司的舞会 P1352 题目 某大学有 $n$ 个职员，编号为 $1\ldots n$。 他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。 现在有个周年庆宴会，宴会每邀请...</p>
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://mjc.us.kg/">主页</a>&nbsp;»&nbsp;<a href="https://mjc.us.kg/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://mjc.us.kg/posts/study/">👨🏻‍💻 技术</a></div>
+    <h1 class="post-title entry-hint-parent">
+      ICPC 2023 南京 VP
+    </h1>
+    <div class="post-meta"><span title='2024-10-14 21:33:28 +0800 CST'>2024-10-14</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;KiritoXD
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#i-counter" aria-label="I. Counter">I. Counter</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+
+  <div class="post-content"><h4 id="i-counter">I. Counter<a hidden class="anchor" aria-hidden="true" href="#i-counter">#</a></h4>
+
+
   </div>
-  <footer class="entry-footer"><span title='2024-10-11 18:23:38 +0800 CST'>2024-10-11</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 树形DP" href="https://mjc.us.kg/posts/study/treedp/"></a>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://mjc.us.kg/tags/icpc/">ICPC</a></li>
+      <li><a href="https://mjc.us.kg/tags/%E8%A1%A5%E9%A2%98/">补题</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://mjc.us.kg/posts/study/cf978/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>Codeforces Round 978 (Div. 2)</span>
+  </a>
+  <a class="next" href="https://mjc.us.kg/posts/study/treedp/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>树形DP</span>
+  </a>
+</nav>
+
+  </footer>
 </article>
     </main>
     
@@ -250,6 +406,72 @@
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', () => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent;
+                navigator.clipboard.writeText(text).then(copyingDone);
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replace("language-", "");
+        let macTool = document.createElement("div");
+        let macTool1 = document.createElement("div");
+        let macTool2 = document.createElement("div");
+        let macTool3 = document.createElement("div");
+        let languageType = document.createElement("div");
+        languageType.innerText = language;
+        macTool.setAttribute('class', 'mac-tool');
+        macTool1.setAttribute('class', 'mac bb1');
+        macTool2.setAttribute('class', 'mac bb2');
+        macTool3.setAttribute('class', 'mac bb3');
+        languageType.setAttribute('class', 'language-type');
+        macTool.appendChild(macTool1);
+        macTool.appendChild(macTool2);
+        macTool.appendChild(macTool3);
+        macTool.appendChild(languageType);
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        }
+    });
 </script>
 
 <script>
