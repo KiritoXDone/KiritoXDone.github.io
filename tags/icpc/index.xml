@@ -13,7 +13,7 @@
       <link>https://mjc.us.kg/posts/study/icpc2023nanjing/</link>
       <pubDate>Mon, 14 Oct 2024 21:33:28 +0800</pubDate>
       <guid>https://mjc.us.kg/posts/study/icpc2023nanjing/</guid>
-      <description>I. Counter</description>
+      <description>I. Counter 操作可以都想成连续的，那么输入 $a,b$，意为在 $a-b$ 处进行了一次归零，之后连着进行了 $b$ 次操作，如果中间有冲突，即为 NO #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; #define ls now&amp;lt;&amp;lt;1 #define rs now&amp;lt;&amp;lt;1|1 #define endl &amp;#34;\n&amp;#34; #define lowbit(x) ((x)&amp;amp;(-x)) typedef long long ll; const int N=1e5+7, mod=1e9+7; void solve(){ int n,m,flag=0; cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;m; map&amp;lt;int,int&amp;gt;vis; for(int i=1;i&amp;lt;=m;i++){ int a,b; cin&amp;gt;&amp;gt;a&amp;gt;&amp;gt;b; if(b&amp;gt;a)flag=1; int l = a - b; if(vis.find(l) != vis.end()){ vis[l] = max(vis[l], a); } else { vis[l] = a; } } int now=-1; for(auto &amp;amp;x:vis){ if(now&amp;gt;=x.first){ flag=1; break; } now=x.second; } cout&amp;lt;&amp;lt;(flag?&amp;#34;No\n&amp;#34;:&amp;#34;Yes\n&amp;#34;); } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; cin&amp;gt;&amp;gt;t; while(t--)solve(); return 0; }</description>
     </item>
   </channel>
 </rss>
