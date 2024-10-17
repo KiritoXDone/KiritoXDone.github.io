@@ -177,7 +177,7 @@
   <div class="entry-content">
     <p>I. Counter 操作可以都想成连续的，那么输入 $a,b$，意为在 $a-b$ 处进行了一次归零，之后连着进行了 $b$ 次操作，如果中间有冲突，即为 NO #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 #define endl &#34;\n&#34; #define lowbit(x) ((x)&amp;(-x)) typedef long long ll; const int N=1e5&#43;7, mod=1e9&#43;7; void solve(){ int n,m,flag=0; cin&gt;&gt;n&gt;&gt;m; map&lt;int,int&gt;vis; for(int i=1;i&lt;=m;i&#43;&#43;){ int a,b; cin&gt;&gt;a&gt;&gt;b; if(b&gt;a)flag=1; int l = a - b; if(vis.find(l) != vis.end()){ vis[l] = max(vis[l], a); } else { vis[l] = a; } } int now=-1; for(auto &amp;x:vis){ if(now&gt;=x.first){ flag=1; break; } now=x.second; } cout&lt;&lt;(flag?&#34;No\n&#34;:&#34;Yes\n&#34;); } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; cin&gt;&gt;t; while(t--)solve(); return 0; }...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-10-14 21:33:28 +0800 CST'>2024-10-14</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <footer class="entry-footer"><span title='2024-10-14 21:33:28 +0800 CST'>2024-10-14</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
   <a class="entry-link" aria-label="post link to ICPC 2023 南京 VP" href="https://mjc.us.kg/posts/study/icpc2023nanjing/"></a>
 </article>
     </main>
