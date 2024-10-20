@@ -171,6 +171,30 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">ICPC 2023 沈阳 VP
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>C. Swiss Stage 四目 TES 打的像浓 shit，真的恶臭 #include &lt;bits/stdc&#43;&#43;.h&gt; #define max(x,y) ((x)&lt;(y)?(y):(x)) #define min(x,y) ((x)&gt;(y)?(y):(x)) #define mk(x,y) make_pair(x,y) #define lson (now&lt;&lt;1) #define rson (now&lt;&lt;1|1) using namespace std; typedef long long ll; const int N=2e5&#43;7,inf=1e9&#43;7; const ll mod=2097152; void solve() { int x,y; cin&gt;&gt;x&gt;&gt;y; int ans[10][10]; ans[0][0]=4; ans[0][1]=4; ans[0][2]=6; ans[1][0]=3; ans[1][1]=3; ans[1][2]=4; ans[2][0]=2; ans[2][1]=2; ans[2][2]=2; cout&lt;&lt;ans[x][y]; } int main() { std::ios::sync_with_stdio(0); std::cin.tie(0); int T=1; // cin&gt;&gt;T; while(T--) { solve(); } return 0; } J. Graft and Transplant 每次只能选度数不为 $1$ 的点，看一共有多少个能选的点即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 #define endl &#34;\n&#34; #define lowbit(x) ((x)&amp;(-x)) typedef long long ll; const int N=1e5&#43;7, mod=1e9&#43;7; int...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-10-20 17:04:40 +0800 CST'>2024-10-20</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to ICPC 2023 沈阳 VP" href="https://mjc.us.kg/posts/study/icpc2023shenyang/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">ICPC 2022 西安 VP
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>J. Strange Sum 最多选两个，每选当前这个会限制选的范围，那么答案就一定是前面最大的加上现在这个的最大值 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; #define ls now&lt;&lt;1 #define rs now&lt;&lt;1|1 #define endl &#34;\n&#34; #define lowbit(x) ((x)&amp;(-x)) typedef long long ll; const int N=1e5&#43;7, mod=1e9&#43;7; void solve(){ int n; cin&gt;&gt;n; ll mx=0,ans=0; for(int i=1;i&lt;=n;i&#43;&#43;){ ll x; cin&gt;&gt;x; ans=max(ans,x&#43;mx); mx=max(mx,x); } cout&lt;&lt;ans&lt;&lt;endl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin&gt;&gt;t; while(t--)solve(); return 0; } C. Clone Ranran 如果要克隆增加人数，一定是先在出题操作前增加的，那么就遍历可能的克隆次数，...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-10-19 17:04:37 +0800 CST'>2024-10-19</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
+  <a class="entry-link" aria-label="post link to ICPC 2022 西安 VP" href="https://mjc.us.kg/posts/study/icpc2022xian/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Educational Codeforces Round 170
     </h2>
   </header>
@@ -323,30 +347,6 @@
   </div>
   <footer class="entry-footer"><span title='2024-08-08 22:44:47 +0800 CST'>2024-08-08</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
   <a class="entry-link" aria-label="post link to 2024萌新联赛4" href="https://mjc.us.kg/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B4/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">2024萌新联赛3
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>2024 河南萌新联赛 3 B 正则表达式 签到，四个数字都在 $[1,255]$ 之间即为合法 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; bool check(string s) { int n = s.size(); int num = 0, dots = 0; for (int i = 0; i &lt; n; i&#43;&#43;) { if (s[i] == &#39;.&#39;) { if (num &lt; 0 || num &gt; 255) return false; num = 0; } else if (isdigit(s[i])) { num = num * 10 &#43; (s[i] - &#39;0&#39;); if (num &gt; 255) return false; } else { return false; } } if (num &lt; 0 || num &gt; 255) return false; return true; } int main() { int n; cin &gt;&gt; n; int cnt = 0; for(int i=1;i&lt;=n;i&#43;&#43;) { string s; cin &gt;&gt; s; if (check(s))...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-08-02 11:04:20 +0800 CST'>2024-08-02</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 2024萌新联赛3" href="https://mjc.us.kg/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B3/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">2024萌新联赛1
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>2024 河南萌新联赛 1 A 造数 给定整数 $n$，操作 1：$&#43;1$，操作 2：$&#43;2$，操作 3：$\times 2$，多少次将 $0$ 转化到 $n$ 逆向思维，把 $n$ 化为 $0$ 即可 #include &lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int main(){ int n,cnt=0; cin&gt;&gt;n; while(n){ if(n&amp;1)n--,cnt&#43;&#43;; else if(n&gt;2)cnt&#43;&#43;,n/=2; else cnt&#43;&#43;,n-=2; } cout&lt;&lt;cnt&lt;&lt;endl; } H 两难抉择 长度为 $n$ 的数组 $a$，两种操作选一个进行一次或不操作。 显然将数组最大值 $\times n$ 后答案最大 #include &lt;bits/stdc&#43;&#43;.h&gt;...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-28 15:36:08 +0800 CST'>2024-07-28</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;KiritoXD</footer>
-  <a class="entry-link" aria-label="post link to 2024萌新联赛1" href="https://mjc.us.kg/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B1/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
