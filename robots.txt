@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://kiritoxdone.github.io/sitemap.xml
