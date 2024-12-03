@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://nl.050623.xyz/sitemap.xml

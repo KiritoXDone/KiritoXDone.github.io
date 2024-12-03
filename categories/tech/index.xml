@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tech on KiritoXD&#39;s Blog</title>
+    <link>https://nl.050623.xyz/categories/tech/</link>
+    <description>Recent content in Tech on KiritoXD&#39;s Blog</description>
+    <generator>Hugo -- 0.129.0</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 02 Dec 2024 21:45:20 +0800</lastBuildDate>
+    <atom:link href="https://nl.050623.xyz/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>自建小玩具</title>
+      <link>https://nl.050623.xyz/posts/tech/tools/</link>
+      <pubDate>Thu, 31 Oct 2024 20:58:59 +0800</pubDate>
+      <guid>https://nl.050623.xyz/posts/tech/tools/</guid>
+      <description>自建使我快乐</description>
+    </item>
+    <item>
+      <title>Papermod</title>
+      <link>https://nl.050623.xyz/posts/tech/papermod/</link>
+      <pubDate>Mon, 02 Dec 2024 21:45:20 +0800</pubDate>
+      <guid>https://nl.050623.xyz/posts/tech/papermod/</guid>
+      <description>记录优化主题的过程</description>
+    </item>
+    <item>
+      <title>在 Hugging Face 上部署 AList (Aria2 和 Qbitorrent 可用)</title>
+      <link>https://nl.050623.xyz/posts/tech/hf-alist/</link>
+      <pubDate>Sun, 01 Dec 2024 14:57:08 +0800</pubDate>
+      <guid>https://nl.050623.xyz/posts/tech/hf-alist/</guid>
+      <description>我 TM 薅薅薅</description>
+    </item>
+  </channel>
+</rss>
