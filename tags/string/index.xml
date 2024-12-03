@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>String on KiritoXD&#39;s Blog</title>
+    <link>https://blog.050623.xyz/tags/string/</link>
+    <description>Recent content in String on KiritoXD&#39;s Blog</description>
+    <generator>Hugo -- 0.129.0</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 24 Jul 2024 21:53:28 +0800</lastBuildDate>
+    <atom:link href="https://blog.050623.xyz/tags/string/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>最小表示法</title>
+      <link>https://blog.050623.xyz/posts/study/%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95/</link>
+      <pubDate>Wed, 24 Jul 2024 21:53:28 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/study/%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95/</guid>
+      <description>最小表示法学习记录</description>
+    </item>
+    <item>
+      <title>Manacher</title>
+      <link>https://blog.050623.xyz/posts/study/manacher/</link>
+      <pubDate>Mon, 22 Jul 2024 22:59:43 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/study/manacher/</guid>
+      <description>Manacher 学习记录</description>
+    </item>
+    <item>
+      <title>KMP</title>
+      <link>https://blog.050623.xyz/posts/study/kmp/</link>
+      <pubDate>Sat, 20 Jul 2024 21:33:32 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/study/kmp/</guid>
+      <description>KMP算法学习记录</description>
+    </item>
+  </channel>
+</rss>

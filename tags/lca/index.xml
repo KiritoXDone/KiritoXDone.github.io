@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>LCA on KiritoXD&#39;s Blog</title>
+    <link>https://blog.050623.xyz/tags/lca/</link>
+    <description>Recent content in LCA on KiritoXD&#39;s Blog</description>
+    <generator>Hugo -- 0.129.0</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 06 Aug 2024 21:45:34 +0800</lastBuildDate>
+    <atom:link href="https://blog.050623.xyz/tags/lca/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LCA</title>
+      <link>https://blog.050623.xyz/posts/study/lca/</link>
+      <pubDate>Tue, 06 Aug 2024 21:45:34 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/study/lca/</guid>
+      <description>LCA 学习记录</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Prim on KiritoXD&#39;s Blog</title>
+    <link>https://blog.050623.xyz/tags/prim/</link>
+    <description>Recent content in Prim on KiritoXD&#39;s Blog</description>
+    <generator>Hugo -- 0.129.0</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 30 Jul 2024 20:11:43 +0800</lastBuildDate>
+    <atom:link href="https://blog.050623.xyz/tags/prim/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>最小生成树</title>
+      <link>https://blog.050623.xyz/posts/study/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/</link>
+      <pubDate>Tue, 30 Jul 2024 20:11:43 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/study/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/</guid>
+      <description>最小生成树算法学习</description>
+    </item>
+  </channel>
+</rss>
