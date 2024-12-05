@@ -6,7 +6,7 @@
     <description>Recent content in 👨🏻‍💻 技术 on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 02 Dec 2024 21:45:20 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 05 Dec 2024 18:36:01 +0800</lastBuildDate>
     <atom:link href="https://kiritoxdone.github.io/posts/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>自建小玩具</title>
@@ -14,6 +14,13 @@
       <pubDate>Thu, 31 Oct 2024 20:58:59 +0800</pubDate>
       <guid>https://kiritoxdone.github.io/posts/tech/tools/</guid>
       <description>自建使我快乐</description>
+    </item>
+    <item>
+      <title>对 Hugging Face 使用反代吧！</title>
+      <link>https://kiritoxdone.github.io/posts/tech/cf-worker-hf/</link>
+      <pubDate>Thu, 05 Dec 2024 18:36:01 +0800</pubDate>
+      <guid>https://kiritoxdone.github.io/posts/tech/cf-worker-hf/</guid>
+      <description>反代抱抱脸私人库到自己的域名下</description>
     </item>
     <item>
       <title>Papermod</title>
