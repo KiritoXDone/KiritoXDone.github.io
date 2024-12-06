@@ -128,8 +128,8 @@
   "keywords": [
     "Hugging Face", "Cloudflare"
   ],
-  "articleBody": "在论坛大佬们的研究下，最新版反代脚本问世，这下终于可以痛快薅了\n获取 Token 在抱抱脸上点头像后选择 access token\n名称随意\ntoken 权限选 Repositories 的三个即可\n将获取的 Token 保存下来\nWorker 新建一个 Worker，代码如下\nconst MAX_RETRIES = 3; const RETRY_DELAY_MS = 500; const EXPIRATION_BUFFER_SECONDS = 60; async function getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1) { const now = Date.now() / 1000; let isRefreshing; let retries = 0; let jwtToken = null; let jwtExpiration = 0; while (true) { let result; try { result = await D1.prepare(\"SELECT token, expiration, is_refreshing FROM tokens WHERE id = 1\").first(); } catch (e) { console.error(\"Error accessing database:\", e); throw new Error(\"Database access error\"); } if (result) { jwtToken = result.token; jwtExpiration = result.expiration; isRefreshing = result.is_refreshing; } else { jwtToken = null; jwtExpiration = 0; isRefreshing = 0; } if (jwtToken \u0026\u0026 jwtExpiration \u003e now + EXPIRATION_BUFFER_SECONDS) { return jwtToken; } if (isRefreshing) { await new Promise(resolve =\u003e setTimeout(resolve, 100)); continue; } try { await D1.prepare(\"INSERT OR REPLACE INTO tokens (id, is_refreshing) VALUES (1, 1)\").run(); } catch (e) { console.error(\"Error updating refresh status in database:\", e); throw new Error(\"Database update error\"); } try { if (!HF_TOKEN || !HF_SPACE_NAME || !HF_SPACE_USER) { throw new Error('One or more required environment variables are missing.'); } const HF_API_URL = `https://huggingface.co/api/spaces/${HF_SPACE_USER}/${HF_SPACE_NAME}/jwt`; let response; while (retries \u003c MAX_RETRIES) { try { response = await fetch(HF_API_URL, { headers: { \"Authorization\": `Bearer ${HF_TOKEN}` }, }); if (!response.ok) { if (response.status \u003e= 500 \u0026\u0026 response.status \u003c 600) { retries++; console.error(`Hugging Face API server error (${response.status}). Retrying (${retries}/${MAX_RETRIES})...`); await new Promise(resolve =\u003e setTimeout(resolve, RETRY_DELAY_MS)); continue; } else { const errorText = await response.text(); throw new Error(`Failed to fetch JWT token: ${response.status} ${response.statusText} - ${errorText}`); } } break; } catch (networkError) { retries++; console.error(`Network error fetching JWT token: ${networkError}. Retrying (${retries}/${MAX_RETRIES})...`); await new Promise(resolve =\u003e setTimeout(resolve, RETRY_DELAY_MS)); } } if (retries === MAX_RETRIES) { throw new Error(\"Max retries reached while fetching JWT token\"); } const apiResult = await response.json(); jwtToken = apiResult.token; try { const jwtPayload = JSON.parse(atob(jwtToken.split('.')[1])); jwtExpiration = jwtPayload.exp; } catch (_) { jwtExpiration = now + 3600; } try { await D1.prepare(\"INSERT OR REPLACE INTO tokens (id, token, expiration, is_refreshing) VALUES (1, ?, ?, 0)\") .bind(jwtToken, jwtExpiration) .run(); } catch (e) { console.error(\"Error saving token to database:\", e); throw new Error(\"Database update error\"); } console.log(`Successfully refreshed JWT token. Expires at ${new Date(jwtExpiration * 1000).toISOString()}`); return jwtToken; } catch (e) { try { await D1.prepare(\"UPDATE tokens SET is_refreshing = 0 WHERE id = 1\").run(); } catch (dbError) { console.error(\"Error resetting refresh status in database:\", dbError); } throw e; } } } async function initDatabase(D1) { try { await D1.batch([ D1.prepare(`CREATE TABLE IF NOT EXISTS tokens ( id INTEGER PRIMARY KEY, token TEXT, expiration REAL, is_refreshing INTEGER DEFAULT 0 );`).bind() ]); } catch (e) { console.error(\"Error initializing database:\", e); throw new Error(\"Failed to initialize database\"); } } export default { async fetch(request, env) { const HF_TOKEN = env.HF_TOKEN; const HF_SPACE_NAME = env.HF_SPACE_NAME; const HF_SPACE_USER = env.HF_SPACE_USER; const D1 = env.D1; try { await initDatabase(D1); const token = await getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1); const url = new URL(request.url); url.host = `${HF_SPACE_USER}-${HF_SPACE_NAME}.hf.space`; const headers = new Headers(); const excludedHeaders = ['host', 'authorization']; for (const [key, value] of request.headers) { if (!excludedHeaders.includes(key.toLowerCase())) { headers.append(key, value); } } const originalCookies = headers.get('Cookie') || ''; const cookieString = originalCookies ? `${originalCookies}; spaces-jwt=${token}` : `spaces-jwt=${token}`; headers.set('Cookie', cookieString); const newRequest = new Request(url.toString(), { method: request.method, headers: headers, body: request.body, redirect: request.redirect, }); const response = await fetch(newRequest); const modifiedHeaders = new Headers(response.headers); modifiedHeaders.delete('Link'); return new Response(response.body, { status: response.status, statusText: response.statusText, headers: modifiedHeaders, }); } catch (error) { console.error(\"Error in fetch handler:\", error); return new Response(`Error: ${error.message}`, { status: 500 }); } }, }; 共计三个变量，HF_SPACE_USER，HF_SPACE_NAME，HF_TOKEN 分别填入对应值\n同时新建一个 D1 数据库\n名称随意\n在 Worker 中绑定这个数据库，变量名为 D1\n再在路由域中添加自己的域名即可\n",
-  "wordCount" : "758",
+  "articleBody": "在论坛大佬们的研究下，最新版反代脚本问世，这下终于可以痛快薅了\n获取 Token 在抱抱脸上点头像后选择 access token\n名称随意\ntoken 权限选 Repositories 的三个即可\n将获取的 Token 保存下来\nWorker 新建一个 Worker，代码如下\nconst MAX_RETRIES = 3; const RETRY_DELAY_MS = 500; const EXPIRATION_BUFFER_SECONDS = 60; async function getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1, forceRefresh = false) { const now = Date.now() / 1000; let isRefreshing; let retries = 0; let jwtToken = null; let jwtExpiration = 0; while (true) { let result; try { result = await D1.prepare(\"SELECT token, expiration, is_refreshing FROM tokens WHERE id = 1\").first(); } catch (e) { throw new Error(\"Database access error\"); } if (result) { jwtToken = result.token; jwtExpiration = result.expiration; isRefreshing = result.is_refreshing; } else { jwtToken = null; jwtExpiration = 0; isRefreshing = 0; } if (jwtToken \u0026\u0026 jwtExpiration \u003e now + EXPIRATION_BUFFER_SECONDS \u0026\u0026 !forceRefresh) { return jwtToken; } if (isRefreshing) { await new Promise((resolve) =\u003e setTimeout(resolve, 100)); continue; } try { await D1.prepare(\"INSERT OR REPLACE INTO tokens (id, is_refreshing) VALUES (1, 1)\").run(); } catch (e) { throw new Error(\"Database update error\"); } try { if (!HF_TOKEN || !HF_SPACE_NAME || !HF_SPACE_USER) { throw new Error('One or more required environment variables are missing.'); } const HF_API_URL = `https://huggingface.co/api/spaces/${HF_SPACE_USER}/${HF_SPACE_NAME}/jwt`; let response; while (retries \u003c MAX_RETRIES) { try { response = await fetch(HF_API_URL, { headers: { \"Authorization\": `Bearer ${HF_TOKEN}` }, }); if (!response.ok) { if (response.status \u003e= 500 \u0026\u0026 response.status \u003c 600) { retries++; await new Promise((resolve) =\u003e setTimeout(resolve, RETRY_DELAY_MS)); continue; } else { const errorText = await response.text(); throw new Error(`Failed to fetch JWT token: ${response.status} ${response.statusText} - ${errorText}`); } } break; } catch (networkError) { retries++; await new Promise((resolve) =\u003e setTimeout(resolve, RETRY_DELAY_MS)); } } if (retries === MAX_RETRIES) { throw new Error(\"Max retries reached while fetching JWT token\"); } const apiResult = await response.json(); jwtToken = apiResult.token; try { const jwtPayload = JSON.parse(atob(jwtToken.split('.')[1])); jwtExpiration = jwtPayload.exp; } catch (_) { jwtExpiration = now + 3600; } try { await D1.prepare(\"INSERT OR REPLACE INTO tokens (id, token, expiration, is_refreshing) VALUES (1, ?, ?, 0)\") .bind(jwtToken, jwtExpiration) .run(); } catch (e) { throw new Error(\"Database update error\"); } return jwtToken; } catch (e) { try { await D1.prepare(\"UPDATE tokens SET is_refreshing = 0 WHERE id = 1\").run(); } catch (dbError) {} throw e; } } } async function initDatabase(D1) { try { await D1.batch([ D1.prepare(`CREATE TABLE IF NOT EXISTS tokens ( id INTEGER PRIMARY KEY, token TEXT, expiration REAL, is_refreshing INTEGER DEFAULT 0 );`).bind() ]); } catch (e) { throw new Error(\"Failed to initialize database\"); } } export default { async fetch(request, env) { const HF_TOKEN = env.HF_TOKEN; const HF_SPACE_NAME = env.HF_SPACE_NAME; const HF_SPACE_USER = env.HF_SPACE_USER; const D1 = env.D1; try { await initDatabase(D1); let token = await getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1); const url = new URL(request.url); url.host = `${HF_SPACE_USER}-${HF_SPACE_NAME}.hf.space`; const headers = new Headers(); for (const [key, value] of request.headers.entries()) { headers.set(key, value); } const originalCookies = headers.get('Cookie') || headers.get('cookie') || ''; const cookieString = originalCookies ? `${originalCookies}; spaces-jwt=${token}` : `spaces-jwt=${token}`; headers.set('Cookie', cookieString); let newRequest = new Request(url.toString(), { method: request.method, headers: headers, body: request.body, redirect: request.redirect, }); let response = await fetch(newRequest); if (response.status === 401 || response.status === 403) { token = await getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1, true); const updatedCookieString = originalCookies ? `${originalCookies}; spaces-jwt=${token}` : `spaces-jwt=${token}`; headers.set('Cookie', updatedCookieString); newRequest = new Request(url.toString(), { method: request.method, headers: headers, body: request.body, redirect: request.redirect, }); response = await fetch(newRequest); } const modifiedHeaders = new Headers(response.headers); modifiedHeaders.delete('Link'); return new Response(response.body, { status: response.status, statusText: response.statusText, headers: modifiedHeaders, }); } catch (error) { return new Response(`Error: ${error.message}`, { status: 500 }); } }, }; 共计三个变量，HF_SPACE_USER，HF_SPACE_NAME，HF_TOKEN 分别填入对应值\n同时新建一个 D1 数据库\n名称随意\n在 Worker 中绑定这个数据库，变量名为 D1\n再在路由域中添加自己的域名即可\n",
+  "wordCount" : "743",
   "inLanguage": "zh",
   "datePublished": "2024-12-05T18:36:01+08:00",
   "dateModified": "2024-12-05T18:36:01+08:00",
@@ -233,7 +233,7 @@
     </h1>
     <div class="post-meta">
 
-<span title='2024-12-05 18:36:01 +0800 CST'>2024-12-05</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;758 字&nbsp;·&nbsp;KiritoXD
+<span title='2024-12-05 18:36:01 +0800 CST'>2024-12-05</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;743 字&nbsp;·&nbsp;KiritoXD
 
 </div>
   </header>
@@ -349,19 +349,18 @@
 </span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> RETRY_DELAY_MS <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">500</span>;
 </span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> EXPIRATION_BUFFER_SECONDS <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">60</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#cba6f7">async</span> <span style="color:#f38ba8">function</span> getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1) {
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">async</span> <span style="color:#f38ba8">function</span> getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1, forceRefresh <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">false</span>) {
 </span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">const</span> now <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89dceb">Date</span>.now() <span style="color:#89dceb;font-weight:bold">/</span> <span style="color:#fab387">1000</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">let</span> isRefreshing;
 </span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">let</span> retries <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">let</span> jwtToken <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">null</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">let</span> jwtExpiration <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>; 
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">let</span> jwtExpiration <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">while</span> (<span style="color:#fab387">true</span>) {
 </span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> result;
 </span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">try</span> {
 </span></span><span style="display:flex;"><span>      result <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> D1.prepare(<span style="color:#a6e3a1">&#34;SELECT token, expiration, is_refreshing FROM tokens WHERE id = 1&#34;</span>).first();
 </span></span><span style="display:flex;"><span>    } <span style="color:#cba6f7">catch</span> (e) {
-</span></span><span style="display:flex;"><span>      console.error(<span style="color:#a6e3a1">&#34;Error accessing database:&#34;</span>, e);
 </span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">throw</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Error</span>(<span style="color:#a6e3a1">&#34;Database access error&#34;</span>);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
@@ -375,19 +374,18 @@
 </span></span><span style="display:flex;"><span>      isRefreshing <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (jwtToken <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> jwtExpiration <span style="color:#89dceb;font-weight:bold">&gt;</span> now <span style="color:#89dceb;font-weight:bold">+</span> EXPIRATION_BUFFER_SECONDS) {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (jwtToken <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> jwtExpiration <span style="color:#89dceb;font-weight:bold">&gt;</span> now <span style="color:#89dceb;font-weight:bold">+</span> EXPIRATION_BUFFER_SECONDS <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> <span style="color:#89dceb;font-weight:bold">!</span>forceRefresh) {
 </span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">return</span> jwtToken;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (isRefreshing) {
-</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">await</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Promise</span>(resolve =&gt; setTimeout(resolve, <span style="color:#fab387">100</span>));
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">await</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Promise</span>((resolve) =&gt; setTimeout(resolve, <span style="color:#fab387">100</span>));
 </span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">continue</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">try</span> {
 </span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">await</span> D1.prepare(<span style="color:#a6e3a1">&#34;INSERT OR REPLACE INTO tokens (id, is_refreshing) VALUES (1, 1)&#34;</span>).run();
 </span></span><span style="display:flex;"><span>    } <span style="color:#cba6f7">catch</span> (e) {
-</span></span><span style="display:flex;"><span>      console.error(<span style="color:#a6e3a1">&#34;Error updating refresh status in database:&#34;</span>, e);
 </span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">throw</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Error</span>(<span style="color:#a6e3a1">&#34;Database update error&#34;</span>);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
@@ -408,8 +406,7 @@
 </span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">if</span> (<span style="color:#89dceb;font-weight:bold">!</span>response.ok) {
 </span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">if</span> (response.status <span style="color:#89dceb;font-weight:bold">&gt;=</span> <span style="color:#fab387">500</span> <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> response.status <span style="color:#89dceb;font-weight:bold">&lt;</span> <span style="color:#fab387">600</span>) {
 </span></span><span style="display:flex;"><span>              retries<span style="color:#89dceb;font-weight:bold">++</span>;
-</span></span><span style="display:flex;"><span>              console.error(<span style="color:#a6e3a1">`Hugging Face API server error (</span><span style="color:#a6e3a1">${</span>response.status<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">). Retrying (</span><span style="color:#a6e3a1">${</span>retries<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">/</span><span style="color:#a6e3a1">${</span>MAX_RETRIES<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">)...`</span>);
-</span></span><span style="display:flex;"><span>              <span style="color:#cba6f7">await</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Promise</span>(resolve =&gt; setTimeout(resolve, RETRY_DELAY_MS));
+</span></span><span style="display:flex;"><span>              <span style="color:#cba6f7">await</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Promise</span>((resolve) =&gt; setTimeout(resolve, RETRY_DELAY_MS));
 </span></span><span style="display:flex;"><span>              <span style="color:#cba6f7">continue</span>;
 </span></span><span style="display:flex;"><span>            } <span style="color:#cba6f7">else</span> {
 </span></span><span style="display:flex;"><span>              <span style="color:#cba6f7">const</span> errorText <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> response.text();
@@ -421,8 +418,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        } <span style="color:#cba6f7">catch</span> (networkError) {
 </span></span><span style="display:flex;"><span>          retries<span style="color:#89dceb;font-weight:bold">++</span>;
-</span></span><span style="display:flex;"><span>          console.error(<span style="color:#a6e3a1">`Network error fetching JWT token: </span><span style="color:#a6e3a1">${</span>networkError<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">. Retrying (</span><span style="color:#a6e3a1">${</span>retries<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">/</span><span style="color:#a6e3a1">${</span>MAX_RETRIES<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">)...`</span>);
-</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">await</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Promise</span>(resolve =&gt; setTimeout(resolve, RETRY_DELAY_MS));
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">await</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Promise</span>((resolve) =&gt; setTimeout(resolve, RETRY_DELAY_MS));
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      }
 </span></span><span style="display:flex;"><span>
@@ -445,19 +441,15 @@
 </span></span><span style="display:flex;"><span>          .bind(jwtToken, jwtExpiration)
 </span></span><span style="display:flex;"><span>          .run();
 </span></span><span style="display:flex;"><span>      } <span style="color:#cba6f7">catch</span> (e) {
-</span></span><span style="display:flex;"><span>        console.error(<span style="color:#a6e3a1">&#34;Error saving token to database:&#34;</span>, e);
 </span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">throw</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Error</span>(<span style="color:#a6e3a1">&#34;Database update error&#34;</span>);
 </span></span><span style="display:flex;"><span>      }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      console.log(<span style="color:#a6e3a1">`Successfully refreshed JWT token. Expires at </span><span style="color:#a6e3a1">${</span><span style="color:#cba6f7">new</span> <span style="color:#89dceb">Date</span>(jwtExpiration <span style="color:#89dceb;font-weight:bold">*</span> <span style="color:#fab387">1000</span>).toISOString()<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">`</span>);
 </span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">return</span> jwtToken;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    } <span style="color:#cba6f7">catch</span> (e) {
 </span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">try</span> {
 </span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">await</span> D1.prepare(<span style="color:#a6e3a1">&#34;UPDATE tokens SET is_refreshing = 0 WHERE id = 1&#34;</span>).run();
-</span></span><span style="display:flex;"><span>      } <span style="color:#cba6f7">catch</span> (dbError) {
-</span></span><span style="display:flex;"><span>        console.error(<span style="color:#a6e3a1">&#34;Error resetting refresh status in database:&#34;</span>, dbError);
-</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      } <span style="color:#cba6f7">catch</span> (dbError) {}
 </span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">throw</span> e;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  }
@@ -474,7 +466,6 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">      );`</span>).bind()
 </span></span><span style="display:flex;"><span>    ]);
 </span></span><span style="display:flex;"><span>  } <span style="color:#cba6f7">catch</span> (e) {
-</span></span><span style="display:flex;"><span>    console.error(<span style="color:#a6e3a1">&#34;Error initializing database:&#34;</span>, e);
 </span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">throw</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Error</span>(<span style="color:#a6e3a1">&#34;Failed to initialize database&#34;</span>);
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
@@ -488,31 +479,44 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">try</span> {
 </span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">await</span> initDatabase(D1);
-</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> token <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1);
+</span></span><span style="display:flex;"><span>      <span style="color:#f38ba8">let</span> token <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> url <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> URL(request.url);
 </span></span><span style="display:flex;"><span>      url.host <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">`</span><span style="color:#a6e3a1">${</span>HF_SPACE_USER<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">-</span><span style="color:#a6e3a1">${</span>HF_SPACE_NAME<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">.hf.space`</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> headers <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> Headers();
-</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> excludedHeaders <span style="color:#89dceb;font-weight:bold">=</span> [<span style="color:#a6e3a1">&#39;host&#39;</span>, <span style="color:#a6e3a1">&#39;authorization&#39;</span>];
-</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">for</span> (<span style="color:#cba6f7">const</span> [key, value] <span style="color:#cba6f7">of</span> request.headers) {
-</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (<span style="color:#89dceb;font-weight:bold">!</span>excludedHeaders.includes(key.toLowerCase())) {
-</span></span><span style="display:flex;"><span>          headers.append(key, value);
-</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">for</span> (<span style="color:#cba6f7">const</span> [key, value] <span style="color:#cba6f7">of</span> request.headers.entries()) {
+</span></span><span style="display:flex;"><span>        headers.set(key, value);
 </span></span><span style="display:flex;"><span>      }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> originalCookies <span style="color:#89dceb;font-weight:bold">=</span> headers.get(<span style="color:#a6e3a1">&#39;Cookie&#39;</span>) <span style="color:#89dceb;font-weight:bold">||</span> <span style="color:#a6e3a1">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> originalCookies <span style="color:#89dceb;font-weight:bold">=</span> headers.get(<span style="color:#a6e3a1">&#39;Cookie&#39;</span>) <span style="color:#89dceb;font-weight:bold">||</span> headers.get(<span style="color:#a6e3a1">&#39;cookie&#39;</span>) <span style="color:#89dceb;font-weight:bold">||</span> <span style="color:#a6e3a1">&#39;&#39;</span>;
 </span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> cookieString <span style="color:#89dceb;font-weight:bold">=</span> originalCookies <span style="color:#89dceb;font-weight:bold">?</span> <span style="color:#a6e3a1">`</span><span style="color:#a6e3a1">${</span>originalCookies<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">; spaces-jwt=</span><span style="color:#a6e3a1">${</span>token<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">`</span> <span style="color:#89dceb;font-weight:bold">:</span> <span style="color:#a6e3a1">`spaces-jwt=</span><span style="color:#a6e3a1">${</span>token<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">`</span>;
 </span></span><span style="display:flex;"><span>      headers.set(<span style="color:#a6e3a1">&#39;Cookie&#39;</span>, cookieString);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> newRequest <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> Request(url.toString(), {
+</span></span><span style="display:flex;"><span>      <span style="color:#f38ba8">let</span> newRequest <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> Request(url.toString(), {
 </span></span><span style="display:flex;"><span>        method<span style="color:#89dceb;font-weight:bold">:</span> request.method,
 </span></span><span style="display:flex;"><span>        headers<span style="color:#89dceb;font-weight:bold">:</span> headers,
 </span></span><span style="display:flex;"><span>        body<span style="color:#89dceb;font-weight:bold">:</span> request.body,
 </span></span><span style="display:flex;"><span>        redirect<span style="color:#89dceb;font-weight:bold">:</span> request.redirect,
 </span></span><span style="display:flex;"><span>      });
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> response <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> fetch(newRequest);
+</span></span><span style="display:flex;"><span>      <span style="color:#f38ba8">let</span> response <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> fetch(newRequest);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">if</span> (response.status <span style="color:#89dceb;font-weight:bold">===</span> <span style="color:#fab387">401</span> <span style="color:#89dceb;font-weight:bold">||</span> response.status <span style="color:#89dceb;font-weight:bold">===</span> <span style="color:#fab387">403</span>) {
+</span></span><span style="display:flex;"><span>        token <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1, <span style="color:#fab387">true</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">const</span> updatedCookieString <span style="color:#89dceb;font-weight:bold">=</span> originalCookies <span style="color:#89dceb;font-weight:bold">?</span> <span style="color:#a6e3a1">`</span><span style="color:#a6e3a1">${</span>originalCookies<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">; spaces-jwt=</span><span style="color:#a6e3a1">${</span>token<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">`</span> <span style="color:#89dceb;font-weight:bold">:</span> <span style="color:#a6e3a1">`spaces-jwt=</span><span style="color:#a6e3a1">${</span>token<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">`</span>;
+</span></span><span style="display:flex;"><span>        headers.set(<span style="color:#a6e3a1">&#39;Cookie&#39;</span>, updatedCookieString);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        newRequest <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> Request(url.toString(), {
+</span></span><span style="display:flex;"><span>          method<span style="color:#89dceb;font-weight:bold">:</span> request.method,
+</span></span><span style="display:flex;"><span>          headers<span style="color:#89dceb;font-weight:bold">:</span> headers,
+</span></span><span style="display:flex;"><span>          body<span style="color:#89dceb;font-weight:bold">:</span> request.body,
+</span></span><span style="display:flex;"><span>          redirect<span style="color:#89dceb;font-weight:bold">:</span> request.redirect,
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        response <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> fetch(newRequest);
+</span></span><span style="display:flex;"><span>      }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> modifiedHeaders <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> Headers(response.headers);
 </span></span><span style="display:flex;"><span>      modifiedHeaders.<span style="color:#cba6f7">delete</span>(<span style="color:#a6e3a1">&#39;Link&#39;</span>);
@@ -524,7 +528,6 @@
 </span></span><span style="display:flex;"><span>      });
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    } <span style="color:#cba6f7">catch</span> (error) {
-</span></span><span style="display:flex;"><span>      console.error(<span style="color:#a6e3a1">&#34;Error in fetch handler:&#34;</span>, error);
 </span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">return</span> <span style="color:#cba6f7">new</span> Response(<span style="color:#a6e3a1">`Error: </span><span style="color:#a6e3a1">${</span>error.message<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">`</span>, { status<span style="color:#89dceb;font-weight:bold">:</span> <span style="color:#fab387">500</span> });
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  },
