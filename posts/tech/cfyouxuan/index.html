@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>自建小玩具 | KiritoXD&#39;s Blog</title>
-<meta name="keywords" content="tool">
-<meta name="description" content="自建使我快乐">
+<title>CloudFlare 优选教程 | KiritoXD&#39;s Blog</title>
+<meta name="keywords" content="Cloudflare">
+<meta name="description" content="简单记录优选使用过程">
 <meta name="author" content="KiritoXD">
-<link rel="canonical" href="https://nl.050623.xyz/posts/tech/tools/">
+<link rel="canonical" href="https://nl.050623.xyz/posts/tech/cfyouxuan/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://nl.050623.xyz/img/a.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://nl.050623.xyz/img/a.png">
@@ -18,7 +18,7 @@
 <link rel="mask-icon" href="https://nl.050623.xyz/img/a.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://nl.050623.xyz/posts/tech/tools/">
+<link rel="alternate" hreflang="zh" href="https://nl.050623.xyz/posts/tech/cfyouxuan/">
 <noscript>
     <style>
         #theme-toggle,
@@ -80,16 +80,16 @@
 
   
 
-<meta property="og:title" content="自建小玩具" />
-<meta property="og:description" content="自建使我快乐" />
+<meta property="og:title" content="CloudFlare 优选教程" />
+<meta property="og:description" content="简单记录优选使用过程" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://nl.050623.xyz/posts/tech/tools/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-10-31T20:58:59+08:00" />
-<meta property="article:modified_time" content="2024-10-31T20:58:59+08:00" />
+<meta property="og:url" content="https://nl.050623.xyz/posts/tech/cfyouxuan/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-12-27T15:09:14+08:00" />
+<meta property="article:modified_time" content="2024-12-27T15:09:14+08:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="自建小玩具"/>
-<meta name="twitter:description" content="自建使我快乐"/>
+<meta name="twitter:title" content="CloudFlare 优选教程"/>
+<meta name="twitter:description" content="简单记录优选使用过程"/>
 
 
 <script type="application/ld+json">
@@ -112,8 +112,8 @@
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "自建小玩具",
-      "item": "https://nl.050623.xyz/posts/tech/tools/"
+      "name": "CloudFlare 优选教程",
+      "item": "https://nl.050623.xyz/posts/tech/cfyouxuan/"
     }
   ]
 }
@@ -122,24 +122,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "自建小玩具",
-  "name": "自建小玩具",
-  "description": "自建使我快乐",
+  "headline": "CloudFlare 优选教程",
+  "name": "CloudFlare 优选教程",
+  "description": "简单记录优选使用过程",
   "keywords": [
-    "tool"
+    "Cloudflare"
   ],
-  "articleBody": "基本都是搭在 Serv00 上的\n又搞了几个 CF Worker 上的\nAlist 链接\nPrivateBin 链接\n图床 链接\n剪贴板 链接\nWebSSH 已废弃 暂用 Linux-do 佬友的服务 链接\nCron-Serv00 链接\nUptime-KUMA 链接\nProxy 订阅转换：链接 Serv00 和 CF Worker 节点：链接 ",
-  "wordCount" : "70",
+  "articleBody": "本文使用 SAAS 进行优选，需要绑定支付方式。\n前提 两个域名，开通 SAAS\n两个域名分别为 a.com, b.com\n假设 a.com 是访问用的域名，b.com 是用来回源优选的域名\na.com 托管服务任选，b.com 必须在 cf 上\n回退源 下面是对 b.com 的操作\n此处写一个回退域名即 xxx.b.com\n然后在 DNS 记录里添加一条 A 记录，由 xxx 指向实际访问的地址（如 Serv00 就指向真实 IP）\n注意此条 A 记录必须开启代理（小黄云）\n优选源 同样对 b.com 操作\nDNS 记录中添加一条 CNAME 记录，由 xxxx 指向 一个优选域名\n可以在此找一个自己测速最优的来用\n使用 首先操作 b.com\n添加 a.com 即日常使用的地址\n下方会出现对应域名\n稍作等待，点开对应域名，里面会有两栏对应数据\n保存下来。\n接着操作 a.com\n在 a.com 的 DNS 记录中先添加两条 txt 记录\n分别对应上面保存的\n然后再添加一条 cname 记录，指向前文的 xxxx.b.com\nEND Enjoy it and fuck dio\n",
+  "wordCount" : "312",
   "inLanguage": "zh",
-  "datePublished": "2024-10-31T20:58:59+08:00",
-  "dateModified": "2024-10-31T20:58:59+08:00",
+  "datePublished": "2024-12-27T15:09:14+08:00",
+  "dateModified": "2024-12-27T15:09:14+08:00",
   "author":[{
     "@type": "Person",
     "name": "KiritoXD"
   }],
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://nl.050623.xyz/posts/tech/tools/"
+    "@id": "https://nl.050623.xyz/posts/tech/cfyouxuan/"
   },
   "publisher": {
     "@type": "Organization",
@@ -229,11 +229,11 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://nl.050623.xyz/">主页</a>&nbsp;»&nbsp;<a href="https://nl.050623.xyz/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://nl.050623.xyz/posts/tech/">👨🏻‍💻 技术</a></div>
     <h1 class="post-title entry-hint-parent">
-      自建小玩具
+      CloudFlare 优选教程
     </h1>
     <div class="post-meta">
 
-<span title='2024-10-31 20:58:59 +0800 CST'>2024-10-31</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;70 字&nbsp;·&nbsp;KiritoXD
+<span title='2024-12-27 15:09:14 +0800 CST'>2024-12-27</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;312 字&nbsp;·&nbsp;KiritoXD
 
 </div>
   </header>
@@ -248,21 +248,15 @@
 
             <div class="inner"><ul>
                     <li>
-                        <a href="#alist" aria-label="Alist">Alist</a></li>
+                        <a href="#%e5%89%8d%e6%8f%90" aria-label="前提">前提</a></li>
                     <li>
-                        <a href="#privatebin" aria-label="PrivateBin">PrivateBin</a></li>
+                        <a href="#%e5%9b%9e%e9%80%80%e6%ba%90" aria-label="回退源">回退源</a></li>
                     <li>
-                        <a href="#%e5%9b%be%e5%ba%8a" aria-label="图床">图床</a></li>
+                        <a href="#%e4%bc%98%e9%80%89%e6%ba%90" aria-label="优选源">优选源</a></li>
                     <li>
-                        <a href="#%e5%89%aa%e8%b4%b4%e6%9d%bf" aria-label="剪贴板">剪贴板</a></li>
+                        <a href="#%e4%bd%bf%e7%94%a8" aria-label="使用">使用</a></li>
                     <li>
-                        <a href="#webssh" aria-label="WebSSH">WebSSH</a></li>
-                    <li>
-                        <a href="#cron-serv00" aria-label="Cron-Serv00">Cron-Serv00</a></li>
-                    <li>
-                        <a href="#uptime-kuma" aria-label="Uptime-KUMA">Uptime-KUMA</a></li>
-                    <li>
-                        <a href="#proxy" aria-label="Proxy">Proxy</a>
+                        <a href="#end" aria-label="END">END</a>
                     </li>
                 </ul>
             </div>
@@ -330,45 +324,61 @@
 </script>
 
 
-  <div class="post-content"><p>基本都是搭在 <a href="https://jtb.050623.xyz/?3c36a270046e5ca8#EFh9JK2b9WwHU3XPmViZSdkd9PQVLvFXPzPetm6c9nnn">Serv00</a> 上的</p>
-<p>又搞了几个 CF Worker 上的</p>
-<h3 id="alist">Alist<a hidden class="anchor" aria-hidden="true" href="#alist">#</a></h3>
-<p><a href="https://kiritoxd.us.kg/">链接</a></p>
-<h3 id="privatebin">PrivateBin<a hidden class="anchor" aria-hidden="true" href="#privatebin">#</a></h3>
-<p><a href="https://jtb.050623.xyz/">链接</a></p>
-<h3 id="图床">图床<a hidden class="anchor" aria-hidden="true" href="#图床">#</a></h3>
-<p><a href="https://img.050623.xyz/">链接</a></p>
-<h3 id="剪贴板">剪贴板<a hidden class="anchor" aria-hidden="true" href="#剪贴板">#</a></h3>
-<p><a href="https://paste.050623.xyz/">链接</a></p>
-<h3 id="webssh">WebSSH<a hidden class="anchor" aria-hidden="true" href="#webssh">#</a></h3>
-<p>已废弃  暂用 Linux-do 佬友的服务 <a href="https://webssh.linux-do.rr.nu/">链接</a></p>
-<h3 id="cron-serv00">Cron-Serv00<a hidden class="anchor" aria-hidden="true" href="#cron-serv00">#</a></h3>
-<p><a href="https://cron.050623.xyz/">链接</a></p>
-<h3 id="uptime-kuma">Uptime-KUMA<a hidden class="anchor" aria-hidden="true" href="#uptime-kuma">#</a></h3>
-<p><a href="https://status.050623.xyz/">链接</a></p>
-<h3 id="proxy">Proxy<a hidden class="anchor" aria-hidden="true" href="#proxy">#</a></h3>
-<ul>
-<li>订阅转换：<a href="https://sub.050623.xyz/">链接</a></li>
-<li>Serv00 和 CF Worker 节点：<a href="https://sub.050623.xyz/b/c4dY6hl">链接</a></li>
-</ul>
+  <div class="post-content"><p>本文使用 SAAS 进行优选，需要绑定支付方式。</p>
+<h3 id="前提">前提<a hidden class="anchor" aria-hidden="true" href="#前提">#</a></h3>
+<p>两个域名，开通 SAAS</p>
+<p>两个域名分别为 a.com, b.com</p>
+<p>假设 a.com 是访问用的域名，b.com 是用来回源优选的域名</p>
+<p>a.com 托管服务任选，b.com 必须在 cf 上</p>
+<h3 id="回退源">回退源<a hidden class="anchor" aria-hidden="true" href="#回退源">#</a></h3>
+<p>下面是对 b.com 的操作</p>
+<p><img loading="lazy" src="https://img.050623.xyz/file/1735283719609_image.png" alt="image.png"  />
+</p>
+<p><img loading="lazy" src="https://img.050623.xyz/file/1735283776813_image.png" alt="image.png"  />
+</p>
+<p>此处写一个回退域名即 xxx.b.com</p>
+<p>然后在 DNS 记录里添加一条 A 记录，由 xxx 指向实际访问的地址（如 Serv00 就指向真实 IP）</p>
+<p>注意此条 A 记录必须开启代理（小黄云）</p>
+<h3 id="优选源">优选源<a hidden class="anchor" aria-hidden="true" href="#优选源">#</a></h3>
+<p>同样对 b.com 操作</p>
+<p>DNS 记录中添加一条 CNAME 记录，由 xxxx 指向 一个优选域名</p>
+<p>可以在<a href="https://www.wetest.vip/page/cloudflare/cname.html">此</a>找一个自己测速最优的来用</p>
+<h3 id="使用">使用<a hidden class="anchor" aria-hidden="true" href="#使用">#</a></h3>
+<p>首先操作 b.com<br>
+<img loading="lazy" src="https://img.050623.xyz/file/1735283719609_image.png" alt="image.png"  />
+</p>
+<p><img loading="lazy" src="https://img.050623.xyz/file/1735284192171_image.png" alt="image.png"  />
+</p>
+<p>添加 a.com 即日常使用的地址</p>
+<p>下方会出现对应域名</p>
+<p>稍作等待，点开对应域名，里面会有两栏对应数据</p>
+<p><img loading="lazy" src="https://img.050623.xyz/file/1735284401007_image.png" alt="image.png"  />
+</p>
+<p>保存下来。</p>
+<p>接着操作 a.com</p>
+<p>在 a.com 的 DNS 记录中先添加两条 txt 记录</p>
+<p>分别对应上面保存的</p>
+<p>然后再添加一条 cname 记录，指向前文的 xxxx.b.com</p>
+<h3 id="end">END<a hidden class="anchor" aria-hidden="true" href="#end">#</a></h3>
+<p>Enjoy it and fuck dio</p>
 
 
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://nl.050623.xyz/tags/tool/">Tool</a></li>
+      <li><a href="https://nl.050623.xyz/tags/cloudflare/">Cloudflare</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://nl.050623.xyz/posts/study/template/">
+  <a class="prev" href="https://nl.050623.xyz/posts/tech/tools/">
     <span class="title">« 上一页</span>
     <br>
-    <span>Template</span>
+    <span>自建小玩具</span>
   </a>
-  <a class="next" href="https://nl.050623.xyz/posts/tech/cfyouxuan/">
+  <a class="next" href="https://nl.050623.xyz/posts/tech/cf-worker-hf/">
     <span class="title">下一页 »</span>
     <br>
-    <span>CloudFlare 优选教程</span>
+    <span>对 Hugging Face 使用反代吧！</span>
   </a>
 </nav>
 
