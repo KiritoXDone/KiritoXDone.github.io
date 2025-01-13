@@ -6,7 +6,7 @@
     <description>Recent content on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 27 Dec 2024 15:09:14 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jan 2025 17:27:31 +0800</lastBuildDate>
     <atom:link href="https://blog.050623.xyz/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Template</title>
@@ -21,6 +21,13 @@
       <pubDate>Thu, 31 Oct 2024 20:58:59 +0800</pubDate>
       <guid>https://blog.050623.xyz/posts/tech/tools/</guid>
       <description>自建使我快乐</description>
+    </item>
+    <item>
+      <title>Codeforces Round 995 (Div. 3)</title>
+      <link>https://blog.050623.xyz/posts/study/cf995/</link>
+      <pubDate>Mon, 13 Jan 2025 17:27:31 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/study/cf995/</guid>
+      <description>寒假复健 Codeforces Round 995 (Div. 3) 补题</description>
     </item>
     <item>
       <title>CloudFlare 优选教程</title>
