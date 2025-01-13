@@ -6,8 +6,15 @@
     <description>Recent content in Categories on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 27 Dec 2024 15:09:14 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jan 2025 17:27:31 +0800</lastBuildDate>
     <atom:link href="https://cf.050623.xyz/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Study</title>
+      <link>https://cf.050623.xyz/categories/study/</link>
+      <pubDate>Mon, 13 Jan 2025 17:27:31 +0800</pubDate>
+      <guid>https://cf.050623.xyz/categories/study/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Cloudflare</title>
       <link>https://cf.050623.xyz/categories/cloudflare/</link>
@@ -20,13 +27,6 @@
       <link>https://cf.050623.xyz/categories/tech/</link>
       <pubDate>Thu, 05 Dec 2024 18:36:01 +0800</pubDate>
       <guid>https://cf.050623.xyz/categories/tech/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Study</title>
-      <link>https://cf.050623.xyz/categories/study/</link>
-      <pubDate>Tue, 03 Dec 2024 12:20:07 +0800</pubDate>
-      <guid>https://cf.050623.xyz/categories/study/</guid>
       <description></description>
     </item>
   </channel>
