@@ -6,7 +6,7 @@
     <description>Recent content in Study on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 03 Dec 2024 12:20:07 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 21 Jan 2025 19:41:26 +0800</lastBuildDate>
     <atom:link href="https://kiritoxdone.github.io/categories/study/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Template</title>
@@ -14,6 +14,20 @@
       <pubDate>Sun, 03 Nov 2024 11:37:33 +0800</pubDate>
       <guid>https://kiritoxdone.github.io/posts/study/template/</guid>
       <description>常用模板，不时更新</description>
+    </item>
+    <item>
+      <title>Codeforces Round 998 (Div. 3)</title>
+      <link>https://kiritoxdone.github.io/posts/study/cf998/</link>
+      <pubDate>Tue, 21 Jan 2025 19:41:26 +0800</pubDate>
+      <guid>https://kiritoxdone.github.io/posts/study/cf998/</guid>
+      <description>够草的图论</description>
+    </item>
+    <item>
+      <title>Codeforces Round 995 (Div. 3)</title>
+      <link>https://kiritoxdone.github.io/posts/study/cf995/</link>
+      <pubDate>Mon, 13 Jan 2025 17:27:31 +0800</pubDate>
+      <guid>https://kiritoxdone.github.io/posts/study/cf995/</guid>
+      <description>寒假复健 Codeforces Round 995 (Div. 3) 补题</description>
     </item>
     <item>
       <title>CCPC2024jinan</title>
