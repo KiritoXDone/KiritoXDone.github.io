@@ -84,8 +84,8 @@
 <meta property="og:description" content="Codeforces Round 1000 (Div. 2) 补题" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.050623.xyz/posts/study/cf1000/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2025-01-23T23:41:12+08:00" />
-<meta property="article:modified_time" content="2025-01-23T23:41:12+08:00" />
+<meta property="article:published_time" content="2025-01-29T14:35:18+08:00" />
+<meta property="article:modified_time" content="2025-01-29T14:35:18+08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Codeforces Round 1000 (Div. 2)"/>
@@ -131,8 +131,8 @@
   "articleBody": "A. Minimal Coprime 观察样例发现右减左即为答案，左右为 1 为特例\n#include using namespace std; #define ls now\u003c\u003c1 #define rs now\u003c\u003c1|1 #define endl \"\\n\" #define lowbit(x) ((x)\u0026(-x)) typedef long long ll; const int N=1e5+7, mod=1e9+7; int l,r; void solve(){ cin\u003e\u003el\u003e\u003er; if(l==1\u0026\u0026r==1){ cout\u003c\u003c1\u003c\u003cendl; return; } cout\u003c\u003cr-l\u003c\u003cendl; return; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; cin\u003e\u003et; while(t--)solve(); return 0; } B. Subsequence Update 必须且仅操作一次，将目标位置中的小的置换到外面，因为只能操作一次，要么移动到左侧，要么移动到右侧，看哪一侧能得到更大的值即可。\n#include using namespace std; #define ls now\u003c\u003c1 #define rs now\u003c\u003c1|1 #define endl \"\\n\" #define lowbit(x) ((x)\u0026(-x)) typedef long long ll; const int N=1e5+7, mod=1e9+7; int n,l,r; ll a[N]; ll sum; void solve(){ cin\u003e\u003en\u003e\u003el\u003e\u003er; sum=0; for(int i=1;i\u003c=n;i++)cin\u003e\u003ea[i]; vector\u003cint\u003et,la,ra; for(int i=l;i\u003c=r;i++)t.push_back(a[i]); for(int i=1;i\u003cl;i++)la.push_back(a[i]); for(int i=r+1;i\u003c=n;i++)ra.push_back(a[i]); sort(t.begin(),t.end()); sort(la.begin(),la.end()); sort(ra.begin(),ra.end()); for(int i=0;i\u003ct.size();i++)sum+=t[i]; ll ans=sum,tmp=0; for(int i=0;i\u003cla.size()\u0026\u0026i\u003ct.size();i++){ tmp+=(la[i]-t[t.size()-1-i]); ans=min(ans,sum+tmp); } tmp=0; for(int i=0;i\u003cra.size()\u0026\u0026i\u003ct.size();i++){ tmp+=(ra[i]-t[t.size()-1-i]); ans=min(ans,sum+tmp); } cout\u003c\u003cans\u003c\u003cendl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; cin\u003e\u003et; while(t--)solve(); return 0; } C. Remove Exactly Two 必须且仅能删除两个点，要将树分成森林，树的数目尽量多，一定是删度数大的两个点。\n但是删一个点后，其他点的度数也可能发生变化，所以可以固定删除的一个点，遍历其他所有点的度数，答案即为两点度数和 - 1，如果当前点和固定点之间有边就多减 1 。\n#include using namespace std; #define ls now\u003c\u003c1 #define rs now\u003c\u003c1|1 #define endl \"\\n\" #define lowbit(x) ((x)\u0026(-x)) typedef long long ll; const int N=2e5+7, mod=1e9+7; struct Node{ int id,dep=0; bool operator\u003c(const Node \u0026t){ return dep\u003ct.dep; } }a[N]; int n; map\u003cpair\u003cint,int\u003e,int\u003evis; void solve(){ cin\u003e\u003en; vis.clear(); for(int i=1;i\u003c=n;i++){ a[i].id=i; a[i].dep=0; } for(int i=1;i\u003cn;i++){ int u,v; cin\u003e\u003eu\u003e\u003ev; a[u].dep++; a[v].dep++; vis[{u,v}]=vis[{v,u}]=1; } if(n\u003c=2){ cout\u003c\u003c0\u003c\u003cendl; return; } sort(a+1,a+1+n); int ans=0; for(int i=1;i\u003cn;i++){ ans=max(ans,a[n].dep+a[i].dep-1-vis[{a[n].id,a[i].id}]); } for(int i=1;i\u003cn-1;i++){ ans=max(ans,a[n-1].dep+a[i].dep-1-vis[{a[n-1].id,a[i].id}]); } cout\u003c\u003cans\u003c\u003cendl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; cin\u003e\u003et; while(t--)solve(); return 0; } D. Game With Triangles 可以确定，每次取都是取一条线上两侧的点和另一条线上任意一个点，会使得能取的线段越来越短，即所求函数的增幅越来越小，但始终单调递增。\n随着 k 增大，不能完全按照最大策略来取，即函数值为变为单凸函数，可以确定用三分来解决。\n#include using namespace std; #define ls now\u003c\u003c1 #define rs now\u003c\u003c1|1 #define endl \"\\n\" #define lowbit(x) ((x)\u0026(-x)) typedef long long ll; const int N=2e5+7, mod=1e9+7; int n,m,k; ll a[N],b[N],f[N]; void solve(){ cin\u003e\u003en\u003e\u003em; for(int i=1;i\u003c=n;i++)cin\u003e\u003ea[i]; for(int i=1;i\u003c=m;i++)cin\u003e\u003eb[i]; sort(a+1,a+1+n); sort(b+1,b+1+m); for(int i=1;i\u003c=n/2;i++)a[i]=a[n-i+1]-a[i]; for(int i=1;i\u003c=m/2;i++)b[i]=b[m-i+1]-b[i]; for(int i=1;i\u003c=n/2;i++)a[i]+=a[i-1]; for(int i=1;i\u003c=m/2;i++)b[i]+=b[i-1]; for(k=1;;k++){ int l=max(k-m/2,max(0,k*2-m)),r=min(n/2,min(k,n-k)); while(l+1\u003cr){ int mid=(l+r)\u003e\u003e1; ll x=a[mid-1]+b[k-mid+1]; ll y=a[mid+1]+b[k-mid-1]; if(x\u003cy)l=mid; else r=mid; } f[k]=-1; for(int i=l;i\u003c=r;i++)f[k]=max(f[k],a[i]+b[k-i]); if(f[k]\u003c0)break; } cout\u003c\u003ck-1\u003c\u003cendl; for(int i=1;i\u003ck;i++)cout\u003c\u003cf[i]\u003c\u003c\" \"; cout\u003c\u003cendl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; cin\u003e\u003et; while(t--)solve(); return 0; } ",
   "wordCount" : "611",
   "inLanguage": "zh",
-  "datePublished": "2025-01-23T23:41:12+08:00",
-  "dateModified": "2025-01-23T23:41:12+08:00",
+  "datePublished": "2025-01-29T14:35:18+08:00",
+  "dateModified": "2025-01-29T14:35:18+08:00",
   "author":[{
     "@type": "Person",
     "name": "KiritoXD"
@@ -233,7 +233,7 @@
     </h1>
     <div class="post-meta">
 
-<span title='2025-01-23 23:41:12 +0800 CST'>2025-01-23</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;611 字&nbsp;·&nbsp;KiritoXD
+<span title='2025-01-29 14:35:18 +0800 CST'>2025-01-29</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;611 字&nbsp;·&nbsp;KiritoXD
 
 </div>
   </header>
