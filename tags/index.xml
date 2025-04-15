@@ -6,20 +6,55 @@
     <description>Recent content in Tags on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 29 Jan 2025 14:35:18 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Apr 2025 18:01:03 +0800</lastBuildDate>
     <atom:link href="https://blog.050623.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Codeforces</title>
-      <link>https://blog.050623.xyz/tags/codeforces/</link>
-      <pubDate>Wed, 29 Jan 2025 14:35:18 +0800</pubDate>
-      <guid>https://blog.050623.xyz/tags/codeforces/</guid>
+      <title>ICPC</title>
+      <link>https://blog.050623.xyz/tags/icpc/</link>
+      <pubDate>Tue, 15 Apr 2025 18:01:03 +0800</pubDate>
+      <guid>https://blog.050623.xyz/tags/icpc/</guid>
       <description></description>
     </item>
     <item>
       <title>补题</title>
       <link>https://blog.050623.xyz/tags/%E8%A1%A5%E9%A2%98/</link>
-      <pubDate>Wed, 29 Jan 2025 14:35:18 +0800</pubDate>
+      <pubDate>Tue, 15 Apr 2025 18:01:03 +0800</pubDate>
       <guid>https://blog.050623.xyz/tags/%E8%A1%A5%E9%A2%98/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Study</title>
+      <link>https://blog.050623.xyz/tags/study/</link>
+      <pubDate>Mon, 07 Apr 2025 17:37:46 +0800</pubDate>
+      <guid>https://blog.050623.xyz/tags/study/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Serv00</title>
+      <link>https://blog.050623.xyz/tags/serv00/</link>
+      <pubDate>Tue, 18 Mar 2025 13:42:24 +0800</pubDate>
+      <guid>https://blog.050623.xyz/tags/serv00/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sub-Store</title>
+      <link>https://blog.050623.xyz/tags/sub-store/</link>
+      <pubDate>Tue, 18 Mar 2025 13:42:24 +0800</pubDate>
+      <guid>https://blog.050623.xyz/tags/sub-store/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Codeforces</title>
+      <link>https://blog.050623.xyz/tags/codeforces/</link>
+      <pubDate>Mon, 17 Feb 2025 17:24:25 +0800</pubDate>
+      <guid>https://blog.050623.xyz/tags/codeforces/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>拓扑排序</title>
+      <link>https://blog.050623.xyz/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/</link>
+      <pubDate>Fri, 07 Feb 2025 14:40:18 +0800</pubDate>
+      <guid>https://blog.050623.xyz/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/</guid>
       <description></description>
     </item>
     <item>
@@ -104,13 +139,6 @@
       <link>https://blog.050623.xyz/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/</link>
       <pubDate>Sat, 19 Oct 2024 18:00:00 +0800</pubDate>
       <guid>https://blog.050623.xyz/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>ICPC</title>
-      <link>https://blog.050623.xyz/tags/icpc/</link>
-      <pubDate>Mon, 14 Oct 2024 21:33:28 +0800</pubDate>
-      <guid>https://blog.050623.xyz/tags/icpc/</guid>
       <description></description>
     </item>
     <item>
