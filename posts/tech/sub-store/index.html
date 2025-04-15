@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Serv00 搭建 Sub Store 教程 | KiritoXD&#39;s Blog</title>
+<meta name="keywords" content="Serv00, Sub-Store">
+<meta name="description" content="在 Serv00 搭建自己的 Sub Store 的简易教程">
+<meta name="author" content="KiritoXD">
+<link rel="canonical" href="https://cf.050623.xyz/posts/tech/sub-store/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://cf.050623.xyz/img/a.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://cf.050623.xyz/img/a.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://cf.050623.xyz/img/a.png">
+<link rel="apple-touch-icon" href="https://cf.050623.xyz/img/a.png">
+<link rel="mask-icon" href="https://cf.050623.xyz/img/a.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://cf.050623.xyz/posts/tech/sub-store/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" integrity="sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js" integrity="sha384-Qsn9KnoKISj6dI8g7p1HBlNpVx0I8p1SvlwOldgi3IorMle61nQy4zEahWYtljaz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+  
+
+<meta property="og:title" content="Serv00 搭建 Sub Store 教程" />
+<meta property="og:description" content="在 Serv00 搭建自己的 Sub Store 的简易教程" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cf.050623.xyz/posts/tech/sub-store/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-03-18T13:42:24+08:00" />
+<meta property="article:modified_time" content="2025-03-18T13:42:24+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Serv00 搭建 Sub Store 教程"/>
+<meta name="twitter:description" content="在 Serv00 搭建自己的 Sub Store 的简易教程"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://cf.050623.xyz/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "👨🏻‍💻 技术",
+      "item": "https://cf.050623.xyz/posts/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Serv00 搭建 Sub Store 教程",
+      "item": "https://cf.050623.xyz/posts/tech/sub-store/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Serv00 搭建 Sub Store 教程",
+  "name": "Serv00 搭建 Sub Store 教程",
+  "description": "在 Serv00 搭建自己的 Sub Store 的简易教程",
+  "keywords": [
+    "Serv00", "Sub-Store"
+  ],
+  "articleBody": "首先开放两个端口，分别用于前端后端，假设前端为 3000 后端为 3001。\n添加一个域名，类型为 proxy，对应前端端口。\nssh 连接 Serv00\n下载前后端文件\nwget https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store.bundle.js wget https://github.com/sub-store-org/Sub-Store-Front-End/releases/latest/download/dist.zip unzip dist.zip;; rm dist.zip 接着填写对应变量\necho '#后端监听的端口 SUB_STORE_BACKEND_API_PORT=3001 #后端监听的HOST SUB_STORE_BACKEND_API_HOST=\"\" #后端接口是否增加前缀，任意内容生效 SUB_STORE_BACKEND_PREFIX=\"/linuxdo\" #前端反代接口的地址 SUB_STORE_FRONTEND_BACKEND_PATH=\"/linuxdo\" #前端监听的端口 SUB_STORE_FRONTEND_PORT=3000 #前端文件的路径 SUB_STORE_FRONTEND_PATH=\"/usr/home/xxxxx/dist\"' \u003e .env 将上文的 Port 修改为对应的前后端端口\npath 填写自己喜欢的，这是 substore 此次更新后新增的鉴权功能，以前扫端口就能扫出来。\n下面运行即可\nnode sub-store.bundle.js 此时直接访问前端会出错，因为没有指定后端。\n访问 https://你的域名?api=你的域名/你的path 即可正常使用\n访问一次上述地址即可将后端添加至浏览器缓存，访问前端就可正常使用了。\n如果需要保活，可以参考下面的脚本\n#!/bin/sh APP_NAME=\"sub-store\" SCRIPT_PATH=\"/usr/home/xxxxx/sub-store.bundle.js\" # 检查是否已经有进程在运行 PID=$(pgrep -f \"${SCRIPT_PATH}\" | grep -v $$) if [ -z \"$PID\" ]; then echo \"Starting ${APP_NAME}...\" # 使用 nohup 在后台启动 Node.js 进程，直接使用 node 命令 nohup node $SCRIPT_PATH \u003e /var/log/$APP_NAME.log 2\u003e\u00261 \u0026 echo \"${APP_NAME} started with PID: $!\" else echo \"${APP_NAME} is already running with PID: $PID\" fi 同样记得将 xxxxx 替换为自己的用户名\n",
+  "wordCount" : "415",
+  "inLanguage": "zh",
+  "datePublished": "2025-03-18T13:42:24+08:00",
+  "dateModified": "2025-03-18T13:42:24+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "KiritoXD"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://cf.050623.xyz/posts/tech/sub-store/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KiritoXD's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://cf.050623.xyz/img/a.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://cf.050623.xyz/" accesskey="h" title="KiritoXD&#39;s Blog (Alt + H)">
+                <img src="https://cf.050623.xyz/img/a.png" alt="" aria-label="logo"
+                    height="35">KiritoXD&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://cf.050623.xyz/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://cf.050623.xyz/" title="🏠 主页">
+                    <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://cf.050623.xyz/posts" title="📚 文章">
+                    <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://cf.050623.xyz/about" title="🙋🏻‍♂️ 关于">
+                    <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://cf.050623.xyz/archives/" title="⏱️ 归档">
+                    <span>⏱️ 归档</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://cf.050623.xyz/">主页</a>&nbsp;»&nbsp;<a href="https://cf.050623.xyz/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://cf.050623.xyz/posts/tech/">👨🏻‍💻 技术</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Serv00 搭建 Sub Store 教程
+    </h1>
+    <div class="post-meta">
+
+<span title='2025-03-18 13:42:24 +0800 CST'>2025-03-18</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;415 字&nbsp;·&nbsp;KiritoXD
+
+</div>
+  </header>
+  <div class="post-password">
+    
+  </div> 
+
+
+  <div class="post-content"><p>首先开放两个端口，分别用于前端后端，假设前端为 3000 后端为 3001。</p>
+<p>添加一个域名，类型为 proxy，对应前端端口。</p>
+<p>ssh 连接 Serv00</p>
+<p>下载前后端文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>wget https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store.bundle.js
+</span></span><span style="display:flex;"><span>wget https://github.com/sub-store-org/Sub-Store-Front-End/releases/latest/download/dist.zip
+</span></span><span style="display:flex;"><span>unzip dist.zip;; rm dist.zip
+</span></span></code></pre></div><p>接着填写对应变量</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#39;#后端监听的端口
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">SUB_STORE_BACKEND_API_PORT=3001
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">#后端监听的HOST
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">SUB_STORE_BACKEND_API_HOST=&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">#后端接口是否增加前缀，任意内容生效
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">SUB_STORE_BACKEND_PREFIX=&#34;/linuxdo&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">#前端反代接口的地址
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">SUB_STORE_FRONTEND_BACKEND_PATH=&#34;/linuxdo&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">#前端监听的端口
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">SUB_STORE_FRONTEND_PORT=3000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">#前端文件的路径
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">SUB_STORE_FRONTEND_PATH=&#34;/usr/home/xxxxx/dist&#34;&#39;</span> &gt; .env
+</span></span></code></pre></div><p>将上文的 Port 修改为对应的前后端端口</p>
+<p>path 填写自己喜欢的，这是 substore 此次更新后新增的鉴权功能，以前扫端口就能扫出来。</p>
+<p>下面运行即可</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>node sub-store.bundle.js 
+</span></span></code></pre></div><p>此时直接访问前端会出错，因为没有指定后端。</p>
+<p>访问 https://你的域名?api=你的域名/你的path 即可正常使用</p>
+<p>访问一次上述地址即可将后端添加至浏览器缓存，访问前端就可正常使用了。</p>
+<p>如果需要保活，可以参考下面的脚本</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#!/bin/sh
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">APP_NAME</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;sub-store&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">SCRIPT_PATH</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;/usr/home/xxxxx/sub-store.bundle.js&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># 检查是否已经有进程在运行</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">PID</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#cba6f7">$(</span>pgrep -f <span style="color:#a6e3a1">&#34;</span><span style="color:#a6e3a1">${</span><span style="color:#f5e0dc">SCRIPT_PATH</span><span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">&#34;</span> | grep -v <span style="color:#f5e0dc">$$</span><span style="color:#cba6f7">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">if</span> <span style="color:#89dceb;font-weight:bold">[</span> -z <span style="color:#a6e3a1">&#34;</span><span style="color:#f5e0dc">$PID</span><span style="color:#a6e3a1">&#34;</span> <span style="color:#89dceb;font-weight:bold">]</span>; <span style="color:#cba6f7">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;Starting </span><span style="color:#a6e3a1">${</span><span style="color:#f5e0dc">APP_NAME</span><span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">...&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic"># 使用 nohup 在后台启动 Node.js 进程，直接使用 node 命令</span>
+</span></span><span style="display:flex;"><span>    nohup node <span style="color:#f5e0dc">$SCRIPT_PATH</span> &gt; /var/log/<span style="color:#f5e0dc">$APP_NAME</span>.log 2&gt;&amp;<span style="color:#fab387">1</span> &amp;
+</span></span><span style="display:flex;"><span>    <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;</span><span style="color:#a6e3a1">${</span><span style="color:#f5e0dc">APP_NAME</span><span style="color:#a6e3a1">}</span><span style="color:#a6e3a1"> started with PID: </span><span style="color:#f5e0dc">$!</span><span style="color:#a6e3a1">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">else</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;</span><span style="color:#a6e3a1">${</span><span style="color:#f5e0dc">APP_NAME</span><span style="color:#a6e3a1">}</span><span style="color:#a6e3a1"> is already running with PID: </span><span style="color:#f5e0dc">$PID</span><span style="color:#a6e3a1">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">fi</span>
+</span></span></code></pre></div><p>同样记得将 xxxxx 替换为自己的用户名</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://cf.050623.xyz/tags/serv00/">Serv00</a></li>
+      <li><a href="https://cf.050623.xyz/tags/sub-store/">Sub-Store</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://cf.050623.xyz/posts/study/zhutibei/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>筑梯杯郑州轻工业大学第十七届程序设计大赛（同步赛）</span>
+  </a>
+  <a class="next" href="https://cf.050623.xyz/posts/study/cf1002/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>Codeforces Round 1002 (Div. 2)</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://cf.050623.xyz/">KiritoXD&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', () => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent;
+                navigator.clipboard.writeText(text).then(copyingDone);
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replace("language-", "");
+        let macTool = document.createElement("div");
+        let macTool1 = document.createElement("div");
+        let macTool2 = document.createElement("div");
+        let macTool3 = document.createElement("div");
+        let languageType = document.createElement("div");
+        languageType.innerText = language;
+        macTool.setAttribute('class', 'mac-tool');
+        macTool1.setAttribute('class', 'mac bb1');
+        macTool2.setAttribute('class', 'mac bb2');
+        macTool3.setAttribute('class', 'mac bb3');
+        languageType.setAttribute('class', 'language-type');
+        macTool.appendChild(macTool1);
+        macTool.appendChild(macTool2);
+        macTool.appendChild(macTool3);
+        macTool.appendChild(languageType);
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        }
+    });
+</script>
+
+<script>
+    (function(u, c) {
+      var d = document, t = 'script', o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function(e) { c(e); }); }
+      s.parentNode.insertBefore(o, s);
+    })('//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js', function() {
+      pangu.spacingPage();
+    });
+    </script>
+</body>
+
+</html>
