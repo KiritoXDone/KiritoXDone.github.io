@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>最小表示法 | KiritoXD&#39;s Blog</title>
+<meta name="keywords" content="string">
+<meta name="description" content="最小表示法学习记录">
+<meta name="author" content="KiritoXD">
+<link rel="canonical" href="https://kiritoxdone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="apple-touch-icon" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="mask-icon" href="https://kiritoxdone.github.io/img/a.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://kiritoxdone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" integrity="sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js" integrity="sha384-Qsn9KnoKISj6dI8g7p1HBlNpVx0I8p1SvlwOldgi3IorMle61nQy4zEahWYtljaz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+  
+
+<meta property="og:title" content="最小表示法" />
+<meta property="og:description" content="最小表示法学习记录" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kiritoxdone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-24T21:53:28+08:00" />
+<meta property="article:modified_time" content="2024-07-24T21:53:28+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="最小表示法"/>
+<meta name="twitter:description" content="最小表示法学习记录"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://kiritoxdone.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📖 学习",
+      "item": "https://kiritoxdone.github.io/posts/study/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "最小表示法",
+      "item": "https://kiritoxdone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "最小表示法",
+  "name": "最小表示法",
+  "description": "最小表示法学习记录",
+  "keywords": [
+    "string"
+  ],
+  "articleBody": "最小表示法 理论学习 给定一个字符串 $s$，首尾相接（循环同构），找到其字典序最小的情况 $O(n)$\n用两个指针 $i,j$，分别指向目前两个可能是答案的起始位置\n初始 $i = 1, j = 2$，随着算法进行增大\n假设现在 $i \u003c j$，且从 $i$ 开始的 $k$ 位字符和从 $j$ 开始的 $k$ 位字符是一样的，此时这两段子串相同\n如果 $s[i+k] \\neq s[j+k]$\n谁大谁往后移动 $k+1$ 个位置\n如果 $s[i+k] == s[j+k]$\n随便移动一个\n最后小于 $n$ 的那个指针就是所求答案\nvoid getmin(string s){ int n=s.size(); s=s+s; int i=0,j=1; while(j\u003cn){ int k=0; while(k\u003cn\u0026\u0026s[i+k]==s[j+k]) ++k; if(s[i+k]\u003es[j+k]) i+=k+1; else j+=k+1; if(i==j)j++; if(i\u003ej)swap(i,j); } for(int k=i;k\u003c=i+n;k++)cout\u003c\u003cs[k]; } 例题 循环同构判断 给定两个字符串 $a, b$，判断两个字符串是否循环同构\n只需判断两个字符串最小表示是否一样即可\n#include using namespace std; string a,b; int getmin(string s){ int n=s.size(); int i=0,j=1; s=s+s; while(j\u003cn){ int k=0; while(k\u003cn\u0026\u0026s[i+k]==s[j+k])++k; if(s[i+k]\u003es[j+k])i+=k+1; else j+=k+1; if(i==j)++j; if(i\u003ej)swap(i,j); } return i; } int main(){ cin\u003e\u003ea\u003e\u003eb; for(int i=getmin(a),j=getmin(b),k=0;k\u003cn;k++){ if(a[(i+k)%n]!=b[(j+k)%n]){ cout\u003c\u003c\"NO\\n\"; return 0; } } cout\u003c\u003c\"YES\\n\"; } 最小循环覆盖 给出字符串 $a$，求出这个字符串的字典序最小的最小循环覆盖\n先用 $kmp$ 求出最小循环片段长度，再求这个长度的子串的最小表示\n#include using namespace std; string a; int nxt[100005]; int kmp(){ int n=a.size(); nxt[0]=0; int j=0; for(int i=1;i\u003cn;i++){ while(j\u0026\u0026a[i]!=a[j]) j=nxt[j-1]; if(a[i]==a[j]) j++; nxt[i]=j; } return n-nxt[n-1]; } void getmin(string s,int n){ s=s+s; int i=0,j=1; while(j\u003cn){ int k=0; while(k\u003cn\u0026\u0026s[i+k]==s[j+k])++k; if(s[i+k]\u003es[j+k])i+=k+1; else j+=k+1; if(i==j)j++; if(i\u003ej)swap(i,j); } for(int l=i;l\u003ci+n;l++)cout\u003c\u003cs[l]; } int main(){ cin\u003e\u003ea; getmin(a,kmp()); return 0; } ",
+  "wordCount" : "408",
+  "inLanguage": "zh",
+  "datePublished": "2024-07-24T21:53:28+08:00",
+  "dateModified": "2024-07-24T21:53:28+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "KiritoXD"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kiritoxdone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KiritoXD's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kiritoxdone.github.io/img/a.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kiritoxdone.github.io/" accesskey="h" title="KiritoXD&#39;s Blog (Alt + H)">
+                <img src="https://kiritoxdone.github.io/img/a.png" alt="" aria-label="logo"
+                    height="35">KiritoXD&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://kiritoxdone.github.io/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/" title="🏠 主页">
+                    <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/posts" title="📚 文章">
+                    <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/about" title="🙋🏻‍♂️ 关于">
+                    <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/archives/" title="⏱️ 归档">
+                    <span>⏱️ 归档</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kiritoxdone.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://kiritoxdone.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://kiritoxdone.github.io/posts/study/">📖 学习</a></div>
+    <h1 class="post-title entry-hint-parent">
+      最小表示法
+    </h1>
+    <div class="post-description">
+      最小表示法学习记录
+    </div>
+    <div class="post-meta">
+
+<span title='2024-07-24 21:53:28 +0800 CST'>2024-07-24</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;408 字&nbsp;·&nbsp;KiritoXD
+
+</div>
+  </header>
+  <div class="post-password">
+    
+  </div> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#%e6%9c%80%e5%b0%8f%e8%a1%a8%e7%a4%ba%e6%b3%95" aria-label="最小表示法">最小表示法</a><ul>
+                            
+                    <li>
+                        <a href="#%e7%90%86%e8%ae%ba%e5%ad%a6%e4%b9%a0" aria-label="理论学习">理论学习</a></li>
+                    <li>
+                        <a href="#%e4%be%8b%e9%a2%98" aria-label="例题">例题</a><ul>
+                            
+                    <li>
+                        <a href="#%e5%be%aa%e7%8e%af%e5%90%8c%e6%9e%84%e5%88%a4%e6%96%ad" aria-label="循环同构判断">循环同构判断</a></li>
+                    <li>
+                        <a href="#%e6%9c%80%e5%b0%8f%e5%be%aa%e7%8e%af%e8%a6%86%e7%9b%96" aria-label="最小循环覆盖">最小循环覆盖</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+
+  <div class="post-content"><h1 id="最小表示法">最小表示法<a hidden class="anchor" aria-hidden="true" href="#最小表示法">#</a></h1>
+<hr>
+<h2 id="理论学习">理论学习<a hidden class="anchor" aria-hidden="true" href="#理论学习">#</a></h2>
+<p>给定一个字符串 $s$，首尾相接（循环同构），找到其字典序最小的情况 $O(n)$</p>
+<p>用两个指针 $i,j$，分别指向目前两个可能是答案的起始位置<br>
+初始 $i = 1, j = 2$，随着算法进行增大<br>
+假设现在 $i &lt; j$，且从 $i$ 开始的 $k$ 位字符和从 $j$ 开始的 $k$ 位字符是一样的，此时这两段子串相同<br>
+如果 $s[i+k] \neq s[j+k]$<br>
+谁大谁往后移动 $k+1$ 个位置<br>
+如果 $s[i+k] == s[j+k]$<br>
+随便移动一个<br>
+最后小于 $n$ 的那个指针就是所求答案</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">getmin</span>(string s){
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> n<span style="color:#89dceb;font-weight:bold">=</span>s.<span style="color:#89b4fa">size</span>();
+</span></span><span style="display:flex;"><span>    s<span style="color:#89dceb;font-weight:bold">=</span>s<span style="color:#89dceb;font-weight:bold">+</span>s;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>,j<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">while</span>(j<span style="color:#89dceb;font-weight:bold">&lt;</span>n){
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> k<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">while</span>(k<span style="color:#89dceb;font-weight:bold">&lt;</span>n<span style="color:#89dceb;font-weight:bold">&amp;&amp;</span>s[i<span style="color:#89dceb;font-weight:bold">+</span>k]<span style="color:#89dceb;font-weight:bold">==</span>s[j<span style="color:#89dceb;font-weight:bold">+</span>k])
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb;font-weight:bold">++</span>k;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(s[i<span style="color:#89dceb;font-weight:bold">+</span>k]<span style="color:#89dceb;font-weight:bold">&gt;</span>s[j<span style="color:#89dceb;font-weight:bold">+</span>k])
+</span></span><span style="display:flex;"><span>            i<span style="color:#89dceb;font-weight:bold">+=</span>k<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">else</span> 
+</span></span><span style="display:flex;"><span>            j<span style="color:#89dceb;font-weight:bold">+=</span>k<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(i<span style="color:#89dceb;font-weight:bold">==</span>j)j<span style="color:#89dceb;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(i<span style="color:#89dceb;font-weight:bold">&gt;</span>j)<span style="color:#89b4fa">swap</span>(i,j);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> k<span style="color:#89dceb;font-weight:bold">=</span>i;k<span style="color:#89dceb;font-weight:bold">&lt;=</span>i<span style="color:#89dceb;font-weight:bold">+</span>n;k<span style="color:#89dceb;font-weight:bold">++</span>)cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>s[k];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="例题">例题<a hidden class="anchor" aria-hidden="true" href="#例题">#</a></h2>
+<h3 id="循环同构判断">循环同构判断<a hidden class="anchor" aria-hidden="true" href="#循环同构判断">#</a></h3>
+<p>给定两个字符串 $a, b$，判断两个字符串是否循环同构</p>
+<p>只需判断两个字符串最小表示是否一样即可</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">using</span> <span style="color:#cba6f7">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>string a,b;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">getmin</span>(string s){
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> n<span style="color:#89dceb;font-weight:bold">=</span>s.size();
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>,j<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    s<span style="color:#89dceb;font-weight:bold">=</span>s<span style="color:#89dceb;font-weight:bold">+</span>s;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">while</span>(j<span style="color:#89dceb;font-weight:bold">&lt;</span>n){
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> k<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">while</span>(k<span style="color:#89dceb;font-weight:bold">&lt;</span>n<span style="color:#89dceb;font-weight:bold">&amp;&amp;</span>s[i<span style="color:#89dceb;font-weight:bold">+</span>k]<span style="color:#89dceb;font-weight:bold">==</span>s[j<span style="color:#89dceb;font-weight:bold">+</span>k])<span style="color:#89dceb;font-weight:bold">++</span>k;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(s[i<span style="color:#89dceb;font-weight:bold">+</span>k]<span style="color:#89dceb;font-weight:bold">&gt;</span>s[j<span style="color:#89dceb;font-weight:bold">+</span>k])i<span style="color:#89dceb;font-weight:bold">+=</span>k<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">else</span> j<span style="color:#89dceb;font-weight:bold">+=</span>k<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(i<span style="color:#89dceb;font-weight:bold">==</span>j)<span style="color:#89dceb;font-weight:bold">++</span>j;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(i<span style="color:#89dceb;font-weight:bold">&gt;</span>j)swap(i,j);   
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> i;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>(){
+</span></span><span style="display:flex;"><span>    cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>a<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>b;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span>getmin(a),j<span style="color:#89dceb;font-weight:bold">=</span>getmin(b),k<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;k<span style="color:#89dceb;font-weight:bold">&lt;</span>n;k<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(a[(i<span style="color:#89dceb;font-weight:bold">+</span>k)<span style="color:#89dceb;font-weight:bold">%</span>n]<span style="color:#89dceb;font-weight:bold">!=</span>b[(j<span style="color:#89dceb;font-weight:bold">+</span>k)<span style="color:#89dceb;font-weight:bold">%</span>n]){
+</span></span><span style="display:flex;"><span>            cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span><span style="color:#a6e3a1">&#34;NO</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span><span style="color:#a6e3a1">&#34;YES</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="最小循环覆盖">最小循环覆盖<a hidden class="anchor" aria-hidden="true" href="#最小循环覆盖">#</a></h3>
+<p>给出字符串 $a$，求出这个字符串的字典序最小的最小循环覆盖</p>
+<p>先用 $kmp$ 求出最小循环片段长度，再求这个长度的子串的最小表示</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">using</span> <span style="color:#cba6f7">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>string a;
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> nxt[<span style="color:#fab387">100005</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">kmp</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> n<span style="color:#89dceb;font-weight:bold">=</span>a.size();
+</span></span><span style="display:flex;"><span>    nxt[<span style="color:#fab387">0</span>]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> j<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">while</span>(j<span style="color:#89dceb;font-weight:bold">&amp;&amp;</span>a[i]<span style="color:#89dceb;font-weight:bold">!=</span>a[j])
+</span></span><span style="display:flex;"><span>            j<span style="color:#89dceb;font-weight:bold">=</span>nxt[j<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#fab387">1</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(a[i]<span style="color:#89dceb;font-weight:bold">==</span>a[j])
+</span></span><span style="display:flex;"><span>            j<span style="color:#89dceb;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span>        nxt[i]<span style="color:#89dceb;font-weight:bold">=</span>j;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> n<span style="color:#89dceb;font-weight:bold">-</span>nxt[n<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#fab387">1</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">getmin</span>(string s,<span style="color:#f38ba8">int</span> n){
+</span></span><span style="display:flex;"><span>    s<span style="color:#89dceb;font-weight:bold">=</span>s<span style="color:#89dceb;font-weight:bold">+</span>s;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>,j<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">while</span>(j<span style="color:#89dceb;font-weight:bold">&lt;</span>n){
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> k<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">while</span>(k<span style="color:#89dceb;font-weight:bold">&lt;</span>n<span style="color:#89dceb;font-weight:bold">&amp;&amp;</span>s[i<span style="color:#89dceb;font-weight:bold">+</span>k]<span style="color:#89dceb;font-weight:bold">==</span>s[j<span style="color:#89dceb;font-weight:bold">+</span>k])<span style="color:#89dceb;font-weight:bold">++</span>k;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(s[i<span style="color:#89dceb;font-weight:bold">+</span>k]<span style="color:#89dceb;font-weight:bold">&gt;</span>s[j<span style="color:#89dceb;font-weight:bold">+</span>k])i<span style="color:#89dceb;font-weight:bold">+=</span>k<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">else</span> j<span style="color:#89dceb;font-weight:bold">+=</span>k<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(i<span style="color:#89dceb;font-weight:bold">==</span>j)j<span style="color:#89dceb;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(i<span style="color:#89dceb;font-weight:bold">&gt;</span>j)swap(i,j);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> l<span style="color:#89dceb;font-weight:bold">=</span>i;l<span style="color:#89dceb;font-weight:bold">&lt;</span>i<span style="color:#89dceb;font-weight:bold">+</span>n;l<span style="color:#89dceb;font-weight:bold">++</span>)cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>s[l];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>(){
+</span></span><span style="display:flex;"><span>    cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>a;
+</span></span><span style="display:flex;"><span>    getmin(a,kmp());
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://kiritoxdone.github.io/tags/string/">String</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://kiritoxdone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B2/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>2024萌新联赛2</span>
+  </a>
+  <a class="next" href="https://kiritoxdone.github.io/posts/study/2024hdu2/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>2024HDU2</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://kiritoxdone.github.io/">KiritoXD&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', () => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent;
+                navigator.clipboard.writeText(text).then(copyingDone);
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replace("language-", "");
+        let macTool = document.createElement("div");
+        let macTool1 = document.createElement("div");
+        let macTool2 = document.createElement("div");
+        let macTool3 = document.createElement("div");
+        let languageType = document.createElement("div");
+        languageType.innerText = language;
+        macTool.setAttribute('class', 'mac-tool');
+        macTool1.setAttribute('class', 'mac bb1');
+        macTool2.setAttribute('class', 'mac bb2');
+        macTool3.setAttribute('class', 'mac bb3');
+        languageType.setAttribute('class', 'language-type');
+        macTool.appendChild(macTool1);
+        macTool.appendChild(macTool2);
+        macTool.appendChild(macTool3);
+        macTool.appendChild(languageType);
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        }
+    });
+</script>
+
+<script>
+    (function(u, c) {
+      var d = document, t = 'script', o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function(e) { c(e); }); }
+      s.parentNode.insertBefore(o, s);
+    })('//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js', function() {
+      pangu.spacingPage();
+    });
+    </script>
+</body>
+
+</html>

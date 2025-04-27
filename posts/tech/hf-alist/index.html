@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>在 Hugging Face 上部署 AList (Aria2 和 Qbitorrent 可用) | KiritoXD&#39;s Blog</title>
+<meta name="keywords" content="AList, Hugging Face">
+<meta name="description" content="我 TM 薅薅薅">
+<meta name="author" content="KiritoXD">
+<link rel="canonical" href="https://kiritoxdone.github.io/posts/tech/hf-alist/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="apple-touch-icon" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="mask-icon" href="https://kiritoxdone.github.io/img/a.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://kiritoxdone.github.io/posts/tech/hf-alist/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" integrity="sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js" integrity="sha384-Qsn9KnoKISj6dI8g7p1HBlNpVx0I8p1SvlwOldgi3IorMle61nQy4zEahWYtljaz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+  
+
+<meta property="og:title" content="在 Hugging Face 上部署 AList (Aria2 和 Qbitorrent 可用)" />
+<meta property="og:description" content="我 TM 薅薅薅" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kiritoxdone.github.io/posts/tech/hf-alist/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-12-01T14:57:08+08:00" />
+<meta property="article:modified_time" content="2024-12-01T14:57:08+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在 Hugging Face 上部署 AList (Aria2 和 Qbitorrent 可用)"/>
+<meta name="twitter:description" content="我 TM 薅薅薅"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://kiritoxdone.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "👨🏻‍💻 技术",
+      "item": "https://kiritoxdone.github.io/posts/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "在 Hugging Face 上部署 AList (Aria2 和 Qbitorrent 可用)",
+      "item": "https://kiritoxdone.github.io/posts/tech/hf-alist/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "在 Hugging Face 上部署 AList (Aria2 和 Qbitorrent 可用)",
+  "name": "在 Hugging Face 上部署 AList (Aria2 和 Qbitorrent 可用)",
+  "description": "我 TM 薅薅薅",
+  "keywords": [
+    "AList", "Hugging Face"
+  ],
+  "articleBody": "Hugging Face 首先注册 抱抱脸 账号，新建一个 space\n具体选项看图 在抱抱脸中直接跑（不一定能用） 接着在库里建一个 Dockerfile，把代码粘贴过去\nFROM ubuntu:22.04 # Install necessary tools RUN apt-get update \u0026\u0026 \\ apt-get install -y software-properties-common \u0026\u0026 \\ add-apt-repository ppa:qbittorrent-team/qbittorrent-stable \u0026\u0026 \\ apt-get update \u0026\u0026 \\ apt-get install -y \\ qbittorrent-nox \\ tar \\ gzip \\ file \\ jq \\ curl \\ sed \\ aria2 \\ locales \\ locales-all \u0026\u0026 \\ rm -rf /var/lib/apt/lists/ RUN locale-gen zh_CN.UTF-8 ENV LANG=zh_CN.UTF-8 \\ LANGUAGE=zh_CN:zh \\ LC_ALL=zh_CN.UTF-8 # Set up a new user named \"user\" with user ID 1000 RUN useradd -m -u 1000 user # Switch to the \"user\" user USER user # Set home to the user's home directory ENV HOME=/home/user \\ PATH=/home/user/.local/bin:$PATH # Set the working directory to the user's home directory WORKDIR $HOME/alist # Download the latest alist release using jq for robustness RUN curl -sL https://api.github.com/repos/alist-org/alist/releases/latest | \\ jq -r '.assets[] | select(.name | test(\"linux-amd64.tar.gz$\")) | .browser_download_url' | \\ xargs curl -L | tar -zxvf - -C $HOME/alist # Set up the environment RUN chmod +x $HOME/alist/alist \u0026\u0026 \\ mkdir -p $HOME/alist/data # Create data/config.json file with database configuration RUN echo '{\\ \"force\": false,\\ \"address\": \"0.0.0.0\",\\ \"port\": 5244,\\ \"scheme\": {\\ \"https\": false,\\ \"cert_file\": \"\",\\ \"key_file\": \"\"\\ },\\ \"cache\": {\\ \"expiration\": 60,\\ \"cleanup_interval\": 120\\ },\\ \"database\": {\\ \"type\": \"mysql\",\\ \"host\": \"ENV_MYSQL_HOST\",\\ \"port\": ENV_MYSQL_PORT,\\ \"user\": \"ENV_MYSQL_USER\",\\ \"password\": \"ENV_MYSQL_PASSWORD\",\\ \"name\": \"ENV_MYSQL_DATABASE\"\\ }\\ }' \u003e $HOME/alist/data/config.json # Create a startup script that runs Alist and Aria2 RUN echo '#!/bin/bash\\n\\ sed -i \"s/ENV_MYSQL_HOST/${MYSQL_HOST:-localhost}/g\" $HOME/alist/data/config.json\\n\\ sed -i \"s/ENV_MYSQL_PORT/${MYSQL_PORT:-3306}/g\" $HOME/alist/data/config.json\\n\\ sed -i \"s/ENV_MYSQL_USER/${MYSQL_USER:-root}/g\" $HOME/alist/data/config.json\\n\\ sed -i \"s/ENV_MYSQL_PASSWORD/${MYSQL_PASSWORD:-password}/g\" $HOME/alist/data/config.json\\n\\ sed -i \"s/ENV_MYSQL_DATABASE/${MYSQL_DATABASE:-alist}/g\" $HOME/alist/data/config.json\\n\\ aria2c --enable-rpc --rpc-listen-all --rpc-allow-origin-all --rpc-listen-port=6800 --daemon\\n\\ qbittorrent-nox --webui-port=8080 \u0026\\n\\ $HOME/alist/alist server --data $HOME/alist/data' \u003e $HOME/alist/start.sh \u0026\u0026 \\ chmod +x $HOME/alist/start.sh # Set the command to run when the container starts CMD [\"/bin/bash\", \"-c\", \"/home/user/alist/start.sh\"] # Expose the default Alist port EXPOSE 5244 6800 8080 再在 readme.md 里增添一行 app_port:5244\n注册一个 mysql 数据库，方便机子重启数据不丢失\n推荐用 sqlpub 或者 db4free\n然后添加 variables:\nMYSQL_USER MYSQL_PORT (默认 3306) MYSQL_PASSWORD MYSQL_HOST (db4free.net 或 mysql.sqlpub.com) MYSQL_DATABASE 通过 github package 来实现 Dockerfile 中填写\nFROM ghcr.io/kiritoxdone/cloudrive:latest 即可\napp_port, 变量等如上写填写即可\nAList 第一次启动 (对 sql 来说) 会生成一个密码，记得在 log 里找，登录上去之后可以导入以前配置什么的，即可正常使用\nCloudflare Worker 公开库 前文图上推荐设置为私人库，可能能活更久，但是搜索公开库发现 AList 泛滥，还不如方便方便自己，公开库后便可以使用 Worker 反代到自己域名下访问\nexport default { async fetch(request, env) { const _url = new URL(request.url); const hostname = _url.hostname _url.hostname = \"github.com\" const req = new Request(_url, request); req.headers.set('origin', 'https://github.com'); const res = await fetch(req); let newres = new Response(res.body, res); let location = newres.headers.get('location'); if (location !== null \u0026\u0026 location !== \"\") { location = location.replace('://github.com', '://'+hostname); newres.headers.set('location', location); } return newres }, }; 替换 github.com 为 用户名-space名.hf.space 即可\n私库 (看新文章) 只适用于 header 不包含 Authorization\n刚发现私人库通过 access token 也可以反代访问\n访问地址同样如上 用户名-space名.hf.space\n在抱抱脸上点头像后选择 access token\n名称随意\ntoken 权限选 Repositories 的三个即可\nWorker 代码如下\n在设置中添加变量 HF_TOKEN 值为上文生成的 access token\nexport default { async fetch(request, env) { const url = new URL(request.url); // 处理API请求和其他请求 url.host = 'xxxx.hf.space'; // 添加认证头用于访问私有空间 const headers = new Headers(request.headers); headers.set('Authorization', `Bearer ${env.HF_TOKEN}`); const newRequest = new Request(url, { method: request.method, headers: headers, body: request.body }); return fetch(newRequest); } } ",
+  "wordCount" : "816",
+  "inLanguage": "zh",
+  "datePublished": "2024-12-01T14:57:08+08:00",
+  "dateModified": "2024-12-01T14:57:08+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "KiritoXD"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kiritoxdone.github.io/posts/tech/hf-alist/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KiritoXD's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kiritoxdone.github.io/img/a.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kiritoxdone.github.io/" accesskey="h" title="KiritoXD&#39;s Blog (Alt + H)">
+                <img src="https://kiritoxdone.github.io/img/a.png" alt="" aria-label="logo"
+                    height="35">KiritoXD&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://kiritoxdone.github.io/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/" title="🏠 主页">
+                    <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/posts" title="📚 文章">
+                    <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/about" title="🙋🏻‍♂️ 关于">
+                    <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/archives/" title="⏱️ 归档">
+                    <span>⏱️ 归档</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kiritoxdone.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://kiritoxdone.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://kiritoxdone.github.io/posts/tech/">👨🏻‍💻 技术</a></div>
+    <h1 class="post-title entry-hint-parent">
+      在 Hugging Face 上部署 AList (Aria2 和 Qbitorrent 可用)
+    </h1>
+    <div class="post-meta">
+
+<span title='2024-12-01 14:57:08 +0800 CST'>2024-12-01</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;816 字&nbsp;·&nbsp;KiritoXD
+
+</div>
+  </header>
+  <div class="post-password">
+    
+    <script>
+      (function(){
+        if (prompt('请输入文章密码') != 'ilovedio'){
+          alert('密码错误！');
+          if (history.length === 1) {
+            window.opener = null;
+            window.open('', '_self');
+            window.close();
+          } else {
+            history.back();
+          }
+        }
+      })();
+    </script>
+    
+  </div> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#hugging-face" aria-label="Hugging Face">Hugging Face</a><ul>
+                            
+                    <li>
+                        <a href="#%e5%9c%a8%e6%8a%b1%e6%8a%b1%e8%84%b8%e4%b8%ad%e7%9b%b4%e6%8e%a5%e8%b7%91%e4%b8%8d%e4%b8%80%e5%ae%9a%e8%83%bd%e7%94%a8" aria-label="在抱抱脸中直接跑（不一定能用）">在抱抱脸中直接跑（不一定能用）</a></li>
+                    <li>
+                        <a href="#%e9%80%9a%e8%bf%87-github-package-%e6%9d%a5%e5%ae%9e%e7%8e%b0" aria-label="通过 github package 来实现">通过 github package 来实现</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#alist" aria-label="AList">AList</a></li>
+                    <li>
+                        <a href="#cloudflare-worker" aria-label="Cloudflare Worker">Cloudflare Worker</a><ul>
+                            
+                    <li>
+                        <a href="#%e5%85%ac%e5%bc%80%e5%ba%93" aria-label="公开库">公开库</a></li>
+                    <li>
+                        <a href="#%e7%a7%81%e5%ba%93-%e7%9c%8b%e6%96%b0%e6%96%87%e7%ab%a0" aria-label="私库 (看新文章)">私库 (看新文章)</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+
+  <div class="post-content"><h3 id="hugging-face">Hugging Face<a hidden class="anchor" aria-hidden="true" href="#hugging-face">#</a></h3>
+<p>首先注册 <a href="https://huggingface.co/">抱抱脸</a> 账号，新建一个 space</p>
+<p>具体选项看图 <img loading="lazy" src="https://img.chkaja.com/3b314c4f674d45be.png" alt="123"  />
+</p>
+<h4 id="在抱抱脸中直接跑不一定能用">在抱抱脸中直接跑（不一定能用）<a hidden class="anchor" aria-hidden="true" href="#在抱抱脸中直接跑不一定能用">#</a></h4>
+<p>接着在库里建一个 Dockerfile，把代码粘贴过去</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#cba6f7">FROM</span><span style="color:#a6e3a1"> ubuntu:22.04</span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#6c7086;font-style:italic"># Install necessary tools </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#cba6f7">RUN</span> apt-get update <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>    apt-get install -y software-properties-common <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>    add-apt-repository ppa:qbittorrent-team/qbittorrent-stable <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>    apt-get update <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>    apt-get install -y <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>        qbittorrent-nox <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>        tar <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>        gzip <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>        file <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>        jq <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>        curl <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>        sed <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>        aria2 <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>        locales <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>        locales-all <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>    rm -rf /var/lib/apt/lists/<span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#cba6f7">RUN</span> locale-gen zh_CN.UTF-8<span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#cba6f7">ENV</span> <span style="color:#f5e0dc">LANG</span><span style="color:#89dceb;font-weight:bold">=</span>zh_CN.UTF-8 <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>    <span style="color:#f5e0dc">LANGUAGE</span><span style="color:#89dceb;font-weight:bold">=</span>zh_CN:zh <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>    <span style="color:#f5e0dc">LC_ALL</span><span style="color:#89dceb;font-weight:bold">=</span>zh_CN.UTF-8<span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#6c7086;font-style:italic"># Set up a new user named &#34;user&#34; with user ID 1000 </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#cba6f7">RUN</span> useradd -m -u <span style="color:#fab387">1000</span> user <span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#6c7086;font-style:italic"># Switch to the &#34;user&#34; user </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#cba6f7">USER</span><span style="color:#a6e3a1"> user </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#6c7086;font-style:italic"># Set home to the user&#39;s home directory </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#cba6f7">ENV</span> <span style="color:#f5e0dc">HOME</span><span style="color:#89dceb;font-weight:bold">=</span>/home/user <span style="color:#89b4fa">\ </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span>    <span style="color:#f5e0dc">PATH</span><span style="color:#89dceb;font-weight:bold">=</span>/home/user/.local/bin:<span style="color:#f5e0dc">$PATH</span> <span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#6c7086;font-style:italic"># Set the working directory to the user&#39;s home directory </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#cba6f7">WORKDIR</span><span style="color:#a6e3a1"> $HOME/alist </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#6c7086;font-style:italic"># Download the latest alist release using jq for robustness </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#cba6f7">RUN</span> curl -sL https://api.github.com/repos/alist-org/alist/releases/latest | <span style="color:#89b4fa">\ </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span>    jq -r <span style="color:#a6e3a1">&#39;.assets[] | select(.name | test(&#34;linux-amd64.tar.gz$&#34;)) | .browser_download_url&#39;</span> | <span style="color:#89b4fa">\ </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span>    xargs curl -L | tar -zxvf - -C <span style="color:#f5e0dc">$HOME</span>/alist <span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#6c7086;font-style:italic"># Set up the environment </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#cba6f7">RUN</span> chmod +x <span style="color:#f5e0dc">$HOME</span>/alist/alist <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> <span style="color:#89b4fa">\ </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span>    mkdir -p <span style="color:#f5e0dc">$HOME</span>/alist/data <span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#6c7086;font-style:italic"># Create data/config.json file with database configuration </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#cba6f7">RUN</span> <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#39;{\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">    &#34;force&#34;: false,\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">    &#34;address&#34;: &#34;0.0.0.0&#34;,\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">    &#34;port&#34;: 5244,\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">    &#34;scheme&#34;: {\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">        &#34;https&#34;: false,\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">        &#34;cert_file&#34;: &#34;&#34;,\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">        &#34;key_file&#34;: &#34;&#34;\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">    },\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">    &#34;cache&#34;: {\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">        &#34;expiration&#34;: 60,\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">        &#34;cleanup_interval&#34;: 120\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">    },\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">    &#34;database&#34;: {\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">        &#34;type&#34;: &#34;mysql&#34;,\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">        &#34;host&#34;: &#34;ENV_MYSQL_HOST&#34;,\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">        &#34;port&#34;: ENV_MYSQL_PORT,\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">        &#34;user&#34;: &#34;ENV_MYSQL_USER&#34;,\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">        &#34;password&#34;: &#34;ENV_MYSQL_PASSWORD&#34;,\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">        &#34;name&#34;: &#34;ENV_MYSQL_DATABASE&#34;\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">    }\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">}&#39;</span> &gt; <span style="color:#f5e0dc">$HOME</span>/alist/data/config.json <span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#6c7086;font-style:italic"># Create a startup script that runs Alist and Aria2 </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#cba6f7">RUN</span> <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#39;#!/bin/bash\n\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">sed -i &#34;s/ENV_MYSQL_HOST/${MYSQL_HOST:-localhost}/g&#34; $HOME/alist/data/config.json\n\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">sed -i &#34;s/ENV_MYSQL_PORT/${MYSQL_PORT:-3306}/g&#34; $HOME/alist/data/config.json\n\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">sed -i &#34;s/ENV_MYSQL_USER/${MYSQL_USER:-root}/g&#34; $HOME/alist/data/config.json\n\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">sed -i &#34;s/ENV_MYSQL_PASSWORD/${MYSQL_PASSWORD:-password}/g&#34; $HOME/alist/data/config.json\n\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">sed -i &#34;s/ENV_MYSQL_DATABASE/${MYSQL_DATABASE:-alist}/g&#34; $HOME/alist/data/config.json\n\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">aria2c --enable-rpc --rpc-listen-all --rpc-allow-origin-all --rpc-listen-port=6800 --daemon\n\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">qbittorrent-nox --webui-port=8080 &amp;\n\
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">$HOME/alist/alist server --data $HOME/alist/data&#39;</span> &gt; <span style="color:#f5e0dc">$HOME</span>/alist/start.sh <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> <span style="color:#89b4fa">\ </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span>    chmod +x <span style="color:#f5e0dc">$HOME</span>/alist/start.sh <span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#6c7086;font-style:italic"># Set the command to run when the container starts </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#cba6f7">CMD</span> [<span style="color:#a6e3a1">&#34;/bin/bash&#34;</span>, <span style="color:#a6e3a1">&#34;-c&#34;</span>, <span style="color:#a6e3a1">&#34;/home/user/alist/start.sh&#34;</span>] <span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#6c7086;font-style:italic"># Expose the default Alist port </span><span style="color:#f38ba8">
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8"></span><span style="color:#cba6f7">EXPOSE</span><span style="color:#a6e3a1"> 5244 6800 8080</span><span style="color:#f38ba8">
+</span></span></span></code></pre></div><p>再在 readme.md 里增添一行 <code>app_port:5244</code></p>
+<p>注册一个 mysql 数据库，方便机子重启数据不丢失</p>
+<p>推荐用 <a href="https://sqlpub.com/">sqlpub</a> 或者 <a href="https://www.db4free.net/">db4free</a></p>
+<p>然后添加 variables:</p>
+<ul>
+<li>MYSQL_USER</li>
+<li>MYSQL_PORT (默认 3306)</li>
+<li>MYSQL_PASSWORD</li>
+<li>MYSQL_HOST (db4free.net 或 mysql.sqlpub.com)</li>
+<li>MYSQL_DATABASE</li>
+</ul>
+<h4 id="通过-github-package-来实现">通过 github package 来实现<a hidden class="anchor" aria-hidden="true" href="#通过-github-package-来实现">#</a></h4>
+<p>Dockerfile 中填写</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#cba6f7">FROM</span><span style="color:#a6e3a1"> ghcr.io/kiritoxdone/cloudrive:latest</span><span style="color:#f38ba8">
+</span></span></span></code></pre></div><p>即可</p>
+<p>app_port, 变量等如上写填写即可</p>
+<h3 id="alist">AList<a hidden class="anchor" aria-hidden="true" href="#alist">#</a></h3>
+<p>第一次启动 (对 sql 来说) 会生成一个密码，记得在 log 里找，登录上去之后可以导入以前配置什么的，即可正常使用</p>
+<h3 id="cloudflare-worker">Cloudflare Worker<a hidden class="anchor" aria-hidden="true" href="#cloudflare-worker">#</a></h3>
+<h4 id="公开库">公开库<a hidden class="anchor" aria-hidden="true" href="#公开库">#</a></h4>
+<p>前文图上推荐设置为私人库，可能能活更久，但是搜索公开库发现 AList 泛滥，还不如方便方便自己，公开库后便可以使用 Worker 反代到自己域名下访问</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#cba6f7">export</span> <span style="color:#cba6f7">default</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">async</span> fetch(request, env) {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">const</span> _url <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> URL(request.url);
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">const</span> hostname <span style="color:#89dceb;font-weight:bold">=</span> _url.hostname
+</span></span><span style="display:flex;"><span>    _url.hostname <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">&#34;github.com&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">const</span> req <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> Request(_url, request);
+</span></span><span style="display:flex;"><span>    req.headers.set(<span style="color:#a6e3a1">&#39;origin&#39;</span>, <span style="color:#a6e3a1">&#39;https://github.com&#39;</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">const</span> res <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> fetch(req);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> newres <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> Response(res.body, res);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> location <span style="color:#89dceb;font-weight:bold">=</span> newres.headers.get(<span style="color:#a6e3a1">&#39;location&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (location <span style="color:#89dceb;font-weight:bold">!==</span> <span style="color:#fab387">null</span> <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> location <span style="color:#89dceb;font-weight:bold">!==</span> <span style="color:#a6e3a1">&#34;&#34;</span>) {
+</span></span><span style="display:flex;"><span>      location <span style="color:#89dceb;font-weight:bold">=</span> location.replace(<span style="color:#a6e3a1">&#39;://github.com&#39;</span>, <span style="color:#a6e3a1">&#39;://&#39;</span><span style="color:#89dceb;font-weight:bold">+</span>hostname);
+</span></span><span style="display:flex;"><span>      newres.headers.set(<span style="color:#a6e3a1">&#39;location&#39;</span>, location);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> newres 
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>替换 <code>github.com</code> 为 <code>用户名-space名.hf.space</code> 即可</p>
+<h4 id="私库-看新文章">私库 (看新文章)<a hidden class="anchor" aria-hidden="true" href="#私库-看新文章">#</a></h4>
+<p>只适用于 <code>header</code> 不包含 <code>Authorization</code></p>
+<p>刚发现私人库通过 access token 也可以反代访问</p>
+<p>访问地址同样如上 <code>用户名-space名.hf.space</code></p>
+<p>在抱抱脸上点头像后选择 access token</p>
+<p><img loading="lazy" src="https://img.chkaja.com/8f95e342a0c360f9.png" alt="1"  />
+</p>
+<p>名称随意</p>
+<p>token 权限选 Repositories 的三个即可</p>
+<p><img loading="lazy" src="https://img.chkaja.com/aada7646d202b430.png" alt="2"  />
+</p>
+<p>Worker 代码如下</p>
+<p>在设置中添加变量 HF_TOKEN 值为上文生成的 access token</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#cba6f7">export</span> <span style="color:#cba6f7">default</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">async</span> fetch(request, env) {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">const</span> url <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> URL(request.url);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">// 处理API请求和其他请求
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    url.host <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">&#39;xxxx.hf.space&#39;</span>;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">// 添加认证头用于访问私有空间
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#cba6f7">const</span> headers <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> Headers(request.headers);
+</span></span><span style="display:flex;"><span>    headers.set(<span style="color:#a6e3a1">&#39;Authorization&#39;</span>, <span style="color:#a6e3a1">`Bearer </span><span style="color:#a6e3a1">${</span>env.HF_TOKEN<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">`</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">const</span> newRequest <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> Request(url, {
+</span></span><span style="display:flex;"><span>      method<span style="color:#89dceb;font-weight:bold">:</span> request.method,
+</span></span><span style="display:flex;"><span>      headers<span style="color:#89dceb;font-weight:bold">:</span> headers,
+</span></span><span style="display:flex;"><span>      body<span style="color:#89dceb;font-weight:bold">:</span> request.body
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> fetch(newRequest);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://kiritoxdone.github.io/tags/alist/">AList</a></li>
+      <li><a href="https://kiritoxdone.github.io/tags/hugging-face/">Hugging Face</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://kiritoxdone.github.io/posts/tech/papermod/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>Papermod</span>
+  </a>
+  <a class="next" href="https://kiritoxdone.github.io/posts/study/cf988fg/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>Codeforces Round 988 (Div. 3) F and G</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://kiritoxdone.github.io/">KiritoXD&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', () => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent;
+                navigator.clipboard.writeText(text).then(copyingDone);
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replace("language-", "");
+        let macTool = document.createElement("div");
+        let macTool1 = document.createElement("div");
+        let macTool2 = document.createElement("div");
+        let macTool3 = document.createElement("div");
+        let languageType = document.createElement("div");
+        languageType.innerText = language;
+        macTool.setAttribute('class', 'mac-tool');
+        macTool1.setAttribute('class', 'mac bb1');
+        macTool2.setAttribute('class', 'mac bb2');
+        macTool3.setAttribute('class', 'mac bb3');
+        languageType.setAttribute('class', 'language-type');
+        macTool.appendChild(macTool1);
+        macTool.appendChild(macTool2);
+        macTool.appendChild(macTool3);
+        macTool.appendChild(languageType);
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        }
+    });
+</script>
+
+<script>
+    (function(u, c) {
+      var d = document, t = 'script', o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function(e) { c(e); }); }
+      s.parentNode.insertBefore(o, s);
+    })('//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js', function() {
+      pangu.spacingPage();
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>最小生成树 | KiritoXD&#39;s Blog</title>
+<meta name="keywords" content="最小生成树, kruskal, prim">
+<meta name="description" content="最小生成树算法学习">
+<meta name="author" content="KiritoXD">
+<link rel="canonical" href="https://kiritoxdone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="apple-touch-icon" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="mask-icon" href="https://kiritoxdone.github.io/img/a.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://kiritoxdone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" integrity="sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js" integrity="sha384-Qsn9KnoKISj6dI8g7p1HBlNpVx0I8p1SvlwOldgi3IorMle61nQy4zEahWYtljaz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+  
+
+<meta property="og:title" content="最小生成树" />
+<meta property="og:description" content="最小生成树算法学习" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kiritoxdone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-30T20:11:43+08:00" />
+<meta property="article:modified_time" content="2024-07-30T20:11:43+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="最小生成树"/>
+<meta name="twitter:description" content="最小生成树算法学习"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://kiritoxdone.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📖 学习",
+      "item": "https://kiritoxdone.github.io/posts/study/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "最小生成树",
+      "item": "https://kiritoxdone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "最小生成树",
+  "name": "最小生成树",
+  "description": "最小生成树算法学习",
+  "keywords": [
+    "最小生成树", "kruskal", "prim"
+  ],
+  "articleBody": "最小生成树基础算法学习 定义 我们定义无向连通图的 最小生成树（Minimum Spanning Tree，MST）为边权和最小的生成树。\n注意：只有连通图才有生成树，而对于非连通图，只存在生成森林。\nKruskal 算法 简介 基本思想是从小到大加入边，是个贪心算法。\n将所有边的边权排序，从小到大加入生成树中，如果某次加入会生成环就舍弃此边，直到加入了 $n - 1$ 条边，形成树。时间复杂度为 $O(m \\log m)$\n实现 struct Node{ int x,y,v; bool operator \u003c (const Node \u0026a){ return v\u003ca.v; } }a[500001]; int n,m,fa[500001]; int find(int i){ if(fa[i]==i)return i; return fa[i]=find(fa[i]); } int Kruskal(){ for(int i=1;i\u003c=n;i++)fa[i]=i; sort(a+1,a+1+m); int cnt=n,ans=0; for(int i=1;i\u003c=m;i++){ int x=find(a[i].x),y=find(a[i].y); if(x!=y){ fa[x]=y; ans+=a[i].v; cnt--; } if(cnt==1)break; } return cnt; } 例题 洛谷P3366\n#include using namespace std; struct Node{ int x,y,v; bool operator \u003c (const Node \u0026a){ return v\u003ca.v; } }a[500001]; int n,m,fa[500001]; int findset(int i){ if(fa[i]==i)return i; return fa[i]=findset(fa[i]); } void Kruskal(){ for(int i=1;i\u003c=n;i++)fa[i]=i; sort(a+1,a+1+m); int cnt=n,ans=0; for(int i=1;i\u003c=m;i++){ int x=findset(a[i].x),y=findset(a[i].y); if(x!=y){ fa[x]=y; ans+=a[i].v; cnt--; } if(cnt==1)break; } if(cnt==1) cout\u003c\u003cans\u003c\u003cendl; else cout\u003c\u003c\"orz\\n\"; } int main(){ cin\u003e\u003en\u003e\u003em; for(int i=1;i\u003c=m;i++)cin\u003e\u003ea[i].x\u003e\u003ea[i].y\u003e\u003ea[i].v; Kruskal(); return 0; } Prim 算法 简介 基本思想是从一个点开始，不断加点，而不是 Kruskal 的加边\n具体做法就是在当前图可连点上选择距离最近的一个点，将这个点加入图，继续找最近的点，直到所有的点都找到\n时间复杂度一般为 $O(n^2)$\n实现 struct Node{ int y,v; Node(int _y,int _v){y=_y;v=_v;} }; vector\u003cNode\u003eedge[5001]; int n,m,dist[5001]; bool b[5001]; void Prim(){ memset(b,0,sizeof(b)); memset(dist,127,sizeof(dist)); dist[1]=0; int ans=0,tot=0; for(;;){ int x=-1; for(int j=1;j\u003c=n;j++){ if(!b[j]\u0026\u0026dist[j]\u003c1\u003c\u003c30) if(x==-1||dist[j]\u003cdist[x])x=j; } if(x==-1)break; b[x]=1; ++tot; ans+=dist[x]; for(auto j:edge[x]){ dist[j.y]=min(dist[j.y],j.v); } } if(tot==n) cout\u003c\u003cans\u003c\u003cendl; else cout\u003c\u003c\"-1\\n\"; } 例题 洛谷P3366\n#include using namespace std; struct Node{ int y,v; Node(int _y,int _v){y=_y;v=_v;} }; vector\u003cNode\u003eedge[5001]; int n,m,dist[5001]; bool b[5001]; void Prim(){ memset(b,0,sizeof(b)); memset(dist,127,sizeof(dist)); dist[1]=0; int ans=0,tot=0; for(;;){ int x=-1; for(int j=1;j\u003c=n;j++){ if(!b[j]\u0026\u0026dist[j]\u003c1\u003c\u003c30) if(x==-1||dist[j]\u003cdist[x])x=j; } if(x==-1)break; b[x]=1; ++tot; ans+=dist[x]; for(auto j:edge[x]){ dist[j.y]=min(dist[j.y],j.v); } } if(tot==n) cout\u003c\u003cans\u003c\u003cendl; else cout\u003c\u003c\"orz\\n\"; } int main(){ cin\u003e\u003en\u003e\u003em; for(int i=1;i\u003c=m;i++){ int x,y,z; cin\u003e\u003ex\u003e\u003ey\u003e\u003ez; edge[x].push_back(Node(y,z)); edge[y].push_back(Node(x,z)); } Prim(); return 0; } ",
+  "wordCount" : "493",
+  "inLanguage": "zh",
+  "datePublished": "2024-07-30T20:11:43+08:00",
+  "dateModified": "2024-07-30T20:11:43+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "KiritoXD"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kiritoxdone.github.io/posts/study/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KiritoXD's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kiritoxdone.github.io/img/a.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kiritoxdone.github.io/" accesskey="h" title="KiritoXD&#39;s Blog (Alt + H)">
+                <img src="https://kiritoxdone.github.io/img/a.png" alt="" aria-label="logo"
+                    height="35">KiritoXD&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://kiritoxdone.github.io/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/" title="🏠 主页">
+                    <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/posts" title="📚 文章">
+                    <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/about" title="🙋🏻‍♂️ 关于">
+                    <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/archives/" title="⏱️ 归档">
+                    <span>⏱️ 归档</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kiritoxdone.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://kiritoxdone.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://kiritoxdone.github.io/posts/study/">📖 学习</a></div>
+    <h1 class="post-title entry-hint-parent">
+      最小生成树
+    </h1>
+    <div class="post-description">
+      最小生成树算法学习
+    </div>
+    <div class="post-meta">
+
+<span title='2024-07-30 20:11:43 +0800 CST'>2024-07-30</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;493 字&nbsp;·&nbsp;KiritoXD
+
+</div>
+  </header>
+  <div class="post-password">
+    
+  </div> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a0%91%e5%9f%ba%e7%a1%80%e7%ae%97%e6%b3%95%e5%ad%a6%e4%b9%a0" aria-label="最小生成树基础算法学习">最小生成树基础算法学习</a><ul>
+                            
+                    <li>
+                        <a href="#%e5%ae%9a%e4%b9%89" aria-label="定义">定义</a></li>
+                    <li>
+                        <a href="#kruskal-%e7%ae%97%e6%b3%95" aria-label="Kruskal 算法">Kruskal 算法</a><ul>
+                            
+                    <li>
+                        <a href="#%e7%ae%80%e4%bb%8b" aria-label="简介">简介</a></li>
+                    <li>
+                        <a href="#%e5%ae%9e%e7%8e%b0" aria-label="实现">实现</a></li>
+                    <li>
+                        <a href="#%e4%be%8b%e9%a2%98" aria-label="例题">例题</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#prim-%e7%ae%97%e6%b3%95" aria-label="Prim 算法">Prim 算法</a><ul>
+                            
+                    <li>
+                        <a href="#%e7%ae%80%e4%bb%8b-1" aria-label="简介">简介</a></li>
+                    <li>
+                        <a href="#%e5%ae%9e%e7%8e%b0-1" aria-label="实现">实现</a></li>
+                    <li>
+                        <a href="#%e4%be%8b%e9%a2%98-1" aria-label="例题">例题</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+
+  <div class="post-content"><h1 id="最小生成树基础算法学习">最小生成树基础算法学习<a hidden class="anchor" aria-hidden="true" href="#最小生成树基础算法学习">#</a></h1>
+<hr>
+<h2 id="定义">定义<a hidden class="anchor" aria-hidden="true" href="#定义">#</a></h2>
+<p>我们定义无向连通图的 <strong>最小生成树</strong>（Minimum Spanning Tree，MST）为边权和最小的生成树。</p>
+<p>注意：只有连通图才有生成树，而对于非连通图，只存在生成森林。</p>
+<hr>
+<h2 id="kruskal-算法">Kruskal 算法<a hidden class="anchor" aria-hidden="true" href="#kruskal-算法">#</a></h2>
+<h3 id="简介">简介<a hidden class="anchor" aria-hidden="true" href="#简介">#</a></h3>
+<p>基本思想是从小到大加入边，是个贪心算法。</p>
+<p>将所有边的边权排序，从小到大加入生成树中，如果某次加入会生成环就舍弃此边，直到加入了 $n - 1$ 条边，形成树。时间复杂度为 $O(m \log m)$</p>
+<h3 id="实现">实现<a hidden class="anchor" aria-hidden="true" href="#实现">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#cba6f7">struct</span> Node{
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> x,y,v;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">bool</span> operator <span style="color:#89dceb;font-weight:bold">&lt;</span> (<span style="color:#cba6f7">const</span> Node <span style="color:#89dceb;font-weight:bold">&amp;</span>a){
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span> v<span style="color:#89dceb;font-weight:bold">&lt;</span>a.v;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}a[<span style="color:#fab387">500001</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> n,m,fa[<span style="color:#fab387">500001</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">find</span>(<span style="color:#f38ba8">int</span> i){
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span>(fa[i]<span style="color:#89dceb;font-weight:bold">==</span>i)<span style="color:#cba6f7">return</span> i;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> fa[i]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#89b4fa">find</span>(fa[i]);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">Kruskal</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>)fa[i]<span style="color:#89dceb;font-weight:bold">=</span>i;
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">sort</span>(a<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span>,a<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span><span style="color:#89dceb;font-weight:bold">+</span>m);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> cnt<span style="color:#89dceb;font-weight:bold">=</span>n,ans<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>m;i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> x<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#89b4fa">find</span>(a[i].x),y<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#89b4fa">find</span>(a[i].y);
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(x<span style="color:#89dceb;font-weight:bold">!=</span>y){
+</span></span><span style="display:flex;"><span>            fa[x]<span style="color:#89dceb;font-weight:bold">=</span>y;
+</span></span><span style="display:flex;"><span>            ans<span style="color:#89dceb;font-weight:bold">+=</span>a[i].v;
+</span></span><span style="display:flex;"><span>            cnt<span style="color:#89dceb;font-weight:bold">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(cnt<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#fab387">1</span>)<span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> cnt;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="例题">例题<a hidden class="anchor" aria-hidden="true" href="#例题">#</a></h3>
+<p>洛谷<a href="https://www.luogu.com.cn/problem/P3366">P3366</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>using namespace std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">struct</span> Node{
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> x,y,v;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">bool</span> operator <span style="color:#89dceb;font-weight:bold">&lt;</span> (<span style="color:#cba6f7">const</span> Node <span style="color:#89dceb;font-weight:bold">&amp;</span>a){
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span> v<span style="color:#89dceb;font-weight:bold">&lt;</span>a.v;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}a[<span style="color:#fab387">500001</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> n,m,fa[<span style="color:#fab387">500001</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">findset</span>(<span style="color:#f38ba8">int</span> i){
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span>(fa[i]<span style="color:#89dceb;font-weight:bold">==</span>i)<span style="color:#cba6f7">return</span> i;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> fa[i]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#89b4fa">findset</span>(fa[i]);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">Kruskal</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>)fa[i]<span style="color:#89dceb;font-weight:bold">=</span>i;
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">sort</span>(a<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span>,a<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span><span style="color:#89dceb;font-weight:bold">+</span>m);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> cnt<span style="color:#89dceb;font-weight:bold">=</span>n,ans<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>m;i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> x<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#89b4fa">findset</span>(a[i].x),y<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#89b4fa">findset</span>(a[i].y);
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(x<span style="color:#89dceb;font-weight:bold">!=</span>y){
+</span></span><span style="display:flex;"><span>            fa[x]<span style="color:#89dceb;font-weight:bold">=</span>y;
+</span></span><span style="display:flex;"><span>            ans<span style="color:#89dceb;font-weight:bold">+=</span>a[i].v;
+</span></span><span style="display:flex;"><span>            cnt<span style="color:#89dceb;font-weight:bold">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(cnt<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#fab387">1</span>)<span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span>(cnt<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#fab387">1</span>)
+</span></span><span style="display:flex;"><span>        cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>ans<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">else</span> cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span><span style="color:#a6e3a1">&#34;orz</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>(){
+</span></span><span style="display:flex;"><span>    cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>n<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>m;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>m;i<span style="color:#89dceb;font-weight:bold">++</span>)cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>a[i].x<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>a[i].y<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>a[i].v;
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">Kruskal</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="prim-算法">Prim 算法<a hidden class="anchor" aria-hidden="true" href="#prim-算法">#</a></h2>
+<h3 id="简介-1">简介<a hidden class="anchor" aria-hidden="true" href="#简介-1">#</a></h3>
+<p>基本思想是从一个点开始，不断加点，而不是 Kruskal 的加边</p>
+<p>具体做法就是在当前图可连点上选择距离最近的一个点，将这个点加入图，继续找最近的点，直到所有的点都找到</p>
+<p>时间复杂度一般为 $O(n^2)$</p>
+<h3 id="实现-1">实现<a hidden class="anchor" aria-hidden="true" href="#实现-1">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#cba6f7">struct</span> Node{
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> y,v;
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">Node</span>(<span style="color:#f38ba8">int</span> _y,<span style="color:#f38ba8">int</span> _v){y<span style="color:#89dceb;font-weight:bold">=</span>_y;v<span style="color:#89dceb;font-weight:bold">=</span>_v;}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vector<span style="color:#89dceb;font-weight:bold">&lt;</span>Node<span style="color:#89dceb;font-weight:bold">&gt;</span>edge[<span style="color:#fab387">5001</span>];
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> n,m,dist[<span style="color:#fab387">5001</span>];
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">bool</span> b[<span style="color:#fab387">5001</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">Prim</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">memset</span>(b,<span style="color:#fab387">0</span>,<span style="color:#cba6f7">sizeof</span>(b));
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">memset</span>(dist,<span style="color:#fab387">127</span>,<span style="color:#cba6f7">sizeof</span>(dist));
+</span></span><span style="display:flex;"><span>    dist[<span style="color:#fab387">1</span>]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> ans<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>,tot<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(;;){
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> x<span style="color:#89dceb;font-weight:bold">=-</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> j<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;j<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;j<span style="color:#89dceb;font-weight:bold">++</span>){    
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">if</span>(<span style="color:#89dceb;font-weight:bold">!</span>b[j]<span style="color:#89dceb;font-weight:bold">&amp;&amp;</span>dist[j]<span style="color:#89dceb;font-weight:bold">&lt;</span><span style="color:#fab387">1</span><span style="color:#89dceb;font-weight:bold">&lt;&lt;</span><span style="color:#fab387">30</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#cba6f7">if</span>(x<span style="color:#89dceb;font-weight:bold">==-</span><span style="color:#fab387">1</span><span style="color:#89dceb;font-weight:bold">||</span>dist[j]<span style="color:#89dceb;font-weight:bold">&lt;</span>dist[x])x<span style="color:#89dceb;font-weight:bold">=</span>j;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(x<span style="color:#89dceb;font-weight:bold">==-</span><span style="color:#fab387">1</span>)<span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span>        b[x]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#89dceb;font-weight:bold">++</span>tot;
+</span></span><span style="display:flex;"><span>        ans<span style="color:#89dceb;font-weight:bold">+=</span>dist[x];
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">for</span>(<span style="color:#cba6f7">auto</span> <span style="color:#89dceb">j</span>:edge[x]){
+</span></span><span style="display:flex;"><span>            dist[j.y]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#89b4fa">min</span>(dist[j.y],j.v);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span>(tot<span style="color:#89dceb;font-weight:bold">==</span>n)
+</span></span><span style="display:flex;"><span>        cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>ans<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">else</span>
+</span></span><span style="display:flex;"><span>    cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span><span style="color:#a6e3a1">&#34;-1</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>;        
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="例题-1">例题<a hidden class="anchor" aria-hidden="true" href="#例题-1">#</a></h3>
+<p>洛谷<a href="https://www.luogu.com.cn/problem/P3366">P3366</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>using namespace std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">struct</span> Node{
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> y,v;
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">Node</span>(<span style="color:#f38ba8">int</span> _y,<span style="color:#f38ba8">int</span> _v){y<span style="color:#89dceb;font-weight:bold">=</span>_y;v<span style="color:#89dceb;font-weight:bold">=</span>_v;}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vector<span style="color:#89dceb;font-weight:bold">&lt;</span>Node<span style="color:#89dceb;font-weight:bold">&gt;</span>edge[<span style="color:#fab387">5001</span>];
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> n,m,dist[<span style="color:#fab387">5001</span>];
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">bool</span> b[<span style="color:#fab387">5001</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">Prim</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">memset</span>(b,<span style="color:#fab387">0</span>,<span style="color:#cba6f7">sizeof</span>(b));
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">memset</span>(dist,<span style="color:#fab387">127</span>,<span style="color:#cba6f7">sizeof</span>(dist));
+</span></span><span style="display:flex;"><span>    dist[<span style="color:#fab387">1</span>]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> ans<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>,tot<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(;;){
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> x<span style="color:#89dceb;font-weight:bold">=-</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> j<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;j<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;j<span style="color:#89dceb;font-weight:bold">++</span>){    
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">if</span>(<span style="color:#89dceb;font-weight:bold">!</span>b[j]<span style="color:#89dceb;font-weight:bold">&amp;&amp;</span>dist[j]<span style="color:#89dceb;font-weight:bold">&lt;</span><span style="color:#fab387">1</span><span style="color:#89dceb;font-weight:bold">&lt;&lt;</span><span style="color:#fab387">30</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#cba6f7">if</span>(x<span style="color:#89dceb;font-weight:bold">==-</span><span style="color:#fab387">1</span><span style="color:#89dceb;font-weight:bold">||</span>dist[j]<span style="color:#89dceb;font-weight:bold">&lt;</span>dist[x])x<span style="color:#89dceb;font-weight:bold">=</span>j;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(x<span style="color:#89dceb;font-weight:bold">==-</span><span style="color:#fab387">1</span>)<span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span>        b[x]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#89dceb;font-weight:bold">++</span>tot;
+</span></span><span style="display:flex;"><span>        ans<span style="color:#89dceb;font-weight:bold">+=</span>dist[x];
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">for</span>(<span style="color:#cba6f7">auto</span> <span style="color:#89dceb">j</span>:edge[x]){
+</span></span><span style="display:flex;"><span>            dist[j.y]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#89b4fa">min</span>(dist[j.y],j.v);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span>(tot<span style="color:#89dceb;font-weight:bold">==</span>n)
+</span></span><span style="display:flex;"><span>        cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>ans<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">else</span>
+</span></span><span style="display:flex;"><span>    cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span><span style="color:#a6e3a1">&#34;orz</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>;        
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>(){
+</span></span><span style="display:flex;"><span>    cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>n<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>m;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>m;i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> x,y,z;
+</span></span><span style="display:flex;"><span>        cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>x<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>y<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>z;
+</span></span><span style="display:flex;"><span>        edge[x].<span style="color:#89b4fa">push_back</span>(<span style="color:#89b4fa">Node</span>(y,z));
+</span></span><span style="display:flex;"><span>        edge[y].<span style="color:#89b4fa">push_back</span>(<span style="color:#89b4fa">Node</span>(x,z));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">Prim</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://kiritoxdone.github.io/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/">最小生成树</a></li>
+      <li><a href="https://kiritoxdone.github.io/tags/kruskal/">Kruskal</a></li>
+      <li><a href="https://kiritoxdone.github.io/tags/prim/">Prim</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://kiritoxdone.github.io/posts/study/2024%E8%90%8C%E6%96%B0%E8%81%94%E8%B5%9B3/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>2024萌新联赛3</span>
+  </a>
+  <a class="next" href="https://kiritoxdone.github.io/posts/study/%E6%9C%80%E7%9F%AD%E8%B7%AF/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>最短路</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://kiritoxdone.github.io/">KiritoXD&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', () => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent;
+                navigator.clipboard.writeText(text).then(copyingDone);
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replace("language-", "");
+        let macTool = document.createElement("div");
+        let macTool1 = document.createElement("div");
+        let macTool2 = document.createElement("div");
+        let macTool3 = document.createElement("div");
+        let languageType = document.createElement("div");
+        languageType.innerText = language;
+        macTool.setAttribute('class', 'mac-tool');
+        macTool1.setAttribute('class', 'mac bb1');
+        macTool2.setAttribute('class', 'mac bb2');
+        macTool3.setAttribute('class', 'mac bb3');
+        languageType.setAttribute('class', 'language-type');
+        macTool.appendChild(macTool1);
+        macTool.appendChild(macTool2);
+        macTool.appendChild(macTool3);
+        macTool.appendChild(languageType);
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        }
+    });
+</script>
+
+<script>
+    (function(u, c) {
+      var d = document, t = 'script', o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function(e) { c(e); }); }
+      s.parentNode.insertBefore(o, s);
+    })('//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js', function() {
+      pangu.spacingPage();
+    });
+    </script>
+</body>
+
+</html>

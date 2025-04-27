@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>拓扑排序 | KiritoXD&#39;s Blog</title>
+<meta name="keywords" content="拓扑排序">
+<meta name="description" content="25年教学记录">
+<meta name="author" content="KiritoXD">
+<link rel="canonical" href="https://kiritoxdone.github.io/posts/study/topo/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="apple-touch-icon" href="https://kiritoxdone.github.io/img/a.png">
+<link rel="mask-icon" href="https://kiritoxdone.github.io/img/a.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://kiritoxdone.github.io/posts/study/topo/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" integrity="sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js" integrity="sha384-Qsn9KnoKISj6dI8g7p1HBlNpVx0I8p1SvlwOldgi3IorMle61nQy4zEahWYtljaz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+  
+
+<meta property="og:title" content="拓扑排序" />
+<meta property="og:description" content="25年教学记录" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kiritoxdone.github.io/posts/study/topo/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-02-05T22:00:32+08:00" />
+<meta property="article:modified_time" content="2025-02-05T22:00:32+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="拓扑排序"/>
+<meta name="twitter:description" content="25年教学记录"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://kiritoxdone.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📖 学习",
+      "item": "https://kiritoxdone.github.io/posts/study/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "拓扑排序",
+      "item": "https://kiritoxdone.github.io/posts/study/topo/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "拓扑排序",
+  "name": "拓扑排序",
+  "description": "25年教学记录",
+  "keywords": [
+    "拓扑排序"
+  ],
+  "articleBody": "定义 拓扑排序要解决的问题是如何给一个有向无环图的所有节点排序。\n用通俗点的话来描述这个概念，假设有三门课，高等数学-1，高等数学-2，高等数学-3，要想学高等数学-2，就得先学会高等数学-1，同理想学高等数学-3，就得学会高等数学-2。这三门课相当于三个顶点，对应的顺序就像是点与点之间的有向边。\n如果要求想学高等数学-1，必须得学会高等数学-3，此时图中就出现了环，没法搞清先学哪个，无法进行拓扑。\n所以如果有向图中存在环路，我们就没办法进行拓扑排序。\n解决方案 我们用 Kahn 算法来解决拓扑排序问题。\n过程 初始，有一个集合 S，其中装着所有入度为 0 的点，然后 L 是一个空列表。\n每次从 S 中取出一个点 u（可以任意取），先将 u 放入 L，然后把边（u，x）（x 为 u 能到达的任意节点）删掉。\n如果删除过程中某点 x 的入度变为 0，将其放入 S 中。 不断重复，直到 S 为空。检查图中是否还存在边，如果存在，则图中有环，否则 L 即为拓扑排序的结果。\n代码 int n, m; vector\u003cint\u003e G[1010]; int in[1010]; // 存储每个结点的入度 bool toposort() { vector\u003cint\u003e L; queue\u003cint\u003e S; for (int i = 1; i \u003c= n; i++) if (in[i] == 0) S.push(i); //入度为 0 的点进入 S 中 while (!S.empty()) { int u = S.front(); S.pop(); L.push_back(u); //把 u 放入 L 中 for (auto v : G[u]) { //遍历以 u 为起点的所有边 if (--in[v] == 0) { //这里可以把 -- in[v] 放到外面，这样写是为了代码简洁。 S.push(v); } } } if (L.size() == n) { //如果 L 中存放了 n 个点，拓扑成功，输出排序结果 for (auto i : L) cout \u003c\u003c i \u003c\u003c ' '; return true; } return false; //否则图中有环，拓扑排序失败 } 时间复杂度 时间复杂度为 $O(E+V)$。\n应用 可以用于判断图上是否有环，图是否为一条链等。\n例题 洛谷 P2712\n题目描述 食品店里有 $n$ 个摄像头，这种摄像头很笨拙，只能拍摄到固定位置。现有一群胆大妄为的松鼠想要抢劫食品店，为了不让摄像头拍下他们犯罪的证据，他们抢劫前的第一件事就是砸毁这些摄像头。\n为了便于砸毁摄像头，松鼠歹徒们把所有摄像头和摄像头能监视到的地方统一编号，一个摄像头能被砸毁的条件是该摄像头所在位置不被其他摄像头监视。\n现在你的任务是帮松鼠们计算是否可以砸掉所有摄像头，如不能则输出还没砸掉的摄像头的数量。\n输入 第 $1$ 行，一个整数 $n$，表示摄像头的个数。\n第 $2$ 到 $n+1$ 行是摄像头的信息，包括：摄像头的位置 $x$，以及这个摄像头可以监视到的位置数 $m$，之后 $m$ 个数 $y$ 是此摄像头可以监视到的位置。(砸了这些摄像头之后自然这些位置就监视不到了)\n输出 若可以砸掉所有摄像头则输出“ $\\texttt{YES}$ ”，否则输出还没砸掉的摄像头的数量。（不带引号）\n样例 输入 5 1 1 2 2 1 1 3 1 7 4 1 1 5 0 输出 2 解题 读题后可以明确使用拓扑排序来解决问题，因为摧毁要有顺序，我们只能摧毁当前没被其他摄像头照到的，即入度为 0 的摄像头。\n所以先找到当前入度为 0 的摄像头，赛到 S 中，再按照上面讲的，一直重复操作，直到 S 为空。\n最后判断有多少个摄像头赛到过 S 中即可。\n#include using namespace std; int n,m,in[10001],ans,vis[10001],a[10001]; vector\u003cint\u003eg[10001]; void TopoSort(){ queue\u003cint\u003es; ans=0; for(int i=1;i\u003c=n;i++){ if(!in[a[i]] \u0026\u0026 vis[a[i]]) s.push(a[i]); } while(!s.empty()){ int u = s.front(); ans++; s.pop(); for(auto v:g[u]){ if(--in[v]==0\u0026\u0026vis[v])s.push(v); } } if(ans==n)cout\u003c\u003c\"YES\\n\"; else cout\u003c\u003cn-ans\u003c\u003cendl; } int main(){ cin\u003e\u003en; for(int i=1;i\u003c=n;i++){ int m; cin\u003e\u003ea[i]\u003e\u003em; vis[a[i]]=1; for(int j=1;j\u003c=m;j++){ int y; cin\u003e\u003ey; g[a[i]].push_back(y); in[y]++; } } TopoSort(); return 0; } ",
+  "wordCount" : "1185",
+  "inLanguage": "zh",
+  "datePublished": "2025-02-05T22:00:32+08:00",
+  "dateModified": "2025-02-05T22:00:32+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "KiritoXD"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kiritoxdone.github.io/posts/study/topo/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KiritoXD's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kiritoxdone.github.io/img/a.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kiritoxdone.github.io/" accesskey="h" title="KiritoXD&#39;s Blog (Alt + H)">
+                <img src="https://kiritoxdone.github.io/img/a.png" alt="" aria-label="logo"
+                    height="35">KiritoXD&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://kiritoxdone.github.io/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/" title="🏠 主页">
+                    <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/posts" title="📚 文章">
+                    <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/about" title="🙋🏻‍♂️ 关于">
+                    <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kiritoxdone.github.io/archives/" title="⏱️ 归档">
+                    <span>⏱️ 归档</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kiritoxdone.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://kiritoxdone.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://kiritoxdone.github.io/posts/study/">📖 学习</a></div>
+    <h1 class="post-title entry-hint-parent">
+      拓扑排序
+    </h1>
+    <div class="post-meta">
+
+<span title='2025-02-05 22:00:32 +0800 CST'>2025-02-05</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1185 字&nbsp;·&nbsp;KiritoXD
+
+</div>
+  </header>
+  <div class="post-password">
+    
+  </div> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#%e5%ae%9a%e4%b9%89" aria-label="定义">定义</a></li>
+                    <li>
+                        <a href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" aria-label="解决方案">解决方案</a><ul>
+                            
+                    <li>
+                        <a href="#%e8%bf%87%e7%a8%8b" aria-label="过程">过程</a></li>
+                    <li>
+                        <a href="#%e4%bb%a3%e7%a0%81" aria-label="代码">代码</a></li>
+                    <li>
+                        <a href="#%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6" aria-label="时间复杂度">时间复杂度</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#%e5%ba%94%e7%94%a8" aria-label="应用">应用</a></li>
+                    <li>
+                        <a href="#%e4%be%8b%e9%a2%98" aria-label="例题">例题</a><ul>
+                            
+                    <li>
+                        <a href="#%e9%a2%98%e7%9b%ae%e6%8f%8f%e8%bf%b0" aria-label="题目描述">题目描述</a></li>
+                    <li>
+                        <a href="#%e8%be%93%e5%85%a5" aria-label="输入">输入</a></li>
+                    <li>
+                        <a href="#%e8%be%93%e5%87%ba" aria-label="输出">输出</a></li>
+                    <li>
+                        <a href="#%e6%a0%b7%e4%be%8b" aria-label="样例">样例</a><ul>
+                            
+                    <li>
+                        <a href="#%e8%be%93%e5%85%a5-1" aria-label="输入">输入</a></li>
+                    <li>
+                        <a href="#%e8%be%93%e5%87%ba-1" aria-label="输出">输出</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#%e8%a7%a3%e9%a2%98" aria-label="解题">解题</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+
+  <div class="post-content"><h2 id="定义">定义<a hidden class="anchor" aria-hidden="true" href="#定义">#</a></h2>
+<p>拓扑排序要解决的问题是如何给一个有向无环图的所有节点排序。</p>
+<p>用通俗点的话来描述这个概念，假设有三门课，高等数学-1，高等数学-2，高等数学-3，要想学高等数学-2，就得先学会高等数学-1，同理想学高等数学-3，就得学会高等数学-2。这三门课相当于三个顶点，对应的顺序就像是点与点之间的有向边。</p>
+<p>如果要求想学高等数学-1，必须得学会高等数学-3，此时图中就出现了环，没法搞清先学哪个，无法进行拓扑。</p>
+<p>所以如果有向图中存在环路，我们就没办法进行拓扑排序。</p>
+<h2 id="解决方案">解决方案<a hidden class="anchor" aria-hidden="true" href="#解决方案">#</a></h2>
+<p>我们用 Kahn 算法来解决拓扑排序问题。</p>
+<h3 id="过程">过程<a hidden class="anchor" aria-hidden="true" href="#过程">#</a></h3>
+<p>初始，有一个集合 S，其中装着所有入度为 0 的点，然后 L 是一个空列表。</p>
+<p>每次从 S 中取出一个点 u（可以任意取），先将 u 放入 L，然后把边（u，x）（x 为 u 能到达的任意节点）删掉。</p>
+<ul>
+<li>如果删除过程中某点 x 的入度变为 0，将其放入 S 中。</li>
+</ul>
+<p>不断重复，直到 S 为空。检查图中是否还存在边，如果存在，则图中有环，否则 L 即为拓扑排序的结果。</p>
+<h3 id="代码">代码<a hidden class="anchor" aria-hidden="true" href="#代码">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#f38ba8">int</span> n, m;
+</span></span><span style="display:flex;"><span>vector<span style="color:#89dceb;font-weight:bold">&lt;</span><span style="color:#f38ba8">int</span><span style="color:#89dceb;font-weight:bold">&gt;</span> G[<span style="color:#fab387">1010</span>];
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> in[<span style="color:#fab387">1010</span>];  <span style="color:#6c7086;font-style:italic">// 存储每个结点的入度
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">bool</span> <span style="color:#89b4fa">toposort</span>() {
+</span></span><span style="display:flex;"><span>    vector<span style="color:#89dceb;font-weight:bold">&lt;</span><span style="color:#f38ba8">int</span><span style="color:#89dceb;font-weight:bold">&gt;</span> L;
+</span></span><span style="display:flex;"><span>    queue<span style="color:#89dceb;font-weight:bold">&lt;</span><span style="color:#f38ba8">int</span><span style="color:#89dceb;font-weight:bold">&gt;</span> S;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>; i <span style="color:#89dceb;font-weight:bold">&lt;=</span> n; i<span style="color:#89dceb;font-weight:bold">++</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (in[i] <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#fab387">0</span>) S.push(i); <span style="color:#6c7086;font-style:italic">//入度为 0 的点进入 S 中
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#cba6f7">while</span> (<span style="color:#89dceb;font-weight:bold">!</span>S.empty()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> u <span style="color:#89dceb;font-weight:bold">=</span> S.front();
+</span></span><span style="display:flex;"><span>        S.pop();
+</span></span><span style="display:flex;"><span>        L.push_back(u); <span style="color:#6c7086;font-style:italic">//把 u 放入 L 中
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>        <span style="color:#cba6f7">for</span> (<span style="color:#cba6f7">auto</span> <span style="color:#89dceb">v</span> : G[u]) { <span style="color:#6c7086;font-style:italic">//遍历以 u 为起点的所有边
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>            <span style="color:#cba6f7">if</span> (<span style="color:#89dceb;font-weight:bold">--</span>in[v] <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#fab387">0</span>) { <span style="color:#6c7086;font-style:italic">//这里可以把 -- in[v] 放到外面，这样写是为了代码简洁。  
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>                S.push(v);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (L.size() <span style="color:#89dceb;font-weight:bold">==</span> n) { <span style="color:#6c7086;font-style:italic">//如果 L 中存放了 n 个点，拓扑成功，输出排序结果  
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>        <span style="color:#cba6f7">for</span> (<span style="color:#cba6f7">auto</span> <span style="color:#89dceb">i</span> : L) cout <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> i <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> <span style="color:#a6e3a1">&#39; &#39;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span> <span style="color:#89dceb">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#89dceb">false</span>; <span style="color:#6c7086;font-style:italic">//否则图中有环，拓扑排序失败
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>}
+</span></span></code></pre></div><h3 id="时间复杂度">时间复杂度<a hidden class="anchor" aria-hidden="true" href="#时间复杂度">#</a></h3>
+<p>时间复杂度为 $O(E+V)$。</p>
+<h2 id="应用">应用<a hidden class="anchor" aria-hidden="true" href="#应用">#</a></h2>
+<p>可以用于判断图上是否有环，图是否为一条链等。</p>
+<h2 id="例题">例题<a hidden class="anchor" aria-hidden="true" href="#例题">#</a></h2>
+<p>洛谷 <a href="https://www.luogu.com.cn/problem/P2712">P2712</a></p>
+<h3 id="题目描述">题目描述<a hidden class="anchor" aria-hidden="true" href="#题目描述">#</a></h3>
+<p>食品店里有 $n$ 个摄像头，这种摄像头很笨拙，只能拍摄到固定位置。现有一群胆大妄为的松鼠想要抢劫食品店，为了不让摄像头拍下他们犯罪的证据，他们抢劫前的第一件事就是砸毁这些摄像头。</p>
+<p>为了便于砸毁摄像头，松鼠歹徒们把所有摄像头和摄像头能监视到的地方统一编号，一个摄像头能被砸毁的条件是该摄像头所在位置不被其他摄像头监视。</p>
+<p>现在你的任务是帮松鼠们计算是否可以砸掉所有摄像头，如不能则输出还没砸掉的摄像头的数量。</p>
+<h3 id="输入">输入<a hidden class="anchor" aria-hidden="true" href="#输入">#</a></h3>
+<p>第 $1$ 行，一个整数 $n$，表示摄像头的个数。</p>
+<p>第 $2$ 到 $n+1$ 行是摄像头的信息，包括：摄像头的位置 $x$，以及这个摄像头可以监视到的位置数 $m$，之后 $m$ 个数 $y$ 是此摄像头可以监视到的位置。(砸了这些摄像头之后自然这些位置就监视不到了)</p>
+<h3 id="输出">输出<a hidden class="anchor" aria-hidden="true" href="#输出">#</a></h3>
+<p>若可以砸掉所有摄像头则输出“ $\texttt{YES}$ ”，否则输出还没砸掉的摄像头的数量。（不带引号）</p>
+<h3 id="样例">样例<a hidden class="anchor" aria-hidden="true" href="#样例">#</a></h3>
+<h4 id="输入-1">输入<a hidden class="anchor" aria-hidden="true" href="#输入-1">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>5
+</span></span><span style="display:flex;"><span>1 1 2
+</span></span><span style="display:flex;"><span>2 1 1
+</span></span><span style="display:flex;"><span>3 1 7
+</span></span><span style="display:flex;"><span>4 1 1
+</span></span><span style="display:flex;"><span>5 0
+</span></span></code></pre></div><h4 id="输出-1">输出<a hidden class="anchor" aria-hidden="true" href="#输出-1">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>2
+</span></span></code></pre></div><h3 id="解题">解题<a hidden class="anchor" aria-hidden="true" href="#解题">#</a></h3>
+<p>读题后可以明确使用拓扑排序来解决问题，因为摧毁要有顺序，我们只能摧毁当前没被其他摄像头照到的，即入度为 0 的摄像头。</p>
+<p>所以先找到当前入度为 0 的摄像头，赛到 S 中，再按照上面讲的，一直重复操作，直到 S 为空。</p>
+<p>最后判断有多少个摄像头赛到过 S 中即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">using</span> <span style="color:#cba6f7">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> n,m,in[<span style="color:#fab387">10001</span>],ans,vis[<span style="color:#fab387">10001</span>],a[<span style="color:#fab387">10001</span>];
+</span></span><span style="display:flex;"><span>vector<span style="color:#89dceb;font-weight:bold">&lt;</span><span style="color:#f38ba8">int</span><span style="color:#89dceb;font-weight:bold">&gt;</span>g[<span style="color:#fab387">10001</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">TopoSort</span>(){
+</span></span><span style="display:flex;"><span>    queue<span style="color:#89dceb;font-weight:bold">&lt;</span><span style="color:#f38ba8">int</span><span style="color:#89dceb;font-weight:bold">&gt;</span>s;
+</span></span><span style="display:flex;"><span>    ans<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(<span style="color:#89dceb;font-weight:bold">!</span>in[a[i]] <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> vis[a[i]])
+</span></span><span style="display:flex;"><span>            s.push(a[i]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">while</span>(<span style="color:#89dceb;font-weight:bold">!</span>s.empty()){
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> u <span style="color:#89dceb;font-weight:bold">=</span> s.front();
+</span></span><span style="display:flex;"><span>        ans<span style="color:#89dceb;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span>        s.pop();
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">for</span>(<span style="color:#cba6f7">auto</span> <span style="color:#89dceb">v</span>:g[u]){
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">if</span>(<span style="color:#89dceb;font-weight:bold">--</span>in[v]<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#fab387">0</span><span style="color:#89dceb;font-weight:bold">&amp;&amp;</span>vis[v])s.push(v);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span>(ans<span style="color:#89dceb;font-weight:bold">==</span>n)cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span><span style="color:#a6e3a1">&#34;YES</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">else</span> cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>n<span style="color:#89dceb;font-weight:bold">-</span>ans<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>(){
+</span></span><span style="display:flex;"><span>    cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>n;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> m;
+</span></span><span style="display:flex;"><span>        cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>a[i]<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>m;
+</span></span><span style="display:flex;"><span>        vis[a[i]]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> j<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;j<span style="color:#89dceb;font-weight:bold">&lt;=</span>m;j<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#f38ba8">int</span> y;
+</span></span><span style="display:flex;"><span>            cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>y;
+</span></span><span style="display:flex;"><span>            g[a[i]].push_back(y);
+</span></span><span style="display:flex;"><span>            in[y]<span style="color:#89dceb;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    TopoSort();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://kiritoxdone.github.io/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/">拓扑排序</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://kiritoxdone.github.io/posts/study/topo_ans/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>拓扑教学题解</span>
+  </a>
+  <a class="next" href="https://kiritoxdone.github.io/posts/study/cf1000/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>Codeforces Round 1000 (Div. 2)</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://kiritoxdone.github.io/">KiritoXD&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', () => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent;
+                navigator.clipboard.writeText(text).then(copyingDone);
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replace("language-", "");
+        let macTool = document.createElement("div");
+        let macTool1 = document.createElement("div");
+        let macTool2 = document.createElement("div");
+        let macTool3 = document.createElement("div");
+        let languageType = document.createElement("div");
+        languageType.innerText = language;
+        macTool.setAttribute('class', 'mac-tool');
+        macTool1.setAttribute('class', 'mac bb1');
+        macTool2.setAttribute('class', 'mac bb2');
+        macTool3.setAttribute('class', 'mac bb3');
+        languageType.setAttribute('class', 'language-type');
+        macTool.appendChild(macTool1);
+        macTool.appendChild(macTool2);
+        macTool.appendChild(macTool3);
+        macTool.appendChild(languageType);
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        }
+    });
+</script>
+
+<script>
+    (function(u, c) {
+      var d = document, t = 'script', o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function(e) { c(e); }); }
+      s.parentNode.insertBefore(o, s);
+    })('//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js', function() {
+      pangu.spacingPage();
+    });
+    </script>
+</body>
+
+</html>
