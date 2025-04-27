@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>树形DP | KiritoXD&#39;s Blog</title>
+<meta name="keywords" content="树形DP, DP">
+<meta name="description" content="树形 DP 学习记录">
+<meta name="author" content="KiritoXD">
+<link rel="canonical" href="https://blog.050623.xyz/posts/study/treedp/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.050623.xyz/img/a.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.050623.xyz/img/a.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.050623.xyz/img/a.png">
+<link rel="apple-touch-icon" href="https://blog.050623.xyz/img/a.png">
+<link rel="mask-icon" href="https://blog.050623.xyz/img/a.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://blog.050623.xyz/posts/study/treedp/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" integrity="sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js" integrity="sha384-Qsn9KnoKISj6dI8g7p1HBlNpVx0I8p1SvlwOldgi3IorMle61nQy4zEahWYtljaz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+  
+
+<meta property="og:title" content="树形DP" />
+<meta property="og:description" content="树形 DP 学习记录" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.050623.xyz/posts/study/treedp/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-10-11T18:23:38+08:00" />
+<meta property="article:modified_time" content="2024-10-11T18:23:38+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="树形DP"/>
+<meta name="twitter:description" content="树形 DP 学习记录"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.050623.xyz/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📖 学习",
+      "item": "https://blog.050623.xyz/posts/study/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "树形DP",
+      "item": "https://blog.050623.xyz/posts/study/treedp/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "树形DP",
+  "name": "树形DP",
+  "description": "树形 DP 学习记录",
+  "keywords": [
+    "树形DP", "DP"
+  ],
+  "articleBody": "树上 DP 顾名思义，在树上进行的 DP，一般通过递归进行\n一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$\n洛谷 没有上司的舞会 P1352 题目 某大学有 $n$ 个职员，编号为 $1\\ldots n$。\n他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。\n现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数 $r_i$，但是呢，如果某个职员的直接上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。\n所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。\n解决 设 $f_{i,j}$ 代表以 $i$ 为根的子树的最优解，$j$ 用 $0,1$ 来表示取不取 $i$ 这个人\n对于每个节点，都有两种决策\n不取当前节点，他的子节点都可以取，或不取，$f_{i,0} = \\sum_{x \\in \\text{child}(i)} \\max(f_{x,0}, f_{x,1})$\n取当前节点，他的子节点都不能取，$f_{i,0} = \\sum_{x \\in \\text{child}(i)}f_{x,0}+a_i$\n#include using namespace std; #define ls now\u003c\u003c1 #define rs now\u003c\u003c1|1 #define endl \"\\n\" #define lowbit(x) ((x)\u0026(-x)) typedef long long ll; const int N=1e5+7, mod=1e9+7; vector\u003cint\u003e edge[N]; int a[N],n,cnt,f[N][2],ans; bool vis[N]; void dfs(int now) { f[now][0] = 0; f[now][1] = a[now]; for (int i = 0; i \u003c (int)edge[now].size(); i++) { int to = edge[now][i]; dfs(to); f[now][0] += max(f[to][0], f[to][1]); f[now][1] += f[to][0]; } } void solve(){ cin\u003e\u003en; for(int i=1;i\u003c=n;i++)cin\u003e\u003ea[i]; for(int i=1;i\u003cn;i++){ int x,y; cin\u003e\u003ex\u003e\u003ey; edge[y].push_back(x); vis[x]=1; } int root=0; for(int i=1;i\u003c=n;i++){ if(!vis[i]){ root=i; break; } } dfs(root); cout\u003c\u003cmax(f[root][0],f[root][1])\u003c\u003cendl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin\u003e\u003et; while(t--)solve(); return 0; } CF Sheriff’s Defense 2014F 题目 给定一张 $n$ 结点 $n - 1$ 条边的有点权的树。初始每个结点都是黑色。\n你可以执行任意次以下操作：将一个黑点染成白色，并将所有与它相邻的结点的权值减去 $c$（不包括自己）。\n最大化全部白点的权值之和。\n解决 用 $f_{u,j}$ 记录，同上一题\n设计状态 $f_{u,0}$ 表示在以 $u$ 为根的子树下，不选择 $u$ 所能获得的最大价值，初始值为 $0$；\n$f_{u,1}$ 表示在以 $u$ 为根的子树下，选择 $u$ 所能获得的最大价值，初始值为 $a_u$。\n如果某个点不选，那它不会对结果造成影响\n若不选 $u$ 则 $$ f_{u,0} = f_{u,0} + \\max(f_{v,0}, f_{v,1}) $$ 若选 $u$ 则 $$ f_{u,1} = f_{u,1} + \\max(f_{v,0}, f_{v,1} - c \\times 2) $$ 如果选 $v$ 那他会对 $u-\u003ev$ 和 $v-\u003eu$ 这两条路径造成消耗所以要减两个 $c$ #include using namespace std; #define ls now\u003c\u003c1 #define rs now\u003c\u003c1|1 #define endl \"\\n\" #define lowbit(x) ((x)\u0026(-x)) typedef long long ll; const int N=2e5+7, mod=1e9+7; ll n,c,s,ans; ll dp[N][2]; vector\u003cint\u003eedge[N]; bool vis[N]; void dfs(int now,int fa){ for(auto i:edge[now]){ if(i!=fa){ dfs(i,now); dp[now][0]+=max(dp[i][0],dp[i][1]); dp[now][1]+=max(dp[i][0],dp[i][1]-(c\u003c\u003c1)); } } } void solve(){ ans=0; cin\u003e\u003en\u003e\u003ec; for(int i=1;i\u003c=n;i++){ edge[i].clear(); cin\u003e\u003edp[i][1]; dp[i][0]=0; vis[i]=0; } for(int i=1;i\u003cn;i++){ int u,v; cin\u003e\u003eu\u003e\u003ev; edge[u].push_back(v); edge[v].push_back(u); } dfs(1,0); cout\u003c\u003cmax(dp[1][0],dp[1][1])\u003c\u003cendl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; cin\u003e\u003et; while(t--)solve(); return 0; } 树上背包 即背包问题和树上 DP 的结合\n洛谷 CTSC1997 选课 P2014 题目 在大学里每个学生，为了达到一定的学分，必须从很多课程里选择一些课程来学习，在课程里有些课程必须在某些课程之前学习，如高等数学总是在其它课程之前学习。现在有 $N$ 门功课，每门课有个学分，每门课有一门或没有直接先修课（若课程 $a$ 是课程 $b$ 的先修课即只有学完了课程 $a$，才能学习课程 $b$）。一个学生要从这些课程里选择 $M$ 门课程学习，问他能获得的最大学分是多少？\n解决 新增一个 $0$ 学分的必修课，作为所有无前选课的课的前选课，这样就能构建出一颗以新增节点为根的树\n设 $f_{i,j}$ 为第 $i$ 个节点，$j$ 为背包容量\n初始值为 $f_{i,0} = s_{i}$\n递归每颗子树\n每次递归记录当前背包容量，和当前所能得到的最大值\n#include using namespace std; #define endl \"\\n\" typedef long long ll; const int N = 2e4 + 7, mod = 1e9 + 7; int n, m, f[N][N]; vector\u003cint\u003e edge[N]; int s[N]; int dfs(int x) { if (edge[x].empty()) return 0; int sum = 0; for (int i : edge[x]) { int t = dfs(i); sum += t + 1; for (int j = sum; j \u003e= 0; j--) { for (int k = 0; k \u003c= t; k++) { if (j - k - 1 \u003e= 0) f[x][j] = max(f[x][j], f[x][j - k - 1] + f[i][k]); } } } return sum; } void solve() { cin \u003e\u003e n \u003e\u003e m; for (int i = 1; i \u003c= n; i++) { int k; cin \u003e\u003e k \u003e\u003e s[i]; edge[k].push_back(i); } for (int i = 1; i \u003c= n; i++) f[i][0] = s[i]; f[0][0] = 0; dfs(0); cout \u003c\u003c f[0][m] \u003c\u003c endl; } int main() { ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); int t = 1; // cin \u003e\u003e t; while (t--) solve(); return 0; } 换根 DP 又被称为二次扫描，通常不指定根节点，同时根节点的变化会使一些值发生变化，例如子节点深度和，点权和等\n通常两次 DFS，第一次预处理深度，点权和等信息，第二次 DFS 进行 DP\n洛谷 STA-Station P3478 题目 给定一个 $n$ 个点的树，请求出一个结点，使得以这个结点为根时，所有结点的深度之和最大。\n一个结点的深度之定义为该节点到根的简单路径上边的数量。\n解决 不妨令 $u$ 为当前结点，$v$ 为当前结点的子结点。首先需要用 $s_i$ 来表示以 $i$ 为根的子树中的结点个数，并且有 $s_u = 1 + \\sum s_v$。显然需要一次 DFS 来计算所有的 $s_i$，这次的 DFS 就是预处理，我们得到了以某个结点为根时其子树中的结点总数。\n考虑状态转移，这里就是体现“换根”的地方了。令 $f_u$ 为以 $u$ 为根时，所有结点的深度之和。\n$f_v \\leftarrow f_u$ 可以体现换根，即以 $u$ 为根转移到以 $v$ 为根。显然在换根的转移过程中，以 $v$ 为根或以 $u$ 为根会导致其子树中的结点的深度产生改变。具体表现为：\n所有在 $v$ 的子树上的结点深度都减少了 $1$，那么总深度和就减少了 $s_v$； 所有不在 $v$ 的子树上的结点深度都增加了 $1$，那么总深度和就增加了 $n - s_v$； 根据这两个条件就可以推出状态转移方程：\n$$ f_v = f_u - s_v + n - s_v = f_u + n - 2 \\times s_v $$\n于是在第二次 DFS 遍历整棵树并状态转移 $f_v = f_u + n - 2 \\times s_v$，那么就能求出以每个结点为根时的深度和了。最后只需要遍历一次所有根结点深度和就可以求出答案。\n#include using namespace std; #define ls now\u003c\u003c1 #define rs now\u003c\u003c1|1 #define endl \"\\n\" #define lowbit(x) ((x)\u0026(-x)) typedef long long ll; const int N=2e6+7, mod=1e9+7; vector\u003cint\u003eedge[N]; ll n; ll f[N],sz[N],dep[N]; void dfs(int u,int fa){ sz[u]=1; dep[u]=dep[fa]+1; for(auto v:edge[u]){ if(v==fa)continue; dfs(v,u); sz[u]+=sz[v]; } } void ans(int u,int fa){ f[u]=f[fa]+n-sz[u]-sz[u]; for(auto v:edge[u]){ if(v==fa)continue; ans(v,u); } } void solve(){ cin\u003e\u003en; for(int i=1;i\u003cn;i++){ int u,v; cin\u003e\u003eu\u003e\u003ev; edge[u].push_back(v); edge[v].push_back(u); } dfs(1,1); for(int i=1;i\u003c=n;i++){ f[1]+=dep[i]; } ans(1,1); ll res=-1; int now; for(int i=1;i\u003c=n;i++){ if(f[i]\u003eres){ res=f[i]; now=i; } } cout\u003c\u003cnow\u003c\u003cendl; } int main(){ ios::sync_with_stdio(0); cin.tie(0);cout.tie(0); int t=1; // cin\u003e\u003et; while(t--)solve(); return 0; } ",
+  "wordCount" : "1924",
+  "inLanguage": "zh",
+  "datePublished": "2024-10-11T18:23:38+08:00",
+  "dateModified": "2024-10-11T18:23:38+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "KiritoXD"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.050623.xyz/posts/study/treedp/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KiritoXD's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.050623.xyz/img/a.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.050623.xyz/" accesskey="h" title="KiritoXD&#39;s Blog (Alt + H)">
+                <img src="https://blog.050623.xyz/img/a.png" alt="" aria-label="logo"
+                    height="35">KiritoXD&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.050623.xyz/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.050623.xyz/" title="🏠 主页">
+                    <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.050623.xyz/posts" title="📚 文章">
+                    <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.050623.xyz/about" title="🙋🏻‍♂️ 关于">
+                    <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.050623.xyz/archives/" title="⏱️ 归档">
+                    <span>⏱️ 归档</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://blog.050623.xyz/">主页</a>&nbsp;»&nbsp;<a href="https://blog.050623.xyz/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://blog.050623.xyz/posts/study/">📖 学习</a></div>
+    <h1 class="post-title entry-hint-parent">
+      树形DP
+    </h1>
+    <div class="post-meta">
+
+<span title='2024-10-11 18:23:38 +0800 CST'>2024-10-11</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;1924 字&nbsp;·&nbsp;KiritoXD
+
+</div>
+  </header>
+  <div class="post-password">
+    
+  </div> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#%e6%a0%91%e4%b8%8a-dp" aria-label="树上 DP">树上 DP</a><ul>
+                            
+                    <li>
+                        <a href="#%e6%b4%9b%e8%b0%b7-%e6%b2%a1%e6%9c%89%e4%b8%8a%e5%8f%b8%e7%9a%84%e8%88%9e%e4%bc%9a-p1352httpswwwluogucomcnproblemp1352" aria-label="洛谷 没有上司的舞会 P1352">洛谷 没有上司的舞会 <a href="https://www.luogu.com.cn/problem/P1352">P1352</a></a><ul>
+                            
+                    <li>
+                        <a href="#%e9%a2%98%e7%9b%ae" aria-label="题目">题目</a></li>
+                    <li>
+                        <a href="#%e8%a7%a3%e5%86%b3" aria-label="解决">解决</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#cf-sheriffs-defense--2014fhttpscodeforcescomcontest2014problemf" aria-label="CF Sheriff&amp;rsquo;s Defense 2014F">CF Sheriff&rsquo;s Defense  <a href="https://codeforces.com/contest/2014/problem/F">2014F</a></a><ul>
+                            
+                    <li>
+                        <a href="#%e9%a2%98%e7%9b%ae-1" aria-label="题目">题目</a><ul>
+                            
+                    <li>
+                        <a href="#%e8%a7%a3%e5%86%b3-1" aria-label="解决">解决</a></li></ul>
+                    </li></ul>
+                    </li></ul>
+                    </li>
+                    <li>
+                        <a href="#%e6%a0%91%e4%b8%8a%e8%83%8c%e5%8c%85" aria-label="树上背包">树上背包</a><ul>
+                            
+                    <li>
+                        <a href="#%e6%b4%9b%e8%b0%b7--ctsc1997-%e9%80%89%e8%af%be--p2014httpswwwluogucomcnproblemp2014" aria-label="洛谷 CTSC1997 选课 P2014">洛谷  CTSC1997 选课  <a href="https://www.luogu.com.cn/problem/P2014">P2014</a></a><ul>
+                            
+                    <li>
+                        <a href="#%e9%a2%98%e7%9b%ae-2" aria-label="题目">题目</a></li>
+                    <li>
+                        <a href="#%e8%a7%a3%e5%86%b3-2" aria-label="解决">解决</a></li></ul>
+                    </li></ul>
+                    </li>
+                    <li>
+                        <a href="#%e6%8d%a2%e6%a0%b9-dp" aria-label="换根 DP">换根 DP</a><ul>
+                            
+                    <li>
+                        <a href="#%e6%b4%9b%e8%b0%b7-sta-station-p3478httpswwwluogucomcnproblemp3478" aria-label="洛谷 STA-Station P3478">洛谷 STA-Station <a href="https://www.luogu.com.cn/problem/P3478">P3478</a></a><ul>
+                            
+                    <li>
+                        <a href="#%e9%a2%98%e7%9b%ae-3" aria-label="题目">题目</a></li>
+                    <li>
+                        <a href="#%e8%a7%a3%e5%86%b3-3" aria-label="解决">解决</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+
+  <div class="post-content"><h3 id="树上-dp">树上 DP<a hidden class="anchor" aria-hidden="true" href="#树上-dp">#</a></h3>
+<p>顾名思义，在树上进行的 DP，一般通过递归进行</p>
+<p>一般开 $f_{i,j}$ 表示以 $i$ 为根的子树的最优解，第二维表示选不选 $i$</p>
+<h4 id="洛谷-没有上司的舞会-p1352httpswwwluogucomcnproblemp1352">洛谷 没有上司的舞会 <a href="https://www.luogu.com.cn/problem/P1352">P1352</a><a hidden class="anchor" aria-hidden="true" href="#洛谷-没有上司的舞会-p1352httpswwwluogucomcnproblemp1352">#</a></h4>
+<h5 id="题目">题目<a hidden class="anchor" aria-hidden="true" href="#题目">#</a></h5>
+<p>某大学有 $n$ 个职员，编号为 $1\ldots n$。</p>
+<p>他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。</p>
+<p>现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数 $r_i$，但是呢，如果某个职员的直接上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。</p>
+<p>所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。</p>
+<h5 id="解决">解决<a hidden class="anchor" aria-hidden="true" href="#解决">#</a></h5>
+<p>设 $f_{i,j}$ 代表以 $i$ 为根的子树的最优解，$j$ 用 $0,1$ 来表示取不取 $i$ 这个人</p>
+<p>对于每个节点，都有两种决策</p>
+<ul>
+<li>
+<p>不取当前节点，他的子节点都可以取，或不取，$f_{i,0} = \sum_{x \in \text{child}(i)} \max(f_{x,0}, f_{x,1})$</p>
+</li>
+<li>
+<p>取当前节点，他的子节点都不能取，$f_{i,0} = \sum_{x \in \text{child}(i)}f_{x,0}+a_i$</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>using namespace std;
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define ls now&lt;&lt;1
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define rs now&lt;&lt;1|1
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define endl &#34;\n&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define lowbit(x) ((x)&amp;(-x))
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">typedef</span> <span style="color:#f38ba8">long</span> <span style="color:#f38ba8">long</span> ll;
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> <span style="color:#f38ba8">int</span> N<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1e5</span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">7</span>, mod<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1e9</span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vector<span style="color:#89dceb;font-weight:bold">&lt;</span><span style="color:#f38ba8">int</span><span style="color:#89dceb;font-weight:bold">&gt;</span> edge[N];
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> a[N],n,cnt,f[N][<span style="color:#fab387">2</span>],ans;
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">bool</span> vis[N];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">dfs</span>(<span style="color:#f38ba8">int</span> now) {
+</span></span><span style="display:flex;"><span>    f[now][<span style="color:#fab387">0</span>] <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    f[now][<span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">=</span> a[now];
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>; i <span style="color:#89dceb;font-weight:bold">&lt;</span> (<span style="color:#f38ba8">int</span>)edge[now].<span style="color:#89b4fa">size</span>(); i<span style="color:#89dceb;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> to <span style="color:#89dceb;font-weight:bold">=</span> edge[now][i];
+</span></span><span style="display:flex;"><span>        <span style="color:#89b4fa">dfs</span>(to);
+</span></span><span style="display:flex;"><span>        f[now][<span style="color:#fab387">0</span>] <span style="color:#89dceb;font-weight:bold">+=</span> <span style="color:#89b4fa">max</span>(f[to][<span style="color:#fab387">0</span>], f[to][<span style="color:#fab387">1</span>]);
+</span></span><span style="display:flex;"><span>        f[now][<span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">+=</span> f[to][<span style="color:#fab387">0</span>];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">solve</span>(){
+</span></span><span style="display:flex;"><span>    cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>n;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>)cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>a[i];
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> x,y;
+</span></span><span style="display:flex;"><span>        cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>x<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>y;
+</span></span><span style="display:flex;"><span>        edge[y].<span style="color:#89b4fa">push_back</span>(x);
+</span></span><span style="display:flex;"><span>        vis[x]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> root<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(<span style="color:#89dceb;font-weight:bold">!</span>vis[i]){
+</span></span><span style="display:flex;"><span>            root<span style="color:#89dceb;font-weight:bold">=</span>i;
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">dfs</span>(root);
+</span></span><span style="display:flex;"><span>    cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span><span style="color:#89b4fa">max</span>(f[root][<span style="color:#fab387">0</span>],f[root][<span style="color:#fab387">1</span>])<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>(){
+</span></span><span style="display:flex;"><span>    ios<span style="color:#89dceb;font-weight:bold">::</span><span style="color:#89b4fa">sync_with_stdio</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cin.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>);cout.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> t<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">// cin&gt;&gt;t;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#cba6f7">while</span>(t<span style="color:#89dceb;font-weight:bold">--</span>)<span style="color:#89b4fa">solve</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="cf-sheriffs-defense--2014fhttpscodeforcescomcontest2014problemf">CF Sheriff&rsquo;s Defense  <a href="https://codeforces.com/contest/2014/problem/F">2014F</a><a hidden class="anchor" aria-hidden="true" href="#cf-sheriffs-defense--2014fhttpscodeforcescomcontest2014problemf">#</a></h4>
+<h5 id="题目-1">题目<a hidden class="anchor" aria-hidden="true" href="#题目-1">#</a></h5>
+<p>给定一张 $n$ 结点 $n - 1$ 条边的有点权的树。初始每个结点都是黑色。</p>
+<p>你可以执行任意次以下操作：将一个黑点染成白色，并将所有与它相邻的结点的权值减去 $c$（不包括自己）。</p>
+<p>最大化全部白点的权值之和。</p>
+<h6 id="解决-1">解决<a hidden class="anchor" aria-hidden="true" href="#解决-1">#</a></h6>
+<p>用 $f_{u,j}$ 记录，同上一题</p>
+<p>设计状态 $f_{u,0}$ 表示在以 $u$ 为根的子树下，不选择 $u$ 所能获得的最大价值，初始值为 $0$；</p>
+<p>$f_{u,1}$ 表示在以 $u$ 为根的子树下，选择 $u$ 所能获得的最大价值，初始值为 $a_u$。</p>
+<p>如果某个点不选，那它不会对结果造成影响</p>
+<ul>
+<li>若不选 $u$ 则
+$$
+f_{u,0} = f_{u,0} + \max(f_{v,0}, f_{v,1})
+$$</li>
+<li>若选 $u$ 则
+$$
+f_{u,1} = f_{u,1} + \max(f_{v,0}, f_{v,1} - c \times 2)
+$$
+如果选 $v$ 那他会对 $u-&gt;v$ 和 $v-&gt;u$ 这两条路径造成消耗所以要减两个 $c$</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>using namespace std;
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define ls now&lt;&lt;1
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define rs now&lt;&lt;1|1
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define endl &#34;\n&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define lowbit(x) ((x)&amp;(-x))
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">typedef</span> <span style="color:#f38ba8">long</span> <span style="color:#f38ba8">long</span> ll;
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> <span style="color:#f38ba8">int</span> N<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">2e5</span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">7</span>, mod<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1e9</span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ll n,c,s,ans;
+</span></span><span style="display:flex;"><span>ll dp[N][<span style="color:#fab387">2</span>];
+</span></span><span style="display:flex;"><span>vector<span style="color:#89dceb;font-weight:bold">&lt;</span><span style="color:#f38ba8">int</span><span style="color:#89dceb;font-weight:bold">&gt;</span>edge[N];
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">bool</span> vis[N];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">dfs</span>(<span style="color:#f38ba8">int</span> now,<span style="color:#f38ba8">int</span> fa){
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#cba6f7">auto</span> <span style="color:#89dceb">i</span>:edge[now]){
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(i<span style="color:#89dceb;font-weight:bold">!=</span>fa){
+</span></span><span style="display:flex;"><span>            <span style="color:#89b4fa">dfs</span>(i,now);
+</span></span><span style="display:flex;"><span>            dp[now][<span style="color:#fab387">0</span>]<span style="color:#89dceb;font-weight:bold">+=</span><span style="color:#89b4fa">max</span>(dp[i][<span style="color:#fab387">0</span>],dp[i][<span style="color:#fab387">1</span>]);
+</span></span><span style="display:flex;"><span>            dp[now][<span style="color:#fab387">1</span>]<span style="color:#89dceb;font-weight:bold">+=</span><span style="color:#89b4fa">max</span>(dp[i][<span style="color:#fab387">0</span>],dp[i][<span style="color:#fab387">1</span>]<span style="color:#89dceb;font-weight:bold">-</span>(c<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span><span style="color:#fab387">1</span>));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">solve</span>(){
+</span></span><span style="display:flex;"><span>    ans<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>n<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>c;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        edge[i].<span style="color:#89b4fa">clear</span>();
+</span></span><span style="display:flex;"><span>        cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>dp[i][<span style="color:#fab387">1</span>];
+</span></span><span style="display:flex;"><span>        dp[i][<span style="color:#fab387">0</span>]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>        vis[i]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> u,v;
+</span></span><span style="display:flex;"><span>        cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>u<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>v;
+</span></span><span style="display:flex;"><span>        edge[u].<span style="color:#89b4fa">push_back</span>(v);
+</span></span><span style="display:flex;"><span>        edge[v].<span style="color:#89b4fa">push_back</span>(u);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">dfs</span>(<span style="color:#fab387">1</span>,<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span><span style="color:#89b4fa">max</span>(dp[<span style="color:#fab387">1</span>][<span style="color:#fab387">0</span>],dp[<span style="color:#fab387">1</span>][<span style="color:#fab387">1</span>])<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>(){
+</span></span><span style="display:flex;"><span>    ios<span style="color:#89dceb;font-weight:bold">::</span><span style="color:#89b4fa">sync_with_stdio</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cin.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>);cout.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> t<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>t;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">while</span>(t<span style="color:#89dceb;font-weight:bold">--</span>)<span style="color:#89b4fa">solve</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="树上背包">树上背包<a hidden class="anchor" aria-hidden="true" href="#树上背包">#</a></h3>
+<p>即背包问题和树上 DP 的结合</p>
+<h4 id="洛谷--ctsc1997-选课--p2014httpswwwluogucomcnproblemp2014">洛谷  CTSC1997 选课  <a href="https://www.luogu.com.cn/problem/P2014">P2014</a><a hidden class="anchor" aria-hidden="true" href="#洛谷--ctsc1997-选课--p2014httpswwwluogucomcnproblemp2014">#</a></h4>
+<h5 id="题目-2">题目<a hidden class="anchor" aria-hidden="true" href="#题目-2">#</a></h5>
+<p>在大学里每个学生，为了达到一定的学分，必须从很多课程里选择一些课程来学习，在课程里有些课程必须在某些课程之前学习，如高等数学总是在其它课程之前学习。现在有 $N$ 门功课，每门课有个学分，每门课有一门或没有直接先修课（若课程 $a$ 是课程 $b$ 的先修课即只有学完了课程 $a$，才能学习课程 $b$）。一个学生要从这些课程里选择 $M$ 门课程学习，问他能获得的最大学分是多少？</p>
+<h5 id="解决-2">解决<a hidden class="anchor" aria-hidden="true" href="#解决-2">#</a></h5>
+<p>新增一个 $0$ 学分的必修课，作为所有无前选课的课的前选课，这样就能构建出一颗以新增节点为根的树</p>
+<p>设 $f_{i,j}$ 为第 $i$ 个节点，$j$ 为背包容量</p>
+<p>初始值为 $f_{i,0} = s_{i}$</p>
+<p>递归每颗子树</p>
+<p>每次递归记录当前背包容量，和当前所能得到的最大值</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>using namespace std;
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define endl &#34;\n&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">typedef</span> <span style="color:#f38ba8">long</span> <span style="color:#f38ba8">long</span> ll;
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> <span style="color:#f38ba8">int</span> N <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">2e4</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>, mod <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e9</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> n, m, f[N][N];
+</span></span><span style="display:flex;"><span>vector<span style="color:#89dceb;font-weight:bold">&lt;</span><span style="color:#f38ba8">int</span><span style="color:#89dceb;font-weight:bold">&gt;</span> edge[N];
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> s[N];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">dfs</span>(<span style="color:#f38ba8">int</span> x) {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (edge[x].<span style="color:#89b4fa">empty</span>()) <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> sum <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> <span style="color:#89dceb">i</span> : edge[x]) {
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> t <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">dfs</span>(i);
+</span></span><span style="display:flex;"><span>        sum <span style="color:#89dceb;font-weight:bold">+=</span> t <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> j <span style="color:#89dceb;font-weight:bold">=</span> sum; j <span style="color:#89dceb;font-weight:bold">&gt;=</span> <span style="color:#fab387">0</span>; j<span style="color:#89dceb;font-weight:bold">--</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> k <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>; k <span style="color:#89dceb;font-weight:bold">&lt;=</span> t; k<span style="color:#89dceb;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#cba6f7">if</span> (j <span style="color:#89dceb;font-weight:bold">-</span> k <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span> <span style="color:#89dceb;font-weight:bold">&gt;=</span> <span style="color:#fab387">0</span>) f[x][j] <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">max</span>(f[x][j], f[x][j <span style="color:#89dceb;font-weight:bold">-</span> k <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">+</span> f[i][k]);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> sum;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">solve</span>() {
+</span></span><span style="display:flex;"><span>    cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> n <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> m;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>; i <span style="color:#89dceb;font-weight:bold">&lt;=</span> n; i<span style="color:#89dceb;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> k;
+</span></span><span style="display:flex;"><span>        cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> k <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> s[i];
+</span></span><span style="display:flex;"><span>        edge[k].<span style="color:#89b4fa">push_back</span>(i);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>; i <span style="color:#89dceb;font-weight:bold">&lt;=</span> n; i<span style="color:#89dceb;font-weight:bold">++</span>) f[i][<span style="color:#fab387">0</span>] <span style="color:#89dceb;font-weight:bold">=</span> s[i];
+</span></span><span style="display:flex;"><span>    f[<span style="color:#fab387">0</span>][<span style="color:#fab387">0</span>] <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">dfs</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cout <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> f[<span style="color:#fab387">0</span>][m] <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>() {
+</span></span><span style="display:flex;"><span>    ios<span style="color:#89dceb;font-weight:bold">::</span><span style="color:#89b4fa">sync_with_stdio</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cin.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>); cout.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> t <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">// cin &gt;&gt; t;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#cba6f7">while</span> (t<span style="color:#89dceb;font-weight:bold">--</span>) <span style="color:#89b4fa">solve</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="换根-dp">换根 DP<a hidden class="anchor" aria-hidden="true" href="#换根-dp">#</a></h3>
+<p>又被称为二次扫描，通常不指定根节点，同时根节点的变化会使一些值发生变化，例如子节点深度和，点权和等</p>
+<p>通常两次 DFS，第一次预处理深度，点权和等信息，第二次 DFS 进行 DP</p>
+<h4 id="洛谷-sta-station-p3478httpswwwluogucomcnproblemp3478">洛谷 STA-Station <a href="https://www.luogu.com.cn/problem/P3478">P3478</a><a hidden class="anchor" aria-hidden="true" href="#洛谷-sta-station-p3478httpswwwluogucomcnproblemp3478">#</a></h4>
+<h5 id="题目-3">题目<a hidden class="anchor" aria-hidden="true" href="#题目-3">#</a></h5>
+<p>给定一个 $n$ 个点的树，请求出一个结点，使得以这个结点为根时，所有结点的深度之和最大。</p>
+<p>一个结点的深度之定义为该节点到根的简单路径上边的数量。</p>
+<h5 id="解决-3">解决<a hidden class="anchor" aria-hidden="true" href="#解决-3">#</a></h5>
+<p>不妨令 $u$ 为当前结点，$v$ 为当前结点的子结点。首先需要用 $s_i$ 来表示以 $i$ 为根的子树中的结点个数，并且有 $s_u = 1 + \sum s_v$。显然需要一次 DFS 来计算所有的 $s_i$，这次的 DFS 就是预处理，我们得到了以某个结点为根时其子树中的结点总数。</p>
+<p>考虑状态转移，这里就是体现“换根”的地方了。令 $f_u$ 为以 $u$ 为根时，所有结点的深度之和。</p>
+<p>$f_v \leftarrow f_u$ 可以体现换根，即以 $u$ 为根转移到以 $v$ 为根。显然在换根的转移过程中，以 $v$ 为根或以 $u$ 为根会导致其子树中的结点的深度产生改变。具体表现为：</p>
+<ul>
+<li>所有在 $v$ 的子树上的结点深度都减少了 $1$，那么总深度和就减少了 $s_v$；</li>
+<li>所有不在 $v$ 的子树上的结点深度都增加了 $1$，那么总深度和就增加了 $n - s_v$；</li>
+</ul>
+<p>根据这两个条件就可以推出状态转移方程：</p>
+<p>$$ f_v = f_u - s_v + n - s_v = f_u + n - 2 \times s_v $$</p>
+<p>于是在第二次 DFS 遍历整棵树并状态转移 $f_v = f_u + n - 2 \times s_v$，那么就能求出以每个结点为根时的深度和了。最后只需要遍历一次所有根结点深度和就可以求出答案。</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>using namespace std;
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define ls now&lt;&lt;1
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define rs now&lt;&lt;1|1
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define endl &#34;\n&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define lowbit(x) ((x)&amp;(-x))
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">typedef</span> <span style="color:#f38ba8">long</span> <span style="color:#f38ba8">long</span> ll;
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> <span style="color:#f38ba8">int</span> N<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">2e6</span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">7</span>, mod<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1e9</span><span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vector<span style="color:#89dceb;font-weight:bold">&lt;</span><span style="color:#f38ba8">int</span><span style="color:#89dceb;font-weight:bold">&gt;</span>edge[N];
+</span></span><span style="display:flex;"><span>ll n;
+</span></span><span style="display:flex;"><span>ll f[N],sz[N],dep[N];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">dfs</span>(<span style="color:#f38ba8">int</span> u,<span style="color:#f38ba8">int</span> fa){
+</span></span><span style="display:flex;"><span>    sz[u]<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    dep[u]<span style="color:#89dceb;font-weight:bold">=</span>dep[fa]<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#cba6f7">auto</span> <span style="color:#89dceb">v</span>:edge[u]){
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(v<span style="color:#89dceb;font-weight:bold">==</span>fa)<span style="color:#cba6f7">continue</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#89b4fa">dfs</span>(v,u);
+</span></span><span style="display:flex;"><span>        sz[u]<span style="color:#89dceb;font-weight:bold">+=</span>sz[v];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">ans</span>(<span style="color:#f38ba8">int</span> u,<span style="color:#f38ba8">int</span> fa){
+</span></span><span style="display:flex;"><span>    f[u]<span style="color:#89dceb;font-weight:bold">=</span>f[fa]<span style="color:#89dceb;font-weight:bold">+</span>n<span style="color:#89dceb;font-weight:bold">-</span>sz[u]<span style="color:#89dceb;font-weight:bold">-</span>sz[u];
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#cba6f7">auto</span> <span style="color:#89dceb">v</span>:edge[u]){
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(v<span style="color:#89dceb;font-weight:bold">==</span>fa)<span style="color:#cba6f7">continue</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#89b4fa">ans</span>(v,u);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">solve</span>(){
+</span></span><span style="display:flex;"><span>    cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>n;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> u,v;
+</span></span><span style="display:flex;"><span>        cin<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>u<span style="color:#89dceb;font-weight:bold">&gt;&gt;</span>v;
+</span></span><span style="display:flex;"><span>        edge[u].<span style="color:#89b4fa">push_back</span>(v);
+</span></span><span style="display:flex;"><span>        edge[v].<span style="color:#89b4fa">push_back</span>(u);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">dfs</span>(<span style="color:#fab387">1</span>,<span style="color:#fab387">1</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        f[<span style="color:#fab387">1</span>]<span style="color:#89dceb;font-weight:bold">+=</span>dep[i];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">ans</span>(<span style="color:#fab387">1</span>,<span style="color:#fab387">1</span>);
+</span></span><span style="display:flex;"><span>    ll res<span style="color:#89dceb;font-weight:bold">=-</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> now;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span>(<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;i<span style="color:#89dceb;font-weight:bold">&lt;=</span>n;i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span>(f[i]<span style="color:#89dceb;font-weight:bold">&gt;</span>res){
+</span></span><span style="display:flex;"><span>            res<span style="color:#89dceb;font-weight:bold">=</span>f[i];
+</span></span><span style="display:flex;"><span>            now<span style="color:#89dceb;font-weight:bold">=</span>i;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    cout<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>now<span style="color:#89dceb;font-weight:bold">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>(){
+</span></span><span style="display:flex;"><span>    ios<span style="color:#89dceb;font-weight:bold">::</span><span style="color:#89b4fa">sync_with_stdio</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cin.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>);cout.<span style="color:#89b4fa">tie</span>(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> t<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">// cin&gt;&gt;t;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#cba6f7">while</span>(t<span style="color:#89dceb;font-weight:bold">--</span>)<span style="color:#89b4fa">solve</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://blog.050623.xyz/tags/%E6%A0%91%E5%BD%A2dp/">树形DP</a></li>
+      <li><a href="https://blog.050623.xyz/tags/dp/">DP</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://blog.050623.xyz/posts/study/icpc2023nanjing/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>ICPC 2023 南京 VP</span>
+  </a>
+  <a class="next" href="https://blog.050623.xyz/posts/study/cf974/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>Codeforces Round 974 (Div. 3)</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://blog.050623.xyz/">KiritoXD&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', () => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent;
+                navigator.clipboard.writeText(text).then(copyingDone);
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replace("language-", "");
+        let macTool = document.createElement("div");
+        let macTool1 = document.createElement("div");
+        let macTool2 = document.createElement("div");
+        let macTool3 = document.createElement("div");
+        let languageType = document.createElement("div");
+        languageType.innerText = language;
+        macTool.setAttribute('class', 'mac-tool');
+        macTool1.setAttribute('class', 'mac bb1');
+        macTool2.setAttribute('class', 'mac bb2');
+        macTool3.setAttribute('class', 'mac bb3');
+        languageType.setAttribute('class', 'language-type');
+        macTool.appendChild(macTool1);
+        macTool.appendChild(macTool2);
+        macTool.appendChild(macTool3);
+        macTool.appendChild(languageType);
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        }
+    });
+</script>
+
+<script>
+    (function(u, c) {
+      var d = document, t = 'script', o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function(e) { c(e); }); }
+      s.parentNode.insertBefore(o, s);
+    })('//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js', function() {
+      pangu.spacingPage();
+    });
+    </script>
+</body>
+
+</html>

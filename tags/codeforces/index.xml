@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Codeforces on KiritoXD&#39;s Blog</title>
+    <link>https://blog.050623.xyz/tags/codeforces/</link>
+    <description>Recent content in Codeforces on KiritoXD&#39;s Blog</description>
+    <generator>Hugo -- 0.129.0</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 17 Feb 2025 17:24:25 +0800</lastBuildDate>
+    <atom:link href="https://blog.050623.xyz/tags/codeforces/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Codeforces Round 1002 (Div. 2)</title>
+      <link>https://blog.050623.xyz/posts/study/cf1002/</link>
+      <pubDate>Mon, 17 Feb 2025 17:24:25 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/study/cf1002/</guid>
+      <description>Codeforces Round 1002 (Div. 2) 补题</description>
+    </item>
+    <item>
+      <title>Codeforces Round 1000 (Div. 2)</title>
+      <link>https://blog.050623.xyz/posts/study/cf1000/</link>
+      <pubDate>Wed, 29 Jan 2025 14:35:18 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/study/cf1000/</guid>
+      <description>Codeforces Round 1000 (Div. 2) 补题</description>
+    </item>
+    <item>
+      <title>Codeforces Round 996 (Div. 2)</title>
+      <link>https://blog.050623.xyz/posts/study/cf996/</link>
+      <pubDate>Thu, 23 Jan 2025 23:41:12 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/study/cf996/</guid>
+      <description>Codeforces Round 996 (Div. 2) 补题</description>
+    </item>
+    <item>
+      <title>Codeforces Round 998 (Div. 3)</title>
+      <link>https://blog.050623.xyz/posts/study/cf998/</link>
+      <pubDate>Tue, 21 Jan 2025 19:41:26 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/study/cf998/</guid>
+      <description>够草的图论</description>
+    </item>
+  </channel>
+</rss>

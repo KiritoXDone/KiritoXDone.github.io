@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>对 Hugging Face 使用反代吧！ | KiritoXD&#39;s Blog</title>
+<meta name="keywords" content="Hugging Face, Cloudflare">
+<meta name="description" content="反代抱抱脸私人库到自己的域名下">
+<meta name="author" content="KiritoXD">
+<link rel="canonical" href="https://blog.050623.xyz/posts/tech/cf-worker-hf/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.050623.xyz/img/a.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.050623.xyz/img/a.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.050623.xyz/img/a.png">
+<link rel="apple-touch-icon" href="https://blog.050623.xyz/img/a.png">
+<link rel="mask-icon" href="https://blog.050623.xyz/img/a.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://blog.050623.xyz/posts/tech/cf-worker-hf/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" integrity="sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js" integrity="sha384-Qsn9KnoKISj6dI8g7p1HBlNpVx0I8p1SvlwOldgi3IorMle61nQy4zEahWYtljaz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+  
+
+<meta property="og:title" content="对 Hugging Face 使用反代吧！" />
+<meta property="og:description" content="反代抱抱脸私人库到自己的域名下" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.050623.xyz/posts/tech/cf-worker-hf/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-12-05T18:36:01+08:00" />
+<meta property="article:modified_time" content="2024-12-05T18:36:01+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="对 Hugging Face 使用反代吧！"/>
+<meta name="twitter:description" content="反代抱抱脸私人库到自己的域名下"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.050623.xyz/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "👨🏻‍💻 技术",
+      "item": "https://blog.050623.xyz/posts/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "对 Hugging Face 使用反代吧！",
+      "item": "https://blog.050623.xyz/posts/tech/cf-worker-hf/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "对 Hugging Face 使用反代吧！",
+  "name": "对 Hugging Face 使用反代吧！",
+  "description": "反代抱抱脸私人库到自己的域名下",
+  "keywords": [
+    "Hugging Face", "Cloudflare"
+  ],
+  "articleBody": "在论坛大佬们的研究下，最新版反代脚本问世，这下终于可以痛快薅了\n获取 Token 在抱抱脸上点头像后选择 access token\n名称随意\ntoken 权限选 Repositories 的三个即可\n将获取的 Token 保存下来\nWorker 新建一个 Worker，代码如下\nconst MAX_RETRIES = 3; const RETRY_DELAY_MS = 500; const EXPIRATION_BUFFER_SECONDS = 60; async function getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1, forceRefresh = false) { const now = Date.now() / 1000; let isRefreshing; let retries = 0; let jwtToken = null; let jwtExpiration = 0; while (true) { let result; try { result = await D1.prepare(\"SELECT token, expiration, is_refreshing FROM tokens WHERE id = 1\").first(); } catch (e) { throw new Error(\"Database access error\"); } if (result) { jwtToken = result.token; jwtExpiration = result.expiration; isRefreshing = result.is_refreshing; } else { jwtToken = null; jwtExpiration = 0; isRefreshing = 0; } if (jwtToken \u0026\u0026 jwtExpiration \u003e now + EXPIRATION_BUFFER_SECONDS \u0026\u0026 !forceRefresh) { return jwtToken; } if (isRefreshing) { await new Promise((resolve) =\u003e setTimeout(resolve, 100)); continue; } try { await D1.prepare(\"INSERT OR REPLACE INTO tokens (id, is_refreshing) VALUES (1, 1)\").run(); } catch (e) { throw new Error(\"Database update error\"); } try { if (!HF_TOKEN || !HF_SPACE_NAME || !HF_SPACE_USER) { throw new Error('One or more required environment variables are missing.'); } const HF_API_URL = `https://huggingface.co/api/spaces/${HF_SPACE_USER}/${HF_SPACE_NAME}/jwt`; let response; while (retries \u003c MAX_RETRIES) { try { response = await fetch(HF_API_URL, { headers: { \"Authorization\": `Bearer ${HF_TOKEN}` }, }); if (!response.ok) { if (response.status \u003e= 500 \u0026\u0026 response.status \u003c 600) { retries++; await new Promise((resolve) =\u003e setTimeout(resolve, RETRY_DELAY_MS)); continue; } else { const errorText = await response.text(); throw new Error(`Failed to fetch JWT token: ${response.status} ${response.statusText} - ${errorText}`); } } break; } catch (networkError) { retries++; await new Promise((resolve) =\u003e setTimeout(resolve, RETRY_DELAY_MS)); } } if (retries === MAX_RETRIES) { throw new Error(\"Max retries reached while fetching JWT token\"); } const apiResult = await response.json(); jwtToken = apiResult.token; try { const jwtPayload = JSON.parse(atob(jwtToken.split('.')[1])); jwtExpiration = jwtPayload.exp; } catch (_) { jwtExpiration = now + 3600; } try { await D1.prepare(\"INSERT OR REPLACE INTO tokens (id, token, expiration, is_refreshing) VALUES (1, ?, ?, 0)\") .bind(jwtToken, jwtExpiration) .run(); } catch (e) { throw new Error(\"Database update error\"); } return jwtToken; } catch (e) { try { await D1.prepare(\"UPDATE tokens SET is_refreshing = 0 WHERE id = 1\").run(); } catch (dbError) {} throw e; } } } async function initDatabase(D1) { try { await D1.batch([ D1.prepare(`CREATE TABLE IF NOT EXISTS tokens ( id INTEGER PRIMARY KEY, token TEXT, expiration REAL, is_refreshing INTEGER DEFAULT 0 );`).bind() ]); } catch (e) { throw new Error(\"Failed to initialize database\"); } } export default { async fetch(request, env) { const HF_TOKEN = env.HF_TOKEN; const HF_SPACE_NAME = env.HF_SPACE_NAME; const HF_SPACE_USER = env.HF_SPACE_USER; const D1 = env.D1; try { await initDatabase(D1); let token = await getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1); const url = new URL(request.url); url.host = `${HF_SPACE_USER}-${HF_SPACE_NAME}.hf.space`; const headers = new Headers(); for (const [key, value] of request.headers.entries()) { headers.set(key, value); } const originalCookies = headers.get('Cookie') || headers.get('cookie') || ''; const cookieString = originalCookies ? `${originalCookies}; spaces-jwt=${token}` : `spaces-jwt=${token}`; headers.set('Cookie', cookieString); let newRequest = new Request(url.toString(), { method: request.method, headers: headers, body: request.body, redirect: request.redirect, }); let response = await fetch(newRequest); if (response.status === 401 || response.status === 403) { token = await getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1, true); const updatedCookieString = originalCookies ? `${originalCookies}; spaces-jwt=${token}` : `spaces-jwt=${token}`; headers.set('Cookie', updatedCookieString); newRequest = new Request(url.toString(), { method: request.method, headers: headers, body: request.body, redirect: request.redirect, }); response = await fetch(newRequest); } const modifiedHeaders = new Headers(response.headers); modifiedHeaders.delete('Link'); return new Response(response.body, { status: response.status, statusText: response.statusText, headers: modifiedHeaders, }); } catch (error) { return new Response(`Error: ${error.message}`, { status: 500 }); } }, }; 共计三个变量，HF_SPACE_USER，HF_SPACE_NAME，HF_TOKEN 分别填入对应值\n同时新建一个 D1 数据库\n名称随意\n在 Worker 中绑定这个数据库，变量名为 D1\n再在路由域中添加自己的域名即可\n",
+  "wordCount" : "743",
+  "inLanguage": "zh",
+  "datePublished": "2024-12-05T18:36:01+08:00",
+  "dateModified": "2024-12-05T18:36:01+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "KiritoXD"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.050623.xyz/posts/tech/cf-worker-hf/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KiritoXD's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.050623.xyz/img/a.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.050623.xyz/" accesskey="h" title="KiritoXD&#39;s Blog (Alt + H)">
+                <img src="https://blog.050623.xyz/img/a.png" alt="" aria-label="logo"
+                    height="35">KiritoXD&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.050623.xyz/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.050623.xyz/" title="🏠 主页">
+                    <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.050623.xyz/posts" title="📚 文章">
+                    <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.050623.xyz/about" title="🙋🏻‍♂️ 关于">
+                    <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.050623.xyz/archives/" title="⏱️ 归档">
+                    <span>⏱️ 归档</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://blog.050623.xyz/">主页</a>&nbsp;»&nbsp;<a href="https://blog.050623.xyz/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://blog.050623.xyz/posts/tech/">👨🏻‍💻 技术</a></div>
+    <h1 class="post-title entry-hint-parent">
+      对 Hugging Face 使用反代吧！
+    </h1>
+    <div class="post-meta">
+
+<span title='2024-12-05 18:36:01 +0800 CST'>2024-12-05</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;743 字&nbsp;·&nbsp;KiritoXD
+
+</div>
+  </header>
+  <div class="post-password">
+    
+    <script>
+      (function(){
+        if (prompt('请输入文章密码') != 'ilovedio'){
+          alert('密码错误！');
+          if (history.length === 1) {
+            window.opener = null;
+            window.open('', '_self');
+            window.close();
+          } else {
+            history.back();
+          }
+        }
+      })();
+    </script>
+    
+  </div> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#%e8%8e%b7%e5%8f%96-token" aria-label="获取 Token">获取 Token</a></li>
+                    <li>
+                        <a href="#worker" aria-label="Worker">Worker</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+
+  <div class="post-content"><p>在论坛大佬们的研究下，最新版反代脚本问世，这下终于可以痛快薅了</p>
+<h3 id="获取-token">获取 Token<a hidden class="anchor" aria-hidden="true" href="#获取-token">#</a></h3>
+<p>在抱抱脸上点头像后选择 access token</p>
+<p><img loading="lazy" src="https://img.chkaja.com/8f95e342a0c360f9.png" alt="1"  />
+</p>
+<p>名称随意</p>
+<p>token 权限选 Repositories 的三个即可</p>
+<p><img loading="lazy" src="https://img.chkaja.com/aada7646d202b430.png" alt="2"  />
+</p>
+<p>将获取的 Token 保存下来</p>
+<h3 id="worker">Worker<a hidden class="anchor" aria-hidden="true" href="#worker">#</a></h3>
+<p>新建一个 Worker，代码如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#cba6f7">const</span> MAX_RETRIES <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">3</span>;
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> RETRY_DELAY_MS <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">500</span>;
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> EXPIRATION_BUFFER_SECONDS <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">60</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">async</span> <span style="color:#f38ba8">function</span> getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1, forceRefresh <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">false</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">const</span> now <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89dceb">Date</span>.now() <span style="color:#89dceb;font-weight:bold">/</span> <span style="color:#fab387">1000</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">let</span> isRefreshing;
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">let</span> retries <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">let</span> jwtToken <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">null</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">let</span> jwtExpiration <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">while</span> (<span style="color:#fab387">true</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> result;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">try</span> {
+</span></span><span style="display:flex;"><span>      result <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> D1.prepare(<span style="color:#a6e3a1">&#34;SELECT token, expiration, is_refreshing FROM tokens WHERE id = 1&#34;</span>).first();
+</span></span><span style="display:flex;"><span>    } <span style="color:#cba6f7">catch</span> (e) {
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">throw</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Error</span>(<span style="color:#a6e3a1">&#34;Database access error&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (result) {
+</span></span><span style="display:flex;"><span>      jwtToken <span style="color:#89dceb;font-weight:bold">=</span> result.token;
+</span></span><span style="display:flex;"><span>      jwtExpiration <span style="color:#89dceb;font-weight:bold">=</span> result.expiration;
+</span></span><span style="display:flex;"><span>      isRefreshing <span style="color:#89dceb;font-weight:bold">=</span> result.is_refreshing;
+</span></span><span style="display:flex;"><span>    } <span style="color:#cba6f7">else</span> {
+</span></span><span style="display:flex;"><span>      jwtToken <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">null</span>;
+</span></span><span style="display:flex;"><span>      jwtExpiration <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>      isRefreshing <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (jwtToken <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> jwtExpiration <span style="color:#89dceb;font-weight:bold">&gt;</span> now <span style="color:#89dceb;font-weight:bold">+</span> EXPIRATION_BUFFER_SECONDS <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> <span style="color:#89dceb;font-weight:bold">!</span>forceRefresh) {
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">return</span> jwtToken;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (isRefreshing) {
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">await</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Promise</span>((resolve) =&gt; setTimeout(resolve, <span style="color:#fab387">100</span>));
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">continue</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">try</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">await</span> D1.prepare(<span style="color:#a6e3a1">&#34;INSERT OR REPLACE INTO tokens (id, is_refreshing) VALUES (1, 1)&#34;</span>).run();
+</span></span><span style="display:flex;"><span>    } <span style="color:#cba6f7">catch</span> (e) {
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">throw</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Error</span>(<span style="color:#a6e3a1">&#34;Database update error&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">try</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">if</span> (<span style="color:#89dceb;font-weight:bold">!</span>HF_TOKEN <span style="color:#89dceb;font-weight:bold">||</span> <span style="color:#89dceb;font-weight:bold">!</span>HF_SPACE_NAME <span style="color:#89dceb;font-weight:bold">||</span> <span style="color:#89dceb;font-weight:bold">!</span>HF_SPACE_USER) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">throw</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Error</span>(<span style="color:#a6e3a1">&#39;One or more required environment variables are missing.&#39;</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> HF_API_URL <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">`https://huggingface.co/api/spaces/</span><span style="color:#a6e3a1">${</span>HF_SPACE_USER<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">/</span><span style="color:#a6e3a1">${</span>HF_SPACE_NAME<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">/jwt`</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f38ba8">let</span> response;
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">while</span> (retries <span style="color:#89dceb;font-weight:bold">&lt;</span> MAX_RETRIES) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">try</span> {
+</span></span><span style="display:flex;"><span>          response <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> fetch(HF_API_URL, {
+</span></span><span style="display:flex;"><span>            headers<span style="color:#89dceb;font-weight:bold">:</span> { <span style="color:#a6e3a1">&#34;Authorization&#34;</span><span style="color:#89dceb;font-weight:bold">:</span> <span style="color:#a6e3a1">`Bearer </span><span style="color:#a6e3a1">${</span>HF_TOKEN<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">`</span> },
+</span></span><span style="display:flex;"><span>          });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">if</span> (<span style="color:#89dceb;font-weight:bold">!</span>response.ok) {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">if</span> (response.status <span style="color:#89dceb;font-weight:bold">&gt;=</span> <span style="color:#fab387">500</span> <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> response.status <span style="color:#89dceb;font-weight:bold">&lt;</span> <span style="color:#fab387">600</span>) {
+</span></span><span style="display:flex;"><span>              retries<span style="color:#89dceb;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span>              <span style="color:#cba6f7">await</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Promise</span>((resolve) =&gt; setTimeout(resolve, RETRY_DELAY_MS));
+</span></span><span style="display:flex;"><span>              <span style="color:#cba6f7">continue</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#cba6f7">else</span> {
+</span></span><span style="display:flex;"><span>              <span style="color:#cba6f7">const</span> errorText <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> response.text();
+</span></span><span style="display:flex;"><span>              <span style="color:#cba6f7">throw</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Error</span>(<span style="color:#a6e3a1">`Failed to fetch JWT token: </span><span style="color:#a6e3a1">${</span>response.status<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1"> </span><span style="color:#a6e3a1">${</span>response.statusText<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1"> - </span><span style="color:#a6e3a1">${</span>errorText<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">`</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#cba6f7">catch</span> (networkError) {
+</span></span><span style="display:flex;"><span>          retries<span style="color:#89dceb;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">await</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Promise</span>((resolve) =&gt; setTimeout(resolve, RETRY_DELAY_MS));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">if</span> (retries <span style="color:#89dceb;font-weight:bold">===</span> MAX_RETRIES) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">throw</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Error</span>(<span style="color:#a6e3a1">&#34;Max retries reached while fetching JWT token&#34;</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> apiResult <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> response.json();
+</span></span><span style="display:flex;"><span>      jwtToken <span style="color:#89dceb;font-weight:bold">=</span> apiResult.token;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">const</span> jwtPayload <span style="color:#89dceb;font-weight:bold">=</span> JSON.parse(atob(jwtToken.split(<span style="color:#a6e3a1">&#39;.&#39;</span>)[<span style="color:#fab387">1</span>]));
+</span></span><span style="display:flex;"><span>        jwtExpiration <span style="color:#89dceb;font-weight:bold">=</span> jwtPayload.exp;
+</span></span><span style="display:flex;"><span>      } <span style="color:#cba6f7">catch</span> (_) {
+</span></span><span style="display:flex;"><span>        jwtExpiration <span style="color:#89dceb;font-weight:bold">=</span> now <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">3600</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">await</span> D1.prepare(<span style="color:#a6e3a1">&#34;INSERT OR REPLACE INTO tokens (id, token, expiration, is_refreshing) VALUES (1, ?, ?, 0)&#34;</span>)
+</span></span><span style="display:flex;"><span>          .bind(jwtToken, jwtExpiration)
+</span></span><span style="display:flex;"><span>          .run();
+</span></span><span style="display:flex;"><span>      } <span style="color:#cba6f7">catch</span> (e) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">throw</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Error</span>(<span style="color:#a6e3a1">&#34;Database update error&#34;</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">return</span> jwtToken;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    } <span style="color:#cba6f7">catch</span> (e) {
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">await</span> D1.prepare(<span style="color:#a6e3a1">&#34;UPDATE tokens SET is_refreshing = 0 WHERE id = 1&#34;</span>).run();
+</span></span><span style="display:flex;"><span>      } <span style="color:#cba6f7">catch</span> (dbError) {}
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">throw</span> e;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">async</span> <span style="color:#f38ba8">function</span> initDatabase(D1) {
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">await</span> D1.batch([
+</span></span><span style="display:flex;"><span>      D1.prepare(<span style="color:#a6e3a1">`CREATE TABLE IF NOT EXISTS tokens (
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">        id INTEGER PRIMARY KEY,
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">        token TEXT,
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">        expiration REAL,
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">        is_refreshing INTEGER DEFAULT 0
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">      );`</span>).bind()
+</span></span><span style="display:flex;"><span>    ]);
+</span></span><span style="display:flex;"><span>  } <span style="color:#cba6f7">catch</span> (e) {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">throw</span> <span style="color:#cba6f7">new</span> <span style="color:#89dceb">Error</span>(<span style="color:#a6e3a1">&#34;Failed to initialize database&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">export</span> <span style="color:#cba6f7">default</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">async</span> fetch(request, env) {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">const</span> HF_TOKEN <span style="color:#89dceb;font-weight:bold">=</span> env.HF_TOKEN;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">const</span> HF_SPACE_NAME <span style="color:#89dceb;font-weight:bold">=</span> env.HF_SPACE_NAME;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">const</span> HF_SPACE_USER <span style="color:#89dceb;font-weight:bold">=</span> env.HF_SPACE_USER;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">const</span> D1 <span style="color:#89dceb;font-weight:bold">=</span> env.D1;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">try</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">await</span> initDatabase(D1);
+</span></span><span style="display:flex;"><span>      <span style="color:#f38ba8">let</span> token <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> url <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> URL(request.url);
+</span></span><span style="display:flex;"><span>      url.host <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">`</span><span style="color:#a6e3a1">${</span>HF_SPACE_USER<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">-</span><span style="color:#a6e3a1">${</span>HF_SPACE_NAME<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">.hf.space`</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> headers <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> Headers();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">for</span> (<span style="color:#cba6f7">const</span> [key, value] <span style="color:#cba6f7">of</span> request.headers.entries()) {
+</span></span><span style="display:flex;"><span>        headers.set(key, value);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> originalCookies <span style="color:#89dceb;font-weight:bold">=</span> headers.get(<span style="color:#a6e3a1">&#39;Cookie&#39;</span>) <span style="color:#89dceb;font-weight:bold">||</span> headers.get(<span style="color:#a6e3a1">&#39;cookie&#39;</span>) <span style="color:#89dceb;font-weight:bold">||</span> <span style="color:#a6e3a1">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> cookieString <span style="color:#89dceb;font-weight:bold">=</span> originalCookies <span style="color:#89dceb;font-weight:bold">?</span> <span style="color:#a6e3a1">`</span><span style="color:#a6e3a1">${</span>originalCookies<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">; spaces-jwt=</span><span style="color:#a6e3a1">${</span>token<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">`</span> <span style="color:#89dceb;font-weight:bold">:</span> <span style="color:#a6e3a1">`spaces-jwt=</span><span style="color:#a6e3a1">${</span>token<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">`</span>;
+</span></span><span style="display:flex;"><span>      headers.set(<span style="color:#a6e3a1">&#39;Cookie&#39;</span>, cookieString);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f38ba8">let</span> newRequest <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> Request(url.toString(), {
+</span></span><span style="display:flex;"><span>        method<span style="color:#89dceb;font-weight:bold">:</span> request.method,
+</span></span><span style="display:flex;"><span>        headers<span style="color:#89dceb;font-weight:bold">:</span> headers,
+</span></span><span style="display:flex;"><span>        body<span style="color:#89dceb;font-weight:bold">:</span> request.body,
+</span></span><span style="display:flex;"><span>        redirect<span style="color:#89dceb;font-weight:bold">:</span> request.redirect,
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f38ba8">let</span> response <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> fetch(newRequest);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">if</span> (response.status <span style="color:#89dceb;font-weight:bold">===</span> <span style="color:#fab387">401</span> <span style="color:#89dceb;font-weight:bold">||</span> response.status <span style="color:#89dceb;font-weight:bold">===</span> <span style="color:#fab387">403</span>) {
+</span></span><span style="display:flex;"><span>        token <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> getJwtToken(HF_SPACE_NAME, HF_TOKEN, HF_SPACE_USER, D1, <span style="color:#fab387">true</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">const</span> updatedCookieString <span style="color:#89dceb;font-weight:bold">=</span> originalCookies <span style="color:#89dceb;font-weight:bold">?</span> <span style="color:#a6e3a1">`</span><span style="color:#a6e3a1">${</span>originalCookies<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">; spaces-jwt=</span><span style="color:#a6e3a1">${</span>token<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">`</span> <span style="color:#89dceb;font-weight:bold">:</span> <span style="color:#a6e3a1">`spaces-jwt=</span><span style="color:#a6e3a1">${</span>token<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">`</span>;
+</span></span><span style="display:flex;"><span>        headers.set(<span style="color:#a6e3a1">&#39;Cookie&#39;</span>, updatedCookieString);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        newRequest <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> Request(url.toString(), {
+</span></span><span style="display:flex;"><span>          method<span style="color:#89dceb;font-weight:bold">:</span> request.method,
+</span></span><span style="display:flex;"><span>          headers<span style="color:#89dceb;font-weight:bold">:</span> headers,
+</span></span><span style="display:flex;"><span>          body<span style="color:#89dceb;font-weight:bold">:</span> request.body,
+</span></span><span style="display:flex;"><span>          redirect<span style="color:#89dceb;font-weight:bold">:</span> request.redirect,
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        response <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">await</span> fetch(newRequest);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">const</span> modifiedHeaders <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> Headers(response.headers);
+</span></span><span style="display:flex;"><span>      modifiedHeaders.<span style="color:#cba6f7">delete</span>(<span style="color:#a6e3a1">&#39;Link&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">return</span> <span style="color:#cba6f7">new</span> Response(response.body, {
+</span></span><span style="display:flex;"><span>        status<span style="color:#89dceb;font-weight:bold">:</span> response.status,
+</span></span><span style="display:flex;"><span>        statusText<span style="color:#89dceb;font-weight:bold">:</span> response.statusText,
+</span></span><span style="display:flex;"><span>        headers<span style="color:#89dceb;font-weight:bold">:</span> modifiedHeaders,
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    } <span style="color:#cba6f7">catch</span> (error) {
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">return</span> <span style="color:#cba6f7">new</span> Response(<span style="color:#a6e3a1">`Error: </span><span style="color:#a6e3a1">${</span>error.message<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">`</span>, { status<span style="color:#89dceb;font-weight:bold">:</span> <span style="color:#fab387">500</span> });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>共计三个变量，<code>HF_SPACE_USER</code>，<code>HF_SPACE_NAME</code>，<code>HF_TOKEN</code> 分别填入对应值</p>
+<p>同时新建一个 D1 数据库</p>
+<p><img loading="lazy" src="https://qn-n4-lz02.obs.cn-north-4.myhuaweicloud.com/meiyan-common-img/photo/675183d559543qed5kplge3203.jpg" alt="1324"  />
+</p>
+<p>名称随意</p>
+<p>在 Worker 中绑定这个数据库，变量名为 D1</p>
+<p>再在路由域中添加自己的域名即可</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://blog.050623.xyz/tags/hugging-face/">Hugging Face</a></li>
+      <li><a href="https://blog.050623.xyz/tags/cloudflare/">Cloudflare</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://blog.050623.xyz/posts/tech/cfyouxuan/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>CloudFlare 优选教程</span>
+  </a>
+  <a class="next" href="https://blog.050623.xyz/posts/study/ccpc2024jinan/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>CCPC2024jinan</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://blog.050623.xyz/">KiritoXD&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', () => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent;
+                navigator.clipboard.writeText(text).then(copyingDone);
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replace("language-", "");
+        let macTool = document.createElement("div");
+        let macTool1 = document.createElement("div");
+        let macTool2 = document.createElement("div");
+        let macTool3 = document.createElement("div");
+        let languageType = document.createElement("div");
+        languageType.innerText = language;
+        macTool.setAttribute('class', 'mac-tool');
+        macTool1.setAttribute('class', 'mac bb1');
+        macTool2.setAttribute('class', 'mac bb2');
+        macTool3.setAttribute('class', 'mac bb3');
+        languageType.setAttribute('class', 'language-type');
+        macTool.appendChild(macTool1);
+        macTool.appendChild(macTool2);
+        macTool.appendChild(macTool3);
+        macTool.appendChild(languageType);
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        }
+    });
+</script>
+
+<script>
+    (function(u, c) {
+      var d = document, t = 'script', o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function(e) { c(e); }); }
+      s.parentNode.insertBefore(o, s);
+    })('//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js', function() {
+      pangu.spacingPage();
+    });
+    </script>
+</body>
+
+</html>

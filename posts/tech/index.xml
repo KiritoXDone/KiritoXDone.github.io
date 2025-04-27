@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>👨🏻‍💻 技术 on KiritoXD&#39;s Blog</title>
+    <link>https://blog.050623.xyz/posts/tech/</link>
+    <description>Recent content in 👨🏻‍💻 技术 on KiritoXD&#39;s Blog</description>
+    <generator>Hugo -- 0.129.0</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 18 Mar 2025 13:42:24 +0800</lastBuildDate>
+    <atom:link href="https://blog.050623.xyz/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>自建小玩具</title>
+      <link>https://blog.050623.xyz/posts/tech/tools/</link>
+      <pubDate>Thu, 31 Oct 2024 20:58:59 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/tech/tools/</guid>
+      <description>自建使我快乐</description>
+    </item>
+    <item>
+      <title>Serv00 搭建 Sub Store 教程</title>
+      <link>https://blog.050623.xyz/posts/tech/sub-store/</link>
+      <pubDate>Tue, 18 Mar 2025 13:42:24 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/tech/sub-store/</guid>
+      <description>在 Serv00 搭建自己的 Sub Store 的简易教程</description>
+    </item>
+    <item>
+      <title>CloudFlare 优选教程</title>
+      <link>https://blog.050623.xyz/posts/tech/cfyouxuan/</link>
+      <pubDate>Fri, 27 Dec 2024 15:09:14 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/tech/cfyouxuan/</guid>
+      <description>简单记录优选使用过程</description>
+    </item>
+    <item>
+      <title>对 Hugging Face 使用反代吧！</title>
+      <link>https://blog.050623.xyz/posts/tech/cf-worker-hf/</link>
+      <pubDate>Thu, 05 Dec 2024 18:36:01 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/tech/cf-worker-hf/</guid>
+      <description>反代抱抱脸私人库到自己的域名下</description>
+    </item>
+    <item>
+      <title>Papermod</title>
+      <link>https://blog.050623.xyz/posts/tech/papermod/</link>
+      <pubDate>Mon, 02 Dec 2024 21:45:20 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/tech/papermod/</guid>
+      <description>记录优化主题的过程</description>
+    </item>
+    <item>
+      <title>在 Hugging Face 上部署 AList (Aria2 和 Qbitorrent 可用)</title>
+      <link>https://blog.050623.xyz/posts/tech/hf-alist/</link>
+      <pubDate>Sun, 01 Dec 2024 14:57:08 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/tech/hf-alist/</guid>
+      <description>我 TM 薅薅薅</description>
+    </item>
+  </channel>
+</rss>
