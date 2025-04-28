@@ -6,7 +6,7 @@
     <description>Recent content in 📖 学习 on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 26 Apr 2025 14:17:42 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 28 Apr 2025 22:31:35 +0800</lastBuildDate>
     <atom:link href="https://blog.050623.xyz/posts/study/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Template</title>
@@ -14,6 +14,13 @@
       <pubDate>Sun, 03 Nov 2024 11:37:33 +0800</pubDate>
       <guid>https://blog.050623.xyz/posts/study/template/</guid>
       <description>常用模板，不时更新</description>
+    </item>
+    <item>
+      <title>Codeforces Round 1019 (Div. 2)</title>
+      <link>https://blog.050623.xyz/posts/study/cf1019/</link>
+      <pubDate>Mon, 28 Apr 2025 22:31:35 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/study/cf1019/</guid>
+      <description>Codeforces Round 1019 (Div. 2) 补题</description>
     </item>
     <item>
       <title>CCPC 2024 吉林</title>
