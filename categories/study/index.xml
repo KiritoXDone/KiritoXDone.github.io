@@ -6,7 +6,7 @@
     <description>Recent content in Study on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 05 May 2025 15:12:42 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 26 May 2025 16:18:13 +0800</lastBuildDate>
     <atom:link href="https://kiritoxdone.github.io/categories/study/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Template</title>
@@ -14,6 +14,20 @@
       <pubDate>Sun, 03 Nov 2024 11:37:33 +0800</pubDate>
       <guid>https://kiritoxdone.github.io/posts/study/template/</guid>
       <description>常用模板，不时更新</description>
+    </item>
+    <item>
+      <title>ICPC2024nanchang</title>
+      <link>https://kiritoxdone.github.io/posts/study/icpc2024nanchang/</link>
+      <pubDate>Mon, 26 May 2025 16:18:13 +0800</pubDate>
+      <guid>https://kiritoxdone.github.io/posts/study/icpc2024nanchang/</guid>
+      <description>金区待了 4h，莫队不会拿银了</description>
+    </item>
+    <item>
+      <title>CCPC 2024 河北 VP</title>
+      <link>https://kiritoxdone.github.io/posts/study/ccpc2024hebei/</link>
+      <pubDate>Wed, 07 May 2025 21:55:41 +0800</pubDate>
+      <guid>https://kiritoxdone.github.io/posts/study/ccpc2024hebei/</guid>
+      <description>K.Welcome 输出 HBCPC2024 A.Update 多少种字母，除 i 以外 #include &amp;lt;bits/stdc++.h&amp;gt; #define mk(x,y) make_pair(x,y) #define pll pair&amp;lt;ll,ll&amp;gt; #define pii pair&amp;lt;int,int&amp;gt; #define max(x,y) ((x)&amp;lt;(y)?(y):(x)) #define min(x,y) ((x)&amp;gt;(y)?(y):(x)) using namespace std; typedef long long ll; #define int long long const int N=1e6+7,mod=998244353,inf=1e9+7; void solve() { string s; cin&amp;gt;&amp;gt;s; map&amp;lt;char,int&amp;gt;vis; int cnt=0; for(auto x:s){ if(vis[x]==0)cnt++; vis[x]++; } if(vis[&amp;#39;i&amp;#39;])cnt--; cout&amp;lt;&amp;lt;cnt&amp;lt;&amp;lt;endl; } signed main() { ios::sync_with_stdio(0); cin.tie(0); int T=1; // cin&amp;gt;&amp;gt;T; while(T--) { solve(); } return 0; } I.Subnet 根据说明把IP地址和给定的IP子网转换为二进制，然后分别与子网掩码按位与，如果结果一致就说明在同一个子网内。 #include &amp;lt;bits/stdc++.h&amp;gt; #define mk(x,y) make_pair(x,y) #define</description>
     </item>
     <item>
       <title>ICPC 2024 江西 vp</title>
