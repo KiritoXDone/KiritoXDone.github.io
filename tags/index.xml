@@ -6,8 +6,22 @@
     <description>Recent content in Tags on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 26 May 2025 16:18:13 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 09 Jun 2025 20:41:58 +0800</lastBuildDate>
     <atom:link href="https://blog.050623.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Codeforces</title>
+      <link>https://blog.050623.xyz/tags/codeforces/</link>
+      <pubDate>Mon, 09 Jun 2025 20:41:58 +0800</pubDate>
+      <guid>https://blog.050623.xyz/tags/codeforces/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>补题</title>
+      <link>https://blog.050623.xyz/tags/%E8%A1%A5%E9%A2%98/</link>
+      <pubDate>Mon, 09 Jun 2025 20:41:58 +0800</pubDate>
+      <guid>https://blog.050623.xyz/tags/%E8%A1%A5%E9%A2%98/</guid>
+      <description></description>
+    </item>
     <item>
       <title>ICPC</title>
       <link>https://blog.050623.xyz/tags/icpc/</link>
@@ -16,24 +30,10 @@
       <description></description>
     </item>
     <item>
-      <title>补题</title>
-      <link>https://blog.050623.xyz/tags/%E8%A1%A5%E9%A2%98/</link>
-      <pubDate>Mon, 26 May 2025 16:18:13 +0800</pubDate>
-      <guid>https://blog.050623.xyz/tags/%E8%A1%A5%E9%A2%98/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>CCPC</title>
       <link>https://blog.050623.xyz/tags/ccpc/</link>
       <pubDate>Wed, 07 May 2025 21:55:41 +0800</pubDate>
       <guid>https://blog.050623.xyz/tags/ccpc/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Codeforces</title>
-      <link>https://blog.050623.xyz/tags/codeforces/</link>
-      <pubDate>Mon, 28 Apr 2025 22:31:35 +0800</pubDate>
-      <guid>https://blog.050623.xyz/tags/codeforces/</guid>
       <description></description>
     </item>
     <item>
