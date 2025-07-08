@@ -6,8 +6,22 @@
     <description>Recent content in Codeforces on KiritoXD&#39;s Blog</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 09 Jun 2025 20:41:58 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 08 Jul 2025 10:31:43 +0800</lastBuildDate>
     <atom:link href="https://blog.050623.xyz/tags/codeforces/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cf1030</title>
+      <link>https://blog.050623.xyz/posts/study/cf1030/</link>
+      <pubDate>Tue, 08 Jul 2025 10:31:43 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/study/cf1030/</guid>
+      <description>A. Equal Subsequences 全 1 接全 0，两种串的数量都是 0 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; #define endl &amp;#34;\n&amp;#34; typedef long long ll; const int N = 1e5 + 7, mod = 1e9 + 7; void solve() { int n, m; cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m; for (int i = 0; i &amp;lt; m; i++) cout &amp;lt;&amp;lt; 1; for (int i = 0; i &amp;lt; n - m; i++) cout &amp;lt;&amp;lt; 0; cout &amp;lt;&amp;lt; endl; } int main() { ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); int t = 1; cin &amp;gt;&amp;gt; t; while (t--) solve(); return 0; } B. Make It Permutation 手玩即可发现，每行固定交换前 i 个和后 n - i 个数即可 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; #define endl &amp;#34;\n&amp;#34; typedef</description>
+    </item>
+    <item>
+      <title>Codeforces Round 1031 (Div. 2)</title>
+      <link>https://blog.050623.xyz/posts/study/cf1031/</link>
+      <pubDate>Tue, 08 Jul 2025 10:09:20 +0800</pubDate>
+      <guid>https://blog.050623.xyz/posts/study/cf1031/</guid>
+      <description>大思维</description>
+    </item>
     <item>
       <title>Codeforces Round 1029 (Div. 3)</title>
       <link>https://blog.050623.xyz/posts/study/cf1029/</link>
