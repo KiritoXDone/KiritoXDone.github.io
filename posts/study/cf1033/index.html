@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Codeforces Round 1033 (Div. 2) and CodeNite 2025 | KiritoXD&#39;s Blog</title>
+<meta name="keywords" content="Codeforces, 补题">
+<meta name="description" content="日常训练~">
+<meta name="author" content="KiritoXD">
+<link rel="canonical" href="https://blog.050623.xyz/posts/study/cf1033/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.050623.xyz/img/a.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.050623.xyz/img/a.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.050623.xyz/img/a.png">
+<link rel="apple-touch-icon" href="https://blog.050623.xyz/img/a.png">
+<link rel="mask-icon" href="https://blog.050623.xyz/img/a.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://blog.050623.xyz/posts/study/cf1033/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" integrity="sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js" integrity="sha384-Qsn9KnoKISj6dI8g7p1HBlNpVx0I8p1SvlwOldgi3IorMle61nQy4zEahWYtljaz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+  
+
+<meta property="og:title" content="Codeforces Round 1033 (Div. 2) and CodeNite 2025" />
+<meta property="og:description" content="日常训练~" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.050623.xyz/posts/study/cf1033/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-07-11T16:22:21+08:00" />
+<meta property="article:modified_time" content="2025-07-11T16:22:21+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Codeforces Round 1033 (Div. 2) and CodeNite 2025"/>
+<meta name="twitter:description" content="日常训练~"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.050623.xyz/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📖 学习",
+      "item": "https://blog.050623.xyz/posts/study/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Codeforces Round 1033 (Div. 2) and CodeNite 2025",
+      "item": "https://blog.050623.xyz/posts/study/cf1033/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Codeforces Round 1033 (Div. 2) and CodeNite 2025",
+  "name": "Codeforces Round 1033 (Div. 2) and CodeNite 2025",
+  "description": "日常训练~",
+  "keywords": [
+    "Codeforces", "补题"
+  ],
+  "articleBody": "A. Square of Rectangles 显然只有两种组合方式，三个叠放，两个小的组合，和大的叠放\n#include using namespace std; #define endl \"\\n\" typedef long long ll; const int N = 1e5 + 7, mod = 1e9 + 7; void solve() { int a[3], b[3]; for (int i = 0; i \u003c= 2; i++) cin \u003e\u003e a[i] \u003e\u003e b[i]; bool flag = 0; if (a[0] == a[1] \u0026\u0026 a[1] == a[2]) { if (b[0] + b[1] + b[2] == a[0]) flag = 1; } if (b[0] == b[1] \u0026\u0026 b[1] == b[2]) { if (b[0] == a[0] + a[1] + a[2]) flag = 1; } if (a[1] == a[2]) { if (a[1] + a[0] == b[0] \u0026\u0026 b[1] + b[2] == b[0]) flag = 1; } if (b[1] == b[2]) { if (b[1] + b[0] == a[0] \u0026\u0026 a[1] + a[2] == a[0]) flag = 1; } cout \u003c\u003c (flag ? \"Yes\" : \"No\") \u003c\u003c endl; } int main() { ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); int t = 1; cin \u003e\u003e t; while (t--) solve(); return 0; } B. Square Pool 只有对角线上的球能进袋，小球互相碰撞其实就是交换了运动状态，实际不影响总个数。\n#include using namespace std; #define endl \"\\n\" typedef long long ll; const int N = 1e5 + 7, mod = 1e9 + 7; void solve() { int n, s; cin \u003e\u003e n \u003e\u003e s; int ans = 0; for (int i = 1; i \u003c= n; i++) { int a, b, c, d; cin \u003e\u003e a \u003e\u003e b \u003e\u003e c \u003e\u003e d; if (a == b) ans += (c == d); else ans += (c + d == s); } cout \u003c\u003c ans \u003c\u003c endl; } int main() { ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); int t = 1; cin \u003e\u003e t; while (t--) solve(); return 0; } C. Divine Tree 首先能注意到某一点为根时，对应的总神圣值有上下限，下限为其他所有点接到 1 后面，上限为菊花图，全部接到根上。\n先找到根节点 rt 应该是几，初态为上限，即菊花图，此时总神圣值 now 为 $rt! + (n-rt)*rt$。\n接下来从大到小，遍历每个点，记录当前点贡献为 v = min(rt, i)，如果 $now - (v - 1) \u003e= s$ 就把当前这个点接到 1 后。\n#include using namespace std; #define endl \"\\n\" typedef long long ll; #define int long long const int N = 1e5 + 7, mod = 1e9 + 7; void solve() { int n; ll m; cin \u003e\u003e n \u003e\u003e m; int rt = 0; for (int i = 1; i \u003c= n; i++) { ll l = i + n - 1, r = (i + 1ll) * i / 2 + (n - i) * i; if (l \u003c= m \u0026\u0026 m \u003c= r) { rt = i; break; } } if (rt == 0) { cout \u003c\u003c \"-1\" \u003c\u003c endl; return; } vector\u003cint\u003e fa(n + 1); for (int i = 1; i \u003c= n; i++) fa[i] = rt; ll now = (1ll + rt) * rt / 2 + (n - rt) * rt; for (int i = n; i \u003e= 1; i--) { if (now == m) break; int v = min(rt, i); if (now - (v - 1) \u003c= m) { int u = m - now + v; fa[i] = u; now -= (v - u); break; } fa[i] = 1; now -= (v - 1); } cout \u003c\u003c rt \u003c\u003c endl; for (int i = 1; i \u003c= n; i++) { if (i != rt) cout \u003c\u003c fa[i] \u003c\u003c \" \" \u003c\u003c i \u003c\u003c endl; } } signed main() { ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); int t = 1; cin \u003e\u003e t; while (t--) solve(); return 0; } D. Matrix game 首先注意到，n 的值为 $a*(k-1)+1$，每种数字都出现 k - 1 次，接下来随便出现任意一个数字即可满足 a 的需求。\n重点是确定了 n，如何求得 m：\n$C(a,n)$ 保证有一列是完全相同的值，有 k 种值，那就需要 $(b-1)kC(a,n)+1$ 来取得 b 列完全相同的颜色。\n#include using namespace std; #define endl \"\\n\" typedef long long ll; const int N = 1e5 + 7, mod = 1e9 + 7; ll f[N], inv[N]; ll qpow(ll a, ll b) { ll res = 1; while (b) { if (b \u0026 1) res = res * a % mod; a = a * a % mod; b \u003e\u003e= 1; } return res; } void init() { f[0] = 1; inv[0] = 1; for (int i = 1; i \u003c N; i++) { f[i] = f[i - 1] * i % mod; } inv[N - 1] = qpow(f[N - 1], mod - 2); for (int i = N - 2; i \u003e= 1; i--) { inv[i] = inv[i + 1] * (i + 1) % mod; } } ll C(int n, int m) { if (n \u003c m || n \u003c 0 || m \u003c 0) return 0; if (n == m || m == 0) return 1; ll res = 1; for (int i = 0; i \u003c m; i++) { res = (res * (n - i)) % mod; } return (res * inv[m]) % mod; } void solve() { int a, b, k; cin \u003e\u003e a \u003e\u003e b \u003e\u003e k; ll n = (1ll * a * k - (k - 1)) % mod; ll m = (1ll * (b - 1) * k % mod * C(n, a) % mod + 1) % mod; cout \u003c\u003c n \u003c\u003c \" \" \u003c\u003c m \u003c\u003c endl; } int main() { ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); init(); int t = 1; cin \u003e\u003e t; while (t--) solve(); return 0; } E. Lanes of Cars 这个问题的核心是在 “减少基础愤怒值” 和 “支付换道惩罚” 之间做权衡。\n换道决策: 什么时候换道是划算的？ 假设我们把一辆车从一条有 $c_1$ 辆车的车道（它本来是第 $c_1$ 辆车）移动到一条有 $c_2$ 辆车的车道。\n收益: 我们省去了它作为第 $c_1$ 辆车产生的 $c_1$ 点愤怒值。 成本: 它在新车道成为第 $c_2+1$ 辆车，产生 $c_2+1$ 点基础愤怒值，并额外支付 $k$ 点惩罚。 净收益: $c_1 - (c_2+1+k)$。 只有当净收益为正，即 $c_1 \u003e c_2+1+k$ 时，这次移动才是划算的。\n问题转化: 我们可以把所有要移走的车看作“供给”，所有要填入的空位看作“需求”。\n供给: 初始时，最长的车道队尾的车是最好的“供给”，因为它们的基础愤怒值最高。 需求: 初始时，最短的车道队尾的下一个空位是最好的“需求”，因为它们的基础愤怒值最低。 我们应该不断地用最好的供给满足最好的需求，直到不再划算为止。\n直接模拟这个过程（比如用优先队列）会很慢。我们可以发现，如果我们移动 $P$ 辆车，总成本是关于 $P$ 的一个凸函数。这类“求最优策略下的最优值，但策略执行次数受限”的问题，通常可以转化为“每次操作附加一个额外成本（或收益）$\\lambda$，求无限制次数下的最优值”，然后通过二分这个 $\\lambda$\n我们不直接对 $\\lambda$ 二分，而是对一个更直观的量——移动的车辆数 $P$——进行二分。\n二分答案（移动次数 P）: 假设我们决定移动 $P$ 辆车。\n哪些车被移走？ 为了最大化收益，我们应该移走初始状态下基础愤怒值最高的 $P$ 辆车。 它们去哪里？ 为了最小化成本，它们应该被移到基础愤怒值最低的 $P$ 个可用“空位”上。\n我们可以通过二分来找到最优的移动次数 $P_{opt}$。\n二分检查 check(P): 对于一个给定的移动次数 $P$，我们是否应该移动更多或更少的车？\n找到第 $P$ 昂贵的车的愤怒值（边际收益 $R_T$）。 找到第 $P$ 便宜的空位的愤怒值（边际成本 $L_T+1$）。 如果 $R_T \u003e L_T+1+k$，说明移动第 $P$ 辆车仍然是划算的，我们应该尝试移动更多的车，所以我们增大 $P$ 的搜索范围。 否则，移动 $P$ 辆车已经不划算了，我们应该减少移动次数，减小 $P$ 的搜索范围。\n#include using namespace std; #define endl \"\\n\" #define int long long typedef long long ll; const int N = 1e5 + 7, mod = 1e9 + 7; void solve() { int n; ll k, sum = 0; cin \u003e\u003e n \u003e\u003e k; vector\u003cll\u003e a(n + 1); for (int i = 1; i \u003c= n; i++) { cin \u003e\u003e a[i]; sum += (a[i] + 1) * a[i] / 2; } sort(a.begin() + 1, a.end()); vector\u003cll\u003e prep(n + 1), pres(n + 1), sufp(n + 2), sufs(n + 2); for (int i = 1; i \u003c= n; i++) { pres[i] = pres[i - 1] + a[i]; prep[i] = prep[i - 1] + a[i] * a[i]; } for (int i = n; i \u003e 0; i--) { sufs[i] = sufs[i + 1] + a[i]; sufp[i] = sufp[i + 1] + a[i] * a[i]; } auto bs1 = [\u0026](ll x) { //计算将所有 a[i] \u003c= num 的车道填满到 num+1 辆车需要多少辆车 int id = upper_bound(a.begin() + 1, a.end(), x) - a.begin() - 1; return id * x - pres[id] + id; }; auto bs2 = [\u0026](ll x) { //计算从所有 a[i] \u003e= num 的车道抽调车辆，使它们都变成 num-1 辆，能提供多少辆车 int id = lower_bound(a.begin() + 1, a.end(), x) - a.begin(); return sufs[id] - (n - id + 1) * x + (n - id + 1); }; auto suml = [\u0026](ll x) { //计算将所有 a[i] \u003c= num 的车道填满到 num 辆车，增加的愤怒值总和 int id = upper_bound(a.begin() + 1, a.end(), x) - a.begin() - 1; return (x * (x + 1) * id - prep[id] + pres[id]) / 2; }; auto sumr = [\u0026](ll x) { //计算从所有 a[i] \u003e= num 的车道抽调车辆，使它们都变成 num 辆，减少的愤怒值总和 int id = lower_bound(a.begin() + 1, a.end(), x) - a.begin(); return (sufp[id] + sufs[id] - x * (x -1) * (n - id + 1)) / 2; }; auto getidl = [\u0026](ll x) { //给定移动数量 x，找到第 x 便宜的空位所在的原始愤怒值 L_T ll l = 0, r = 1e12, ans = 0; while (l \u003c= r) { ll mid = (l + r) / 2; if (bs1(mid) \u003e= x) { ans = mid; r = mid - 1; } else { l = mid + 1; } } return ans; }; auto getidr = [\u0026](ll x) { //给定移动数量 x，找到第 x 贵的空位所在的原始愤怒值 R_T ll l = 0, r = 1e12, ans = 0; while (l \u003c= r) { ll mid = (l + r) / 2; if (bs2(mid) \u003e= x) { ans = mid; l = mid + 1; } else { r = mid - 1; } } return ans; }; ll l = 0, r = 1e18, ops = 0; //二分最优移动次数 while (l \u003c= r) { ll mid = (l + r) / 2; if (getidr(mid) - getidl(mid) \u003e= k + 1) { ops = mid; l = mid + 1; } else { r = mid - 1; } } if (ops == 0) { cout \u003c\u003c sum \u003c\u003c endl; return; } ll L_T = getidl(ops), R_T = getidr(ops); ll rmv = sumr(R_T) - R_T * (bs2(R_T) - ops); //计算移走的总愤怒值 ll add = suml(L_T) - L_T * (bs1(L_T) - ops); //计算填满的总愤怒值 cout \u003c\u003c sum + add - rmv + (k + 1) * ops \u003c\u003c endl; } signed main() { ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); int t = 1; cin \u003e\u003e t; while (t--) solve(); return 0; } ",
+  "wordCount" : "2647",
+  "inLanguage": "zh",
+  "datePublished": "2025-07-11T16:22:21+08:00",
+  "dateModified": "2025-07-11T16:22:21+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "KiritoXD"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.050623.xyz/posts/study/cf1033/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KiritoXD's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.050623.xyz/img/a.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.050623.xyz/" accesskey="h" title="KiritoXD&#39;s Blog (Alt + H)">
+                <img src="https://blog.050623.xyz/img/a.png" alt="" aria-label="logo"
+                    height="35">KiritoXD&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.050623.xyz/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.050623.xyz/" title="🏠 主页">
+                    <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.050623.xyz/posts" title="📚 文章">
+                    <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.050623.xyz/about" title="🙋🏻‍♂️ 关于">
+                    <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.050623.xyz/archives/" title="⏱️ 归档">
+                    <span>⏱️ 归档</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://blog.050623.xyz/">主页</a>&nbsp;»&nbsp;<a href="https://blog.050623.xyz/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://blog.050623.xyz/posts/study/">📖 学习</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Codeforces Round 1033 (Div. 2) and CodeNite 2025
+    </h1>
+    <div class="post-meta">
+
+<span title='2025-07-11 16:22:21 +0800 CST'>2025-07-11</span>&nbsp;·&nbsp;6 分钟&nbsp;·&nbsp;2647 字&nbsp;·&nbsp;KiritoXD
+
+</div>
+  </header>
+  <div class="post-password">
+    
+  </div> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#a-square-of-rectangles" aria-label="A. Square of Rectangles">A. Square of Rectangles</a></li>
+                    <li>
+                        <a href="#b-square-pool" aria-label="B. Square Pool">B. Square Pool</a></li>
+                    <li>
+                        <a href="#c-divine-tree" aria-label="C. Divine Tree">C. Divine Tree</a></li>
+                    <li>
+                        <a href="#d-matrix-game" aria-label="D. Matrix game">D. Matrix game</a></li>
+                    <li>
+                        <a href="#e-lanes-of-cars" aria-label="E. Lanes of Cars">E. Lanes of Cars</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+
+  <div class="post-content"><h3 id="a-square-of-rectangles">A. Square of Rectangles<a hidden class="anchor" aria-hidden="true" href="#a-square-of-rectangles">#</a></h3>
+<p>显然只有两种组合方式，三个叠放，两个小的组合，和大的叠放</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">using</span> <span style="color:#cba6f7">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define endl &#34;\n&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">typedef</span> <span style="color:#f38ba8">long</span> <span style="color:#f38ba8">long</span> ll;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> <span style="color:#f38ba8">int</span> N <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e5</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>, mod <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e9</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">solve</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> a[<span style="color:#fab387">3</span>], b[<span style="color:#fab387">3</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>; i <span style="color:#89dceb;font-weight:bold">&lt;=</span> <span style="color:#fab387">2</span>; i<span style="color:#89dceb;font-weight:bold">++</span>) cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> a[i] <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> b[i];
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">bool</span> flag <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (a[<span style="color:#fab387">0</span>] <span style="color:#89dceb;font-weight:bold">==</span> a[<span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> a[<span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">==</span> a[<span style="color:#fab387">2</span>]) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (b[<span style="color:#fab387">0</span>] <span style="color:#89dceb;font-weight:bold">+</span> b[<span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">+</span> b[<span style="color:#fab387">2</span>] <span style="color:#89dceb;font-weight:bold">==</span> a[<span style="color:#fab387">0</span>]) flag <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    } 
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (b[<span style="color:#fab387">0</span>] <span style="color:#89dceb;font-weight:bold">==</span> b[<span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> b[<span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">==</span> b[<span style="color:#fab387">2</span>]) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (b[<span style="color:#fab387">0</span>] <span style="color:#89dceb;font-weight:bold">==</span> a[<span style="color:#fab387">0</span>] <span style="color:#89dceb;font-weight:bold">+</span> a[<span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">+</span> a[<span style="color:#fab387">2</span>]) flag <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    } 
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (a[<span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">==</span> a[<span style="color:#fab387">2</span>]) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (a[<span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">+</span> a[<span style="color:#fab387">0</span>] <span style="color:#89dceb;font-weight:bold">==</span> b[<span style="color:#fab387">0</span>] <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> b[<span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">+</span> b[<span style="color:#fab387">2</span>] <span style="color:#89dceb;font-weight:bold">==</span> b[<span style="color:#fab387">0</span>]) flag <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    } 
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (b[<span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">==</span> b[<span style="color:#fab387">2</span>]) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (b[<span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">+</span> b[<span style="color:#fab387">0</span>] <span style="color:#89dceb;font-weight:bold">==</span> a[<span style="color:#fab387">0</span>] <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> a[<span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">+</span> a[<span style="color:#fab387">2</span>] <span style="color:#89dceb;font-weight:bold">==</span> a[<span style="color:#fab387">0</span>]) flag <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    cout <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> (flag <span style="color:#89dceb;font-weight:bold">?</span> <span style="color:#a6e3a1">&#34;Yes&#34;</span> <span style="color:#89dceb;font-weight:bold">:</span> <span style="color:#a6e3a1">&#34;No&#34;</span>) <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>() {
+</span></span><span style="display:flex;"><span>    ios<span style="color:#89dceb;font-weight:bold">::</span>sync_with_stdio(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cin.tie(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cout.tie(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> t <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> t;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">while</span> (t<span style="color:#89dceb;font-weight:bold">--</span>) solve();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="b-square-pool">B. Square Pool<a hidden class="anchor" aria-hidden="true" href="#b-square-pool">#</a></h3>
+<p>只有对角线上的球能进袋，小球互相碰撞其实就是交换了运动状态，实际不影响总个数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">using</span> <span style="color:#cba6f7">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define endl &#34;\n&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">typedef</span> <span style="color:#f38ba8">long</span> <span style="color:#f38ba8">long</span> ll;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> <span style="color:#f38ba8">int</span> N <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e5</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>, mod <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e9</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">solve</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> n, s;
+</span></span><span style="display:flex;"><span>    cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> n <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> s;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> ans <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>; i <span style="color:#89dceb;font-weight:bold">&lt;=</span> n; i<span style="color:#89dceb;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> a, b, c, d;
+</span></span><span style="display:flex;"><span>        cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> a <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> b <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> c <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> d;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (a <span style="color:#89dceb;font-weight:bold">==</span> b) ans <span style="color:#89dceb;font-weight:bold">+=</span> (c <span style="color:#89dceb;font-weight:bold">==</span> d);
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">else</span> ans <span style="color:#89dceb;font-weight:bold">+=</span> (c <span style="color:#89dceb;font-weight:bold">+</span> d <span style="color:#89dceb;font-weight:bold">==</span> s);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    cout <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> ans <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>() {
+</span></span><span style="display:flex;"><span>    ios<span style="color:#89dceb;font-weight:bold">::</span>sync_with_stdio(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cin.tie(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cout.tie(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> t <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> t;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">while</span> (t<span style="color:#89dceb;font-weight:bold">--</span>) solve();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="c-divine-tree">C. Divine Tree<a hidden class="anchor" aria-hidden="true" href="#c-divine-tree">#</a></h3>
+<p>首先能注意到某一点为根时，对应的总神圣值有上下限，下限为其他所有点接到 1 后面，上限为菊花图，全部接到根上。</p>
+<p>先找到根节点 rt 应该是几，初态为上限，即菊花图，此时总神圣值 now 为 $rt! + (n-rt)*rt$。</p>
+<p>接下来从大到小，遍历每个点，记录当前点贡献为 v = min(rt, i)，如果 $now - (v - 1) &gt;= s$ 就把当前这个点接到 1 后。</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">using</span> <span style="color:#cba6f7">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define endl &#34;\n&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">typedef</span> <span style="color:#f38ba8">long</span> <span style="color:#f38ba8">long</span> ll;
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define int long long
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> <span style="color:#f38ba8">int</span> N <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e5</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>, mod <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e9</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">solve</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> n;
+</span></span><span style="display:flex;"><span>    ll m;
+</span></span><span style="display:flex;"><span>    cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> n <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> m;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> rt <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>; i <span style="color:#89dceb;font-weight:bold">&lt;=</span> n; i<span style="color:#89dceb;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        ll l <span style="color:#89dceb;font-weight:bold">=</span> i <span style="color:#89dceb;font-weight:bold">+</span> n <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>, r <span style="color:#89dceb;font-weight:bold">=</span> (i <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1ll</span>) <span style="color:#89dceb;font-weight:bold">*</span> i <span style="color:#89dceb;font-weight:bold">/</span> <span style="color:#fab387">2</span> <span style="color:#89dceb;font-weight:bold">+</span> (n <span style="color:#89dceb;font-weight:bold">-</span> i) <span style="color:#89dceb;font-weight:bold">*</span> i;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (l <span style="color:#89dceb;font-weight:bold">&lt;=</span> m <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> m <span style="color:#89dceb;font-weight:bold">&lt;=</span> r) {
+</span></span><span style="display:flex;"><span>            rt <span style="color:#89dceb;font-weight:bold">=</span> i;
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span>        }   
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (rt <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#fab387">0</span>) {
+</span></span><span style="display:flex;"><span>        cout <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> <span style="color:#a6e3a1">&#34;-1&#34;</span> <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    vector<span style="color:#89dceb;font-weight:bold">&lt;</span><span style="color:#f38ba8">int</span><span style="color:#89dceb;font-weight:bold">&gt;</span> fa(n <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>; i <span style="color:#89dceb;font-weight:bold">&lt;=</span> n; i<span style="color:#89dceb;font-weight:bold">++</span>) fa[i] <span style="color:#89dceb;font-weight:bold">=</span> rt;
+</span></span><span style="display:flex;"><span>    ll now <span style="color:#89dceb;font-weight:bold">=</span> (<span style="color:#fab387">1ll</span> <span style="color:#89dceb;font-weight:bold">+</span> rt) <span style="color:#89dceb;font-weight:bold">*</span> rt <span style="color:#89dceb;font-weight:bold">/</span> <span style="color:#fab387">2</span> <span style="color:#89dceb;font-weight:bold">+</span> (n <span style="color:#89dceb;font-weight:bold">-</span> rt) <span style="color:#89dceb;font-weight:bold">*</span> rt;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> n; i <span style="color:#89dceb;font-weight:bold">&gt;=</span> <span style="color:#fab387">1</span>; i<span style="color:#89dceb;font-weight:bold">--</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (now <span style="color:#89dceb;font-weight:bold">==</span> m) <span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> v <span style="color:#89dceb;font-weight:bold">=</span> min(rt, i);
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (now <span style="color:#89dceb;font-weight:bold">-</span> (v <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>) <span style="color:#89dceb;font-weight:bold">&lt;=</span> m) {
+</span></span><span style="display:flex;"><span>            <span style="color:#f38ba8">int</span> u <span style="color:#89dceb;font-weight:bold">=</span> m <span style="color:#89dceb;font-weight:bold">-</span> now <span style="color:#89dceb;font-weight:bold">+</span> v;
+</span></span><span style="display:flex;"><span>            fa[i] <span style="color:#89dceb;font-weight:bold">=</span> u;
+</span></span><span style="display:flex;"><span>            now <span style="color:#89dceb;font-weight:bold">-=</span> (v <span style="color:#89dceb;font-weight:bold">-</span> u);
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        fa[i] <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        now <span style="color:#89dceb;font-weight:bold">-=</span> (v <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    cout <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> rt <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>; i <span style="color:#89dceb;font-weight:bold">&lt;=</span> n; i<span style="color:#89dceb;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (i <span style="color:#89dceb;font-weight:bold">!=</span> rt) cout <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> fa[i] <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> <span style="color:#a6e3a1">&#34; &#34;</span> <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> i <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">signed</span> <span style="color:#89b4fa">main</span>() {
+</span></span><span style="display:flex;"><span>    ios<span style="color:#89dceb;font-weight:bold">::</span>sync_with_stdio(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cin.tie(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cout.tie(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> t <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> t;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">while</span> (t<span style="color:#89dceb;font-weight:bold">--</span>) solve();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="d-matrix-game">D. Matrix game<a hidden class="anchor" aria-hidden="true" href="#d-matrix-game">#</a></h3>
+<p>首先注意到，n 的值为 $a*(k-1)+1$，每种数字都出现 k - 1 次，接下来随便出现任意一个数字即可满足 a 的需求。</p>
+<p>重点是确定了 n，如何求得 m：</p>
+<p>$C(a,n)$ 保证有一列是完全相同的值，有 k 种值，那就需要 $(b-1)<em>k</em>C(a,n)+1$ 来取得 b 列完全相同的颜色。</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">using</span> <span style="color:#cba6f7">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define endl &#34;\n&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">typedef</span> <span style="color:#f38ba8">long</span> <span style="color:#f38ba8">long</span> ll;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> <span style="color:#f38ba8">int</span> N <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e5</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>, mod <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e9</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ll f[N], inv[N];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ll <span style="color:#89b4fa">qpow</span>(ll a, ll b) {
+</span></span><span style="display:flex;"><span>    ll res <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">while</span> (b) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (b <span style="color:#89dceb;font-weight:bold">&amp;</span> <span style="color:#fab387">1</span>) res <span style="color:#89dceb;font-weight:bold">=</span> res <span style="color:#89dceb;font-weight:bold">*</span> a <span style="color:#89dceb;font-weight:bold">%</span> mod;
+</span></span><span style="display:flex;"><span>        a <span style="color:#89dceb;font-weight:bold">=</span> a <span style="color:#89dceb;font-weight:bold">*</span> a <span style="color:#89dceb;font-weight:bold">%</span> mod;
+</span></span><span style="display:flex;"><span>        b <span style="color:#89dceb;font-weight:bold">&gt;&gt;=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> res;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">init</span>() {
+</span></span><span style="display:flex;"><span>    f[<span style="color:#fab387">0</span>] <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    inv[<span style="color:#fab387">0</span>] <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>; i <span style="color:#89dceb;font-weight:bold">&lt;</span> N; i<span style="color:#89dceb;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        f[i] <span style="color:#89dceb;font-weight:bold">=</span> f[i <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">*</span> i <span style="color:#89dceb;font-weight:bold">%</span> mod;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    inv[N <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">=</span> qpow(f[N <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>], mod <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">2</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> N <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">2</span>; i <span style="color:#89dceb;font-weight:bold">&gt;=</span> <span style="color:#fab387">1</span>; i<span style="color:#89dceb;font-weight:bold">--</span>) {
+</span></span><span style="display:flex;"><span>        inv[i] <span style="color:#89dceb;font-weight:bold">=</span> inv[i <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">*</span> (i <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>) <span style="color:#89dceb;font-weight:bold">%</span> mod;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ll <span style="color:#89b4fa">C</span>(<span style="color:#f38ba8">int</span> n, <span style="color:#f38ba8">int</span> m) {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (n <span style="color:#89dceb;font-weight:bold">&lt;</span> m <span style="color:#89dceb;font-weight:bold">||</span> n <span style="color:#89dceb;font-weight:bold">&lt;</span> <span style="color:#fab387">0</span> <span style="color:#89dceb;font-weight:bold">||</span> m <span style="color:#89dceb;font-weight:bold">&lt;</span> <span style="color:#fab387">0</span>) <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (n <span style="color:#89dceb;font-weight:bold">==</span> m <span style="color:#89dceb;font-weight:bold">||</span> m <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#fab387">0</span>) <span style="color:#cba6f7">return</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    ll res <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>; i <span style="color:#89dceb;font-weight:bold">&lt;</span> m; i<span style="color:#89dceb;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        res <span style="color:#89dceb;font-weight:bold">=</span> (res <span style="color:#89dceb;font-weight:bold">*</span> (n <span style="color:#89dceb;font-weight:bold">-</span> i)) <span style="color:#89dceb;font-weight:bold">%</span> mod;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> (res <span style="color:#89dceb;font-weight:bold">*</span> inv[m]) <span style="color:#89dceb;font-weight:bold">%</span> mod;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">solve</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> a, b, k;
+</span></span><span style="display:flex;"><span>    cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> a <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> b <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> k;
+</span></span><span style="display:flex;"><span>    ll n <span style="color:#89dceb;font-weight:bold">=</span> (<span style="color:#fab387">1ll</span> <span style="color:#89dceb;font-weight:bold">*</span> a <span style="color:#89dceb;font-weight:bold">*</span> k <span style="color:#89dceb;font-weight:bold">-</span> (k <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>)) <span style="color:#89dceb;font-weight:bold">%</span> mod;
+</span></span><span style="display:flex;"><span>    ll m <span style="color:#89dceb;font-weight:bold">=</span> (<span style="color:#fab387">1ll</span> <span style="color:#89dceb;font-weight:bold">*</span> (b <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>) <span style="color:#89dceb;font-weight:bold">*</span> k <span style="color:#89dceb;font-weight:bold">%</span> mod <span style="color:#89dceb;font-weight:bold">*</span> C(n, a) <span style="color:#89dceb;font-weight:bold">%</span> mod <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>) <span style="color:#89dceb;font-weight:bold">%</span> mod;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> n <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> <span style="color:#a6e3a1">&#34; &#34;</span> <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> m <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>() {
+</span></span><span style="display:flex;"><span>    ios<span style="color:#89dceb;font-weight:bold">::</span>sync_with_stdio(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cin.tie(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cout.tie(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    init();
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> t <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> t;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">while</span> (t<span style="color:#89dceb;font-weight:bold">--</span>) solve();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="e-lanes-of-cars">E. Lanes of Cars<a hidden class="anchor" aria-hidden="true" href="#e-lanes-of-cars">#</a></h3>
+<p>这个问题的核心是在 “减少基础愤怒值” 和 “支付换道惩罚” 之间做权衡。</p>
+<p><strong>换道决策</strong>: 什么时候换道是划算的？
+假设我们把一辆车从一条有 $c_1$ 辆车的车道（它本来是第 $c_1$ 辆车）移动到一条有 $c_2$ 辆车的车道。</p>
+<p>收益: 我们省去了它作为第 $c_1$ 辆车产生的 $c_1$ 点愤怒值。
+成本: 它在新车道成为第 $c_2+1$ 辆车，产生 $c_2+1$ 点基础愤怒值，并额外支付 $k$ 点惩罚。
+净收益: $c_1 - (c_2+1+k)$。
+只有当净收益为正，即 $c_1 &gt; c_2+1+k$ 时，这次移动才是划算的。</p>
+<p><strong>问题转化</strong>:
+我们可以把所有要移走的车看作“供给”，所有要填入的空位看作“需求”。</p>
+<p>供给: 初始时，最长的车道队尾的车是最好的“供给”，因为它们的基础愤怒值最高。
+需求: 初始时，最短的车道队尾的下一个空位是最好的“需求”，因为它们的基础愤怒值最低。
+我们应该不断地用最好的供给满足最好的需求，直到不再划算为止。</p>
+<p>直接模拟这个过程（比如用优先队列）会很慢。我们可以发现，如果我们移动 $P$ 辆车，总成本是关于 $P$ 的一个凸函数。这类“求最优策略下的最优值，但策略执行次数受限”的问题，通常可以转化为“每次操作附加一个额外成本（或收益）$\lambda$，求无限制次数下的最优值”，然后通过二分这个 $\lambda$</p>
+<p>我们不直接对 $\lambda$ 二分，而是对一个更直观的量——移动的车辆数 $P$——进行二分。</p>
+<p>二分答案（移动次数 P）:
+假设我们决定移动 $P$ 辆车。</p>
+<p>哪些车被移走？ 为了最大化收益，我们应该移走初始状态下基础愤怒值最高的 $P$ 辆车。
+它们去哪里？ 为了最小化成本，它们应该被移到基础愤怒值最低的 $P$ 个可用“空位”上。</p>
+<p>我们可以通过二分来找到最优的移动次数 $P_{opt}$。</p>
+<p>二分检查 check(P): 对于一个给定的移动次数 $P$，我们是否应该移动更多或更少的车？</p>
+<p>找到第 $P$ 昂贵的车的愤怒值（边际收益 $R_T$）。
+找到第 $P$ 便宜的空位的愤怒值（边际成本 $L_T+1$）。
+如果 $R_T &gt; L_T+1+k$，说明移动第 $P$ 辆车仍然是划算的，我们应该尝试移动更多的车，所以我们增大 $P$ 的搜索范围。
+否则，移动 $P$ 辆车已经不划算了，我们应该减少移动次数，减小 $P$ 的搜索范围。</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;bits/stdc++.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">using</span> <span style="color:#cba6f7">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define endl &#34;\n&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define int long long
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">typedef</span> <span style="color:#f38ba8">long</span> <span style="color:#f38ba8">long</span> ll;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> <span style="color:#f38ba8">int</span> N <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e5</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>, mod <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e9</span> <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">solve</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> n;
+</span></span><span style="display:flex;"><span>    ll k, sum <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>    cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> n <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> k;
+</span></span><span style="display:flex;"><span>    vector<span style="color:#89dceb;font-weight:bold">&lt;</span>ll<span style="color:#89dceb;font-weight:bold">&gt;</span> a(n <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>; i <span style="color:#89dceb;font-weight:bold">&lt;=</span> n; i<span style="color:#89dceb;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> a[i];
+</span></span><span style="display:flex;"><span>        sum <span style="color:#89dceb;font-weight:bold">+=</span> (a[i] <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>) <span style="color:#89dceb;font-weight:bold">*</span> a[i] <span style="color:#89dceb;font-weight:bold">/</span> <span style="color:#fab387">2</span>;
+</span></span><span style="display:flex;"><span>    }   
+</span></span><span style="display:flex;"><span>    sort(a.begin() <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>, a.end());
+</span></span><span style="display:flex;"><span>    vector<span style="color:#89dceb;font-weight:bold">&lt;</span>ll<span style="color:#89dceb;font-weight:bold">&gt;</span> prep(n <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>), pres(n <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>), sufp(n <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">2</span>), sufs(n <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">2</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>; i <span style="color:#89dceb;font-weight:bold">&lt;=</span> n; i<span style="color:#89dceb;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        pres[i] <span style="color:#89dceb;font-weight:bold">=</span> pres[i <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">+</span> a[i];
+</span></span><span style="display:flex;"><span>        prep[i] <span style="color:#89dceb;font-weight:bold">=</span> prep[i <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">+</span> a[i] <span style="color:#89dceb;font-weight:bold">*</span> a[i];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> n; i <span style="color:#89dceb;font-weight:bold">&gt;</span> <span style="color:#fab387">0</span>; i<span style="color:#89dceb;font-weight:bold">--</span>) {
+</span></span><span style="display:flex;"><span>        sufs[i] <span style="color:#89dceb;font-weight:bold">=</span> sufs[i <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">+</span> a[i];
+</span></span><span style="display:flex;"><span>        sufp[i] <span style="color:#89dceb;font-weight:bold">=</span> sufp[i <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">+</span> a[i] <span style="color:#89dceb;font-weight:bold">*</span> a[i];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">auto</span> bs1 <span style="color:#89dceb;font-weight:bold">=</span> [<span style="color:#89dceb;font-weight:bold">&amp;</span>](ll x) { <span style="color:#6c7086;font-style:italic">//计算将所有 a[i] &lt;= num 的车道填满到 num+1 辆车需要多少辆车
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>        <span style="color:#f38ba8">int</span> id <span style="color:#89dceb;font-weight:bold">=</span> upper_bound(a.begin() <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>, a.end(), x) <span style="color:#89dceb;font-weight:bold">-</span> a.begin() <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span> id <span style="color:#89dceb;font-weight:bold">*</span> x <span style="color:#89dceb;font-weight:bold">-</span> pres[id] <span style="color:#89dceb;font-weight:bold">+</span> id;
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">auto</span> bs2 <span style="color:#89dceb;font-weight:bold">=</span> [<span style="color:#89dceb;font-weight:bold">&amp;</span>](ll x) { <span style="color:#6c7086;font-style:italic">//计算从所有 a[i] &gt;= num 的车道抽调车辆，使它们都变成 num-1 辆，能提供多少辆车
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>        <span style="color:#f38ba8">int</span> id <span style="color:#89dceb;font-weight:bold">=</span> lower_bound(a.begin() <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>, a.end(), x) <span style="color:#89dceb;font-weight:bold">-</span> a.begin();
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span> sufs[id] <span style="color:#89dceb;font-weight:bold">-</span> (n <span style="color:#89dceb;font-weight:bold">-</span> id <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>) <span style="color:#89dceb;font-weight:bold">*</span> x <span style="color:#89dceb;font-weight:bold">+</span> (n <span style="color:#89dceb;font-weight:bold">-</span> id <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>);
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">auto</span> suml <span style="color:#89dceb;font-weight:bold">=</span> [<span style="color:#89dceb;font-weight:bold">&amp;</span>](ll x) { <span style="color:#6c7086;font-style:italic">//计算将所有 a[i] &lt;= num 的车道填满到 num 辆车，增加的愤怒值总和
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>        <span style="color:#f38ba8">int</span> id <span style="color:#89dceb;font-weight:bold">=</span> upper_bound(a.begin() <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>, a.end(), x) <span style="color:#89dceb;font-weight:bold">-</span> a.begin() <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span> (x <span style="color:#89dceb;font-weight:bold">*</span> (x <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>) <span style="color:#89dceb;font-weight:bold">*</span> id <span style="color:#89dceb;font-weight:bold">-</span> prep[id] <span style="color:#89dceb;font-weight:bold">+</span> pres[id]) <span style="color:#89dceb;font-weight:bold">/</span> <span style="color:#fab387">2</span>;
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">auto</span> sumr <span style="color:#89dceb;font-weight:bold">=</span> [<span style="color:#89dceb;font-weight:bold">&amp;</span>](ll x) { <span style="color:#6c7086;font-style:italic">//计算从所有 a[i] &gt;= num 的车道抽调车辆，使它们都变成 num 辆，减少的愤怒值总和
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>        <span style="color:#f38ba8">int</span> id <span style="color:#89dceb;font-weight:bold">=</span> lower_bound(a.begin() <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>, a.end(), x) <span style="color:#89dceb;font-weight:bold">-</span> a.begin();
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span> (sufp[id] <span style="color:#89dceb;font-weight:bold">+</span> sufs[id] <span style="color:#89dceb;font-weight:bold">-</span> x <span style="color:#89dceb;font-weight:bold">*</span> (x <span style="color:#89dceb;font-weight:bold">-</span><span style="color:#fab387">1</span>) <span style="color:#89dceb;font-weight:bold">*</span> (n <span style="color:#89dceb;font-weight:bold">-</span> id <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>)) <span style="color:#89dceb;font-weight:bold">/</span> <span style="color:#fab387">2</span>;
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">auto</span> getidl <span style="color:#89dceb;font-weight:bold">=</span> [<span style="color:#89dceb;font-weight:bold">&amp;</span>](ll x) { <span style="color:#6c7086;font-style:italic">//给定移动数量 x，找到第 x 便宜的空位所在的原始愤怒值 L_T
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>        ll l <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>, r <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e12</span>, ans <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">while</span> (l <span style="color:#89dceb;font-weight:bold">&lt;=</span> r) {
+</span></span><span style="display:flex;"><span>            ll mid <span style="color:#89dceb;font-weight:bold">=</span> (l <span style="color:#89dceb;font-weight:bold">+</span> r) <span style="color:#89dceb;font-weight:bold">/</span> <span style="color:#fab387">2</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">if</span> (bs1(mid) <span style="color:#89dceb;font-weight:bold">&gt;=</span> x) {
+</span></span><span style="display:flex;"><span>                ans <span style="color:#89dceb;font-weight:bold">=</span> mid;
+</span></span><span style="display:flex;"><span>                r <span style="color:#89dceb;font-weight:bold">=</span> mid <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#cba6f7">else</span> {
+</span></span><span style="display:flex;"><span>                l <span style="color:#89dceb;font-weight:bold">=</span> mid <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span> ans;
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">auto</span> getidr <span style="color:#89dceb;font-weight:bold">=</span> [<span style="color:#89dceb;font-weight:bold">&amp;</span>](ll x) { <span style="color:#6c7086;font-style:italic">//给定移动数量 x，找到第 x 贵的空位所在的原始愤怒值 R_T
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>        ll l <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>, r <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e12</span>, ans <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">while</span> (l <span style="color:#89dceb;font-weight:bold">&lt;=</span> r) {
+</span></span><span style="display:flex;"><span>            ll mid <span style="color:#89dceb;font-weight:bold">=</span> (l <span style="color:#89dceb;font-weight:bold">+</span> r) <span style="color:#89dceb;font-weight:bold">/</span> <span style="color:#fab387">2</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">if</span> (bs2(mid) <span style="color:#89dceb;font-weight:bold">&gt;=</span> x) {
+</span></span><span style="display:flex;"><span>                ans <span style="color:#89dceb;font-weight:bold">=</span> mid;
+</span></span><span style="display:flex;"><span>                l <span style="color:#89dceb;font-weight:bold">=</span> mid <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#cba6f7">else</span> {
+</span></span><span style="display:flex;"><span>                r <span style="color:#89dceb;font-weight:bold">=</span> mid <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span> ans;
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ll l <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>, r <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1e18</span>, ops <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>; <span style="color:#6c7086;font-style:italic">//二分最优移动次数
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#cba6f7">while</span> (l <span style="color:#89dceb;font-weight:bold">&lt;=</span> r) {
+</span></span><span style="display:flex;"><span>        ll mid <span style="color:#89dceb;font-weight:bold">=</span> (l <span style="color:#89dceb;font-weight:bold">+</span> r) <span style="color:#89dceb;font-weight:bold">/</span> <span style="color:#fab387">2</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> (getidr(mid) <span style="color:#89dceb;font-weight:bold">-</span> getidl(mid) <span style="color:#89dceb;font-weight:bold">&gt;=</span> k <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>) {
+</span></span><span style="display:flex;"><span>            ops <span style="color:#89dceb;font-weight:bold">=</span> mid;
+</span></span><span style="display:flex;"><span>            l <span style="color:#89dceb;font-weight:bold">=</span> mid <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#cba6f7">else</span> {
+</span></span><span style="display:flex;"><span>            r <span style="color:#89dceb;font-weight:bold">=</span> mid <span style="color:#89dceb;font-weight:bold">-</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (ops <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#fab387">0</span>) {
+</span></span><span style="display:flex;"><span>        cout <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> sum <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ll L_T <span style="color:#89dceb;font-weight:bold">=</span> getidl(ops), R_T <span style="color:#89dceb;font-weight:bold">=</span> getidr(ops);
+</span></span><span style="display:flex;"><span>    ll rmv <span style="color:#89dceb;font-weight:bold">=</span> sumr(R_T) <span style="color:#89dceb;font-weight:bold">-</span> R_T <span style="color:#89dceb;font-weight:bold">*</span> (bs2(R_T) <span style="color:#89dceb;font-weight:bold">-</span> ops); <span style="color:#6c7086;font-style:italic">//计算移走的总愤怒值
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    ll add <span style="color:#89dceb;font-weight:bold">=</span> suml(L_T) <span style="color:#89dceb;font-weight:bold">-</span> L_T <span style="color:#89dceb;font-weight:bold">*</span> (bs1(L_T) <span style="color:#89dceb;font-weight:bold">-</span> ops); <span style="color:#6c7086;font-style:italic">//计算填满的总愤怒值
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    cout <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> sum <span style="color:#89dceb;font-weight:bold">+</span> add <span style="color:#89dceb;font-weight:bold">-</span> rmv <span style="color:#89dceb;font-weight:bold">+</span> (k <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>) <span style="color:#89dceb;font-weight:bold">*</span> ops <span style="color:#89dceb;font-weight:bold">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">signed</span> <span style="color:#89b4fa">main</span>() {
+</span></span><span style="display:flex;"><span>    ios<span style="color:#89dceb;font-weight:bold">::</span>sync_with_stdio(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cin.tie(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    cout.tie(<span style="color:#fab387">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> t <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>    cin <span style="color:#89dceb;font-weight:bold">&gt;&gt;</span> t;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">while</span> (t<span style="color:#89dceb;font-weight:bold">--</span>) solve();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://blog.050623.xyz/tags/codeforces/">Codeforces</a></li>
+      <li><a href="https://blog.050623.xyz/tags/%E8%A1%A5%E9%A2%98/">补题</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://blog.050623.xyz/posts/tech/tools/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>自建小玩具</span>
+  </a>
+  <a class="next" href="https://blog.050623.xyz/posts/study/cf1032/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>Codeforces Round 1032 (Div. 3)</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://blog.050623.xyz/">KiritoXD&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', () => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent;
+                navigator.clipboard.writeText(text).then(copyingDone);
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replace("language-", "");
+        let macTool = document.createElement("div");
+        let macTool1 = document.createElement("div");
+        let macTool2 = document.createElement("div");
+        let macTool3 = document.createElement("div");
+        let languageType = document.createElement("div");
+        languageType.innerText = language;
+        macTool.setAttribute('class', 'mac-tool');
+        macTool1.setAttribute('class', 'mac bb1');
+        macTool2.setAttribute('class', 'mac bb2');
+        macTool3.setAttribute('class', 'mac bb3');
+        languageType.setAttribute('class', 'language-type');
+        macTool.appendChild(macTool1);
+        macTool.appendChild(macTool2);
+        macTool.appendChild(macTool3);
+        macTool.appendChild(languageType);
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool);
+        }
+    });
+</script>
+
+<script>
+    (function(u, c) {
+      var d = document, t = 'script', o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function(e) { c(e); }); }
+      s.parentNode.insertBefore(o, s);
+    })('//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js', function() {
+      pangu.spacingPage();
+    });
+    </script>
+</body>
+
+</html>
